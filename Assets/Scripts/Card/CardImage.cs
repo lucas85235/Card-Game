@@ -26,6 +26,7 @@ public class CardImage : MonoBehaviour
     public Action OnDeselect;
 
     private Energy m_energy;
+    private bool canSelect = true;
 
     void Start()
     {
@@ -36,21 +37,28 @@ public class CardImage : MonoBehaviour
         attack.text = "Attack: " + data.Attack();
         defense.text = "Defense: " + data.Defence();
 
-        m_energy.OnEndRound += OnEndTurn;
+        GameController.i.OnStartTurn.AddListener(() => OnStartTurn());
+        GameController.i.OnStartTurn.AddListener(() => canSelect = true);
+        GameController.i.OnEndTurn.AddListener(() => canSelect = false);
     }
 
     public void OnPointerEnter()
     {
+        if (!canSelect) return;
         transform.localScale = new Vector3(1.2f, 1.2f);
     }
 
     public void OnPointerExit()
     {
+        if (!canSelect) return;
         transform.localScale = new Vector3(1f, 1f);
     }
 
     public void OnClick()
     {
+        // Verifica se está no turno
+        if (!canSelect) return;
+
         if (!selected)
         {
             Select();
@@ -83,19 +91,19 @@ public class CardImage : MonoBehaviour
         }
     }
 
-    public void OnEndTurn()
+    // destroy o objeto se estiver selecionado no inicio do proximo turno
+    public void OnStartTurn()
     {
         if (selected)
         {
-            Destroy(this.gameObject, 0.1f);
+            Destroy(this.gameObject);
         }
     }
 
+    // limpa as callbacks
     private void OnDestroy()
     {
         OnSelect = null;
         OnDeselect = null;
-        m_energy.OnEndRound -= OnEndTurn;
-
     }
 }
