@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class Effect : ScriptableObject
 {
-    protected virtual bool ApplyEffect(GameObject emitter, int value, float applicationChance)
+    public bool UseEffect(Robot emitter, Robot target, int value, float applicationChance)
+    {
+        return ApplyEffect(emitter, target, value, applicationChance);
+    }
+
+    protected virtual bool ApplyEffect(Robot emitter, Robot target, int value, float applicationChance)
     {
         float chance = Random.Range(0f, 1f);
         return chance < applicationChance;

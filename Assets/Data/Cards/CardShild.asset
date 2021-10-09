@@ -12,7 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
   m_Name: CardShild
   m_EditorClassIdentifier: 
+  cardSprite: {fileID: 0}
   title: Shild
+  description: 
   energy: 1
-  attack: 20
-  defense: 60
+  effects:
+  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+    value: {x: 2, y: 2}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}
+  - effect: {fileID: 11400000, guid: aef5f2e33fa52614cb31eda8682b6a72, type: 2}
+    value: {x: 5, y: 5}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}

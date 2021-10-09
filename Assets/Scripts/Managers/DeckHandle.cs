@@ -28,6 +28,7 @@ public class DeckHandle : MonoBehaviour
     public Text discardText;
 
     public Action<List<CardImage>> OnUpdateHands;
+    public Action OnEndTurnSet;
 
     private void Start()
     {
@@ -35,6 +36,8 @@ public class DeckHandle : MonoBehaviour
 
         // chamo o turn a cada começo de turno
         GameController.i.OnStartTurn.AddListener(() => Turn());
+
+        Turn();
     }
 
     private void SortDeck()
@@ -82,23 +85,22 @@ public class DeckHandle : MonoBehaviour
             hands.Add(deck[s]);
         }
 
-        // chama o evento que atualiza as cartas na mão
-        OnUpdateHands(hands);
-
         // tira do deck
         foreach (var s in deckSelect)
         {
             deck.RemoveAt(s);
         }
 
-        // debug
-        // for (int i = 0; i < hands.Count; i++)
-        // {
-        //     Debug.Log(deckSelect[i] + " - " + hands[i].name);
-        // }
+        DeckText("Deck: " + deck.Count);
+        DiscarText("Discard: " + discard.Count);
 
-        deckText.text = "Deck: " + deck.Count;
-        discardText.text = "Discard: " + discard.Count;
+        Invoke("UpdateHands", 0.1f);
+    }
+
+    public void UpdateHands()
+    {
+        // chama o evento que atualiza as cartas na mão
+        OnUpdateHands(hands);          
     }
 
     // seleciona aleatoriamente a ordem da mão atual
@@ -118,6 +120,22 @@ public class DeckHandle : MonoBehaviour
         deckSelect.Reverse();
 
         return deckSelect;
+    }
+
+    private void DeckText(string text) 
+    {
+        if (deckText != null)
+        {
+            deckText.text = text;
+        }
+    }
+
+    private void DiscarText(string text) 
+    {
+        if (discardText != null)
+        {
+            discardText.text = text;
+        }
     }
 
     private void OnDestroy()

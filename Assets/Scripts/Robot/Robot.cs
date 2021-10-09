@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[RequireComponent(typeof(Life))]
+[RequireComponent(typeof(Energy))]
 
 public class Robot : MonoBehaviour
 {
@@ -12,24 +16,31 @@ public class Robot : MonoBehaviour
     private int m_speed;
     private int m_energy;
 
-    private int currentAttack;
-    private int currentDefense;
-    private int currentSpeed;
+    private int m_currentAttack;
+    private int m_currentDefense;
+    private int m_currentSpeed;
 
-    [Header("Set Character Data")]
-    public Life life;
+    private Life m_life;
+    private Energy m_energyCount;
+    private List<CardImage> m_roundCards;
 
-    void Start()
+    public Life life { get => m_life; }
+    public Energy energy { get => m_energyCount; }
+
+    public Transform selectedConteriner { get; set; }
+
+    private void Awake()
     {
-        life = GetComponent<Life>();
-        
+        m_life = GetComponent<Life>();
+        m_energyCount = GetComponent<Energy>();
+    }
 
+    private void Start()
+    {
         LoadData();
     }
 
-
-
-    private void LoadData() 
+    private void LoadData()
     {
         m_energy = data.Energy();
         m_attack = data.Attack();
@@ -37,27 +48,56 @@ public class Robot : MonoBehaviour
         m_speed = data.Speed();
     }
 
+    // Pega as cartas do robo atual e aplica o dano ao proximo robo
+    public IEnumerator UseRoundCards(Robot enemy, Action<bool> onEnd)
+    {
+        Debug.Log("ROBOT: " + energy);
+
+        m_roundCards = new List<CardImage>();
+
+        for (int i = 0; i < selectedConteriner.childCount; i++)
+        {
+            var data = selectedConteriner.GetChild(i).GetComponent<CardImage>();
+            m_roundCards.Add(data);
+        }
+
+        foreach (var card in m_roundCards)
+        {
+            card.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            yield return new WaitForSeconds(0.5f);
+            // enemy.life.TakeDamage(card.data.Attack());
+            // Debug.Log(gameObject.transform.name + " / " + energy.transform.name);
+            
+            card.UseEffects(null, enemy);
+            
+            card.gameObject.SetActive(false);
+        }
+
+        if (onEnd != null)
+            onEnd(false);
+    }
+
     // ATTACK
 
     public void AttackBuff()
     {
         // Max buff is five
-        if (currentAttack == (m_attack * 2)) return;
-        int buff = (int) (m_attack * 0.2f);
-        currentAttack += buff;
+        if (m_currentAttack == (m_attack * 2)) return;
+        int buff = (int)(m_attack * 0.2f);
+        m_currentAttack += buff;
     }
 
     public void AttackDebuff()
     {
         // Max debuff is five
-        if (currentAttack == (m_attack * 0.5f)) return;
-        int debuff = (int) (m_attack * 0.1f);
-        currentAttack -= debuff;
+        if (m_currentAttack == (m_attack * 0.5f)) return;
+        int debuff = (int)(m_attack * 0.1f);
+        m_currentAttack -= debuff;
     }
 
     public void AttackReset()
     {
-        currentAttack = m_attack;
+        m_currentAttack = m_attack;
     }
 
     // DEFENSE
@@ -65,22 +105,22 @@ public class Robot : MonoBehaviour
     public void DefenseBuff()
     {
         // Max buff is five
-        if (currentDefense == (m_defense * 2)) return;
-        int buff = (int) (m_defense * 0.2f);
-        currentDefense += buff;
+        if (m_currentDefense == (m_defense * 2)) return;
+        int buff = (int)(m_defense * 0.2f);
+        m_currentDefense += buff;
     }
 
     public void DefenseDebuff()
     {
         // Max debuff is five
-        if (currentDefense == (m_defense * 0.5f)) return;
-        int debuff = (int) (m_defense * 0.1f);
-        currentDefense -= debuff;
+        if (m_currentDefense == (m_defense * 0.5f)) return;
+        int debuff = (int)(m_defense * 0.1f);
+        m_currentDefense -= debuff;
     }
 
     public void DefenseReset()
     {
-        currentDefense = m_defense;
+        m_currentDefense = m_defense;
     }
 
     // SPEED
@@ -88,21 +128,21 @@ public class Robot : MonoBehaviour
     public void SpeedBuff()
     {
         // Max buff is five
-        if (currentSpeed == (m_speed * 2)) return;
-        int buff = (int) (m_speed * 0.2f);
-        currentSpeed += buff;
+        if (m_currentSpeed == (m_speed * 2)) return;
+        int buff = (int)(m_speed * 0.2f);
+        m_currentSpeed += buff;
     }
 
     public void SpeedDebuff()
     {
         // Max debuff is five
-        if (currentSpeed == (m_speed * 0.5f)) return;
-        int debuff = (int) (m_speed * 0.1f);
-        currentSpeed -= debuff;
+        if (m_currentSpeed == (m_speed * 0.5f)) return;
+        int debuff = (int)(m_speed * 0.1f);
+        m_currentSpeed -= debuff;
     }
 
     public void SpeedReset()
     {
-        currentSpeed = m_speed;
+        m_currentSpeed = m_speed;
     }
 }

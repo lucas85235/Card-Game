@@ -87,7 +87,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7800349223212004438}
   - component: {fileID: 7800349223212004439}
+  - component: {fileID: 8019612859486067078}
   - component: {fileID: 7800349223212004424}
+  - component: {fileID: 3622141039767870492}
   m_Layer: 5
   m_Name: Robot_IA
   m_TagString: Untagged
@@ -148,6 +150,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &8019612859486067078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800349223212004437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyText: {fileID: 0}
 --- !u!114 &7800349223212004424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +176,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
-  life: {fileID: 0}
+--- !u!114 &3622141039767870492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800349223212004437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05be1af0d411ec7458e2dbc9aa00ac1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mockCards:
+  - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
+  - {fileID: 53777120958727737, guid: 974c0f722e342ba49b0a918bbdef9589, type: 3}
+  - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
+  - {fileID: 53777120958727737, guid: 974c0f722e342ba49b0a918bbdef9589, type: 3}
+  - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
+  deck: []
+  hands: []
+  discard: []
+  deckText: {fileID: 0}
+  discardText: {fileID: 0}
 --- !u!1001 &2539451506092592750
 PrefabInstance:
   m_ObjectHideFlags: 0
