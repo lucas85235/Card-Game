@@ -21,6 +21,6 @@ MonoBehaviour:
     value: {x: 1, y: 4}
     chance: 1
     selfApply: 0
-    effectBonusByStat: 0
-    statToApplyEffectBonus: 0
-    effectMultiplierRange: {x: 0, y: 0}
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 1
+    effectMultiplierRange: {x: 1, y: 1}

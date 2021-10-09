@@ -16,12 +16,11 @@ MonoBehaviour:
   title: Protection Helmet
   description: Increases Defense by 1
   energy: 2
-  defenceRange: {x: 1, y: 1}
-  defenceBonusByStat: 0
-  statToApplyDefenceBonus: 0
-  statusMultiplierRange: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  attackBonusByStat: 0
-  statToApplyAttackBonus: 0
-  attackMultiplierRange: {x: 0, y: 0}
-  effects: []
+  effects:
+  - effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
+    value: {x: 1, y: 1}
+    chance: 1
+    selfApply: 1
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}

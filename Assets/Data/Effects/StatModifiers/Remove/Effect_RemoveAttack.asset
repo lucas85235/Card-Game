@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01d9400922659a4181cb648ceb82c97, type: 3}
   m_Name: Effect_RemoveAttack
   m_EditorClassIdentifier: 
-  statToModify: 0
+  statToModify: 1

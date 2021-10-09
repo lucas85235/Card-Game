@@ -16,9 +16,18 @@ MonoBehaviour:
   title: Hammer Time
   description: Deals  5 to 10 damage. Also reduces enemy Defense by 1.
   energy: 3
-  defense: 0
-  attackRange: {x: 5, y: 10}
   effects:
-  - effect: {fileID: 11400000, guid: 130f30fbcaf433443ad986c21b0a858b, type: 2}
+  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+    value: {x: 5, y: 10}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 1
+    effectMultiplierRange: {x: 1, y: 1}
+  - effect: {fileID: 11400000, guid: 94ac88c2d6928ee47b346c52c8dc2b69, type: 2}
     value: {x: 1, y: 1}
     chance: 1
+    selfApply: 0
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}

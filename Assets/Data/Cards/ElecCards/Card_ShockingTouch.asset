@@ -15,7 +15,12 @@ MonoBehaviour:
   cardSprite: {fileID: 0}
   title: Shocking Touch
   description: Deals InteDeals Int + 2 to 6  damage
-  energy: 2
-  defense: 0
-  attackRange: {x: 2, y: 6}
-  effects: []
+  energy: 1
+  effects:
+  - effect: {fileID: 11400000, guid: a55a5ef0d78a7aa4d9796222539da91f, type: 2}
+    value: {x: 2, y: 6}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 5
+    effectMultiplierRange: {x: 1, y: 1}

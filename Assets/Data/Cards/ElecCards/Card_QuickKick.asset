@@ -16,6 +16,11 @@ MonoBehaviour:
   title: Kick
   description: Deals 1 to 8 damage
   energy: 1
-  defense: 0
-  attackRange: {x: 1, y: 6}
-  effects: []
+  effects:
+  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+    value: {x: 1, y: 6}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 1
+    effectMultiplierRange: {x: 1, y: 1}

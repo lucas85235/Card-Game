@@ -16,6 +16,11 @@ MonoBehaviour:
   title: Lightning Rod
   description: Deals Intelligence x2 + 1 to 10 damage
   energy: 5
-  defense: 0
-  attackRange: {x: 1, y: 10}
-  effects: []
+  effects:
+  - effect: {fileID: 11400000, guid: a55a5ef0d78a7aa4d9796222539da91f, type: 2}
+    value: {x: 1, y: 10}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 5
+    effectMultiplierRange: {x: 2, y: 2}
