@@ -979,6 +979,10 @@ MonoBehaviour:
   - {fileID: 53777120958727737, guid: 974c0f722e342ba49b0a918bbdef9589, type: 3}
   - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
   deck: []
+  hands: []
+  discard: []
+  deckText: {fileID: 240431670}
+  discardText: {fileID: 1676823225}
 --- !u!1 &532037478
 GameObject:
   m_ObjectHideFlags: 0
