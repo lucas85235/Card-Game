@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         sortRobots = new List<Robot>();
 
-        if (player.data.speed > cpu.data.speed)
+        if (player.data.Speed() > cpu.data.Speed())
         {
             sortRobots.Add(player);
             sortRobots.Add(cpu);
@@ -71,12 +71,12 @@ public class GameManager : MonoBehaviour
             {
                 var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
                 m_roundCards.Add(data);
-                shild += data.defense;
+                shild += data.Defence();
             }
 
             foreach (var card in m_roundCards)
             {
-                robot.life.TakeDamage(card.attack);
+                robot.life.TakeDamage(card.Attack());
             }
         }
     }

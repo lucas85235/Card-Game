@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6bd1aa3f31e03449fb8053b3baaa1f, type: 3}
+  m_Name: LA_BuilderLeftArm
+  m_EditorClassIdentifier: 
+  partSprite: {fileID: 0}
+  health: 50
+  energy: 5
+  attack: 10
+  defense: 15
+  speed: 5
+  cards:
+  - {fileID: 11400000, guid: 92d2cb6e9d3c2574bad8d833dd3c98a1, type: 2}
