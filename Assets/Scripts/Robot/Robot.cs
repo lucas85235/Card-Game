@@ -16,10 +16,18 @@ public class Robot : MonoBehaviour
     private int currentDefense;
     private int currentSpeed;
 
+    [Header("Set Character Data")]
+    public Life life;
+
     void Start()
     {
+        life = GetComponent<Life>();
+        
+
         LoadData();
     }
+
+
 
     private void LoadData() 
     {

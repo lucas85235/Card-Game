@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Setup")]
     public Transform selectedConteriner;
+    public float timeBetweenPlays = 1f;
 
     [Header("Chracters")]
-    public Life player;
-    public Life cpu;
+    public Robot player;
+    public Robot cpu;
+
+    [Header("Events")]
+    public UnityEvent OnEndTurn;
+    public UnityEvent OnStartTurn;
+
+    // Use this to get Robots in order
+    private List<Robot> sortRobots;
 
     private Energy m_energy;
     private List<CardData> m_roundCards;
@@ -18,28 +27,57 @@ public class GameManager : MonoBehaviour
     {
         m_energy = FindObjectOfType<Energy>();
         m_energy.OnEndRound += EndTurnHandle;
+
+        OrderBySpeed();
+
+        OnStartTurn?.Invoke();
+    }
+
+    private void OrderBySpeed()
+    {
+        sortRobots = new List<Robot>();
+
+        if (player.data.speed > cpu.data.speed)
+        {
+            sortRobots.Add(player);
+            sortRobots.Add(cpu);
+        }
+        else
+        {
+            sortRobots.Add(cpu);
+            sortRobots.Add(player);
+        }
     }
 
     private void EndTurnHandle()
     {
-        UseRoundCards();
+        OnEndTurn?.Invoke();
+
+        StartCoroutine("UseRoundCards");
+
+        OnStartTurn?.Invoke();
     }
 
     private void UseRoundCards()
     {
-        var shild = 0;
-        m_roundCards = new List<CardData>();
-
-        for (int i = 0; i < selectedConteriner.childCount; i++)
+        foreach (var robot in sortRobots)
         {
-            var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
-            m_roundCards.Add(data);
-            shild += data.defense;
-        }
+            var shild = 0;
+            m_roundCards = new List<CardData>();
+            
+            Debug.Log(robot.name);
 
-        foreach (var card in m_roundCards)
-        {
-            cpu.TakeDamage(card.attack);
+            for (int i = 0; i < selectedConteriner.childCount; i++)
+            {
+                var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
+                m_roundCards.Add(data);
+                shild += data.defense;
+            }
+
+            foreach (var card in m_roundCards)
+            {
+                robot.life.TakeDamage(card.attack);
+            }
         }
     }
 
