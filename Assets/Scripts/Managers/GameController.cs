@@ -22,7 +22,8 @@ public class GameController : MonoBehaviour
     private List<Robot> sortRobots;
 
     private Energy m_energy;
-    private List<CardData> m_roundCards;
+    private List<CardImage> m_roundCards;
+    private bool inActionPlays = false;
 
     public static GameController i;
 
@@ -39,6 +40,13 @@ public class GameController : MonoBehaviour
         OrderBySpeed();
 
         OnStartTurn?.Invoke();
+
+        OnStartTurn.AddListener(() => {
+            foreach (var robot in sortRobots)
+            {
+                robot.life.RemoveShild();
+            }
+        });
     }
 
     // Ordena a ordem de ataque dos robos de acordo com a velocidade
@@ -74,46 +82,76 @@ public class GameController : MonoBehaviour
     // Determina a sequencia de jogadas e um tempo entre elas
     private IEnumerator Plays()
     {
+        inActionPlays = false;
+
+        foreach (var robots in sortRobots)
+        {
+            for (int i = 0; i < selectedConteriner.childCount; i++)
+            {
+                var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
+                robots.life.AddShild(data.Defence());
+            }        
+        }
+
+        yield return new WaitForSeconds(timeBetweenPlays);
+
         Debug.Log("F1");
-        UseRoundCards(sortRobots[0], sortRobots[1]);
+        inActionPlays = true;
+        StartCoroutine(
+            UseRoundCards(sortRobots[0], sortRobots[1])
+        );
+
+        yield return new WaitUntil(() => inActionPlays == false);
+        yield return new WaitForSeconds(timeBetweenPlays);
 
         if (sortRobots[1].life.isDeath)
             yield break;
 
-        yield return new WaitForSeconds(timeBetweenPlays);
+        // Debug.Log("F2");
+        inActionPlays = true;
+        StartCoroutine(
+            UseRoundCards(sortRobots[1], sortRobots[0])
+        );
 
-        Debug.Log("F2");
-        UseRoundCards(sortRobots[1], sortRobots[0]);
+        yield return new WaitUntil(() => inActionPlays == false);
+        yield return new WaitForSeconds(timeBetweenPlays);
 
         if (sortRobots[1].life.isDeath)
             yield break;
-
-        yield return new WaitForSeconds(timeBetweenPlays);
 
         OnStartTurn?.Invoke();
     }
 
     // Pega as cartas do robo atual e aplica o dano ao proximo robo
-    private void UseRoundCards(Robot currentRobot, Robot nextRobot)
+    private IEnumerator UseRoundCards(Robot currentRobot, Robot nextRobot)
     {
-        m_roundCards = new List<CardData>();
+        m_roundCards = new List<CardImage>();
 
         for (int i = 0; i < selectedConteriner.childCount; i++)
         {
-            var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
+            var data = selectedConteriner.GetChild(i).GetComponent<CardImage>();
             m_roundCards.Add(data);
         }
 
         foreach (var card in m_roundCards)
         {
-            nextRobot.life.TakeDamage(card.Attack());
+            card.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            nextRobot.life.TakeDamage(card.data.Attack());
+            yield return new WaitForSeconds(1f);
+            card.gameObject.SetActive(false);
         }
+
+        inActionPlays = false;
     }
 
     private void OnDestroy()
     {
         m_energy.OnEndRound -= EndTurnHandle;
+
         OnEndTurn.RemoveAllListeners();
         OnStartTurn.RemoveAllListeners();
+
+        OnEndTurn = null;
+        OnStartTurn = null;
     }
 }

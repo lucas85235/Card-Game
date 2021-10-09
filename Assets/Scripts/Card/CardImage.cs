@@ -26,7 +26,7 @@ public class CardImage : MonoBehaviour
     public Action OnDeselect;
 
     private Energy m_energy;
-    private bool canSelect = true;
+    private bool m_canSelect = true;
 
     void Start()
     {
@@ -38,26 +38,26 @@ public class CardImage : MonoBehaviour
         defense.text = "Defense: " + data.Defence();
 
         GameController.i.OnStartTurn.AddListener(() => OnStartTurn());
-        GameController.i.OnStartTurn.AddListener(() => canSelect = true);
-        GameController.i.OnEndTurn.AddListener(() => canSelect = false);
+        GameController.i.OnStartTurn.AddListener(() => m_canSelect = true);
+        GameController.i.OnEndTurn.AddListener(() => m_canSelect = false);
     }
 
     public void OnPointerEnter()
     {
-        if (!canSelect) return;
+        if (!m_canSelect) return;
         transform.localScale = new Vector3(1.2f, 1.2f);
     }
 
     public void OnPointerExit()
     {
-        if (!canSelect) return;
+        if (!m_canSelect) return;
         transform.localScale = new Vector3(1f, 1f);
     }
 
     public void OnClick()
     {
         // Verifica se está no turno
-        if (!canSelect) return;
+        if (!m_canSelect) return;
 
         if (!selected)
         {
