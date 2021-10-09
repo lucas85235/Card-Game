@@ -12,6 +12,10 @@ public class Life : MonoBehaviour
     public Slider lifeSlider;
     public Text lifeText;
 
+    [Header("Shild Settings")]
+    public Slider shildSlider;
+    public Text shildText;
+
     [Header("Death Setup")]
     public bool destroyAfterDeath = true;
     public bool isDeath = false;
@@ -19,30 +23,33 @@ public class Life : MonoBehaviour
     [Header("Death Event")]
     public UnityEvent OnDeath;
 
-    private Robot robot;
-    private int maxLife;
-    private int currentLife;
+    private Robot m_robot;
+    private int m_maxLife;
+    private int m_currentLife;
+    private int m_currentShild;
     
+    public bool HaveShild() => m_currentShild > 0;
+
     void Start()
     {
-        robot = GetComponent<Robot>();
+        m_robot = GetComponent<Robot>();
 
         if (lifeSlider == null) {
             Debug.LogError("lifeSlider is Null");
             return;
         }
         
-        maxLife = robot.data.Health();
-        lifeSlider.maxValue = maxLife;
-        lifeSlider.value = maxLife;
-        currentLife = (int) lifeSlider.value;
+        m_maxLife = m_robot.data.Health();
+        lifeSlider.maxValue = m_maxLife;
+        lifeSlider.value = m_maxLife;
+        m_currentLife = (int) lifeSlider.value;
 
         UpdateLifeSlider();
     }
 
     public void AddLife(int increment)
     {
-        currentLife += increment;
+        m_currentLife += increment;
 
         LifeRules();
         UpdateLifeSlider();
@@ -50,7 +57,12 @@ public class Life : MonoBehaviour
 
     public void TakeDamage(int decrement)
     {
-        currentLife -= decrement;
+        int damage = decrement;
+
+        if (HaveShild())
+            damage = TakeDamageShild(decrement);
+
+        m_currentLife -= damage;
 
         LifeRules();
         UpdateLifeSlider();
@@ -66,18 +78,61 @@ public class Life : MonoBehaviour
 
     private void LifeRules()
     {
-        if (currentLife > maxLife) 
-            currentLife = maxLife;
-        if (currentLife < 1)
+        if (m_currentLife > m_maxLife) 
+            m_currentLife = m_maxLife;
+        if (m_currentLife < 1)
             DeathHandle();        
     }    
 
     private void UpdateLifeSlider()
     {
         if (lifeSlider != null)
-            lifeSlider.value = currentLife;
+            lifeSlider.value = m_currentLife;
 
         if (lifeText != null)
-            lifeText.text = currentLife + " / " + maxLife;
+            lifeText.text = m_currentLife + " / " + m_maxLife;
+    }
+
+    public void AddShild(int shild)
+    {
+        m_currentShild += shild;
+        
+        shildSlider.gameObject.SetActive(true);
+        shildSlider.maxValue = m_currentShild;
+        shildSlider.value = m_currentLife;
+
+        UpdateShildSlider();
+    }
+
+    public void RemoveShild()
+    {
+        shildSlider.gameObject.SetActive(false);
+        m_currentShild = 0;
+    }
+
+    private int TakeDamageShild(int damage)
+    {
+        Debug.Log("Damage: " + damage);
+        
+        m_currentShild -= damage;
+        UpdateShildSlider();
+
+        if (m_currentShild <= 0)
+        {
+            shildSlider.gameObject.SetActive(false);
+            Debug.Log("Damage diff: " + m_currentShild * -1);
+            return m_currentShild * -1;
+        }
+        
+        return 0;
+    }
+
+    private void UpdateShildSlider()
+    {
+        if (shildSlider != null)
+            shildSlider.value = m_currentShild;
+
+        if (shildText != null)
+            shildText.text = m_currentShild + " / " + shildSlider.maxValue;
     }
 }

@@ -92,10 +92,10 @@ public class DeckHandle : MonoBehaviour
         }
 
         // debug
-        for (int i = 0; i < hands.Count; i++)
-        {
-            Debug.Log(deckSelect[i] + " - " + hands[i].name);
-        }
+        // for (int i = 0; i < hands.Count; i++)
+        // {
+        //     Debug.Log(deckSelect[i] + " - " + hands[i].name);
+        // }
 
         deckText.text = "Deck: " + deck.Count;
         discardText.text = "Discard: " + discard.Count;
