@@ -16,9 +16,11 @@ MonoBehaviour:
   title: Lightning Reflexes
   description: Increases Defense and Speed by 1
   energy: 3
-  defense: 1
-  attackRange: {x: 0, y: 0}
   effects:
   - effect: {fileID: 11400000, guid: 7037a0fbe1cc5af46935d7f252e86ee3, type: 2}
     value: {x: 1, y: 1}
     chance: 1
+    selfApply: 1
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}

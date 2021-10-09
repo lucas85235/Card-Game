@@ -19,4 +19,7 @@ MonoBehaviour:
   defense: 0
   speed: 0
   cards:
-  - {fileID: 11400000, guid: 99e82d75083005342bc1ca82d421c9e8, type: 2}
+  - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
+  - {fileID: 11400000, guid: 268e4e6aa22903b419290116434e3200, type: 2}
+  - {fileID: 11400000, guid: 268e4e6aa22903b419290116434e3200, type: 2}
+  - {fileID: 11400000, guid: 42d0c3c1b36c0df45a1962dc5114ec3d, type: 2}

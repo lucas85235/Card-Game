@@ -16,9 +16,11 @@ MonoBehaviour:
   title: Amperemeter
   description: Increases Intelligence by 1
   energy: 2
-  defense: 0
-  attackRange: {x: 0, y: 0}
   effects:
   - effect: {fileID: 11400000, guid: fd8313fc8d0899c408442fcb1fedeb98, type: 2}
     value: {x: 1, y: 1}
     chance: 1
+    selfApply: 1
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}

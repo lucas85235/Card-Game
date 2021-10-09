@@ -16,9 +16,11 @@ MonoBehaviour:
   title: Repair Tools
   description: Heals Intelligence + 2 to 6 Health Points
   energy: 2
-  defense: 6
-  attackRange: {x: 1, y: 10}
   effects:
   - effect: {fileID: 11400000, guid: 8fe25342434c65a499a642f7aec6b749, type: 2}
     value: {x: 2, y: 6}
     chance: 1
+    selfApply: 1
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 5
+    effectMultiplierRange: {x: 1, y: 1}
