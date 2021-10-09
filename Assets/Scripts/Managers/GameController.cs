@@ -113,7 +113,11 @@ public class GameController : MonoBehaviour
     private void OnDestroy()
     {
         m_energy.OnEndRound -= EndTurnHandle;
+
         OnEndTurn.RemoveAllListeners();
         OnStartTurn.RemoveAllListeners();
+
+        OnEndTurn = null;
+        OnStartTurn = null;
     }
 }

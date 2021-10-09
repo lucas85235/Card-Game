@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using Random = UnityEngine.Random;
 
 public class DeckHandle : MonoBehaviour
 {
@@ -23,6 +26,8 @@ public class DeckHandle : MonoBehaviour
     [Header("Hud Setup")]
     public Text deckText;
     public Text discardText;
+
+    public Action<List<CardImage>> OnUpdateHands;
 
     private void Start()
     {
@@ -77,6 +82,9 @@ public class DeckHandle : MonoBehaviour
             hands.Add(deck[s]);
         }
 
+        // chama o evento que atualiza as cartas na mão
+        OnUpdateHands(hands);
+
         // tira do deck
         foreach (var s in deckSelect)
         {
@@ -110,5 +118,10 @@ public class DeckHandle : MonoBehaviour
         deckSelect.Reverse();
 
         return deckSelect;
+    }
+
+    private void OnDestroy()
+    {
+        OnUpdateHands = null;
     }
 }
