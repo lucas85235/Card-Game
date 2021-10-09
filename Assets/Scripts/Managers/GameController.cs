@@ -103,11 +103,6 @@ public class GameController : MonoBehaviour
             var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
             m_roundCards.Add(data);
         }
-
-        foreach (var card in m_roundCards)
-        {
-            nextRobot.life.TakeDamage(card.Attack());
-        }
     }
 
     private void OnDestroy()

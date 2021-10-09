@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Robot", menuName = "ScriptableObjects/Parts/Head", order = 1)]
+[CreateAssetMenu(fileName = "Head", menuName = "ScriptableObjects/Parts/Head", order = 1)]
 public class Head : RobotPart
 {
 }

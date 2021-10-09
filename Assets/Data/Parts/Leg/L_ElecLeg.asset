@@ -19,5 +19,7 @@ MonoBehaviour:
   defense: 5
   speed: 10
   cards:
-  - {fileID: 11400000, guid: fb5b5c462de44704fbddce0a3a0f7123, type: 2}
-  - {fileID: 11400000, guid: e77118d92b2496b40b41f46155e09b75, type: 2}
+  - {fileID: 11400000, guid: 81374b7a7bbed4a4ab1da8cb08fe9ad4, type: 2}
+  - {fileID: 11400000, guid: 81374b7a7bbed4a4ab1da8cb08fe9ad4, type: 2}
+  - {fileID: 11400000, guid: cacc76759ccff334abbb2f8f2583ecd7, type: 2}
+  - {fileID: 11400000, guid: cacc76759ccff334abbb2f8f2583ecd7, type: 2}

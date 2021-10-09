@@ -43,13 +43,13 @@ public class MenuManager : MonoBehaviour
         foreach (var card in currentRobots[m_CurrentRobotIndex].Cards())
         {
             var newCardInfo = Instantiate(cardInfoPrefab);
-            newCardInfo.transform.SetParent(cardConfiner);
+            newCardInfo.transform.SetParent(cardConfiner, false);
 
             newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
             cardImage.sprite = card.Sprite();
 
             newCardInfo.transform.Find("StatsText").TryGetComponent(out TextMeshProUGUI statsText);
-            statsText.text = "Energy: " + card.Energy() + " Attack: " + card.Attack() + " Defence: " + card.Defence();
+            statsText.text = card.Title();
 
             newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
             descriptionText.text = card.Description();

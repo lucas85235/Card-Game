@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: T_ElecTorso
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 100
-  energy: 20
-  attack: 10
-  defense: 10
-  speed: 25
+  health: 10
+  energy: 1
+  attack: 0
+  defense: 0
+  speed: 0
   cards:
-  - {fileID: 11400000, guid: fb5b5c462de44704fbddce0a3a0f7123, type: 2}
-  - {fileID: 11400000, guid: e77118d92b2496b40b41f46155e09b75, type: 2}
+  - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
+  - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
+  - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
+  - {fileID: 11400000, guid: 69f021cb619bb8d488d2845d6fbc9f43, type: 2}
