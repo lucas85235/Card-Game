@@ -32,7 +32,7 @@ public class Life : MonoBehaviour
             return;
         }
         
-        maxLife = robot.data.health;
+        maxLife = robot.data.Health();
         lifeSlider.maxValue = maxLife;
         lifeSlider.value = maxLife;
         currentLife = (int) lifeSlider.value;

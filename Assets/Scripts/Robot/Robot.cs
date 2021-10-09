@@ -31,10 +31,10 @@ public class Robot : MonoBehaviour
 
     private void LoadData() 
     {
-        m_energy = data.energy;
-        m_attack = data.attack;
-        m_defense = data.defense;
-        m_speed = data.speed;
+        m_energy = data.Energy();
+        m_attack = data.Attack();
+        m_defense = data.Defense();
+        m_speed = data.Speed();
     }
 
     // ATTACK

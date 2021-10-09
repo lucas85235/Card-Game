@@ -31,10 +31,10 @@ public class CardImage : MonoBehaviour
     {
         m_energy = FindObjectOfType<Energy>();
 
-        title.text = data.title;
-        energy.text = "Energy: " + data.energy;
-        attack.text = "Attack: " + data.attack;
-        defense.text = "Defense: " + data.defense;
+        title.text = data.Title();
+        energy.text = "Energy: " + data.Energy();
+        attack.text = "Attack: " + data.Attack();
+        defense.text = "Defense: " + data.Defence();
 
         m_energy.OnEndRound += OnEndTurn;
     }
@@ -60,13 +60,13 @@ public class CardImage : MonoBehaviour
 
     public void Select()
     {
-        int decreaseEnergy = m_energy.EnergyRoundAmount - data.energy;
+        int decreaseEnergy = m_energy.EnergyRoundAmount - data.Energy();
 
-        if (m_energy.EnergyRoundAmount >= data.energy &&
+        if (m_energy.EnergyRoundAmount >= data.Energy() &&
             decreaseEnergy >= 0 && !selected)
         {
             selected = !selected;
-            m_energy.UseRoundEnergy(-data.energy);
+            m_energy.UseRoundEnergy(-data.Energy());
             transform.SetParent(selectedConteriner);
             OnSelect?.Invoke();
         }
@@ -77,7 +77,7 @@ public class CardImage : MonoBehaviour
         if (selected)
         {
             selected = !selected;
-            m_energy.UseRoundEnergy(data.energy);
+            m_energy.UseRoundEnergy(data.Energy());
             transform.SetParent(selectConteriner);
             OnDeselect?.Invoke();
         }

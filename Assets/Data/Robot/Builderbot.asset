@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Builderbot
   m_EditorClassIdentifier: 
   characterName: Builderbot
-  health: 55
-  energy: 5
-  attack: 3
-  defense: 6
-  speed: 1
+  head: {fileID: 11400000, guid: 6b4df9d1bd266b649bfe8d7abcfd0840, type: 2}
+  torso: {fileID: 11400000, guid: 1a1fa9b25240ef84ca477fef75ff1990, type: 2}
+  rightArm: {fileID: 11400000, guid: e241255601fe97242bd711bf88f9508e, type: 2}
+  leftArm: {fileID: 11400000, guid: c43f4e3103a6f434ba8c2e017f165dcd, type: 2}
+  rightLeg: {fileID: 11400000, guid: 1924ea747d04db541a2d3c899a509df3, type: 2}
+  leftLeg: {fileID: 11400000, guid: 9e8499cdeae395f42ab8772ad44196dc, type: 2}
+  sketchSprite: {fileID: 21300000, guid: 7396f9896e4e48944809ac6edcd46024, type: 3}

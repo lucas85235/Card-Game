@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6968a1c977e8dae479639d1b597e6e0f, type: 3}
+  m_Name: H_ElecHead
+  m_EditorClassIdentifier: 
+  partSprite: {fileID: 0}
+  health: 50
+  energy: 40
+  attack: 15
+  defense: 5
+  speed: 10
+  cards:
+  - {fileID: 11400000, guid: fb5b5c462de44704fbddce0a3a0f7123, type: 2}
+  - {fileID: 11400000, guid: e77118d92b2496b40b41f46155e09b75, type: 2}
