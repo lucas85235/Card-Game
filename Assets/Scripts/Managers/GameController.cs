@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour
 
         if (selectedConteriner.childCount > 0)
             StartCoroutine(Plays());
+        else OnStartTurn?.Invoke();
     }
 
     // Determina a sequencia de jogadas e um tempo entre elas
