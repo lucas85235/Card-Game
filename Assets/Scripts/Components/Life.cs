@@ -4,36 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Robot))]
+
 public class Life : MonoBehaviour
 {
     [Header("Life Settings")]
     public Slider lifeSlider;
     public Text lifeText;
-    public float maxLife = 100;
 
     [Header("Death Setup")]
     public bool destroyAfterDeath = true;
+    public bool isDeath = false;
 
     [Header("Death Event")]
     public UnityEvent OnDeath;
 
-    private float currentLife;
-
+    private Robot robot;
+    private int maxLife;
+    private int currentLife;
+    
     void Start()
     {
+        robot = GetComponent<Robot>();
+
         if (lifeSlider == null) {
             Debug.LogError("lifeSlider is Null");
             return;
         }
         
+        maxLife = robot.data.health;
         lifeSlider.maxValue = maxLife;
         lifeSlider.value = maxLife;
-        currentLife = lifeSlider.value;
+        currentLife = (int) lifeSlider.value;
 
         UpdateLifeSlider();
     }
 
-    public void AddLife(float increment)
+    public void AddLife(int increment)
     {
         currentLife += increment;
 
@@ -41,7 +48,7 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(float decrement)
+    public void TakeDamage(int decrement)
     {
         currentLife -= decrement;
 
@@ -54,6 +61,7 @@ public class Life : MonoBehaviour
         Debug.Log("Character is Death");
         if (destroyAfterDeath) Destroy(this.gameObject);
         OnDeath?.Invoke();
+        isDeath = true;
     }
 
     private void LifeRules()
