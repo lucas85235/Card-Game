@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: LA_StunLeftArm
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 35
-  energy: 5
-  attack: 10
-  defense: 10
-  speed: 10
+  health: 5
+  energy: 0
+  attack: 2
+  defense: 0
+  speed: 0
   cards:
   - {fileID: 11400000, guid: 99e82d75083005342bc1ca82d421c9e8, type: 2}

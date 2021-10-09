@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: LA_ElecLeftArm
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 20
-  energy: 10
-  attack: 15
-  defense: 5
-  speed: 15
+  health: 2
+  energy: 1
+  attack: 0
+  defense: 1
+  speed: 0
   cards:
-  - {fileID: 11400000, guid: fb5b5c462de44704fbddce0a3a0f7123, type: 2}
+  - {fileID: 11400000, guid: dcd3a821081bcae458b83afdb93bbb9f, type: 2}
+  - {fileID: 11400000, guid: a1ad5998766161b48be1a523ae591736, type: 2}
+  - {fileID: 11400000, guid: eeaf2ec2bbefed942928bb255c030191, type: 2}
+  - {fileID: 11400000, guid: eeaf2ec2bbefed942928bb255c030191, type: 2}

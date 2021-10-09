@@ -10,15 +10,15 @@ public class CardData : ScriptableObject
     [SerializeField] private string title;
     [SerializeField] private string description;
 
-    [Header("Stats")]
+    [Header("Costs")]
     [SerializeField] private int energy;
-    [SerializeField] private int attack;
-    [SerializeField] private int defense;
+
+    [Header("SpecialEffects")]
+    [SerializeField] private List<CardEffectStruct> effects;
 
     public Sprite Sprite() { return cardSprite; }
     public string Title() { return title; }
     public string Description() { return description; }
     public int Energy() { return energy; }
-    public int Attack() { return attack; }
-    public int Defence() { return defense; }
+    public List<CardEffectStruct> Effects() { return effects; }
 }

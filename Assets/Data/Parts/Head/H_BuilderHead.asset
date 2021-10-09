@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: H_BuilderHead
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 100
-  energy: 20
-  attack: 10
-  defense: 20
-  speed: 5
+  health: 5
+  energy: 0
+  attack: 0
+  defense: 2
+  speed: 0
   cards:
-  - {fileID: 11400000, guid: 92d2cb6e9d3c2574bad8d833dd3c98a1, type: 2}
-  - {fileID: 11400000, guid: a2f5cd9ffc71302488f4bc4ac7587631, type: 2}
+  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
+  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
+  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
+  - {fileID: 11400000, guid: 620d3fde7cc91cd479ac8bd4764dc36c, type: 2}

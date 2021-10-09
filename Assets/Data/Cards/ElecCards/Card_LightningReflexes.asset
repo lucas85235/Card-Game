@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
+  m_Name: Card_LightningReflexes
+  m_EditorClassIdentifier: 
+  cardSprite: {fileID: 0}
+  title: Lightning Reflexes
+  description: Increases Defense and Speed by 1
+  energy: 3
+  defense: 1
+  attackRange: {x: 0, y: 0}
+  effects:
+  - effect: {fileID: 11400000, guid: 7037a0fbe1cc5af46935d7f252e86ee3, type: 2}
+    value: {x: 1, y: 1}
+    chance: 1

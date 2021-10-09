@@ -34,8 +34,6 @@ public class CardImage : MonoBehaviour
 
         title.text = data.Title();
         energy.text = "Energy: " + data.Energy();
-        attack.text = "Attack: " + data.Attack();
-        defense.text = "Defense: " + data.Defence();
 
         GameController.i.OnStartTurn.AddListener(() => OnStartTurn());
         GameController.i.OnStartTurn.AddListener(() => m_canSelect = true);

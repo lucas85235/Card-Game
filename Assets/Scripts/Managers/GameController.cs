@@ -132,16 +132,6 @@ public class GameController : MonoBehaviour
             var data = selectedConteriner.GetChild(i).GetComponent<CardImage>();
             m_roundCards.Add(data);
         }
-
-        foreach (var card in m_roundCards)
-        {
-            card.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
-            nextRobot.life.TakeDamage(card.data.Attack());
-            yield return new WaitForSeconds(1f);
-            card.gameObject.SetActive(false);
-        }
-
-        inActionPlays = false;
     }
 
     private void OnDestroy()

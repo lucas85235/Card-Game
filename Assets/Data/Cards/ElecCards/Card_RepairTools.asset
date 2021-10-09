@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
+  m_Name: Card_RepairTools
+  m_EditorClassIdentifier: 
+  cardSprite: {fileID: 0}
+  title: Repair Tools
+  description: Heals Intelligence + 2 to 6 Health Points
+  energy: 2
+  defense: 6
+  attackRange: {x: 1, y: 10}
+  effects:
+  - effect: {fileID: 11400000, guid: 8fe25342434c65a499a642f7aec6b749, type: 2}
+    value: {x: 2, y: 6}
+    chance: 1

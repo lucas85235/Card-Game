@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: L_BuilderLeg
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 100
-  energy: 20
-  attack: 10
-  defense: 20
-  speed: 5
+  health: 5
+  energy: 0
+  attack: 0
+  defense: 1
+  speed: 1
   cards:
-  - {fileID: 11400000, guid: 92d2cb6e9d3c2574bad8d833dd3c98a1, type: 2}
-  - {fileID: 11400000, guid: a2f5cd9ffc71302488f4bc4ac7587631, type: 2}
+  - {fileID: 11400000, guid: 21d0243663e5e7245a3dc605fbd95cd6, type: 2}
+  - {fileID: 11400000, guid: 21d0243663e5e7245a3dc605fbd95cd6, type: 2}
+  - {fileID: 11400000, guid: 5c5d55170da0ea34aa9e7e040103423a, type: 2}
+  - {fileID: 11400000, guid: 5c5d55170da0ea34aa9e7e040103423a, type: 2}
