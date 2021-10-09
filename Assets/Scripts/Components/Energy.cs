@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Esse componente lida com uso de energia
+// Possui a total de energia e a energia
+// usada durante o round
+
+// Cada robo tera uma quantidade de energia
+// Mas neste momento todos terão 5
+
+// A energia tem um limite de 5
+// A cada turno a energia volta a 5
+
 public class Energy : MonoBehaviour
 {
     [Header("Setup")]
@@ -25,7 +35,7 @@ public class Energy : MonoBehaviour
 
     public void InitGame() 
     {
-        currentAmount = 3;
+        currentAmount = 5;
         currentRoundAmount = currentAmount;
         EnergyText(currentAmount);
     }
@@ -50,8 +60,8 @@ public class Energy : MonoBehaviour
     private void AfterEndRound() 
     {
         Debug.Log("AfterEndRound");
-        currentAmount = currentRoundAmount + 2;
-        if (currentAmount > 10) currentAmount = 10;
+        currentAmount = 5;
+        if (currentAmount > 5) currentAmount = 5;
         currentRoundAmount = currentAmount;
         EnergyText(currentAmount);
     }
@@ -60,7 +70,7 @@ public class Energy : MonoBehaviour
     {
         if (energyText != null) 
         {
-            energyText.text = value + " / 10";
+            energyText.text = value + " / 5";
         }
     }
 
