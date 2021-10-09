@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: L_StunLeg
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 100
-  energy: 20
-  attack: 10
-  defense: 20
+  health: 70
+  energy: 10
+  attack: 25
+  defense: 10
   speed: 5
-  cards: []
+  cards:
+  - {fileID: 11400000, guid: 99e82d75083005342bc1ca82d421c9e8, type: 2}
+  - {fileID: 11400000, guid: 8c531768b719c23428c1ad98e045ff74, type: 2}
