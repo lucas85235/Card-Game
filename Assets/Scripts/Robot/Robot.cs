@@ -106,6 +106,7 @@ public class Robot : MonoBehaviour
     public void AttackDebuff(int debuff)
     {
         m_currentAttack -= debuff;
+        if (m_currentAttack < 1) m_currentAttack = 0;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 
@@ -124,8 +125,9 @@ public class Robot : MonoBehaviour
 
     public void DefenseDebuff(int debuff)
     {
-        Debug.Log("DEBUFF DEF: -" + debuff);
+        // Debug.Log("DEBUFF DEF: -" + debuff);
         m_currentDefense -= debuff;
+        if (m_currentAttack < 1) m_currentAttack = 0;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 

@@ -16,25 +16,31 @@ public class RobotData : ScriptableObject
     [SerializeField] private LeftArm leftArm;
     [SerializeField] private Leg leg;
 
+    [Header("Temp Stats")]
+    [SerializeField] private int health;
+    [SerializeField] private int attack;
+    [SerializeField] private int defense;
+    [SerializeField] private int speed;
+
     public int Health()
     {
-        return head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
+        return health; // head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
     }
     public int Energy() 
     { 
-        return head.Energy() + torso.Energy() + rightArm.Energy() + leftArm.Energy() + leg.Energy(); 
+        return 5;// head.Energy() + torso.Energy() + rightArm.Energy() + leftArm.Energy() + leg.Energy(); 
     }
     public int Attack() 
     {
-        return head.Attack() + torso.Attack() + rightArm.Attack() + leftArm.Attack() + leg.Attack(); 
+        return attack;// head.Attack() + torso.Attack() + rightArm.Attack() + leftArm.Attack() + leg.Attack(); 
     }
     public int Defense()
     { 
-        return head.Defense() + torso.Defense() + rightArm.Defense() + leftArm.Defense() + leg.Defense(); 
+        return defense;// head.Defense() + torso.Defense() + rightArm.Defense() + leftArm.Defense() + leg.Defense(); 
     }
     public int Speed()
     {
-        return head.Speed() + torso.Speed() + rightArm.Speed() + leftArm.Speed() + leg.Speed(); 
+        return speed;// head.Speed() + torso.Speed() + rightArm.Speed() + leftArm.Speed() + leg.Speed(); 
     }
 
     public List<CardData> Cards()
