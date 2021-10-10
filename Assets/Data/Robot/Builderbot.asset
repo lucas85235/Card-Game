@@ -18,4 +18,7 @@ MonoBehaviour:
   rightArm: {fileID: 11400000, guid: e241255601fe97242bd711bf88f9508e, type: 2}
   leftArm: {fileID: 11400000, guid: c43f4e3103a6f434ba8c2e017f165dcd, type: 2}
   leg: {fileID: 11400000, guid: a2370766a3e5b13479584c72edf30426, type: 2}
-  sketchSprite: {fileID: 21300000, guid: 7396f9896e4e48944809ac6edcd46024, type: 3}
+  health: 55
+  attack: 3
+  defense: 6
+  speed: 1

@@ -12,8 +12,6 @@ public class Effect_Attack : Effect
         if (target != null)
         {
             var damage = emitter.Attack() + value - target.Defense();
-         
-            // Para não curar o adversario
             damage = damage < 1 ? 0 : damage; 
 
             // Debug.Log("ATTACK: " + emitter.Attack());

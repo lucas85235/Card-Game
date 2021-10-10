@@ -18,7 +18,7 @@ MonoBehaviour:
   energy: 1
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
-    value: {x: 1, y: 8}
+    value: {x: 6, y: 13}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1

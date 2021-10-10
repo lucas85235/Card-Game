@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
-    public static TransitionManager Instance;
-
     [SerializeField] private GameObject transitionImage;
 
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -18,15 +16,6 @@ public class TransitionManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         transitionImage.SetActive(false);
         TryGetComponent(out m_CanvasGroup);
     }

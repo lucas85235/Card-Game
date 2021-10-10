@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
   m_Name: Card_RepairTools
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 0}
+  cardSprite: {fileID: 21300000, guid: 0490f14ef39205543a4fba3ceb0963c4, type: 3}
   title: Repair Tools
-  description: Heals Intelligence + 2 to 6 Health Points
+  description: Heals 2 to 6 Health Points
   energy: 2
   effects:
   - effect: {fileID: 11400000, guid: 8fe25342434c65a499a642f7aec6b749, type: 2}

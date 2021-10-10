@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: L_ElecLeg
   m_EditorClassIdentifier: 
   partSprite: {fileID: 0}
-  health: 50
-  energy: 40
-  attack: 15
-  defense: 5
-  speed: 10
+  health: 2
+  energy: 0
+  attack: 0
+  defense: 1
+  speed: 3
   cards:
   - {fileID: 11400000, guid: 81374b7a7bbed4a4ab1da8cb08fe9ad4, type: 2}
   - {fileID: 11400000, guid: 81374b7a7bbed4a4ab1da8cb08fe9ad4, type: 2}

@@ -17,6 +17,10 @@ public class Effect_StatsBonus : Effect
         {
             emitter.AttackBuff(value);
         }
+        if (statToModify == Stats.velocity)
+        {
+            emitter.SpeedBuff(value);
+        }
 
         return true;
     }

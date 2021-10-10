@@ -11,11 +11,15 @@ public class Effect_ReduceStats : Effect
 
         if (statToModify == Stats.defence)
         {
-            emitter.DefenseDebuff(value);
+            target.DefenseDebuff(value);
         }
         if (statToModify == Stats.attack)
         {
-            emitter.AttackDebuff(value);
+            target.AttackDebuff(value);
+        }
+        if (statToModify == Stats.velocity)
+        {
+            target.SpeedDebuff(value);
         }
 
         return true;
