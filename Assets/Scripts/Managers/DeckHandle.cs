@@ -14,24 +14,23 @@ public class DeckHandle : MonoBehaviour
     // assim que o deck tiver menos que 5 cartas elas setão reenbaralhadas e compradas
     // sera comprado as que tiverem e as que forem reenbaralhadas para completar 5
 
-    // serão as cartas dos personagens
-    [Header("Temp")]
-    public List<CardImage> mockCards = new List<CardImage>();
-
     [Header("Lists")]
-    [SerializeField] private List<CardImage> deck;
-    [SerializeField] private List<CardImage> hands;
-    [SerializeField] private List<CardImage> discard;
+    [SerializeField] private List<CardData> deck;
+    [SerializeField] private List<CardData> hands;
+    [SerializeField] private List<CardData> discard;
 
     [Header("Hud Setup")]
     public Text deckText;
     public Text discardText;
 
-    public Action<List<CardImage>> OnUpdateHands;
-    public Action OnEndTurnSet;
+    public Action<List<CardData>> OnUpdateHands;
+
+    private Robot robot;
 
     private void Start()
     {
+        robot = GetComponent<Robot>();
+
         SortDeck();
 
         // chamo o turn a cada começo de turno
@@ -42,18 +41,15 @@ public class DeckHandle : MonoBehaviour
 
     private void SortDeck()
     {
-        deck = new List<CardImage>();
-        discard = new List<CardImage>();
+        deck = new List<CardData>();
+        discard = new List<CardData>();
 
         // necessario para resetar o mão ao acabar o deck
-        hands = new List<CardImage>();
+        hands = new List<CardData>();
 
-        for (int i = 0; i < 4; i++)
+        foreach (var card in robot.data.Cards())
         {
-            foreach (var mock in mockCards)
-            {
-                deck.Add(mock);
-            }
+            deck.Add(card);
         }
 
         // ordena de forma aleatoria o deck
@@ -76,7 +72,7 @@ public class DeckHandle : MonoBehaviour
             discard.Add(card);
         }
 
-        hands = new List<CardImage>();
+        hands = new List<CardData>();
         var deckSelect = GetRandomHandsList();
 
         // adiciona a mão

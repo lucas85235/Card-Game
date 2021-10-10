@@ -11,6 +11,7 @@ public class CardsInHands : MonoBehaviour
     [Header("Setup")]
     public Transform selectConteriner;
     public Transform selectedConteriner;
+    public CardImage cardTemplate;
 
     public enum DeckOf { player, cpu }
     public DeckOf deckOf;
@@ -40,7 +41,7 @@ public class CardsInHands : MonoBehaviour
         }
     }
 
-    private void UpdateDeck(List<CardImage> cards)
+    private void UpdateDeck(List<CardData> cards)
     {
         // destroy old cards
         if (m_spaw.childCount > 0)
@@ -54,12 +55,13 @@ public class CardsInHands : MonoBehaviour
         List<CardImage> spawCards = new List<CardImage>();
 
         // spaw new cards
-        foreach (var item in cards)
+        foreach (var card in cards)
         {
-            CardImage cardImage = Instantiate(item, Vector3.zero, Quaternion.identity, m_spaw);
+            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, m_spaw);
             cardImage.energyCount = m_energy;
             cardImage.selectConteriner = selectConteriner;
             cardImage.selectedConteriner = selectedConteriner;
+            cardImage.data = card;
 
             spawCards.Add(cardImage);
         }
