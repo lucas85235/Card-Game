@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6968a1c977e8dae479639d1b597e6e0f, type: 3}
   m_Name: H_ElecHead
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: 4085047034529615807, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
   health: 2
   energy: 0
   attack: 2

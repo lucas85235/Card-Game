@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5104bc17e56e3fc47b1002e6cd1e0bd9, type: 3}
   m_Name: T_ElecTorso
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: -405762243776489149, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
   health: 10
   energy: 0
   attack: 1
