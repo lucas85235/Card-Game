@@ -9,6 +9,15 @@ public class Effect_ReduceStats : Effect
     {
         if(!base.ApplyEffect(emitter, target, value, applicationChance)) return false;
 
+        if (statToModify == Stats.defence)
+        {
+            emitter.DefenseDebuff(value);
+        }
+        if (statToModify == Stats.attack)
+        {
+            emitter.AttackDebuff(value);
+        }
+
         return true;
     }
 }

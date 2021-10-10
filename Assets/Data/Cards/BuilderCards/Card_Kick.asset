@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
   m_Name: Card_Kick
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 0}
+  cardSprite: {fileID: 21300000, guid: d0ccf467e3222c847a8e2bd429b881eb, type: 3}
   title: Kick
   description: Deals 1 to 8 damage
   energy: 1

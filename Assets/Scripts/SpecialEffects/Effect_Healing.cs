@@ -7,6 +7,8 @@ public class Effect_Healing : Effect
     {
         if (!base.ApplyEffect(emitter, target, value, applicationChance)) return false;
 
+        emitter.life.AddLife(value);
+
         return true;
     }
 }

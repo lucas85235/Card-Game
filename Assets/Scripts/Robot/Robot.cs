@@ -11,14 +11,20 @@ public class Robot : MonoBehaviour
     [Header("Set Character Data")]
     public RobotData data;
 
-    private int m_attack;
-    private int m_defense;
-    private int m_speed;
-    private int m_energy;
+    [Header("OF DATA")]
+    [SerializeField] private int m_attack;
+    [SerializeField] private int m_defense;
+    [SerializeField] private int m_speed;
+    [SerializeField] private int m_energy;
 
-    private int m_currentAttack;
-    private int m_currentDefense;
-    private int m_currentSpeed;
+    [Header("CURRENT")]
+    [SerializeField] private int m_currentAttack;
+    [SerializeField] private int m_currentDefense;
+    [SerializeField] private int m_currentSpeed;
+
+    public int Attack() => m_currentAttack;
+    public int Defense() => m_currentDefense;
+    public int Speed() => m_currentSpeed;
 
     private Life m_life;
     private Energy m_energyCount;
@@ -41,6 +47,9 @@ public class Robot : MonoBehaviour
     private void Start()
     {
         LoadData();
+        RemoveAllBuffAndDebuff();
+
+        GameController.i.OnStartTurn.AddListener(() => RemoveAllBuffAndDebuff());
     }
 
     private void LoadData()
@@ -54,7 +63,7 @@ public class Robot : MonoBehaviour
     // Pega as cartas do robo atual e aplica o dano ao proximo robo
     public IEnumerator UseRoundCards(Robot enemy, Action<bool> onEnd)
     {
-        Debug.Log("ROBOT: " + energy);
+        // Debug.Log("ROBOT: " + energy);
 
         m_roundCards = new List<CardImage>();
 
@@ -72,7 +81,7 @@ public class Robot : MonoBehaviour
             // enemy.life.TakeDamage(card.data.Attack());
             // Debug.Log(gameObject.transform.name + " / " + energy.transform.name);
             
-            card.UseEffects(null, enemy);
+            card.UseEffects(this, enemy);
             
             card.gameObject.SetActive(false);
         }
@@ -81,21 +90,22 @@ public class Robot : MonoBehaviour
             onEnd(false);
     }
 
+    private void RemoveAllBuffAndDebuff()
+    {
+        AttackReset();
+        DefenseReset();
+        SpeedReset();
+    }
+
     // ATTACK
 
-    public void AttackBuff()
+    public void AttackBuff(int buff)
     {
-        // Max buff is five
-        if (m_currentAttack == (m_attack * 2)) return;
-        int buff = (int)(m_attack * 0.2f);
         m_currentAttack += buff;
     }
 
-    public void AttackDebuff()
+    public void AttackDebuff(int debuff)
     {
-        // Max debuff is five
-        if (m_currentAttack == (m_attack * 0.5f)) return;
-        int debuff = (int)(m_attack * 0.1f);
         m_currentAttack -= debuff;
     }
 
@@ -106,19 +116,14 @@ public class Robot : MonoBehaviour
 
     // DEFENSE
 
-    public void DefenseBuff()
+    public void DefenseBuff(int buff)
     {
-        // Max buff is five
-        if (m_currentDefense == (m_defense * 2)) return;
-        int buff = (int)(m_defense * 0.2f);
         m_currentDefense += buff;
     }
 
-    public void DefenseDebuff()
+    public void DefenseDebuff(int debuff)
     {
-        // Max debuff is five
-        if (m_currentDefense == (m_defense * 0.5f)) return;
-        int debuff = (int)(m_defense * 0.1f);
+        Debug.Log("DEBUFF DEF: -" + debuff);
         m_currentDefense -= debuff;
     }
 

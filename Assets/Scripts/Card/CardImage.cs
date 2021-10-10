@@ -9,6 +9,8 @@ public class CardImage : MonoBehaviour
     [Header("Setup")]
     public Text title;
     public Text energy;
+    public Text description;
+    public Image image;
 
     [Header("Setup")]
     public Transform selectConteriner;
@@ -26,19 +28,21 @@ public class CardImage : MonoBehaviour
 
     void Start()
     {
+        image.sprite = data.Sprite();
         title.text = data.Title();
         energy.text = data.Energy().ToString();
+        description.text = data.Description();
 
         GameController.i.OnStartTurn.AddListener(() => OnStartTurn());
         GameController.i.OnStartTurn.AddListener(() => m_canSelect = true);
         GameController.i.OnEndTurn.AddListener(() => m_canSelect = false);
     }
 
-    public void UseEffects(Robot robot, Robot target = null)
+    public void UseEffects(Robot robot, Robot target = null, bool useShild = false)
     {
         foreach (var effect in data.Effects())
         {
-            effect.UseEffect(robot, target);
+            effect.UseEffect(robot, target, useShild);
         }
     }
 

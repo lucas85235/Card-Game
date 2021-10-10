@@ -9,6 +9,15 @@ public class Effect_StatsBonus : Effect
     {
         if (!base.ApplyEffect(emitter, target, value, applicationChance)) return false;
 
+        if (statToModify == Stats.defence)
+        {
+            emitter.DefenseBuff(value);
+        }
+        if (statToModify == Stats.attack)
+        {
+            emitter.AttackBuff(value);
+        }
+
         return true;
     }
 }
