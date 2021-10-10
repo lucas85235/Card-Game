@@ -22,6 +22,12 @@ public class MenuManager : MonoBehaviour
         FillRobotInformation();
     }
 
+    private void Start()
+    {
+        AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
+        AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
+    }
+
     private void FillRobotInformation()
     {
         robotAnimation.ChangeRobotSprites(currentRobots[m_CurrentRobotIndex]);
@@ -57,10 +63,29 @@ public class MenuManager : MonoBehaviour
     public void ChangeRobot(int value)
     {
         m_CurrentRobotIndex += value;
+        AudioManager.Instance.Play(AudiosList.changeRobot);
 
         if (m_CurrentRobotIndex < 0) m_CurrentRobotIndex = currentRobots.Length - 1;
         if (m_CurrentRobotIndex > currentRobots.Length - 1) m_CurrentRobotIndex = 0;
 
         FillRobotInformation();
+    }
+
+    public void PlayClickSound()
+    {
+        AudioManager.Instance.Play(AudiosList.uiClick);
+    }
+
+    public void ChangeGeralVolume(float newValue)
+    {
+        AudioManager.Instance.ChangeGeralVolume(newValue);
+    }
+    public void ChangeMusicVolume(float newValue)
+    {
+        AudioManager.Instance.ChangeMusicVolume(newValue);
+    }
+    public void ChangeSFXVolume(float newValue)
+    {
+        AudioManager.Instance.ChangeSFXVolume(newValue);
     }
 }

@@ -77,6 +77,8 @@ public class CardImage : MonoBehaviour
         if (energyCount.EnergyRoundAmount >= data.Energy() &&
             decreaseEnergy >= 0 && !selected)
         {
+            AudioManager.Instance.Play(AudiosList.cardPush);
+
             selected = !selected;
             energyCount.UseRoundEnergy(-data.Energy());
             transform.SetParent(selectedConteriner);
@@ -88,6 +90,8 @@ public class CardImage : MonoBehaviour
     {
         if (selected)
         {
+            AudioManager.Instance.Play(AudiosList.cardPush);
+
             selected = !selected;
             energyCount.UseRoundEnergy(data.Energy());
             transform.SetParent(selectConteriner);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6b1c3be0c61964b8bea4492bdd9ec1, type: 3}
   m_Name: RA_StunRightArm
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: -5955536339835948236, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
   health: 5
   energy: 0
   attack: 2
@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
   - {fileID: 11400000, guid: 9572e90d0811a514ca172aa7d87f7e91, type: 2}
   - {fileID: 11400000, guid: 9572e90d0811a514ca172aa7d87f7e91, type: 2}
+  shoulderSprite: {fileID: -7484433000311405567, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
