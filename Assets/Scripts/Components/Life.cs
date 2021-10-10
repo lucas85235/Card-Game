@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 [RequireComponent(typeof(Robot))]
 
@@ -10,11 +11,11 @@ public class Life : MonoBehaviour
 {
     [Header("Life Settings")]
     public Slider lifeSlider;
-    public Text lifeText;
+    public TextMeshProUGUI lifeText;
 
     [Header("Shild Settings")]
     public Slider shildSlider;
-    public Text shildText;
+    public TextMeshProUGUI shildText;
 
     [Header("Death Setup")]
     public bool destroyAfterDeath = true;
@@ -27,12 +28,15 @@ public class Life : MonoBehaviour
     private int m_maxLife;
     private int m_currentLife;
     private int m_currentShild;
-    
+
+    private RobotAnimation m_RobotAnimation;
+
     public bool HaveShild() => m_currentShild > 0;
 
     void Start()
     {
         m_robot = GetComponent<Robot>();
+        TryGetComponent(out m_RobotAnimation);
 
         if (lifeSlider == null) {
             Debug.LogError("lifeSlider is Null");
@@ -58,6 +62,7 @@ public class Life : MonoBehaviour
     public void TakeDamage(int decrement)
     {
         int damage = decrement;
+        m_RobotAnimation.PlayAnimation(Animations.hurt);
 
         if (HaveShild())
             damage = TakeDamageShild(decrement);
@@ -78,10 +83,16 @@ public class Life : MonoBehaviour
 
     private void LifeRules()
     {
-        if (m_currentLife > m_maxLife) 
+        if (m_currentLife > m_maxLife)
+        {
             m_currentLife = m_maxLife;
+        }
         if (m_currentLife < 1)
-            DeathHandle();        
+        {
+            m_RobotAnimation.PlayAnimation(Animations.death);
+            m_RobotAnimation.ResetToIdleAfterAnimation(false);
+            DeathHandle();
+        } 
     }    
 
     private void UpdateLifeSlider()

@@ -13,28 +13,27 @@ public class RobotAnimation : MonoBehaviour
     [SerializeField] private SpriteRenderer leftArmSpriteRen;
 
     private Animator m_Animator;
-    private Animations m_CurrentAnimation;
 
     private void Awake()
     {
         TryGetComponent(out m_Animator);
+        m_Animator.SetBool("ResetToIdle", true);
     }
 
-    public void PlayAnimation(Animations newAnimation)
+    public void PlayAnimation(Animations newAnimation) => m_Animator.SetTrigger(newAnimation.ToString());
+    public void ResetToIdleAfterAnimation(bool value) => m_Animator.SetBool("ResetToIdle", value);
+    
+    public void ChangeRobotSprites(RobotData newRobot)
     {
-        if (m_CurrentAnimation == newAnimation) return;
+        //Retorna sprites na ordem: Tronco - Pernas - Cabeça - Ombro Direito - Braço Direito - Ombro Esquerdo - Braço Esquerdo
+        var newSprites = newRobot.Sprites();
 
-        m_CurrentAnimation = newAnimation;
-        m_Animator.SetTrigger(newAnimation.ToString());
+        torsoSpriteRen.sprite = newSprites[0];
+        legsSpriteRen.sprite = newSprites[1];
+        headSpriteRen.sprite = newSprites[2];
+        rightShoulderSpriteRen.sprite = newSprites[3];
+        rightArmSpriteRen.sprite = newSprites[4];
+        leftShoulderSpriteRen.sprite = newSprites[5];
+        leftArmSpriteRen.sprite = newSprites[6];
     }
-
-    #region Sprite Renderers Gets
-    public SpriteRenderer HeadSpriteRen () { return headSpriteRen; }
-    public SpriteRenderer TorsoSpriteRen() { return torsoSpriteRen; }
-    public SpriteRenderer LegsSpriteRen() { return legsSpriteRen; }
-    public SpriteRenderer RightShoulderSpriteRen() { return rightShoulderSpriteRen; }
-    public SpriteRenderer LeftShoulderSpriteRen() { return leftShoulderSpriteRen; }
-    public SpriteRenderer RightArmSpriteRen() { return rightArmSpriteRen; }
-    public SpriteRenderer LeftArmSpriteRen() { return leftArmSpriteRen; }
-    #endregion
 }
