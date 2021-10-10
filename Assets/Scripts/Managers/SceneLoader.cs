@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
     public void LoadScene(string scene)
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(scene);
+        AudioManager.Instance.ChangeMusicVolumeWithLerp(0, 1);
+        TransitionManager.Instance.StartTransition(scene);
     }
 
     public void QuitGame()

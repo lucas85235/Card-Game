@@ -62,6 +62,7 @@ public class Energy : MonoBehaviour
 
     public void EndRound()
     {
+        GameController.i.EndCountdown();
         OnEndRound?.Invoke();
     }
 

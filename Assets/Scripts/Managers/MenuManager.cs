@@ -20,6 +20,9 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         FillRobotInformation();
+
+        PersistentData.Instance.CurrentRobot = currentRobots[m_CurrentRobotIndex];
+        robotAnimation.ChangeRobotSprites(currentRobots[m_CurrentRobotIndex]);
     }
 
     private void Start()
@@ -30,6 +33,7 @@ public class MenuManager : MonoBehaviour
 
     private void FillRobotInformation()
     {
+        PersistentData.Instance.CurrentRobot = currentRobots[m_CurrentRobotIndex];
         robotAnimation.ChangeRobotSprites(currentRobots[m_CurrentRobotIndex]);
 
         robotInfoText.text =
@@ -58,6 +62,11 @@ public class MenuManager : MonoBehaviour
             newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
             descriptionText.text = card.Description();
         }
+    }
+
+    public void StartGame()
+    {
+        TransitionManager.Instance.StartTransition("Game");
     }
 
     public void ChangeRobot(int value)

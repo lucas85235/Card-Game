@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     public Transform selectedConterinerPlayer;
     public Transform selectedConterinerCpu;
     public float timeBetweenPlays = 1f;
+    [SerializeField] private float timeToPlay;
+    [SerializeField] private Slider timeSlider;
 
     [Header("Chracters")]
     public Robot player;
@@ -27,6 +29,9 @@ public class GameController : MonoBehaviour
     private bool inActionPlays = false;
 
     public static GameController i;
+    private Energy m_playerEnergy;
+
+    private Coroutine timeRoundCoroutine;
 
     private void Awake()
     {
@@ -38,6 +43,8 @@ public class GameController : MonoBehaviour
         AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
 
+        m_playerEnergy = GameObject.FindGameObjectWithTag("Player").GetComponent<Energy>();
+
         player.energy.OnEndRound += EndTurnHandle;
 
         OrderBySpeed();
@@ -46,6 +53,7 @@ public class GameController : MonoBehaviour
         player.selectedConteriner = selectedConterinerPlayer;
 
         OnStartTurn?.Invoke();
+        StartCountdown();
 
         OnStartTurn.AddListener(() =>
         {
@@ -82,6 +90,35 @@ public class GameController : MonoBehaviour
             sortRobots.Add(cpu);
             sortRobots.Add(player);
         }
+    }
+
+    public void StartCountdown()
+    {
+        timeSlider.gameObject.SetActive(true);
+        timeRoundCoroutine = StartCoroutine(Countdown());
+    }
+
+    public void EndCountdown()
+    {
+        if (timeRoundCoroutine == null) return;
+
+        timeSlider.gameObject.SetActive(false); 
+        StopCoroutine(timeRoundCoroutine);
+    }
+
+    private IEnumerator Countdown()
+    {
+        float timeRemaining = timeToPlay;
+
+        while(timeRemaining > 0)
+        {
+            yield return null;
+            timeRemaining -= Time.deltaTime;
+            timeSlider.value = timeRemaining / timeToPlay;
+        }
+
+        timeSlider.gameObject.SetActive(false);
+        m_playerEnergy.EndRound();
     }
 
     // Logica usada apos clicar em end turn
@@ -151,6 +188,7 @@ public class GameController : MonoBehaviour
             yield break;
 
         OnStartTurn?.Invoke();
+        StartCountdown();
     }
 
     private void OnDestroy()
