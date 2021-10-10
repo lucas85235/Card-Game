@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6968a1c977e8dae479639d1b597e6e0f, type: 3}
   m_Name: H_BuilderHead
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: 6154793613412492795, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
   health: 5
   energy: 0
   attack: 0
