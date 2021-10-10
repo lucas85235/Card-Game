@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d0ccf467e3222c847a8e2bd429b881eb, type: 3}
   title: Kick
-  description: Deals 1 to 8 damage
+  description: Deals 6 to 13 damage
   energy: 1
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}

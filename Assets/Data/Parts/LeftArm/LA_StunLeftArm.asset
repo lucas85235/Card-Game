@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bd1aa3f31e03449fb8053b3baaa1f, type: 3}
   m_Name: LA_StunLeftArm
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 5672468540365482950, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
+  partSprite: {fileID: 498635550302319560, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
   health: 5
   energy: 0
   attack: 2
@@ -23,4 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 268e4e6aa22903b419290116434e3200, type: 2}
   - {fileID: 11400000, guid: 268e4e6aa22903b419290116434e3200, type: 2}
   - {fileID: 11400000, guid: 42d0c3c1b36c0df45a1962dc5114ec3d, type: 2}
-  shoulderSprite: {fileID: 5503783709326250287, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
+  shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
