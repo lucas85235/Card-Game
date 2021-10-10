@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
 
     private void FillRobotInformation()
     {
-        ChangeRobotSprites();
+        robotAnimation.ChangeRobotSprites(currentRobots[m_CurrentRobotIndex]);
 
         robotInfoText.text =
             "Health: " + currentRobots[m_CurrentRobotIndex].Health() +
@@ -52,20 +52,6 @@ public class MenuManager : MonoBehaviour
             newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
             descriptionText.text = card.Description();
         }
-    }
-
-    private void ChangeRobotSprites()
-    {
-        //Retorna sprites na ordem: Tronco - Pernas - Cabeça - Ombro Direito - Braço Direito - Ombro Esquerdo - Braço Esquerdo
-        var newSprites = currentRobots[m_CurrentRobotIndex].Sprites();
-
-        robotAnimation.TorsoSpriteRen().sprite = newSprites[0];
-        robotAnimation.LegsSpriteRen().sprite = newSprites[1];
-        robotAnimation.HeadSpriteRen().sprite = newSprites[2];
-        robotAnimation.RightShoulderSpriteRen().sprite = newSprites[3];
-        robotAnimation.RightArmSpriteRen().sprite = newSprites[4];
-        robotAnimation.LeftShoulderSpriteRen().sprite = newSprites[5];
-        robotAnimation.LeftArmSpriteRen().sprite = newSprites[6];
     }
 
     public void ChangeRobot(int value)

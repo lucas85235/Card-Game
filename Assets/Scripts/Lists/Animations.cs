@@ -1,5 +1,6 @@
 public enum Animations
 {
-    idle,
-    action
+    action,
+    hurt,
+    death,
 }

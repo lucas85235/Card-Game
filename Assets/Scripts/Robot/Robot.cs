@@ -24,6 +24,8 @@ public class Robot : MonoBehaviour
     private Energy m_energyCount;
     private List<CardImage> m_roundCards;
 
+    private RobotAnimation m_RobotAnimation;
+
     public Life life { get => m_life; }
     public Energy energy { get => m_energyCount; }
 
@@ -33,6 +35,7 @@ public class Robot : MonoBehaviour
     {
         m_life = GetComponent<Life>();
         m_energyCount = GetComponent<Energy>();
+        TryGetComponent(out m_RobotAnimation);
     }
 
     private void Start()
@@ -64,6 +67,7 @@ public class Robot : MonoBehaviour
         foreach (var card in m_roundCards)
         {
             card.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            m_RobotAnimation.PlayAnimation(Animations.action);
             yield return new WaitForSeconds(0.5f);
             // enemy.life.TakeDamage(card.data.Attack());
             // Debug.Log(gameObject.transform.name + " / " + energy.transform.name);
