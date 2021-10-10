@@ -14,8 +14,22 @@ public struct CardEffectStruct
     public Stats statToApplyEffectBonus;
     public Vector2Int effectMultiplierRange;
     
-    public void UseEffect(Robot emitter, Robot target = null)
+    public void UseEffect(Robot emitter, Robot target = null, bool useShild = false)
     {
-        effect.UseEffect(emitter, target, value.x, chance);
+        bool shildType = 
+            effect.GetType() == typeof(Effect_ForceShield);
+
+        if (useShild == false && shildType == true) return;
+
+        if (effect.GetType() == typeof(Effect_StatsBonus))
+        {
+            effect.UseEffect(emitter, target, value.x, chance);
+            return;
+        }
+
+        var isRand = value.x != value.y;
+        var rand = Random.Range(value.x, value.y);
+
+        effect.UseEffect(emitter, target, isRand ? rand : value.x, chance);
     }
 }

@@ -58,7 +58,7 @@ public class DeckHandle : MonoBehaviour
 
     private void Turn()
     {
-        Debug.Log("Turn");
+        // Debug.Log("Turn");
 
         // adicionar cartas quando não tiver o suficiente
         if (deck.Count < 5)

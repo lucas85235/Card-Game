@@ -11,7 +11,17 @@ public class Effect_Attack : Effect
 
         if (target != null)
         {
-            target.life.TakeDamage(value);
+            var damage = emitter.Attack() + value - target.Defense();
+         
+            // Para não curar o adversario
+            damage = damage < 1 ? 0 : damage; 
+
+            // Debug.Log("ATTACK: " + emitter.Attack());
+            // Debug.Log("RAND: " + value);
+            // Debug.Log("DEF: " + emitter.Defense());
+            // Debug.Log("DAMAGE: " + damage);
+
+            target.life.TakeDamage(damage);
         }
 
         return true;

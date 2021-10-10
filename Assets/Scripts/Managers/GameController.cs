@@ -90,14 +90,14 @@ public class GameController : MonoBehaviour
         {
             var card = selectedConterinerPlayer.GetChild(i).GetComponent<CardImage>();
             // player.life.AddShild(data.Defence());
-            card.UseEffects(player);
+            card.UseEffects(player, null, true);
         }
 
         for (int i = 0; i < selectedConterinerCpu.childCount; i++)
         {
             var card = selectedConterinerCpu.GetChild(i).GetComponent<CardImage>();
             // cpu.life.AddShild(data.Defence());
-            card.UseEffects(cpu);
+            card.UseEffects(cpu, null, true);
         }
 
         yield return new WaitForSeconds(timeBetweenPlays / 2);
