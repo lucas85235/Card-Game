@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class CardImage : MonoBehaviour
 {
-    [Header("Data")]
-    public CardData data;
-
     [Header("Setup")]
     public Text title;
     public Text energy;
@@ -24,6 +21,7 @@ public class CardImage : MonoBehaviour
     public Action OnSelect;
     public Action OnDeselect;
 
+    [HideInInspector] public CardData data;
     private bool m_canSelect = true;
 
     void Start()

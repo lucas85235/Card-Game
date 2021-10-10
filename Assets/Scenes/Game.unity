@@ -2225,6 +2225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectConteriner: {fileID: 1320332620}
   selectedConteriner: {fileID: 387490169}
+  cardTemplate: {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
   deckOf: 1
 --- !u!114 &1320332622
 MonoBehaviour:
@@ -2340,6 +2341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectConteriner: {fileID: 1458135880}
   selectedConteriner: {fileID: 438776062}
+  cardTemplate: {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
   deckOf: 0
 --- !u!1 &1483735043
 GameObject:
