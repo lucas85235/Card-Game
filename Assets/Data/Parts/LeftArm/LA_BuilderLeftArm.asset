@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bd1aa3f31e03449fb8053b3baaa1f, type: 3}
   m_Name: LA_BuilderLeftArm
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: 498635550302319560, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
   health: 5
   energy: 0
   attack: 1
@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a06b1557f1642d40a0fe7ac305f342a, type: 2}
   - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
   - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
+  shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}

@@ -16,9 +16,6 @@ public class RobotData : ScriptableObject
     [SerializeField] private LeftArm leftArm;
     [SerializeField] private Leg leg;
 
-    [Header("Debug")]
-    [SerializeField] private Sprite sketchSprite;
-
     public int Health()
     {
         return head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
@@ -53,9 +50,19 @@ public class RobotData : ScriptableObject
         return cardList;
     }
 
-    public Sprite Sprite()
+    public List<Sprite> Sprites()
     {
-        return sketchSprite;
+        var spritesList = new List<Sprite>();
+
+        spritesList.Add(torso.Sprite());
+        spritesList.Add(leg.Sprite());
+        spritesList.Add(head.Sprite());
+        spritesList.Add(rightArm.SpecialSprite());
+        spritesList.Add(rightArm.Sprite());
+        spritesList.Add(leftArm.SpecialSprite());
+        spritesList.Add(leftArm.Sprite());
+
+        return spritesList;
     }
 
     // PRIORIDADE 2

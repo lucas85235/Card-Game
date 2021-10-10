@@ -23,4 +23,5 @@ public class RobotPart : ScriptableObject
     public int Speed(){return speed;}
 
     public List<CardData> Cards() { return cards; }
+    public Sprite Sprite() { return partSprite; }
 }
