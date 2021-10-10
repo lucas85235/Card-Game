@@ -62,7 +62,6 @@ public class Life : MonoBehaviour
     public void TakeDamage(int decrement)
     {
         int damage = decrement;
-        m_RobotAnimation.PlayAnimation(Animations.hurt);
 
         if (HaveShild())
             damage = TakeDamageShild(decrement);
@@ -89,10 +88,16 @@ public class Life : MonoBehaviour
         }
         if (m_currentLife < 1)
         {
+            AudioManager.Instance.Play(AudiosList.robotDeath);
             m_RobotAnimation.PlayAnimation(Animations.death);
             m_RobotAnimation.ResetToIdleAfterAnimation(false);
             DeathHandle();
-        } 
+        }
+        else
+        {
+            m_RobotAnimation.PlayAnimation(Animations.hurt);
+            AudioManager.Instance.Play(AudiosList.robotHurt);
+        }
     }    
 
     private void UpdateLifeSlider()
@@ -107,7 +112,8 @@ public class Life : MonoBehaviour
     public void AddShild(int shild)
     {
         m_currentShild += shild;
-        
+
+        AudioManager.Instance.Play(AudiosList.robotEffect);
         shildSlider.gameObject.SetActive(true);
         shildSlider.maxValue = m_currentShild;
         shildSlider.value = m_currentLife;

@@ -33,6 +33,9 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
+        AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
+
         player.energy.OnEndRound += EndTurnHandle;
 
         OrderBySpeed();

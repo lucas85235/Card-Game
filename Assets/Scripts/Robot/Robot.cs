@@ -89,6 +89,7 @@ public class Robot : MonoBehaviour
         if (m_currentAttack == (m_attack * 2)) return;
         int buff = (int)(m_attack * 0.2f);
         m_currentAttack += buff;
+        AudioManager.Instance.Play(AudiosList.robotEffect);
     }
 
     public void AttackDebuff()
@@ -97,6 +98,7 @@ public class Robot : MonoBehaviour
         if (m_currentAttack == (m_attack * 0.5f)) return;
         int debuff = (int)(m_attack * 0.1f);
         m_currentAttack -= debuff;
+        AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 
     public void AttackReset()
@@ -112,6 +114,7 @@ public class Robot : MonoBehaviour
         if (m_currentDefense == (m_defense * 2)) return;
         int buff = (int)(m_defense * 0.2f);
         m_currentDefense += buff;
+        AudioManager.Instance.Play(AudiosList.robotEffect);
     }
 
     public void DefenseDebuff()
@@ -120,6 +123,7 @@ public class Robot : MonoBehaviour
         if (m_currentDefense == (m_defense * 0.5f)) return;
         int debuff = (int)(m_defense * 0.1f);
         m_currentDefense -= debuff;
+        AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 
     public void DefenseReset()
@@ -135,6 +139,7 @@ public class Robot : MonoBehaviour
         if (m_currentSpeed == (m_speed * 2)) return;
         int buff = (int)(m_speed * 0.2f);
         m_currentSpeed += buff;
+        AudioManager.Instance.Play(AudiosList.robotEffect);
     }
 
     public void SpeedDebuff()
@@ -143,6 +148,7 @@ public class Robot : MonoBehaviour
         if (m_currentSpeed == (m_speed * 0.5f)) return;
         int debuff = (int)(m_speed * 0.1f);
         m_currentSpeed -= debuff;
+        AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 
     public void SpeedReset()

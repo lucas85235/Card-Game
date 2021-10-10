@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6968a1c977e8dae479639d1b597e6e0f, type: 3}
   m_Name: H_StunHead
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: -2894260081543310507, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
   health: 5
   energy: 0
   attack: 1
