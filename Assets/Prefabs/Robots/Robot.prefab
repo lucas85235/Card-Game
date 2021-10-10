@@ -87,10 +87,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3644118677382596099}
   - component: {fileID: 3644118677382596096}
+  - component: {fileID: 494344178397595029}
   - component: {fileID: 3644118677382596097}
+  - component: {fileID: 1455755673}
   m_Layer: 5
   m_Name: Robot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +150,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &494344178397595029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3644118677382596098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyText: {fileID: 0}
 --- !u!114 &3644118677382596097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +176,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
-  life: {fileID: 0}
+--- !u!114 &1455755673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3644118677382596098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05be1af0d411ec7458e2dbc9aa00ac1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mockCards:
+  - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
+  - {fileID: 53777120958727737, guid: 974c0f722e342ba49b0a918bbdef9589, type: 3}
+  - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
+  - {fileID: 53777120958727737, guid: 974c0f722e342ba49b0a918bbdef9589, type: 3}
+  - {fileID: 53777120958727737, guid: 3de33e6b80c3c5445a3312b4c081e615, type: 3}
+  deck: []
+  hands: []
+  discard: []
+  deckText: {fileID: 0}
+  discardText: {fileID: 0}
 --- !u!1001 &3194236424946479731
 PrefabInstance:
   m_ObjectHideFlags: 0

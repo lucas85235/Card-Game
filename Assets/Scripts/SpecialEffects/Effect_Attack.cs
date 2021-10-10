@@ -5,9 +5,14 @@ public class Effect_Attack : Effect
 {
     [SerializeField] private Attacks attack;
 
-    protected override bool ApplyEffect(GameObject emitter, int value, float applicationChance)
+    protected override bool ApplyEffect(Robot emitter, Robot target, int value, float applicationChance)
     {
-        if (!base.ApplyEffect(emitter, value, applicationChance)) return false;
+        if (!base.ApplyEffect(emitter, target, value, applicationChance)) return false;
+
+        if (target != null)
+        {
+            target.life.TakeDamage(value);
+        }
 
         return true;
     }

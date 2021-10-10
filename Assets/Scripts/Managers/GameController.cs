@@ -7,7 +7,8 @@ using UnityEngine.Events;
 public class GameController : MonoBehaviour
 {
     [Header("Setup")]
-    public Transform selectedConteriner;
+    public Transform selectedConterinerPlayer;
+    public Transform selectedConterinerCpu;
     public float timeBetweenPlays = 1f;
 
     [Header("Chracters")]
@@ -21,8 +22,6 @@ public class GameController : MonoBehaviour
     // Use this to get Robots in order
     private List<Robot> sortRobots;
 
-    private Energy m_energy;
-    private List<CardImage> m_roundCards;
     private bool inActionPlays = false;
 
     public static GameController i;
@@ -34,14 +33,17 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        m_energy = FindObjectOfType<Energy>();
-        m_energy.OnEndRound += EndTurnHandle;
+        player.energy.OnEndRound += EndTurnHandle;
 
         OrderBySpeed();
 
+        cpu.selectedConteriner = selectedConterinerCpu;
+        player.selectedConteriner = selectedConterinerPlayer;
+
         OnStartTurn?.Invoke();
 
-        OnStartTurn.AddListener(() => {
+        OnStartTurn.AddListener(() =>
+        {
             foreach (var robot in sortRobots)
             {
                 robot.life.RemoveShild();
@@ -74,7 +76,7 @@ public class GameController : MonoBehaviour
         // quando começar o proximo round o CardImage selecionado e destruido
         // se for destruido antes de usado terá um problema
 
-        if (selectedConteriner.childCount > 0)
+        if (selectedConterinerPlayer.childCount > 0 || selectedConterinerCpu.childCount > 0)
             StartCoroutine(Plays());
         else OnStartTurn?.Invoke();
     }
@@ -84,21 +86,29 @@ public class GameController : MonoBehaviour
     {
         inActionPlays = false;
 
-        foreach (var robots in sortRobots)
+        for (int i = 0; i < selectedConterinerPlayer.childCount; i++)
         {
-            for (int i = 0; i < selectedConteriner.childCount; i++)
-            {
-                var data = selectedConteriner.GetChild(i).GetComponent<CardImage>().data;
-                robots.life.AddShild(data.Defence());
-            }        
+            var card = selectedConterinerPlayer.GetChild(i).GetComponent<CardImage>();
+            // player.life.AddShild(data.Defence());
+            card.UseEffects(player);
         }
 
-        yield return new WaitForSeconds(timeBetweenPlays);
+        for (int i = 0; i < selectedConterinerCpu.childCount; i++)
+        {
+            var card = selectedConterinerCpu.GetChild(i).GetComponent<CardImage>();
+            // cpu.life.AddShild(data.Defence());
+            card.UseEffects(cpu);
+        }
 
-        Debug.Log("F1");
+        yield return new WaitForSeconds(timeBetweenPlays / 2);
+
+        // Debug.Log("F1");
         inActionPlays = true;
         StartCoroutine(
-            UseRoundCards(sortRobots[0], sortRobots[1])
+            sortRobots[0].UseRoundCards(sortRobots[1], (value) =>
+            {
+                inActionPlays = value;
+            })
         );
 
         yield return new WaitUntil(() => inActionPlays == false);
@@ -110,7 +120,10 @@ public class GameController : MonoBehaviour
         // Debug.Log("F2");
         inActionPlays = true;
         StartCoroutine(
-            UseRoundCards(sortRobots[1], sortRobots[0])
+            sortRobots[1].UseRoundCards(sortRobots[0], (value) =>
+            {
+                inActionPlays = value;
+            })
         );
 
         yield return new WaitUntil(() => inActionPlays == false);
@@ -122,21 +135,9 @@ public class GameController : MonoBehaviour
         OnStartTurn?.Invoke();
     }
 
-    // Pega as cartas do robo atual e aplica o dano ao proximo robo
-    private IEnumerator UseRoundCards(Robot currentRobot, Robot nextRobot)
-    {
-        m_roundCards = new List<CardImage>();
-
-        for (int i = 0; i < selectedConteriner.childCount; i++)
-        {
-            var data = selectedConteriner.GetChild(i).GetComponent<CardImage>();
-            m_roundCards.Add(data);
-        }
-    }
-
     private void OnDestroy()
     {
-        m_energy.OnEndRound -= EndTurnHandle;
+        player.energy.OnEndRound -= EndTurnHandle;
 
         OnEndTurn.RemoveAllListeners();
         OnStartTurn.RemoveAllListeners();

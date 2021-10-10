@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2474,9 +2474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRobots:
-  - {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
   - {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   - {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
+  - {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
   robotAnimation: {fileID: 631042851}
   robotInfoText: {fileID: 1224883523}
   cardConfiner: {fileID: 453180936}
@@ -2960,7 +2960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7262348338192929307
 RectTransform:
   m_ObjectHideFlags: 0
