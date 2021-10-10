@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Effect : ScriptableObject
 {
     public bool UseEffect(Robot emitter, Robot target, int value, float applicationChance)

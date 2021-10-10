@@ -46,7 +46,12 @@ public class AudioManager : MonoBehaviour
 
         if (isMusic)
         {
-            if (m_CurrentMusic != null) m_CurrentMusic.source.Stop();
+            if (m_CurrentMusic != null)
+            {
+                if (m_CurrentMusic == s) return;
+                else m_CurrentMusic.source.Stop();
+            }
+            
             m_CurrentMusic = s;
         }
         s.source.Stop();

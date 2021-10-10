@@ -10,6 +10,7 @@ public class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
     public RobotData data;
+    [SerializeField] private bool getFromPersistentData;
 
     [Header("DATA")]
     [SerializeField] private int m_attack;
@@ -42,6 +43,9 @@ public class Robot : MonoBehaviour
         m_life = GetComponent<Life>();
         m_energyCount = GetComponent<Energy>();
         TryGetComponent(out m_RobotAnimation);
+
+        if (getFromPersistentData) data = PersistentData.Instance.CurrentRobot;
+        m_RobotAnimation.ChangeRobotSprites(data);
     }
 
     private void Start()

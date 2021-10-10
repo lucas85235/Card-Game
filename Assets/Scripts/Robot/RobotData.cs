@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "Robot", menuName = "ScriptableObjects/RobotData", order = 1)]
 public class RobotData : ScriptableObject
 {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "Card", menuName = "ScriptableObjects/Card", order = 2)]
 public class CardData : ScriptableObject
 {
