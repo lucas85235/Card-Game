@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bd1aa3f31e03449fb8053b3baaa1f, type: 3}
   m_Name: LA_ElecLeftArm
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: -1775922787539150558, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
   health: 2
   energy: 0
   attack: 1
@@ -23,4 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1ad5998766161b48be1a523ae591736, type: 2}
   - {fileID: 11400000, guid: eeaf2ec2bbefed942928bb255c030191, type: 2}
   - {fileID: 11400000, guid: eeaf2ec2bbefed942928bb255c030191, type: 2}
-  shoulderSprite: {fileID: 0}
+  shoulderSprite: {fileID: 4977975249388037073, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}

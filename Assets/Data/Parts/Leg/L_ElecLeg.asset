@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf6af2903234234ebcf82d14a8fd142, type: 3}
   m_Name: L_ElecLeg
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 0}
+  partSprite: {fileID: 3886836005308285829, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
   health: 2
   energy: 0
   attack: 0
