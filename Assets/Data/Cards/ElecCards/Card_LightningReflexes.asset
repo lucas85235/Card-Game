@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
   m_Name: Card_LightningReflexes
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 0}
+  cardSprite: {fileID: 21300000, guid: 0490f14ef39205543a4fba3ceb0963c4, type: 3}
   title: Lightning Reflexes
   description: Increases Defense and Speed by 1
   energy: 3
   effects:
   - effect: {fileID: 11400000, guid: 7037a0fbe1cc5af46935d7f252e86ee3, type: 2}
+    value: {x: 1, y: 1}
+    chance: 1
+    selfApply: 1
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}
+  - effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 1

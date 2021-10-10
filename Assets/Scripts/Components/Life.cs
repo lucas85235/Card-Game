@@ -129,7 +129,7 @@ public class Life : MonoBehaviour
 
     private int TakeDamageShild(int damage)
     {
-        Debug.Log("Damage: " + damage);
+        // Debug.Log("Damage: " + damage);
         
         m_currentShild -= damage;
         UpdateShildSlider();

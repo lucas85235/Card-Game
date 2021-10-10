@@ -30,6 +30,9 @@ public struct CardEffectStruct
         var isRand = value.x != value.y;
         var rand = Random.Range(value.x, value.y);
 
-        effect.UseEffect(emitter, target, isRand ? rand : value.x, chance);
+        effectMultiplierRange.x = effectMultiplierRange.x == 0 ? 1 : effectMultiplierRange.x;
+        var finalValue = (isRand ? rand : value.x) * effectMultiplierRange.x;
+
+        effect.UseEffect(emitter, target, finalValue, chance);
     }
 }

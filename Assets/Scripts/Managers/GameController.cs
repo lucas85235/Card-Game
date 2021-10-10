@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+using Random = UnityEngine.Random;
+
 public class GameController : MonoBehaviour
 {
     [Header("Setup")]
@@ -59,7 +61,18 @@ public class GameController : MonoBehaviour
     {
         sortRobots = new List<Robot>();
 
-        if (player.data.Speed() > cpu.data.Speed())
+        if (player.data.Speed() == cpu.data.Speed())
+        {
+            int r = Random.Range(0, 2);
+
+            if (r == 0)
+                player.SpeedBuff(1);
+            else cpu.SpeedBuff(1);
+
+            Debug.Log("Sort Speed " + r);
+        }
+
+        if (player.Speed() > cpu.Speed())
         {
             sortRobots.Add(player);
             sortRobots.Add(cpu);
@@ -75,6 +88,8 @@ public class GameController : MonoBehaviour
     private void EndTurnHandle()
     {
         OnEndTurn?.Invoke();
+
+        OrderBySpeed();
 
         // quando começar o proximo round o CardImage selecionado e destruido
         // se for destruido antes de usado terá um problema

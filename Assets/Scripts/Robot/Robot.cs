@@ -11,7 +11,7 @@ public class Robot : MonoBehaviour
     [Header("Set Character Data")]
     public RobotData data;
 
-    [Header("OF DATA")]
+    [Header("DATA")]
     [SerializeField] private int m_attack;
     [SerializeField] private int m_defense;
     [SerializeField] private int m_speed;
@@ -75,14 +75,12 @@ public class Robot : MonoBehaviour
 
         foreach (var card in m_roundCards)
         {
-            card.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            card.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             m_RobotAnimation.PlayAnimation(Animations.action);
-            yield return new WaitForSeconds(0.5f);
-            // enemy.life.TakeDamage(card.data.Attack());
-            // Debug.Log(gameObject.transform.name + " / " + energy.transform.name);
+
+            yield return new WaitForSeconds(0.8f);
             
             card.UseEffects(this, enemy);
-            
             card.gameObject.SetActive(false);
         }
 
@@ -138,20 +136,14 @@ public class Robot : MonoBehaviour
 
     // SPEED
 
-    public void SpeedBuff()
+    public void SpeedBuff(int buff)
     {
-        // Max buff is five
-        if (m_currentSpeed == (m_speed * 2)) return;
-        int buff = (int)(m_speed * 0.2f);
         m_currentSpeed += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
     }
 
-    public void SpeedDebuff()
+    public void SpeedDebuff(int debuff)
     {
-        // Max debuff is five
-        if (m_currentSpeed == (m_speed * 0.5f)) return;
-        int debuff = (int)(m_speed * 0.1f);
         m_currentSpeed -= debuff;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
