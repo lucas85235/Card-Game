@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
   m_Name: Card_ShockingTouch
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 0490f14ef39205543a4fba3ceb0963c4, type: 3}
+  cardSprite: {fileID: 21300000, guid: 3c973d52e1cbb8c42aec24002fae347d, type: 3}
   title: Shocking Touch
-  description: Deals Int + 7 to 11 damage
+  description: Deals 7 to 11 damage
   energy: 1
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}

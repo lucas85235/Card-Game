@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 0490f14ef39205543a4fba3ceb0963c4, type: 3}
   title: Force Shield
-  description: Creates a force shield with 5 HP
+  description: Creates a force shield with 3 HP
   energy: 1
   effects:
   - effect: {fileID: 11400000, guid: aef5f2e33fa52614cb31eda8682b6a72, type: 2}

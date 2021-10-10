@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6b1c3be0c61964b8bea4492bdd9ec1, type: 3}
   m_Name: RA_ElecRightArm
   m_EditorClassIdentifier: 
-  partSprite: {fileID: 3996131462617179896, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
+  partSprite: {fileID: -2811501513268888928, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
   health: 2
   energy: 0
   attack: 1

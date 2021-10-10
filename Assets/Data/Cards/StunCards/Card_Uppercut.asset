@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
   m_Name: Card_Uppercut
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 8e596edd5d77dd646ba4858a0050785c, type: 3}
+  cardSprite: {fileID: 21300000, guid: 28635e0039bc9d447a8a92b52bcea956, type: 3}
   title: Uppercut
-  description: Deals Atk x2 + 4 to 8 damage
+  description: Deals 6 attack + 8 to 14 damage
   energy: 5
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 8, y: 14}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 1
+    effectMultiplierRange: {x: 2, y: 2}
+  - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
+    value: {x: 6, y: 6}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
