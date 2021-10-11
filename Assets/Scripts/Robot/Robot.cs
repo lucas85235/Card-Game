@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 [RequireComponent(typeof(Life))]
 [RequireComponent(typeof(Energy))]
 
@@ -11,6 +13,10 @@ public class Robot : MonoBehaviour
     [Header("Set Character Data")]
     public RobotData data;
     [SerializeField] private bool getFromPersistentData;
+
+    [Header("Rand Robot Data")]
+    public bool randData = false;
+    public RobotData[] datas;
 
     [Header("DATA")]
     [SerializeField] private int m_attack;
@@ -42,6 +48,8 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
+        if (randData && datas.Length > 1) data = datas[Random.Range(0, datas.Length)];
+
         m_life = GetComponent<Life>();
         m_energyCount = GetComponent<Energy>();
         TryGetComponent(out m_RobotAnimation);

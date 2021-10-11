@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Builderbot
   m_EditorClassIdentifier: 
   characterName: Builderbot
+  botFunction: Tank
+  storyDescription: Builderbot was specially designed for tasks in the building industry.
+    In emergency situations, it is also suited for combat. His strong arms allow
+    him to deal damage, while his other parts allows protecting himself.
   head: {fileID: 11400000, guid: 6b4df9d1bd266b649bfe8d7abcfd0840, type: 2}
   torso: {fileID: 11400000, guid: 1a1fa9b25240ef84ca477fef75ff1990, type: 2}
   rightArm: {fileID: 11400000, guid: e241255601fe97242bd711bf88f9508e, type: 2}

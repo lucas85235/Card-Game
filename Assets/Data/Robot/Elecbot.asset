@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Elecbot
   m_EditorClassIdentifier: 
   characterName: Elecbot
+  botFunction: Attacker
+  storyDescription: 'Elecbots were first used in 2051, to substitute workers in the
+    power lines. His electric isolation makes them perfect for the maintenance job
+    required in the major cities. In combat, he will use all electricity stored to
+    push away his opponents. '
   head: {fileID: 11400000, guid: 98731027206648543b86f64ea6e8db9c, type: 2}
   torso: {fileID: 11400000, guid: 133da567fd89c79409f49ee8c396636b, type: 2}
   rightArm: {fileID: 11400000, guid: bee3f75afb25ef04ca76f96d253a3744, type: 2}

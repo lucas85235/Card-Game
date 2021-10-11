@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private RobotAnimation robotAnimation;
 
     [Header("Info")]
+    [SerializeField] private TextMeshProUGUI nameInfoText;
+    [SerializeField] private TextMeshProUGUI descriptionInfoText;
     [SerializeField] private TextMeshProUGUI robotInfoText;
     [SerializeField] private RectTransform cardConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
@@ -43,6 +45,12 @@ public class MenuManager : MonoBehaviour
             " Speed: " + currentRobots[m_CurrentRobotIndex].Speed() +
             " Energy: " + currentRobots[m_CurrentRobotIndex].Energy();
 
+        nameInfoText.text = 
+            currentRobots[m_CurrentRobotIndex].characterName + " - " + 
+            currentRobots[m_CurrentRobotIndex].botFunction;
+
+        descriptionInfoText.text = 
+            currentRobots[m_CurrentRobotIndex].storyDescription;
 
         foreach (RectTransform oldCard in cardConfiner)
             Destroy(oldCard.gameObject);
