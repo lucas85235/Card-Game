@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnEndTurn;
     public UnityEvent OnStartTurn;
+    public UnityEvent AfterApplyEffects;
 
     [Header("Alert")]
     [SerializeField] private TextMeshProUGUI alertText;
@@ -188,6 +189,8 @@ public class GameController : MonoBehaviour
             card.UseEffects(cpu, player, true);
         }
 
+        AfterApplyEffects?.Invoke();
+
         yield return new WaitForSeconds(timeBetweenPlays / 2);
 
         // Debug.Log("F1");
@@ -230,8 +233,10 @@ public class GameController : MonoBehaviour
 
         OnEndTurn.RemoveAllListeners();
         OnStartTurn.RemoveAllListeners();
+        AfterApplyEffects.RemoveAllListeners();
 
         OnEndTurn = null;
         OnStartTurn = null;
+        AfterApplyEffects = null;
     }
 }
