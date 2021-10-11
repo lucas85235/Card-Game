@@ -33,6 +33,8 @@ public class Robot : MonoBehaviour
 
     private RobotAnimation m_RobotAnimation;
 
+    private bool m_Left;
+
     public Life life { get => m_life; }
     public Energy energy { get => m_energyCount; }
 
@@ -46,6 +48,8 @@ public class Robot : MonoBehaviour
 
         if (getFromPersistentData) data = PersistentData.Instance.CurrentRobot;
         m_RobotAnimation.ChangeRobotSprites(data);
+
+        m_Left = transform.localScale.x > 0;
     }
 
     private void Start()
@@ -105,6 +109,7 @@ public class Robot : MonoBehaviour
     {
         m_currentAttack += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
+        GameController.i.ShowAlertText(buff, Color.blue, m_Left, IconList.attackBuff.ToString());
     }
 
     public void AttackDebuff(int debuff)
@@ -112,6 +117,7 @@ public class Robot : MonoBehaviour
         m_currentAttack -= debuff;
         if (m_currentAttack < 1) m_currentAttack = 0;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
+        GameController.i.ShowAlertText(debuff, Color.black, m_Left, IconList.attackDebuff.ToString());
     }
 
     public int AttackDiff() => m_currentAttack - m_attack;
@@ -127,6 +133,7 @@ public class Robot : MonoBehaviour
     {
         m_currentDefense += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
+        GameController.i.ShowAlertText(buff, Color.blue, m_Left, IconList.defenceBuff.ToString());
     }
 
     public void DefenseDebuff(int debuff)
@@ -135,6 +142,7 @@ public class Robot : MonoBehaviour
         m_currentDefense -= debuff;
         if (m_currentAttack < 1) m_currentAttack = 0;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
+        GameController.i.ShowAlertText(debuff, Color.black, m_Left, IconList.defenceDebuff.ToString());
     }
 
     public int DefenseDiff() => m_currentDefense - m_defense;
@@ -150,12 +158,14 @@ public class Robot : MonoBehaviour
     {
         m_currentSpeed += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
+        GameController.i.ShowAlertText(buff, Color.blue, m_Left, IconList.speedBuff.ToString());
     }
 
     public void SpeedDebuff(int debuff)
     {
         m_currentSpeed -= debuff;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
+        GameController.i.ShowAlertText(debuff, Color.black, m_Left, IconList.speedDebuff.ToString());
     }
 
     public int SpeedDiff() => m_currentSpeed - m_speed;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,6 +205,86 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 762578578}
     m_Modifications:
+    - target: {fileID: 1899759499793786501, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499793786501, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499793786501, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499793786501, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499843597974, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499843597974, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499843597974, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759499843597974, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500327585946, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500327585946, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500327585946, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500327585946, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500432946767, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500432946767, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500432946767, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500432946767, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500799110728, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500799110728, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500799110728, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759500799110728, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1899759501103955588, guid: cce5975393459c04089153e06bda4e2e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -292,6 +372,22 @@ PrefabInstance:
     - target: {fileID: 1899759501103955589, guid: cce5975393459c04089153e06bda4e2e, type: 3}
       propertyPath: m_Name
       value: Buff-Debuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759501205052244, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759501205052244, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759501205052244, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899759501205052244, guid: cce5975393459c04089153e06bda4e2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cce5975393459c04089153e06bda4e2e, type: 3}
@@ -3779,9 +3875,22 @@ MonoBehaviour:
   AfterApplyEffects:
     m_PersistentCalls:
       m_Calls: []
-  alertText: {fileID: 2519449799290660927, guid: 783db47228254e241b4cebadfca48911, type: 3}
+  alertText: {fileID: 1084947385375896570, guid: 5b899bb65b4661e45af95026f8a5d603, type: 3}
   alertLeft: {fileID: 785089978}
   alertRight: {fileID: 1584273554}
+  icons:
+  - name: attackBuff
+    sprite: {fileID: 21300000, guid: 16063f63bb4c1d94a993c30425a8dd4a, type: 3}
+  - name: attackDebuff
+    sprite: {fileID: 21300000, guid: 8cb66f0bf6250f74091f5ea36dafab4c, type: 3}
+  - name: defenceBuff
+    sprite: {fileID: 21300000, guid: e00661dd76f1b2e45b10b87f1469ffc9, type: 3}
+  - name: defenceDebuff
+    sprite: {fileID: 21300000, guid: 84ed60e040479c5449348de76c82b645, type: 3}
+  - name: speedBuff
+    sprite: {fileID: 21300000, guid: 38cce508b5d17e142aa45137ab7c8067, type: 3}
+  - name: speedDebuff
+    sprite: {fileID: 21300000, guid: cffec93f29ed2d04a957b6b9b2a8cbbc, type: 3}
 --- !u!1 &1320332619
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,13 @@ using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
+    [Serializable]
+    private struct IconStruct
+    {
+        public string name;
+        public Sprite sprite;
+    }
+
     [Header("Setup")]
     public Transform selectedConterinerPlayer;
     public Transform selectedConterinerCpu;
@@ -26,9 +33,12 @@ public class GameController : MonoBehaviour
     public UnityEvent AfterApplyEffects;
 
     [Header("Alert")]
-    [SerializeField] private TextMeshProUGUI alertText;
+    [SerializeField] private GameObject alertText;
     [SerializeField] private RectTransform alertLeft;
     [SerializeField] private RectTransform alertRight;
+    [SerializeField] private List<IconStruct> icons;
+
+    private Dictionary<string, Sprite> m_IconDictionary;
 
     // Use this to get Robots in order
     private List<Robot> sortRobots;
@@ -43,6 +53,11 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         i = this;
+
+        m_IconDictionary = new Dictionary<string, Sprite>();
+
+        foreach (var icon in icons)
+            m_IconDictionary[icon.name] = icon.sprite;
     }
 
     void Start()
@@ -99,30 +114,38 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ShowAlertText(int decrement, Color textColor, bool left)
+    public void ShowAlertText(int decrement, Color textColor, bool left, string iconName="")
     {
         var referenceRect = left ? alertLeft : alertRight;
 
-        var newText = Instantiate(alertText.gameObject, referenceRect);
+        var newAlert = Instantiate(alertText, referenceRect);
+        newAlert.LeanScaleX((transform.localScale.x > 0 ? 1 : -1), 0);
 
-        newText.LeanScaleX((transform.localScale.x > 0 ? 1 : -1), 0);
+        var imageObject = newAlert.transform.Find("AlertImage").gameObject;
 
-        newText.TryGetComponent(out TextMeshProUGUI textComponent);
+        if (iconName == "") Destroy(imageObject);
+        else
+        {
+            imageObject.TryGetComponent(out Image imageComponent);
+            imageComponent.sprite = m_IconDictionary[iconName];
+        }
+
+        newAlert.transform.Find("AlertText").TryGetComponent(out TextMeshProUGUI textComponent);
         textComponent.text = decrement.ToString();
         textComponent.color = textColor;
 
-        newText.TryGetComponent(out CanvasGroup textCGroup);
+        newAlert.TryGetComponent(out CanvasGroup textCGroup);
         LeanTween.value(1, 0, 2)
             .setOnUpdate((float value) =>
             {
                 textCGroup.alpha = value;
             });
 
-        newText.TryGetComponent(out RectTransform textRect);
+        newAlert.TryGetComponent(out RectTransform textRect);
         textRect.LeanMoveLocalY(200, 2)
             .setOnComplete(() =>
             {
-                Destroy(newText);
+                Destroy(newAlert);
             });
     }
 
