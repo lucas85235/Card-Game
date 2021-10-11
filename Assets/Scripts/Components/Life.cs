@@ -61,6 +61,7 @@ public class Life : MonoBehaviour
 
     public void TakeDamage(int decrement)
     {
+        GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
         int damage = decrement;
 
         if (HaveShild())
@@ -111,6 +112,7 @@ public class Life : MonoBehaviour
 
     public void AddShild(int shild)
     {
+        GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
         m_currentShild += shild;
 
         AudioManager.Instance.Play(AudiosList.robotEffect);

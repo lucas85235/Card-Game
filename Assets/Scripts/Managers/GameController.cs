@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
@@ -22,6 +23,11 @@ public class GameController : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnEndTurn;
     public UnityEvent OnStartTurn;
+
+    [Header("Alert")]
+    [SerializeField] private TextMeshProUGUI alertText;
+    [SerializeField] private RectTransform alertLeft;
+    [SerializeField] private RectTransform alertRight;
 
     // Use this to get Robots in order
     private List<Robot> sortRobots;
@@ -90,6 +96,33 @@ public class GameController : MonoBehaviour
             sortRobots.Add(cpu);
             sortRobots.Add(player);
         }
+    }
+
+    public void ShowAlertText(int decrement, Color textColor, bool left)
+    {
+        var referenceRect = left ? alertLeft : alertRight;
+
+        var newText = Instantiate(alertText.gameObject, referenceRect);
+
+        newText.LeanScaleX((transform.localScale.x > 0 ? 1 : -1), 0);
+
+        newText.TryGetComponent(out TextMeshProUGUI textComponent);
+        textComponent.text = decrement.ToString();
+        textComponent.color = textColor;
+
+        newText.TryGetComponent(out CanvasGroup textCGroup);
+        LeanTween.value(1, 0, 2)
+            .setOnUpdate((float value) =>
+            {
+                textCGroup.alpha = value;
+            });
+
+        newText.TryGetComponent(out RectTransform textRect);
+        textRect.LeanMoveLocalY(200, 2)
+            .setOnComplete(() =>
+            {
+                Destroy(newText);
+            });
     }
 
     public void StartCountdown()
