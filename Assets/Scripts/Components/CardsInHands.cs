@@ -13,7 +13,6 @@ public class CardsInHands : MonoBehaviour
     public Transform selectedConteriner;
     public CardImage cardTemplate;
 
-    public enum DeckOf { player, cpu }
     public DeckOf deckOf;
 
     private void Awake()
@@ -32,11 +31,11 @@ public class CardsInHands : MonoBehaviour
 
         if (deckOf == DeckOf.cpu)
         {
-            GameController.i.OnEndTurn.AddListener( () => 
-                selectedConteriner.gameObject.SetActive(true)
+            GameController.i.OnEndTurn.AddListener(() =>
+               selectedConteriner.gameObject.SetActive(true)
             );
-            GameController.i.OnStartTurn.AddListener( () => 
-                selectedConteriner.gameObject.SetActive(false)
+            GameController.i.OnStartTurn.AddListener(() =>
+               selectedConteriner.gameObject.SetActive(false)
             );
         }
     }
@@ -48,8 +47,8 @@ public class CardsInHands : MonoBehaviour
         {
             for (int i = m_spaw.childCount - 1; i >= 0; i--)
             {
-                Destroy( m_spaw.GetChild(i).gameObject );
-            }            
+                Destroy(m_spaw.GetChild(i).gameObject);
+            }
         }
 
         List<CardImage> spawCards = new List<CardImage>();
@@ -79,4 +78,10 @@ public class CardsInHands : MonoBehaviour
     {
         m_deck.OnUpdateHands -= UpdateDeck;
     }
+}
+
+public enum DeckOf
+{
+    player, 
+    cpu,
 }

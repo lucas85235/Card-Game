@@ -114,6 +114,8 @@ public class Robot : MonoBehaviour
         AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 
+    public int AttackDiff() => m_currentAttack - m_attack;
+
     public void AttackReset()
     {
         m_currentAttack = m_attack;
@@ -135,6 +137,8 @@ public class Robot : MonoBehaviour
         AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
 
+    public int DefenseDiff() => m_currentDefense - m_defense;
+
     public void DefenseReset()
     {
         m_currentDefense = m_defense;
@@ -153,6 +157,8 @@ public class Robot : MonoBehaviour
         m_currentSpeed -= debuff;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
     }
+
+    public int SpeedDiff() => m_currentSpeed - m_speed;
 
     public void SpeedReset()
     {
