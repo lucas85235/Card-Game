@@ -6,7 +6,9 @@ using UnityEngine;
 public class RobotData : ScriptableObject
 {
     [Header("Info")]
-    [SerializeField] private string characterName;
+    public string characterName;
+    public string botFunction;
+    public string storyDescription;
 
     // PRIORIDADE 1
 

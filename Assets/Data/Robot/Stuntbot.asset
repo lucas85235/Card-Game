@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Stuntbot
   m_EditorClassIdentifier: 
   characterName: Stuntbot
+  botFunction: Attacker
+  storyDescription: 'The Stuntbot is the technological evolution of the crash dummies.
+    While it is still used in safety tests, the AI installed allows him to assume
+    a new role: stuntman! He is also programmed with fighting techniques, and for
+    some unknown reason, his favorite combat style is boxing!'
   head: {fileID: 11400000, guid: 1709dbe136544af46a7c6918da6baaa3, type: 2}
   torso: {fileID: 11400000, guid: 4de512585b8d530459ce64a75aa7c76a, type: 2}
   rightArm: {fileID: 11400000, guid: e8cb58b5c823ebe43ab8ed482ab85dc1, type: 2}
