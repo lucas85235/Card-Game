@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ShowAlertText(int decrement, Color textColor, bool left, string iconName="")
+    public void ShowAlertText(int decrement, Color textColor, bool left, string iconName="", bool debuff = false)
     {
         var referenceRect = left ? alertLeft : alertRight;
 
@@ -141,8 +141,10 @@ public class GameController : MonoBehaviour
                 textCGroup.alpha = value;
             });
 
+        var direction = debuff ? -1 : 1;
+
         newAlert.TryGetComponent(out RectTransform textRect);
-        textRect.LeanMoveLocalY(200, 2)
+        textRect.LeanMoveLocalY(200 * direction, 2)
             .setOnComplete(() =>
             {
                 Destroy(newAlert);
@@ -252,6 +254,8 @@ public class GameController : MonoBehaviour
 
     private void OnDestroy()
     {
+        LeanTween.cancelAll();
+        
         player.energy.OnEndRound -= EndTurnHandle;
 
         OnEndTurn.RemoveAllListeners();

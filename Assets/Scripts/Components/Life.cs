@@ -112,7 +112,7 @@ public class Life : MonoBehaviour
 
     public void AddShild(int shild)
     {
-        GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
+        // GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
         m_currentShild += shild;
 
         AudioManager.Instance.Play(AudiosList.robotEffect);
