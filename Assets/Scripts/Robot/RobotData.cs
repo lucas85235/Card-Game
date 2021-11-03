@@ -27,23 +27,55 @@ public class RobotData : ScriptableObject
 
     public int Health()
     {
-        return health; // head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
+        return head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
     }
     public int Energy() 
     { 
-        return 5;// head.Energy() + torso.Energy() + rightArm.Energy() + leftArm.Energy() + leg.Energy(); 
+        return head.Energy() + torso.Energy() + rightArm.Energy() + leftArm.Energy() + leg.Energy(); 
     }
     public int Attack() 
     {
-        return attack;// head.Attack() + torso.Attack() + rightArm.Attack() + leftArm.Attack() + leg.Attack(); 
+        return head.Attack() + torso.Attack() + rightArm.Attack() + leftArm.Attack() + leg.Attack(); 
     }
     public int Defense()
     { 
-        return defense;// head.Defense() + torso.Defense() + rightArm.Defense() + leftArm.Defense() + leg.Defense(); 
+        return head.Defense() + torso.Defense() + rightArm.Defense() + leftArm.Defense() + leg.Defense(); 
     }
     public int Speed()
     {
-        return speed;// head.Speed() + torso.Speed() + rightArm.Speed() + leftArm.Speed() + leg.Speed(); 
+        return head.Speed() + torso.Speed() + rightArm.Speed() + leftArm.Speed() + leg.Speed();
+    }
+    public int Inteligence() 
+    {
+        return head.Inteligence() + torso.Inteligence() + rightArm.Inteligence() + leftArm.Inteligence() + leg.Inteligence();
+    }
+    public int Accuracy() 
+    { 
+        return head.Accuracy() + torso.Accuracy() + rightArm.Accuracy() + leftArm.Accuracy() + leg.Accuracy();
+    }
+    public int Evasion() 
+    {
+        return head.Evasion() + torso.Evasion() + rightArm.Evasion() + leftArm.Evasion() + leg.Evasion();
+    }
+    public int CritChance() 
+    { 
+        return head.CritChance() + torso.CritChance() + rightArm.CritChance() + leftArm.CritChance() + leg.CritChance(); 
+    }
+    public int FireResistence() 
+    {
+        return head.FireResistence() + torso.FireResistence() + rightArm.FireResistence() + leftArm.FireResistence() + leg.FireResistence();
+    }
+    public int IceResistence() 
+    {
+        return head.IceResistence() + torso.IceResistence() + rightArm.IceResistence() + leftArm.IceResistence() + leg.IceResistence();
+    }
+    public int ElectricResistence() 
+    {
+        return head.ElectricResistence() + torso.ElectricResistence() + rightArm.ElectricResistence() + leftArm.ElectricResistence() + leg.ElectricResistence();
+    }
+    public int AcidResistence() 
+    {
+        return head.AcidResistence() + torso.AcidResistence() + rightArm.AcidResistence() + leftArm.AcidResistence() + leg.AcidResistence();
     }
 
     public List<CardData> Cards()

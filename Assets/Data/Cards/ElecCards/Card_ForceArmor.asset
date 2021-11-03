@@ -24,3 +24,4 @@ MonoBehaviour:
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  trigger: 0
