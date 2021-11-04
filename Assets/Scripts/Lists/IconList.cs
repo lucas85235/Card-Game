@@ -1,5 +1,7 @@
+[System.Serializable]
 public enum IconList
 {
+    none,
     attackBuff,
     attackDebuff,
     defenceBuff,
