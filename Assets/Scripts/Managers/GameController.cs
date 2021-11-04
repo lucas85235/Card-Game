@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     [Serializable]
     private struct IconStruct
     {
-        public string name;
+        public IconList name;
         public Sprite sprite;
     }
 
@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private RectTransform alertRight;
     [SerializeField] private List<IconStruct> icons;
 
-    private Dictionary<string, Sprite> m_IconDictionary;
+    private Dictionary<IconList, Sprite> m_IconDictionary;
 
     // Use this to get Robots in order
     private List<Robot> sortRobots;
@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
     {
         i = this;
 
-        m_IconDictionary = new Dictionary<string, Sprite>();
+        m_IconDictionary = new Dictionary<IconList, Sprite>();
 
         foreach (var icon in icons)
             m_IconDictionary[icon.name] = icon.sprite;
@@ -114,16 +114,16 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ShowAlertText(int decrement, Color textColor, bool left, string iconName="", bool debuff = false)
+    public void ShowAlertText(int decrement, Color textColor, bool left, IconList iconName=IconList.none, bool debuff = false)
     {
         var referenceRect = left ? alertLeft : alertRight;
 
         var newAlert = Instantiate(alertText, referenceRect);
-        newAlert.LeanScaleX((transform.localScale.x > 0 ? 1 : -1), 0);
+        newAlert.LeanScaleX(transform.localScale.x > 0 ? 1 : -1, 0);
 
         var imageObject = newAlert.transform.Find("AlertImage").gameObject;
 
-        if (iconName == "") Destroy(imageObject);
+        if (iconName == IconList.none) Destroy(imageObject);
         else
         {
             imageObject.TryGetComponent(out Image imageComponent);
