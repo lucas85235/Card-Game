@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardsInHands : MonoBehaviour
+public class DeckManager : MonoBehaviour
 {
     private DeckHandle m_deck;
     private Energy m_energy;
@@ -31,13 +31,24 @@ public class CardsInHands : MonoBehaviour
 
         if (deckOf == DeckOf.cpu)
         {
-            GameController.i.OnEndTurn.AddListener(() =>
+            Round.i.StartTurn.AddListener(() =>
                selectedConteriner.gameObject.SetActive(true)
             );
-            GameController.i.OnStartTurn.AddListener(() =>
+            Round.i.EndTurn.AddListener(() =>
                selectedConteriner.gameObject.SetActive(false)
             );
+
+            selectedConteriner.gameObject.SetActive(false);
         }
+
+        // Add Use Card Feedback Event
+        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );
+    }
+
+    // UseCard Event
+    private void UseCardFeedback(CardImage card)
+    {
+        card.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
 
     private void UpdateDeck(List<CardData> cards)

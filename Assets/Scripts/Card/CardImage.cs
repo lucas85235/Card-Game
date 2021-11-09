@@ -33,16 +33,40 @@ public class CardImage : MonoBehaviour
         energy.text = data.Energy().ToString();
         description.text = data.Description();
 
-        GameController.i.OnStartTurn.AddListener(() => OnStartTurn());
-        GameController.i.OnStartTurn.AddListener(() => m_canSelect = true);
-        GameController.i.OnEndTurn.AddListener(() => m_canSelect = false);
+        Round.i.EndTurn.AddListener(() => OnStartTurn());
+        Round.i.EndTurn.AddListener(() => m_canSelect = true);
+        Round.i.EndTurn.AddListener(() => m_canSelect = false);
     }
 
-    public void UseEffects(Robot robot, Robot target = null, bool useShild = false)
+    public void UseShildEffect(Robot robot, Robot target = null)
     {
         foreach (var effect in data.Effects())
         {
-            effect.UseEffect(robot, target, useShild);
+            effect.UseShildEffect(robot, target);
+        }
+    }
+
+    public void UseStatsBonusEffect(Robot robot, Robot target = null)
+    {
+        foreach (var effect in data.Effects())
+        {
+            effect.UseStatsBonusEffect(robot, target);
+        }
+    }
+
+    public void UseReduceStatsEffect(Robot robot, Robot target = null)
+    {
+        foreach (var effect in data.Effects())
+        {
+            effect.UseReduceStatsEffect(robot, target);
+        }
+    }
+
+    public void UseEffect(Robot robot, Robot target = null)
+    {
+        foreach (var effect in data.Effects())
+        {
+            effect.UseEffect(robot, target);
         }
     }
 

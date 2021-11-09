@@ -19,13 +19,11 @@ public class ShowBuffAndDebuff : MonoBehaviour
         {
             m_robot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
             SetStatsLeft();
-            GameController.i.AfterApplyEffects.AddListener(() => SetStatsLeft());
         }
         else
         {
             m_robot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
             SetStatsRight();
-            GameController.i.AfterApplyEffects.AddListener(() => SetStatsRight());
         }
     }
 
