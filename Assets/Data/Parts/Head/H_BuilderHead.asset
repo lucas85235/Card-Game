@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: H_BuilderHead
   m_EditorClassIdentifier: 
   partSprite: {fileID: 6154793613412492795, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
-  health: 5
+  health: 12
   energy: 0
   attack: 0
   defense: 2
   speed: 0
+  inteligence: 0
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 0
+  iceResistence: 0
+  electricResistence: 0
+  acidResistence: 0
   cards:
   - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
   - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}

@@ -22,7 +22,7 @@ public class RobotPart : ScriptableObject
 
     [Header("Resistences")]
     [SerializeField] private int fireResistence;
-    [SerializeField] private int iceResistence;
+    [SerializeField] private int waterResistence;
     [SerializeField] private int electricResistence;
     [SerializeField] private int acidResistence;
 
@@ -39,7 +39,7 @@ public class RobotPart : ScriptableObject
     public int Evasion() { return evasion; }
     public int CritChance() { return critChance; }
     public int FireResistence() { return fireResistence; }
-    public int IceResistence() { return iceResistence; }
+    public int WaterResistence() { return waterResistence; }
     public int ElectricResistence() { return electricResistence; }
     public int AcidResistence() { return acidResistence; }
 

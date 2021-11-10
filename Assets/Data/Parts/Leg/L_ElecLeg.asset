@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: L_ElecLeg
   m_EditorClassIdentifier: 
   partSprite: {fileID: 3886836005308285829, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
-  health: 2
+  health: 8
   energy: 0
   attack: 0
-  defense: 1
+  defense: 0
   speed: 3
+  inteligence: 0
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 0
+  iceResistence: 0
+  electricResistence: 0
+  acidResistence: 0
   cards:
   - {fileID: 11400000, guid: 81374b7a7bbed4a4ab1da8cb08fe9ad4, type: 2}
   - {fileID: 11400000, guid: 81374b7a7bbed4a4ab1da8cb08fe9ad4, type: 2}

@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: T_BuilderTorso
   m_EditorClassIdentifier: 
   partSprite: {fileID: 6913297356471620263, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
-  health: 15
+  health: 12
   energy: 0
   attack: 0
   defense: 0
   speed: 0
+  inteligence: 0
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 2
+  waterResistence: 2
+  electricResistence: 2
+  acidResistence: 2
   cards:
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}

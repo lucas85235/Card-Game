@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: H_StunHead
   m_EditorClassIdentifier: 
   partSprite: {fileID: -2894260081543310507, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
-  health: 5
+  health: 12
   energy: 0
   attack: 1
   defense: 1
   speed: 0
+  inteligence: 0
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 0
+  iceResistence: 0
+  electricResistence: 0
+  acidResistence: 0
   cards:
   - {fileID: 11400000, guid: 4219dcf9876510748aa9023a83c0ba86, type: 2}
   - {fileID: 11400000, guid: 4219dcf9876510748aa9023a83c0ba86, type: 2}

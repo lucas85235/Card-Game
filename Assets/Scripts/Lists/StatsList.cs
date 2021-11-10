@@ -6,8 +6,11 @@ public enum Stats
     defence,
     velocity,
     inteligence,
-    fire,
-    electro,
-    ice,
-    acid
+    accuracy,
+    evasion,
+    critChance,
+    fireResistence,
+    electroResistence,
+    waterResistence,
+    acidResistence
 }

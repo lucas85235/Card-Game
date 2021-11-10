@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: RA_StunRightArm
   m_EditorClassIdentifier: 
   partSprite: {fileID: -2811501513268888928, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
-  health: 5
+  health: 4
   energy: 0
   attack: 2
   defense: 0
   speed: 0
+  inteligence: 0
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 0
+  iceResistence: 0
+  electricResistence: 0
+  acidResistence: 0
   cards:
   - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
   - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
