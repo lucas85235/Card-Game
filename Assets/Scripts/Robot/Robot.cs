@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
     public RobotData data;
+    public Transform selectedCardsConteriner;
     [SerializeField] private bool getFromPersistentData;
 
     [Header("Rand Robot Data")]
@@ -29,35 +31,26 @@ public class Robot : MonoBehaviour
     [SerializeField] private int m_currentDefense;
     [SerializeField] private int m_currentSpeed;
 
+    private bool m_iconSpawInLeft;
+
+    public Life life { get; private set; }
+    private RobotAnimation m_RobotAnimation;
+    
     public int Attack() => m_currentAttack;
     public int Defense() => m_currentDefense;
     public int Speed() => m_currentSpeed;
-
-    private Life m_life;
-    private Energy m_energyCount;
-    private List<CardImage> m_roundCards;
-
-    private RobotAnimation m_RobotAnimation;
-
-    private bool m_Left;
-
-    public Life life { get => m_life; }
-    public Energy energy { get => m_energyCount; }
-
-    public Transform selectedConteriner { get; set; }
 
     private void Awake()
     {
         if (randData && datas.Length > 1) data = datas[Random.Range(0, datas.Length)];
 
-        m_life = GetComponent<Life>();
-        m_energyCount = GetComponent<Energy>();
+        life = GetComponent<Life>();
         TryGetComponent(out m_RobotAnimation);
 
         if (getFromPersistentData) data = PersistentData.Instance.CurrentRobot;
         m_RobotAnimation.ChangeRobotSprites(data);
 
-        m_Left = transform.localScale.x > 0;
+        m_iconSpawInLeft = transform.localScale.x > 0;
 
         GetComponent<RobotAnimation>().ChangeRobotSprites(data);
     }
@@ -67,7 +60,27 @@ public class Robot : MonoBehaviour
         LoadData();
         RemoveAllBuffAndDebuff();
 
-        GameController.i.OnStartTurn.AddListener(() => RemoveAllBuffAndDebuff());
+        Round.i.StartTurn.AddListener(() => {
+
+            // remove this logic of here
+            // because the buff and defuff
+            // can be apply for more of one round
+
+            RemoveAllBuffAndDebuff();
+            Debug.LogWarning("Update Logic");
+        });
+
+        // Add Robot Attack Feedback To Event List
+        Round.i.RobotAttack.AddListener((robot, target) =>
+           RobotAttackFeedback(robot, target)
+        );
+    }
+
+    /// <summary>Set Robot Behaviour After Attack Event Called</summary>
+    private void RobotAttackFeedback(Robot robot, Robot target)
+    {
+        if (robot != this) return;
+        m_RobotAnimation.PlayAnimation(Animations.action);
     }
 
     private void LoadData()
@@ -76,34 +89,6 @@ public class Robot : MonoBehaviour
         m_attack = data.Attack();
         m_defense = data.Defense();
         m_speed = data.Speed();
-    }
-
-    // Pega as cartas do robo atual e aplica o dano ao proximo robo
-    public IEnumerator UseRoundCards(Robot enemy, Action<bool> onEnd)
-    {
-        // Debug.Log("ROBOT: " + energy);
-
-        m_roundCards = new List<CardImage>();
-
-        for (int i = 0; i < selectedConteriner.childCount; i++)
-        {
-            var data = selectedConteriner.GetChild(i).GetComponent<CardImage>();
-            m_roundCards.Add(data);
-        }
-
-        foreach (var card in m_roundCards)
-        {
-            card.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            m_RobotAnimation.PlayAnimation(Animations.action);
-
-            yield return new WaitForSeconds(0.8f);
-            
-            card.UseEffects(this, enemy);
-            card.gameObject.SetActive(false);
-        }
-
-        if (onEnd != null)
-            onEnd(false);
     }
 
     private void RemoveAllBuffAndDebuff()
@@ -119,7 +104,7 @@ public class Robot : MonoBehaviour
     {
         m_currentAttack += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
-        GameController.i.ShowAlertText(buff, Color.blue, m_Left, IconList.attackBuff);
+        GameController.i.ShowAlertText(buff, Color.blue, m_iconSpawInLeft, IconList.attackBuff);
     }
 
     public void AttackDebuff(int debuff)
@@ -127,7 +112,7 @@ public class Robot : MonoBehaviour
         m_currentAttack -= debuff;
         if (m_currentAttack < 1) m_currentAttack = 0;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
-        GameController.i.ShowAlertText(debuff, Color.black, m_Left, IconList.attackDebuff, true);
+        GameController.i.ShowAlertText(debuff, Color.black, m_iconSpawInLeft, IconList.attackDebuff, true);
     }
 
     public int AttackDiff() => m_currentAttack - m_attack;
@@ -143,7 +128,7 @@ public class Robot : MonoBehaviour
     {
         m_currentDefense += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
-        GameController.i.ShowAlertText(buff, Color.blue, m_Left, IconList.defenceBuff);
+        GameController.i.ShowAlertText(buff, Color.blue, m_iconSpawInLeft, IconList.defenceBuff);
     }
 
     public void DefenseDebuff(int debuff)
@@ -152,7 +137,7 @@ public class Robot : MonoBehaviour
         m_currentDefense -= debuff;
         if (m_currentAttack < 1) m_currentAttack = 0;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
-        GameController.i.ShowAlertText(debuff, Color.black, m_Left, IconList.defenceDebuff, true);
+        GameController.i.ShowAlertText(debuff, Color.black, m_iconSpawInLeft, IconList.defenceDebuff, true);
     }
 
     public int DefenseDiff() => m_currentDefense - m_defense;
@@ -168,14 +153,12 @@ public class Robot : MonoBehaviour
     {
         m_currentSpeed += buff;
         AudioManager.Instance.Play(AudiosList.robotEffect);
-        //GameController.i.ShowAlertText(buff, Color.blue, m_Left, IconList.speedBuff);
     }
 
     public void SpeedDebuff(int debuff)
     {
         m_currentSpeed -= debuff;
         AudioManager.Instance.Play(AudiosList.robotDeffect);
-        //GameController.i.ShowAlertText(debuff, Color.black, m_Left, IconList.speedDebuff, true);
     }
 
     public int SpeedDiff() => m_currentSpeed - m_speed;

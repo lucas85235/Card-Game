@@ -25,8 +25,6 @@ public class Energy : MonoBehaviour
     public int EnergyRoundAmount { get => currentRoundAmount; }
     private int currentRoundAmount;
 
-    public Action OnEndRound;
-
     private void Awake()
     {
         if (gameObject.tag == "Player")
@@ -38,7 +36,7 @@ public class Energy : MonoBehaviour
     private void Start()
     {
         EnergyCharge();
-        GameController.i.OnStartTurn.AddListener(() => EnergyCharge());
+        Round.i.EndTurn.AddListener(() => EnergyCharge());
     }
 
     public void InitGame() 
@@ -60,12 +58,6 @@ public class Energy : MonoBehaviour
         EnergyText(currentRoundAmount);
     }
 
-    public void EndRound()
-    {
-        GameController.i.EndCountdown();
-        OnEndRound?.Invoke();
-    }
-
     private void EnergyCharge() 
     {
         Debug.Log("EnergyCharge");
@@ -82,10 +74,5 @@ public class Energy : MonoBehaviour
             energyText.text = value + " / 5";
         }
         else Debug.LogWarning("energyText of " + name + " is null");
-    }
-
-    private void OnDestroy()
-    {
-        OnEndRound = null;
     }
 }

@@ -8,11 +8,11 @@ using Random = UnityEngine.Random;
 
 public class DeckHandle : MonoBehaviour
 {
-    // o deck possui 20 cartas
-    // a cada turno e comprado 5
-    // ao final de cada turno as cartas que não forem usadas e as que forem vão para o discard
-    // assim que o deck tiver menos que 5 cartas elas setão reenbaralhadas e compradas
-    // sera comprado as que tiverem e as que forem reenbaralhadas para completar 5
+    // The deck it has 20 cars
+    // for each turn its buy 5
+    // at the end of each turn, the cards that are not used and those that are discarded
+    // as soon as the deck has less than 5 cards they will be reshuffled and drawn
+    // you will buy the ones you have and the ones that are shuffled to complete 5
 
     [Header("Lists")]
     [SerializeField] private List<CardData> deck;
@@ -33,8 +33,8 @@ public class DeckHandle : MonoBehaviour
 
         SortDeck();
 
-        // chamo o turn a cada começo de turno
-        GameController.i.OnStartTurn.AddListener(() => Turn());
+        // Call the turn every EndTurn
+        Round.i.EndTurn.AddListener(() => Turn());
 
         Turn();
     }
@@ -44,7 +44,7 @@ public class DeckHandle : MonoBehaviour
         deck = new List<CardData>();
         discard = new List<CardData>();
 
-        // necessario para resetar o mão ao acabar o deck
+        // needed to reset handle after finishi deck
         hands = new List<CardData>();
 
         foreach (var card in robot.data.Cards())
@@ -52,21 +52,19 @@ public class DeckHandle : MonoBehaviour
             deck.Add(card);
         }
 
-        // ordena de forma aleatoria o deck
+        // randomly order the deck
         deck.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
     }
 
     private void Turn()
     {
-        // Debug.Log("Turn");
-
-        // adicionar cartas quando não tiver o suficiente
+        // add cards when you don't have enough
         if (deck.Count < 5)
         {
             SortDeck();
         }
 
-        // adicionar as cartas da mão ao discard
+        // add the cards from the hand to the discard
         foreach (var card in hands)
         {
             discard.Add(card);
@@ -75,13 +73,13 @@ public class DeckHandle : MonoBehaviour
         hands = new List<CardData>();
         var deckSelect = GetRandomHandsList();
 
-        // adiciona a mão
+        // add the hand
         foreach (var s in deckSelect)
         {
             hands.Add(deck[s]);
         }
 
-        // tira do deck
+        // strip from the deck
         foreach (var s in deckSelect)
         {
             deck.RemoveAt(s);
@@ -95,11 +93,11 @@ public class DeckHandle : MonoBehaviour
 
     public void UpdateHands()
     {
-        // chama o evento que atualiza as cartas na mão
+        // calls the event that updates the cards in the hand
         OnUpdateHands(hands);          
     }
 
-    // seleciona aleatoriamente a ordem da mão atual
+    // randomly select current hand order
     private List<int> GetRandomHandsList()
     {
         var deckSelect = new List<int>();

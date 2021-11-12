@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2479,7 +2479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785089979
@@ -2508,6 +2508,91 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &801237788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801237790}
+  - component: {fileID: 801237789}
+  m_Layer: 0
+  m_Name: RoundLoop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &801237789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801237788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3752845d6f5dd4b89f90a668ec7735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartTurn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1238325787}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndTurn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1238325787}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  UseCard:
+    m_PersistentCalls:
+      m_Calls: []
+  RobotAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  playerOne: {fileID: 7680704849346759249}
+  playerTwo: {fileID: 5937095137718756382}
+  delayBetweenTasks: 1000
+  delayBetweenUseCards: 800
+  selectedConterinerPlayerOne: {fileID: 0}
+  selectedConterinerPlayerTwo: {fileID: 0}
+--- !u!4 &801237790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801237788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 942.66943, y: 539.9135, z: -0.58251953}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &808387283
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,7 +3602,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1238325787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 311e6f94f9e814640b5e660f2d4f4eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 57eacdfbebc44b441ae16f5b6eaefb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1297898669
@@ -3862,46 +3947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b035e327c72483a4faf126c28eb44f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedConterinerPlayer: {fileID: 438776062}
-  selectedConterinerCpu: {fileID: 387490169}
-  timeBetweenPlays: 1
   timeToPlay: 20
   timeSlider: {fileID: 516943497}
-  player: {fileID: 7680704849346759249}
-  cpu: {fileID: 5937095137718756382}
-  OnEndTurn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1238325787}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnStartTurn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1238325787}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  AfterApplyEffects:
-    m_PersistentCalls:
-      m_Calls: []
   alertText: {fileID: 1084947385375896570, guid: 5b899bb65b4661e45af95026f8a5d603, type: 3}
   alertLeft: {fileID: 785089978}
   alertRight: {fileID: 1584273554}
@@ -3930,7 +3977,7 @@ GameObject:
   - component: {fileID: 1320332622}
   - component: {fileID: 1320332621}
   m_Layer: 5
-  m_Name: CardGroup_IA
+  m_Name: DeckManager_CardGroup_IA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3964,7 +4011,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1320332619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a2b415661c496459ee9cb36ae1ef03, type: 3}
+  m_Script: {fileID: 11500000, guid: a9e6d8e6f65ecbb478e799d4da924100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectConteriner: {fileID: 1320332620}
@@ -4106,7 +4153,7 @@ GameObject:
   - component: {fileID: 1458135881}
   - component: {fileID: 1458135882}
   m_Layer: 5
-  m_Name: CardGroup_Player
+  m_Name: DeckManager_CardGroup_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4166,7 +4213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1458135879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a2b415661c496459ee9cb36ae1ef03, type: 3}
+  m_Script: {fileID: 11500000, guid: a9e6d8e6f65ecbb478e799d4da924100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectConteriner: {fileID: 1458135880}
@@ -4311,7 +4358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584273555
@@ -6427,6 +6474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
+  selectedCardsConteriner: {fileID: 387490169}
   getFromPersistentData: 0
   randData: 1
   datas:
@@ -7309,6 +7357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
+  selectedCardsConteriner: {fileID: 438776062}
   getFromPersistentData: 1
   randData: 0
   datas: []

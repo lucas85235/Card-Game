@@ -14,34 +14,46 @@ public struct CardEffectStruct
     public Stats statToApplyEffectBonus;
     public Vector2Int effectMultiplierRange;
 
-    public void UseEffect(Robot emitter, Robot target = null, bool useShild = false)
+    public void UseShildEffect(Robot emitter, Robot target = null)
     {
-        if (useShild)
+        if (effect.GetType() == typeof(Effect_ForceShield))
         {
-            if (effect.GetType() == typeof(Effect_ForceShield))
-            {
-                effect.UseEffect(emitter, target, value.x, chance);
-            }
-            else if (effect.GetType() == typeof(Effect_StatsBonus))
-            {
-                effect.UseEffect(emitter, target, value.x, chance);
-            }
-            else if (effect.GetType() == typeof(Effect_ReduceStats))
-            {
-                effect.UseEffect(emitter, target, value.x, chance);
-            }
-
-            return;
+            effect.UseEffect(emitter, target, value.x, chance);
         }
+    }
 
+    public void UseStatsBonusEffect(Robot emitter, Robot target = null)
+    {
+        if (effect.GetType() == typeof(Effect_StatsBonus))
+        {
+            effect.UseEffect(emitter, target, value.x, chance);
+        }
+    }
+
+    public void UseReduceStatsEffect(Robot emitter, Robot target)
+    {
+        if (effect.GetType() == typeof(Effect_ReduceStats))
+        {
+            effect.UseEffect(emitter, target, value.x, chance);
+        }
+    }
+
+    public void UseEffect(Robot emitter, Robot target)
+    {
         if (effect.GetType() == typeof(Effect_ForceShield))
             return;
 
         if (effect.GetType() == typeof(Effect_StatsBonus))
+        {
+            UseStatsBonusEffect(emitter, target);
             return;
+        }
 
         if (effect.GetType() == typeof(Effect_ReduceStats))
+        {
+            UseReduceStatsEffect(emitter, target);
             return;
+        }
 
         var isRand = value.x != value.y;
         var rand = Random.Range(value.x, value.y);
