@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: H_ElecHead
   m_EditorClassIdentifier: 
   partSprite: {fileID: 4085047034529615807, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
-  health: 2
+  health: 8
   energy: 0
-  attack: 2
+  attack: 0
   defense: 0
   speed: 0
+  inteligence: 2
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 0
+  iceResistence: 0
+  electricResistence: 4
+  acidResistence: 0
   cards:
   - {fileID: 11400000, guid: 9201ecb34918b0541b10ca35ead14b80, type: 2}
   - {fileID: 11400000, guid: 9201ecb34918b0541b10ca35ead14b80, type: 2}

@@ -67,7 +67,7 @@ public class RobotData : ScriptableObject
     }
     public int IceResistence() 
     {
-        return head.IceResistence() + torso.IceResistence() + rightArm.IceResistence() + leftArm.IceResistence() + leg.IceResistence();
+        return head.WaterResistence() + torso.WaterResistence() + rightArm.WaterResistence() + leftArm.WaterResistence() + leg.WaterResistence();
     }
     public int ElectricResistence() 
     {
