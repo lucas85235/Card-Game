@@ -7,7 +7,6 @@ using System;
 public class MenuManager : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] private RobotData[] currentRobots;
     [SerializeField] private RobotAnimation robotAnimation;
 
     [Header("Info")]
@@ -21,10 +20,125 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
+        LoadTestData();
+
         FillRobotInformation();
 
-        PersistentData.Instance.CurrentRobot = currentRobots[m_CurrentRobotIndex];
-        robotAnimation.ChangeRobotSprites(currentRobots[m_CurrentRobotIndex]);
+        DataManager.Instance.PlayerInfo.CurrentRobotIndex = m_CurrentRobotIndex;
+        robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
+    }
+
+    private void LoadTestData()
+    {
+        var newParts = new List<RobotPartItem>();
+
+        #region builder
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.H_BuilderHead.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.LA_BuilderLeftArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.L_BuilderLeg.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.RA_BuilderRightArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.T_BuilderTorso.ToString()
+        });
+
+        #endregion
+
+        #region Elec
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.H_ElecHead.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.LA_ElecLeftArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.L_ElecLeg.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.RA_ElecRightArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.T_ElecTorso.ToString()
+        });
+
+        #endregion
+
+        #region Stun
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.H_StunHead.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.LA_StunLeftArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.L_StunLeg.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.RA_StunRightArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.T_StunTorso.ToString()
+        });
+
+        #endregion
+
+        for (int i = 0; i < newParts.Count; i++)
+        {
+            DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
+        }
+
+        DataManager.Instance.AssignPartToRobot("code1", 0);
+        DataManager.Instance.AssignPartToRobot("code2", 0);
+        DataManager.Instance.AssignPartToRobot("code3", 0);
+        DataManager.Instance.AssignPartToRobot("code4", 0);
+        DataManager.Instance.AssignPartToRobot("code5", 0);
+        DataManager.Instance.AssignPartToRobot("code6", 1);
+        DataManager.Instance.AssignPartToRobot("code7", 1);
+        DataManager.Instance.AssignPartToRobot("code8", 1);
+        DataManager.Instance.AssignPartToRobot("code9", 1);
+        DataManager.Instance.AssignPartToRobot("code10", 1);
+        DataManager.Instance.AssignPartToRobot("code11", 2);
+        DataManager.Instance.AssignPartToRobot("code12", 2);
+        DataManager.Instance.AssignPartToRobot("code13", 2);
+        DataManager.Instance.AssignPartToRobot("code14", 2);
+        DataManager.Instance.AssignPartToRobot("code15", 2);
     }
 
     private void Start()
@@ -35,28 +149,28 @@ public class MenuManager : MonoBehaviour
 
     private void FillRobotInformation()
     {
-        PersistentData.Instance.CurrentRobot = currentRobots[m_CurrentRobotIndex];
-        robotAnimation.ChangeRobotSprites(currentRobots[m_CurrentRobotIndex]);
+        DataManager.Instance.PlayerInfo.CurrentRobotIndex = m_CurrentRobotIndex;
+        robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
         robotInfoText.text =
-            "Health: " + currentRobots[m_CurrentRobotIndex].Health() +
-            " Attack: " + currentRobots[m_CurrentRobotIndex].Attack() +
-            " Defence: " + currentRobots[m_CurrentRobotIndex].Defense() +
-            " Speed: " + currentRobots[m_CurrentRobotIndex].Speed() +
-            " Energy: " + currentRobots[m_CurrentRobotIndex].Energy();
+            "Health: " + DataManager.Instance.GetCurrentRobot().Health() +
+            " Attack: " + DataManager.Instance.GetCurrentRobot().Attack() +
+            " Defence: " + DataManager.Instance.GetCurrentRobot().Defense() +
+            " Speed: " + DataManager.Instance.GetCurrentRobot().Speed() +
+            " Energy: " + DataManager.Instance.GetCurrentRobot().Energy();
 
-        nameInfoText.text = 
-            currentRobots[m_CurrentRobotIndex].characterName + " - " + 
-            currentRobots[m_CurrentRobotIndex].botFunction;
+        nameInfoText.text =
+            DataManager.Instance.GetCurrentRobot().characterName + " - " +
+            DataManager.Instance.GetCurrentRobot().botFunction;
 
-        descriptionInfoText.text = 
-            currentRobots[m_CurrentRobotIndex].storyDescription;
+        descriptionInfoText.text =
+            DataManager.Instance.GetCurrentRobot().storyDescription;
 
         foreach (RectTransform oldCard in cardConfiner)
             Destroy(oldCard.gameObject);
         
 
-        foreach (var card in currentRobots[m_CurrentRobotIndex].Cards())
+        foreach (var card in DataManager.Instance.GetCurrentRobot().Cards())
         {
             var newCardInfo = Instantiate(cardInfoPrefab);
             newCardInfo.transform.SetParent(cardConfiner, false);
@@ -82,8 +196,8 @@ public class MenuManager : MonoBehaviour
         m_CurrentRobotIndex += value;
         AudioManager.Instance.Play(AudiosList.changeRobot);
 
-        if (m_CurrentRobotIndex < 0) m_CurrentRobotIndex = currentRobots.Length - 1;
-        if (m_CurrentRobotIndex > currentRobots.Length - 1) m_CurrentRobotIndex = 0;
+        if (m_CurrentRobotIndex < 0) m_CurrentRobotIndex = DataManager.Instance.PlayerInfo.Robots.Length - 1;
+        if (m_CurrentRobotIndex > DataManager.Instance.PlayerInfo.Robots.Length - 1) m_CurrentRobotIndex = 0;
 
         FillRobotInformation();
     }

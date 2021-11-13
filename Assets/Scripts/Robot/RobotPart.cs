@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class RobotPart : ScriptableObject
 {
+    [SerializeField] private string id;
+
     [Header("Visual")]
     [SerializeField] private Sprite partSprite;
 
@@ -28,6 +30,8 @@ public class RobotPart : ScriptableObject
 
     [Header("Cards")]
     [SerializeField] private List<CardData> cards;
+
+    public string ID() { return id; }
 
     public int Health() { return health; }
     public int Energy() { return energy; }

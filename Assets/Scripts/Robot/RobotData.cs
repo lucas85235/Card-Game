@@ -19,12 +19,50 @@ public class RobotData : ScriptableObject
     [SerializeField] private LeftArm leftArm;
     [SerializeField] private Leg leg;
 
-    [Header("Temp Stats")]
-    [SerializeField] private int health;
-    [SerializeField] private int attack;
-    [SerializeField] private int defense;
-    [SerializeField] private int speed;
+    #region PartsGetsAndSets
+    public Head GetHead()
+    {
+        return head;
+    }
+    public Torso GetTorso()
+    {
+        return torso;
+    }
+    public RightArm GetRightArm()
+    {
+        return rightArm;
+    }
+    public LeftArm GetLeftArm()
+    {
+        return leftArm;
+    }
+    public Leg GetLeg()
+    {
+        return leg;
+    }
+    public void SetHead(Head _head)
+    {
+        head = _head;
+    }
+    public void SetTorso(Torso _torso)
+    {
+        torso = _torso;
+    }
+    public void SetRightArm(RightArm _rightArm)
+    {
+        rightArm = _rightArm;
+    }
+    public void SetLeftArm(LeftArm _leftArm)
+    {
+        leftArm = _leftArm;
+    }
+    public void SetLeg(Leg _leg)
+    {
+        leg = _leg;
+    }
+    #endregion
 
+    #region PartsStats
     public int Health()
     {
         return head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
@@ -77,6 +115,7 @@ public class RobotData : ScriptableObject
     {
         return head.AcidResistence() + torso.AcidResistence() + rightArm.AcidResistence() + leftArm.AcidResistence() + leg.AcidResistence();
     }
+    #endregion
 
     public List<CardData> Cards()
     {
