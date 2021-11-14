@@ -40,51 +40,7 @@ public class DataManager : MonoBehaviour
 
         RobotPartItem partItem = PlayerInfo.PartsInventory[partCode];
 
-        if (ItemsDB.ItemsDict[partItem.itemID].GetType() == typeof(Head))
-        {
-            PlayerInfo.Robots[robotIndex].SetHead(ItemsDB.ItemsDict[partItem.itemID] as Head);
-
-            if (partItem.assignIndex != -1) 
-            {
-                PlayerInfo.Robots[partItem.assignIndex].SetHead(null);
-            }
-        }
-        else if (ItemsDB.ItemsDict[partItem.itemID].GetType() == typeof(Torso))
-        {
-            PlayerInfo.Robots[robotIndex].SetTorso(ItemsDB.ItemsDict[partItem.itemID] as Torso);
-
-            if (partItem.assignIndex != -1)
-            {
-                PlayerInfo.Robots[partItem.assignIndex].SetTorso(null);
-            }
-        }
-        else if (ItemsDB.ItemsDict[partItem.itemID].GetType() == typeof(RightArm))
-        {
-            PlayerInfo.Robots[robotIndex].SetRightArm(ItemsDB.ItemsDict[partItem.itemID] as RightArm);
-
-            if (partItem.assignIndex != -1)
-            {
-                PlayerInfo.Robots[partItem.assignIndex].SetRightArm(null);
-            }
-        }
-        else if (ItemsDB.ItemsDict[partItem.itemID].GetType() == typeof(LeftArm))
-        {
-            PlayerInfo.Robots[robotIndex].SetLeftArm(ItemsDB.ItemsDict[partItem.itemID] as LeftArm);
-
-            if (partItem.assignIndex != -1)
-            {
-                PlayerInfo.Robots[partItem.assignIndex].SetLeftArm(null);
-            }
-        }
-        else if (ItemsDB.ItemsDict[partItem.itemID].GetType() == typeof(Leg))
-        {
-            PlayerInfo.Robots[robotIndex].SetLeg(ItemsDB.ItemsDict[partItem.itemID] as Leg);
-
-            if (partItem.assignIndex != -1)
-            {
-                PlayerInfo.Robots[partItem.assignIndex].SetLeg(null);
-            }
-        }
+        ItemsDB.ItemsDict[partItem.itemID].SetRobotPart(PlayerInfo.Robots[robotIndex], partItem);
 
         partItem.assignIndex = robotIndex;
     }
