@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class RobotPart : ScriptableObject
+public abstract class RobotPart : ScriptableObject
 {
+    [SerializeField] private string id;
+
     [Header("Visual")]
     [SerializeField] private Sprite partSprite;
 
@@ -29,6 +31,8 @@ public class RobotPart : ScriptableObject
     [Header("Cards")]
     [SerializeField] private List<CardData> cards;
 
+    public string ID() { return id; }
+
     public int Health() { return health; }
     public int Energy() { return energy; }
     public int Attack() { return attack; }
@@ -45,4 +49,6 @@ public class RobotPart : ScriptableObject
 
     public List<CardData> Cards() { return cards; }
     public Sprite Sprite() { return partSprite; }
+
+    public abstract void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem);
 }

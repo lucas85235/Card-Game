@@ -14,7 +14,7 @@ public class Robot : MonoBehaviour
     [Header("Set Character Data")]
     public RobotData data;
     public Transform selectedCardsConteriner;
-    [SerializeField] private bool getFromPersistentData;
+    [SerializeField] private bool getFromDataManager;
 
     [Header("Rand Robot Data")]
     public bool randData = false;
@@ -47,7 +47,7 @@ public class Robot : MonoBehaviour
         life = GetComponent<Life>();
         TryGetComponent(out m_RobotAnimation);
 
-        if (getFromPersistentData) data = PersistentData.Instance.CurrentRobot;
+        if (getFromDataManager) data = DataManager.Instance.GetCurrentRobot();
         m_RobotAnimation.ChangeRobotSprites(data);
 
         m_iconSpawInLeft = transform.localScale.x > 0;

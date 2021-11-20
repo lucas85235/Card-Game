@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6b1c3be0c61964b8bea4492bdd9ec1, type: 3}
+  m_Name: RA_StunRightArm
+  m_EditorClassIdentifier: 
+  id: RA_StunRightArm
+  partSprite: {fileID: -2811501513268888928, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  health: 4
+  energy: 0
+  attack: 2
+  defense: 0
+  speed: 0
+  inteligence: 0
+  accuracy: 0
+  evasion: 0
+  critChance: 0
+  fireResistence: 0
+  waterResistence: 0
+  electricResistence: 0
+  acidResistence: 0
+  cards:
+  - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
+  - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
+  - {fileID: 11400000, guid: 9572e90d0811a514ca172aa7d87f7e91, type: 2}
+  - {fileID: 11400000, guid: 9572e90d0811a514ca172aa7d87f7e91, type: 2}
+  shoulderSprite: {fileID: -5179497886903317853, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
