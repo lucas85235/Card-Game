@@ -100,19 +100,24 @@ public class Robot : MonoBehaviour
 
     // ATTACK
 
-    public void AttackBuff(int buff)
+    public void ApplyAttackChange(int value)
     {
-        m_currentAttack += buff;
-        AudioManager.Instance.Play(AudiosList.robotEffect);
-        GameController.i.ShowAlertText(buff, Color.blue, m_iconSpawInLeft, IconList.attackBuff);
-    }
+        m_currentAttack += value;
 
-    public void AttackDebuff(int debuff)
-    {
-        m_currentAttack -= debuff;
-        if (m_currentAttack < 1) m_currentAttack = 0;
-        AudioManager.Instance.Play(AudiosList.robotDeffect);
-        GameController.i.ShowAlertText(debuff, Color.black, m_iconSpawInLeft, IconList.attackDebuff, true);
+        if(value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.attackBuff);
+        }
+        else
+        {
+            if (m_currentAttack < 1)
+            {
+                m_currentAttack = 0;
+            }
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.attackDebuff, true);
+        }
     }
 
     public int AttackDiff() => m_currentAttack - m_attack;
@@ -124,20 +129,24 @@ public class Robot : MonoBehaviour
 
     // DEFENSE
 
-    public void DefenseBuff(int buff)
+    public void ApplyDefenceChange(int value)
     {
-        m_currentDefense += buff;
-        AudioManager.Instance.Play(AudiosList.robotEffect);
-        GameController.i.ShowAlertText(buff, Color.blue, m_iconSpawInLeft, IconList.defenceBuff);
-    }
+        m_currentDefense += value;
 
-    public void DefenseDebuff(int debuff)
-    {
-        // Debug.Log("DEBUFF DEF: -" + debuff);
-        m_currentDefense -= debuff;
-        if (m_currentAttack < 1) m_currentAttack = 0;
-        AudioManager.Instance.Play(AudiosList.robotDeffect);
-        GameController.i.ShowAlertText(debuff, Color.black, m_iconSpawInLeft, IconList.defenceDebuff, true);
+        if (value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.defenceBuff);
+        }
+        else
+        {
+            if (m_currentAttack < 1)
+            {
+                m_currentAttack = 0;
+            }
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.defenceDebuff, true);
+        }
     }
 
     public int DefenseDiff() => m_currentDefense - m_defense;
@@ -149,16 +158,21 @@ public class Robot : MonoBehaviour
 
     // SPEED
 
-    public void SpeedBuff(int buff)
+    public void ApplySpeedChange(int value)
     {
-        m_currentSpeed += buff;
-        AudioManager.Instance.Play(AudiosList.robotEffect);
-    }
+        m_currentSpeed += value;
 
-    public void SpeedDebuff(int debuff)
-    {
-        m_currentSpeed -= debuff;
-        AudioManager.Instance.Play(AudiosList.robotDeffect);
+        if(value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
+        }
+        else
+        {
+
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
+        }
     }
 
     public int SpeedDiff() => m_currentSpeed - m_speed;

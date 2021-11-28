@@ -17,10 +17,13 @@ MonoBehaviour:
   description: Increases your attack by 1
   energy: 3
   effects:
-  - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  skills: []
+  trigger: 0

@@ -22,6 +22,8 @@ public class RoundLoop : Round
 
     private List<Robot> sortRobots;
 
+    private static int MAX_CARD_PRIORITY = 4;
+
     protected override void Awake()
     {
         base.Awake();
@@ -29,6 +31,9 @@ public class RoundLoop : Round
 
     protected virtual void Start()
     {
+        sortRobots = new List<Robot>();
+        SortBySpeed();
+
         selectedConterinerPlayerOne = playerOne.selectedCardsConteriner;
         selectedConterinerPlayerTwo = playerTwo.selectedCardsConteriner;
 
@@ -45,21 +50,14 @@ public class RoundLoop : Round
     {
         Debug.Log("StartTurnPlaysHandle");
 
-        // Sort play Order 
-        SortBySpeed();
-
-        // Can be Implement Quick Cards Here
-
-        // Apply Shild
-        UseShildCards();
         await Task.Delay(delayBetweenTasks);
 
         // Use All Cards
         await PlaysAllCards();
         await Task.Delay(delayBetweenTasks);
 
-        if (sortRobots[0].life.isDeath || 
-            sortRobots[1].life.isDeath)
+        if (sortRobots[0].life.isDead || 
+            sortRobots[1].life.isDead)
             return;
 
         // End Turn
@@ -69,8 +67,6 @@ public class RoundLoop : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
-        sortRobots = new List<Robot>();
-
         if (playerOne.Speed() > playerTwo.Speed())
         {
             sortRobots.Add(playerOne);
@@ -89,110 +85,71 @@ public class RoundLoop : Round
             // 0 == playerOne
             // 1 == playerTwo
 
-            if (rand == 0) playerOne.SpeedBuff(1);
-            else playerTwo.SpeedBuff(1);
-
-            Debug.Log("Sort Speed " + (rand == 0 ? "PlayerOne" : "PlayerTwo"));
-        }
-    }
-
-    /// <summary>Get cards in container and apply shild if has</summary>
-    private void UseShildCards()
-    {
-        try
-        {
-            if (sortRobots[0].selectedCardsConteriner.childCount < 0) return;
-
-            for (int i = 0; i < sortRobots[0].selectedCardsConteriner.childCount; i++)
+            if (rand == 0)
             {
-                var temp = sortRobots[0].selectedCardsConteriner.GetChild(i);
-                var current = temp.GetComponent<CardImage>();
-                current.UseShildEffect(sortRobots[0], sortRobots[1]);
-            }            
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e);
-            throw;
-        }
-
-        try
-        {
-            if (sortRobots[1].selectedCardsConteriner.childCount < 0) return;
-
-            for (int i = 0; i < sortRobots[1].selectedCardsConteriner.childCount; i++)
+                sortRobots.Add(playerOne);
+                sortRobots.Add(playerTwo);
+            }
+            else
             {
-                var temp = sortRobots[1].selectedCardsConteriner.GetChild(i);
-                var current = temp.GetComponent<CardImage>();
-                current.UseShildEffect(sortRobots[1], sortRobots[0]);
-            }           
+                sortRobots.Add(playerTwo);
+                sortRobots.Add(playerOne);
+            }
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e);
-            throw;
-        }
-    }
-
-    /// <summary>Create this method implemation later</summary>
-    private List<CardImage> UseQuickCards(List<CardImage> cards, bool reverse = false)
-    {
-        List<Robot> robots = sortRobots;
-        if (reverse) robots.Reverse();
-
-        // if this card is quick use and remover from the list
-
-        foreach (var card in cards)
-        {
-            // UseCard(card, robots);
-        }
-
-        return cards;
     }
 
     /// <summary>This call plays function using sortRobots with parans</summary>
     private async Task PlaysAllCards()
     {
-        await GetAndPlaysAllRoundCards(sortRobots[0], sortRobots[1]);
+        await GetAndPlaysAllRoundCards();
         await Task.Delay(delayBetweenTasks);
 
-        if (sortRobots[1].life.isDeath)
-            return;
-
-        await GetAndPlaysAllRoundCards(sortRobots[1], sortRobots[0]);
-        await Task.Delay(delayBetweenTasks);
-
-        if (sortRobots[1].life.isDeath)
-            return;
+        return;
     }
 
     /// <summary>Get all cards of the current robot and apply effects to the target</summary>
-    public async Task<bool> GetAndPlaysAllRoundCards(Robot robot, Robot target)
+    public async Task<bool> GetAndPlaysAllRoundCards()
     {
-        var m_roundCards = new List<CardImage>();
+        var m_roundCards = new Dictionary<int, List<CardImage>>();
 
-        for (int i = 0; i < robot.selectedCardsConteriner.childCount; i++)
+        for (int i = 0; i < sortRobots.Count; i++)
         {
-            var data = robot.selectedCardsConteriner.GetChild(i).
-                GetComponent<CardImage>();
-            m_roundCards.Add(data);
+            for (int j = 0; j < sortRobots[i].selectedCardsConteriner.childCount; j++)
+            {
+                sortRobots[i].selectedCardsConteriner.GetChild(i).TryGetComponent(out CardImage cardImage);
+
+                if (!m_roundCards.ContainsKey(cardImage.Data.Priority))
+                {
+                    m_roundCards[cardImage.Data.Priority] = new List<CardImage>();
+                }
+                m_roundCards[cardImage.Data.Priority].Add(cardImage);
+            }
         }
 
-        foreach (var card in m_roundCards)
+        for (int i = 0; i <= MAX_CARD_PRIORITY; i++)
         {
-            // Use Card FeedBack Passing Card In Use
-            UseCard.Invoke(card);
+            if (!m_roundCards.ContainsKey(i))
+            {
+                continue;
+            }
 
-            // Robot Attack Feedback Events
-            RobotAttack.Invoke(robot, target);
+            foreach (var card in m_roundCards[i])
+            {
+                UseCard.Invoke(card);
 
-            await Task.Delay(delayBetweenUseCards);
-            
-            card.UseEffect(robot, target);
-            card.gameObject.SetActive(false);
+                // Robot Attack Feedback Events
+                RobotAttack.Invoke(card.ConnectedRobot, GameController.i.GetTheOtherRobot(card.ConnectedRobot));
 
-            if (target.life.isDeath)
-                return true;
+                await Task.Delay(delayBetweenUseCards);
+
+                card.UseEffect();
+                card.gameObject.SetActive(false);
+
+                if (card.ConnectedRobot.life.isDead)
+                {
+                    return true;
+                }
+            }
         }
 
         return true;

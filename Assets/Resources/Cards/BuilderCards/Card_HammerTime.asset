@@ -17,17 +17,21 @@ MonoBehaviour:
   description: Deals 10 to 15 damage and reduces enamy Defense by 1.
   energy: 3
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 10, y: 15}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
-  - effect: {fileID: 11400000, guid: 94ac88c2d6928ee47b346c52c8dc2b69, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: 94ac88c2d6928ee47b346c52c8dc2b69, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 0
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  skills: []
+  trigger: 0

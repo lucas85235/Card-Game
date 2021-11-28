@@ -19,7 +19,7 @@ public class Life : MonoBehaviour
 
     [Header("Death Setup")]
     public bool destroyAfterDeath = true;
-    public bool isDeath = false;
+    public bool isDead = false;
 
     [Header("Death Event")]
     public UnityEvent OnDeath;
@@ -31,7 +31,7 @@ public class Life : MonoBehaviour
 
     private RobotAnimation m_RobotAnimation;
 
-    public bool HaveShild() => m_currentShild > 0;
+    public bool HaveShield() => m_currentShild > 0;
 
     void Start()
     {
@@ -53,21 +53,32 @@ public class Life : MonoBehaviour
 
     public void AddLife(int increment)
     {
+        if(increment < 0)
+        {
+            TakeDamage(-increment);
+            return;
+        }
+
         m_currentLife += increment;
 
         LifeRules();
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(int decrement)
+    public void TakeDamage(int decrement, List<EffectSkill> skills = null)
     {
         GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
         int damage = decrement;
 
-        if (HaveShild())
+        if (HaveShield())
             damage = TakeDamageShild(decrement);
 
         m_currentLife -= damage;
+
+        foreach (var skill in skills)
+        {
+            skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage);
+        }
 
         LifeRules();
         UpdateLifeSlider();
@@ -78,7 +89,7 @@ public class Life : MonoBehaviour
         Debug.Log("Character is Death");
         if (destroyAfterDeath) Destroy(this.gameObject);
         OnDeath?.Invoke();
-        isDeath = true;
+        isDead = true;
     }
 
     private void LifeRules()
@@ -110,7 +121,7 @@ public class Life : MonoBehaviour
             lifeText.text = m_currentLife + " / " + m_maxLife;
     }
 
-    public void AddShild(int shild)
+    public void AddShield(int shild)
     {
         // GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
         m_currentShild += shild;
