@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a08a414900efc43923e434983c50d0, type: 3}
   m_Name: Effect_NormalAttack
   m_EditorClassIdentifier: 
-  attack: 0
+  attackElement: 0
+  attackType: 1

@@ -1,4 +1,4 @@
-public enum Attacks
+public enum Element
 {
     normal,
     fire,

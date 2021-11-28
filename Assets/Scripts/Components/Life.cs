@@ -27,11 +27,11 @@ public class Life : MonoBehaviour
     private Robot m_robot;
     private int m_maxLife;
     private int m_currentLife;
-    private int m_currentShild;
+    private int m_currentShield;
 
     private RobotAnimation m_RobotAnimation;
 
-    public bool HaveShield() => m_currentShild > 0;
+    public bool HaveShield() => m_currentShield > 0;
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class Life : MonoBehaviour
             return;
         }
         
-        m_maxLife = m_robot.data.Health();
+        m_maxLife = m_robot.Data().Health();
         lifeSlider.maxValue = m_maxLife;
         lifeSlider.value = m_maxLife;
         m_currentLife = (int) lifeSlider.value;
@@ -55,7 +55,7 @@ public class Life : MonoBehaviour
     {
         if(increment < 0)
         {
-            TakeDamage(-increment);
+            TakeDamage(-increment, AttackType.none);
             return;
         }
 
@@ -65,20 +65,58 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(int decrement, List<EffectSkill> skills = null)
+    public void TakeDamage(int decrement, AttackType type, CardData usedCard = null, List<EffectSkill> skills = null)
     {
-        GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
+        bool ignoreShield = false;
+        float hitChance = 1;
+        float critChance = 0;
+
+        if(usedCard != null)
+        {
+            ignoreShield = usedCard.Piercing;
+            hitChance -= Mathf.Clamp(1f + m_robot.Data().Accuracy() - GameController.i.GetTheOtherRobot(m_robot).Data().Evasion(), 0f, 1f) - usedCard.MissChance;
+            critChance = m_robot.Data().CritChance();
+        }
+
+        //Chance de errar o dano da carta
+        if (Random.Range(0f, 1f) > hitChance)
+        {
+            decrement = 0;
+        }
+
+        //Chance de aplicar um crítico no ataque
+        else if (Random.Range(0f, 1f) < critChance)
+        {
+            decrement += Mathf.FloorToInt(decrement / 2);
+        }
+
         int damage = decrement;
 
-        if (HaveShield())
-            damage = TakeDamageShild(decrement);
+        if (HaveShield() && !ignoreShield)
+            damage = TakeDamageShield(decrement);
 
         m_currentLife -= damage;
 
-        foreach (var skill in skills)
+        if (skills != null)
         {
-            skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage);
+            foreach (var skill in skills)
+            {
+                if (skill != null)
+                {
+                    skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage, usedCard, skills);
+                }
+            }
         }
+
+        foreach (var status in m_robot.StatusList)
+        {
+            if(status != null && status.statusTrigger == StatusEffectTrigger.OnReceiveDamage && status.ActivateStatusEffect(m_robot, type))
+            {
+                m_robot.StatusList.Remove(status);
+            }
+        }
+
+        GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
 
         LifeRules();
         UpdateLifeSlider();
@@ -124,11 +162,11 @@ public class Life : MonoBehaviour
     public void AddShield(int shild)
     {
         // GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
-        m_currentShild += shild;
+        m_currentShield += shild;
 
         AudioManager.Instance.Play(AudiosList.robotEffect);
         shildSlider.gameObject.SetActive(true);
-        shildSlider.maxValue = m_currentShild;
+        shildSlider.maxValue = m_currentShield;
         shildSlider.value = m_currentLife;
 
         UpdateShildSlider();
@@ -137,21 +175,21 @@ public class Life : MonoBehaviour
     public void RemoveShild()
     {
         shildSlider.gameObject.SetActive(false);
-        m_currentShild = 0;
+        m_currentShield = 0;
     }
 
-    private int TakeDamageShild(int damage)
+    private int TakeDamageShield(int damage)
     {
         // Debug.Log("Damage: " + damage);
         
-        m_currentShild -= damage;
+        m_currentShield -= damage;
         UpdateShildSlider();
 
-        if (m_currentShild <= 0)
+        if (m_currentShield <= 0)
         {
             shildSlider.gameObject.SetActive(false);
-            Debug.Log("Damage diff: " + m_currentShild * -1);
-            return m_currentShild * -1;
+            Debug.Log("Damage diff: " + m_currentShield * -1);
+            return m_currentShield * -1;
         }
         
         return 0;
@@ -160,9 +198,9 @@ public class Life : MonoBehaviour
     private void UpdateShildSlider()
     {
         if (shildSlider != null)
-            shildSlider.value = m_currentShild;
+            shildSlider.value = m_currentShield;
 
         if (shildText != null)
-            shildText.text = m_currentShild + " / " + shildSlider.maxValue;
+            shildText.text = m_currentShield + " / " + shildSlider.maxValue;
     }
 }

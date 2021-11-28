@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
-    public RobotData data;
+    [SerializeField] private RobotData m_Data;
     public Transform selectedCardsConteriner;
     [SerializeField] private bool getFromDataManager;
 
@@ -20,18 +20,14 @@ public class Robot : MonoBehaviour
     public bool randData = false;
     public RobotData[] datas;
 
-    [Header("DATA")]
-    [SerializeField] private int m_attack;
-    [SerializeField] private int m_defense;
-    [SerializeField] private int m_speed;
-    [SerializeField] private int m_energy;
-
     [Header("CURRENT")]
     [SerializeField] private int m_currentAttack;
     [SerializeField] private int m_currentDefense;
     [SerializeField] private int m_currentSpeed;
 
     private bool m_iconSpawInLeft;
+
+    public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
     public Life life { get; private set; }
     private RobotAnimation m_RobotAnimation;
@@ -42,22 +38,21 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
-        if (randData && datas.Length > 1) data = datas[Random.Range(0, datas.Length)];
+        if (randData && datas.Length > 1) m_Data = datas[Random.Range(0, datas.Length)];
 
         life = GetComponent<Life>();
         TryGetComponent(out m_RobotAnimation);
 
-        if (getFromDataManager) data = DataManager.Instance.GetCurrentRobot();
-        m_RobotAnimation.ChangeRobotSprites(data);
+        if (getFromDataManager) m_Data = DataManager.Instance.GetCurrentRobot();
+        m_RobotAnimation.ChangeRobotSprites(m_Data);
 
         m_iconSpawInLeft = transform.localScale.x > 0;
 
-        GetComponent<RobotAnimation>().ChangeRobotSprites(data);
+        GetComponent<RobotAnimation>().ChangeRobotSprites(m_Data);
     }
 
     private void Start()
     {
-        LoadData();
         RemoveAllBuffAndDebuff();
 
         Round.i.StartTurn.AddListener(() => {
@@ -81,14 +76,6 @@ public class Robot : MonoBehaviour
     {
         if (robot != this) return;
         m_RobotAnimation.PlayAnimation(Animations.action);
-    }
-
-    private void LoadData()
-    {
-        m_energy = data.Energy();
-        m_attack = data.Attack();
-        m_defense = data.Defense();
-        m_speed = data.Speed();
     }
 
     private void RemoveAllBuffAndDebuff()
@@ -120,11 +107,11 @@ public class Robot : MonoBehaviour
         }
     }
 
-    public int AttackDiff() => m_currentAttack - m_attack;
+    public int AttackDiff() => m_currentAttack - m_Data.Attack();
 
     public void AttackReset()
     {
-        m_currentAttack = m_attack;
+        m_currentAttack = m_Data.Attack();
     }
 
     // DEFENSE
@@ -149,11 +136,11 @@ public class Robot : MonoBehaviour
         }
     }
 
-    public int DefenseDiff() => m_currentDefense - m_defense;
+    public int DefenseDiff() => m_currentDefense - m_Data.Defense();
 
     public void DefenseReset()
     {
-        m_currentDefense = m_defense;
+        m_currentDefense = m_Data.Defense();
     }
 
     // SPEED
@@ -175,10 +162,31 @@ public class Robot : MonoBehaviour
         }
     }
 
-    public int SpeedDiff() => m_currentSpeed - m_speed;
+    public int SpeedDiff() => m_currentSpeed - m_Data.Speed();
 
     public void SpeedReset()
     {
-        m_currentSpeed = m_speed;
+        m_currentSpeed = m_Data.Speed();
+    }
+
+    public RobotData Data()
+    {
+        return m_Data;
+    }
+
+    public void ApplyStatusEffect(StatusEffect newStatusEffect)
+    {
+        StatusList = newStatusEffect.UpdateStatusList(StatusList);
+    }
+
+    public void ActivateLateStatusEffects()
+    {
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
+            {
+                StatusList.Remove(status);
+            }
+        }
     }
 }

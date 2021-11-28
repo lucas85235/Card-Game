@@ -4,11 +4,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "ScriptableObjects/Effects/Attack")]
 public class Effect_Attack : Effect
 {
-    [SerializeField] private Attacks attack;
+    [SerializeField] private Element attackElement;
+    [SerializeField] private AttackType attackType;
 
-    protected override bool ApplyEffectByChance(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills)
+    protected override bool ApplyEffectByChance(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
     {
-        if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills)) return false;
+        if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard))
+        {
+            return false;
+        }
 
         if (target != null)
         {
@@ -20,7 +24,7 @@ public class Effect_Attack : Effect
             // Debug.Log("DEF: " + emitter.Defense());
             // Debug.Log("DAMAGE: " + damage);
 
-            target.life.TakeDamage(damage, skills);
+            target.life.TakeDamage(damage, attackType);
         }
         else
         {

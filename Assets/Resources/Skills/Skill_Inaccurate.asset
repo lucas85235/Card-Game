@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e21c6addbebde4a88109bfe7b739f5, type: 3}
   m_Name: Skill_Inaccurate
   m_EditorClassIdentifier: 
-  newMissChanceMultiplier: 1.25
+  newMissChance: 0.2

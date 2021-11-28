@@ -6792,7 +6792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db43a9fb5c3c30a4898fa1a37a2efc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
+  m_Data: {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
   selectedCardsConteriner: {fileID: 387490169}
   getFromDataManager: 0
   randData: 1
@@ -6800,10 +6800,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   - {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
   - {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
-  m_attack: 0
-  m_defense: 0
-  m_speed: 0
-  m_energy: 0
   m_currentAttack: 0
   m_currentDefense: 0
   m_currentSpeed: 0
@@ -7675,15 +7671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db43a9fb5c3c30a4898fa1a37a2efc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
+  m_Data: {fileID: 0}
   selectedCardsConteriner: {fileID: 438776062}
   getFromDataManager: 1
   randData: 0
   datas: []
-  m_attack: 0
-  m_defense: 0
-  m_speed: 0
-  m_energy: 0
   m_currentAttack: 0
   m_currentDefense: 0
   m_currentSpeed: 0

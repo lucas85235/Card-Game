@@ -20,8 +20,10 @@ public class CardData : ScriptableObject
     [SerializeField] private CardTriggersList trigger;
 
     public int Priority { get; set; } = 2;
-    public float MissChanceMultiplier { get; set; } = 1;
-    public float CriticalMultiplier { get; set; } = 1;
+    public float MissChance { get; set; } = 0;
+    public float CriticalChance { get; set; } = 0;
+    public bool Piercing { get; set; } = false;
+    public bool SingleUse { get; set; } = false;
 
     public Sprite Sprite() { return cardSprite; }
     public string Title() { return title; }

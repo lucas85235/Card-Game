@@ -48,13 +48,16 @@ public class DeckHandle : MonoBehaviour
         // needed to reset handle after finishi deck
         hands = new List<CardData>();
 
-        foreach (var card in robot.data.Cards())
+        foreach (var card in robot.Data().Cards())
         {
             deck.Add(card);
 
             foreach (var skill in card.Skills())
             {
-                skill.ApplySkill(card);
+                if(skill != null)
+                {
+                    skill.ApplySkill(card);
+                }
             }
         }
 

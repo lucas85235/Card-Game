@@ -18,7 +18,7 @@ public struct CardEffectStruct
     public Stats statToApplyEffectBonus;
     public Vector2Int effectMultiplierRange;
 
-    public void UseEffect(Robot emitter, Robot target)
+    public void UseEffect(Robot emitter, Robot target, CardData usedData)
     {
         var isRand = value.x != value.y;
         var rand = Random.Range(value.x, value.y);
@@ -28,6 +28,6 @@ public struct CardEffectStruct
 
         Robot finalTarget = selfApply ? emitter : target;
 
-        effect.UseEffect(emitter, finalTarget, finalValue, chance, skills);
+        effect.UseEffect(emitter, finalTarget, finalValue, chance, skills, usedData);
     }
 }

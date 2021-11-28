@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e21c6addbebde4a88109bfe7b739f5, type: 3}
   m_Name: Skill_Precise
   m_EditorClassIdentifier: 
-  skillActivation: 0
-  newMissChance: 0
+  newMissChance: -1

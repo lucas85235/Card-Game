@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cd595410e7a064f8e1533d6a1db65f, type: 3}
   m_Name: EffectSkill_Reckless
   m_EditorClassIdentifier: 
+  activation: 2
   healByDamagePercentage: -0.2
