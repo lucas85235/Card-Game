@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_BulkUp
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d292939c7e0d1414db78403e798ee1a2, type: 3}
-  title: BulkUp
-  description: Increases Attack by 2
+  title: Marombado
+  description: Aumenta seu Ataque em 2 pontos
   energy: 3
   effects:
   - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  attribute: 
+  trigger: 0

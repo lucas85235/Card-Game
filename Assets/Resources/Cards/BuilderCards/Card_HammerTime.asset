@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Card_HammerTime
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 6f4451a95ca761e4cb76d960155f28a8, type: 3}
-  title: Hammer Time
-  description: Deals 10 to 15 damage and reduces enamy Defense by 1.
+  title: Marretada
+  description: "Causa de 10 a 15 pontos de dano. Reduz a Defesa do advers\xE1rio
+    em 1 ponto"
   energy: 3
   effects:
   - skills: []

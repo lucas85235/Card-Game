@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_ForceArmor
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d7e6a83e7606ad449851a493b0c74d97, type: 3}
-  title: Force Shield
-  description: Creates a force shield with 12 HP
+  title: "Armadura de For\xE7a"
+  description: Cria um escudo com 12 Pontos de Vida
   energy: 3
   effects:
   - skills: []

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_HighGuard
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: c96bc2d2cefbc7240ae61b9456c5bec5, type: 3}
-  title: High Guard
-  description: Increases Defense by 1
+  title: Guarda Alta
+  description: Aumenta sua Defesa em 1 ponto
   energy: 2
   effects:
   - effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  attribute: 
+  trigger: 0

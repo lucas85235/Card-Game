@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_ProtectionHelmet
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 5e3e091d55bffbd4dbd4ef784958863c, type: 3}
-  title: Protection Helmet
-  description: Increases Defense by 1
+  title: "Capacete de Prote\xE7\xE3o"
+  description: Aumenta sua Defesa em 1 ponto
   energy: 2
   effects:
   - effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 7ce49f03f32746a48a33219d72649d83, type: 3}
   title: Jab
-  description: Deals Attack + 4 to 8 damage
+  description: Causa de 4 a 8 pontos de dano
   energy: 0
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
+  attribute: 
+  trigger: 0

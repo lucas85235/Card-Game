@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_Feint
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: ecfbf8253f74e22419d5f4ce8a94f418, type: 3}
-  title: Feint
-  description: Reduces enemy Defense by 1
+  title: Finta
+  description: "Reduz a Defesa do advers\xE1rio em 1 ponto"
   energy: 3
   effects:
   - effect: {fileID: 11400000, guid: 94ac88c2d6928ee47b346c52c8dc2b69, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  attribute: 
+  trigger: 0

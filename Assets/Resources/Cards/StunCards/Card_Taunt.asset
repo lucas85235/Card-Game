@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_Taunt
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 901e8afe714ebff4ca9784b2c6d784bb, type: 3}
-  title: Taunt
-  description: Reduces enemy Attack by 1
+  title: Provocar
+  description: "Reduz o Ataque do advers\xE1rio em 1 ponto"
   energy: 3
   effects:
   - effect: {fileID: 11400000, guid: 20524a988fcd72840beb9856e4668859, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  attribute: 
+  trigger: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_Cross
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 2b406d9346f8ff24e88565c848081838, type: 3}
-  title: Cross
-  description: Deals Attack + 2 to 8 damage
+  title: Cruzado
+  description: Causa de 7 a 13 pontos de dano
   energy: 2
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
+  attribute: 
+  trigger: 0
