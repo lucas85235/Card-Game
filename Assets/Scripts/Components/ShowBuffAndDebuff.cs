@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShowBuffAndDebuff : MonoBehaviour
 {
     [Header("Set")]
     public DeckOf deckOf;
-    public Text attack;
-    public Text defense;
-    public Text speed;
+    public TextMeshProUGUI attack;
+    public TextMeshProUGUI defense;
+    public TextMeshProUGUI speed;
 
     private Robot m_robot;
 

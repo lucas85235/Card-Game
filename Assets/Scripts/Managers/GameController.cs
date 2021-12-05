@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private float timeToPlay;
     [SerializeField] private Slider timeSlider;
+    [SerializeField] private Robot[] robots;
 
     [Header("Alert")]
     [SerializeField] private GameObject alertText;
@@ -111,6 +112,19 @@ public class GameController : MonoBehaviour
 
         timeSlider.gameObject.SetActive(false);
         Round.i.StartTurn?.Invoke();
+    }
+
+    public Robot GetTheOtherRobot(Robot emitterRobot)
+    {
+        foreach (var robot in robots)
+        {
+            if(robot != emitterRobot)
+            {
+                return robot;
+            }
+        }
+
+        return null;
     }
 
     private void OnDestroy()

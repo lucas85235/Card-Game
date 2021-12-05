@@ -17,12 +17,14 @@ MonoBehaviour:
   description: Creates a force shield with 12 HP
   energy: 3
   effects:
-  - effect: {fileID: 11400000, guid: aef5f2e33fa52614cb31eda8682b6a72, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: aef5f2e33fa52614cb31eda8682b6a72, type: 2}
     value: {x: 12, y: 12}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
-  attribute: 
+  skills:
+  - {fileID: 11400000, guid: 507945ee03af0864798ad51ff3346ff5, type: 2}
   trigger: 0

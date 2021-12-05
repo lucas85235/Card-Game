@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using Random = UnityEngine.Random;
 
@@ -20,8 +21,8 @@ public class DeckHandle : MonoBehaviour
     [SerializeField] private List<CardData> discard;
 
     [Header("Hud Setup")]
-    public Text deckText;
-    public Text discardText;
+    public TextMeshProUGUI deckText;
+    public TextMeshProUGUI discardText;
 
     public Action<List<CardData>> OnUpdateHands;
 
@@ -47,9 +48,17 @@ public class DeckHandle : MonoBehaviour
         // needed to reset handle after finishi deck
         hands = new List<CardData>();
 
-        foreach (var card in robot.data.Cards())
+        foreach (var card in robot.Data().Cards())
         {
             deck.Add(card);
+
+            foreach (var skill in card.Skills())
+            {
+                if(skill != null)
+                {
+                    skill.ApplySkill(card);
+                }
+            }
         }
 
         // randomly order the deck
@@ -85,8 +94,8 @@ public class DeckHandle : MonoBehaviour
             deck.RemoveAt(s);
         }
 
-        DeckText("Deck: " + deck.Count);
-        DiscarText("Discard: " + discard.Count);
+        deckText.text = "Deck: " + deck.Count;
+        discardText.text = "Discard: " + discard.Count;
 
         Invoke("UpdateHands", 0.1f);
     }
@@ -114,22 +123,6 @@ public class DeckHandle : MonoBehaviour
         deckSelect.Reverse();
 
         return deckSelect;
-    }
-
-    private void DeckText(string text) 
-    {
-        if (deckText != null)
-        {
-            deckText.text = text;
-        }
-    }
-
-    private void DiscarText(string text) 
-    {
-        if (discardText != null)
-        {
-            discardText.text = text;
-        }
     }
 
     private void OnDestroy()

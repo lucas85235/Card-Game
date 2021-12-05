@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
-    public RobotData data;
+    [SerializeField] private RobotData m_Data;
     public Transform selectedCardsConteriner;
     [SerializeField] private bool getFromDataManager;
 
@@ -20,18 +20,14 @@ public class Robot : MonoBehaviour
     public bool randData = false;
     public RobotData[] datas;
 
-    [Header("DATA")]
-    [SerializeField] private int m_attack;
-    [SerializeField] private int m_defense;
-    [SerializeField] private int m_speed;
-    [SerializeField] private int m_energy;
-
     [Header("CURRENT")]
     [SerializeField] private int m_currentAttack;
     [SerializeField] private int m_currentDefense;
     [SerializeField] private int m_currentSpeed;
 
     private bool m_iconSpawInLeft;
+
+    public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
     public Life life { get; private set; }
     private RobotAnimation m_RobotAnimation;
@@ -42,22 +38,21 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
-        if (randData && datas.Length > 1) data = datas[Random.Range(0, datas.Length)];
+        if (randData && datas.Length > 1) m_Data = datas[Random.Range(0, datas.Length)];
 
         life = GetComponent<Life>();
         TryGetComponent(out m_RobotAnimation);
 
-        if (getFromDataManager) data = DataManager.Instance.GetCurrentRobot();
-        m_RobotAnimation.ChangeRobotSprites(data);
+        if (getFromDataManager) m_Data = DataManager.Instance.GetCurrentRobot();
+        m_RobotAnimation.ChangeRobotSprites(m_Data);
 
         m_iconSpawInLeft = transform.localScale.x > 0;
 
-        GetComponent<RobotAnimation>().ChangeRobotSprites(data);
+        GetComponent<RobotAnimation>().ChangeRobotSprites(m_Data);
     }
 
     private void Start()
     {
-        LoadData();
         RemoveAllBuffAndDebuff();
 
         Round.i.StartTurn.AddListener(() => {
@@ -83,14 +78,6 @@ public class Robot : MonoBehaviour
         m_RobotAnimation.PlayAnimation(Animations.action);
     }
 
-    private void LoadData()
-    {
-        m_energy = data.Energy();
-        m_attack = data.Attack();
-        m_defense = data.Defense();
-        m_speed = data.Speed();
-    }
-
     private void RemoveAllBuffAndDebuff()
     {
         AttackReset();
@@ -100,71 +87,106 @@ public class Robot : MonoBehaviour
 
     // ATTACK
 
-    public void AttackBuff(int buff)
+    public void ApplyAttackChange(int value)
     {
-        m_currentAttack += buff;
-        AudioManager.Instance.Play(AudiosList.robotEffect);
-        GameController.i.ShowAlertText(buff, Color.blue, m_iconSpawInLeft, IconList.attackBuff);
+        m_currentAttack += value;
+
+        if(value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.attackBuff);
+        }
+        else
+        {
+            if (m_currentAttack < 1)
+            {
+                m_currentAttack = 0;
+            }
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.attackDebuff, true);
+        }
     }
 
-    public void AttackDebuff(int debuff)
-    {
-        m_currentAttack -= debuff;
-        if (m_currentAttack < 1) m_currentAttack = 0;
-        AudioManager.Instance.Play(AudiosList.robotDeffect);
-        GameController.i.ShowAlertText(debuff, Color.black, m_iconSpawInLeft, IconList.attackDebuff, true);
-    }
-
-    public int AttackDiff() => m_currentAttack - m_attack;
+    public int AttackDiff() => m_currentAttack - m_Data.Attack();
 
     public void AttackReset()
     {
-        m_currentAttack = m_attack;
+        m_currentAttack = m_Data.Attack();
     }
 
     // DEFENSE
 
-    public void DefenseBuff(int buff)
+    public void ApplyDefenceChange(int value)
     {
-        m_currentDefense += buff;
-        AudioManager.Instance.Play(AudiosList.robotEffect);
-        GameController.i.ShowAlertText(buff, Color.blue, m_iconSpawInLeft, IconList.defenceBuff);
+        m_currentDefense += value;
+
+        if (value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.defenceBuff);
+        }
+        else
+        {
+            if (m_currentAttack < 1)
+            {
+                m_currentAttack = 0;
+            }
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.defenceDebuff, true);
+        }
     }
 
-    public void DefenseDebuff(int debuff)
-    {
-        // Debug.Log("DEBUFF DEF: -" + debuff);
-        m_currentDefense -= debuff;
-        if (m_currentAttack < 1) m_currentAttack = 0;
-        AudioManager.Instance.Play(AudiosList.robotDeffect);
-        GameController.i.ShowAlertText(debuff, Color.black, m_iconSpawInLeft, IconList.defenceDebuff, true);
-    }
-
-    public int DefenseDiff() => m_currentDefense - m_defense;
+    public int DefenseDiff() => m_currentDefense - m_Data.Defense();
 
     public void DefenseReset()
     {
-        m_currentDefense = m_defense;
+        m_currentDefense = m_Data.Defense();
     }
 
     // SPEED
 
-    public void SpeedBuff(int buff)
+    public void ApplySpeedChange(int value)
     {
-        m_currentSpeed += buff;
-        AudioManager.Instance.Play(AudiosList.robotEffect);
+        m_currentSpeed += value;
+
+        if(value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
+        }
+        else
+        {
+
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
+        }
     }
 
-    public void SpeedDebuff(int debuff)
-    {
-        m_currentSpeed -= debuff;
-        AudioManager.Instance.Play(AudiosList.robotDeffect);
-    }
-
-    public int SpeedDiff() => m_currentSpeed - m_speed;
+    public int SpeedDiff() => m_currentSpeed - m_Data.Speed();
 
     public void SpeedReset()
     {
-        m_currentSpeed = m_speed;
+        m_currentSpeed = m_Data.Speed();
+    }
+
+    public RobotData Data()
+    {
+        return m_Data;
+    }
+
+    public void ApplyStatusEffect(StatusEffect newStatusEffect)
+    {
+        StatusList = newStatusEffect.UpdateStatusList(StatusList);
+    }
+
+    public void ActivateLateStatusEffects()
+    {
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
+            {
+                StatusList.Remove(status);
+            }
+        }
     }
 }

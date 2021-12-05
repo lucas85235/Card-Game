@@ -14,18 +14,24 @@ public class DeckManager : MonoBehaviour
     public CardImage cardTemplate;
 
     public DeckOf deckOf;
+    private Robot m_ConnectedRobot;
 
     private void Awake()
     {
         m_spaw = transform;
 
         if (deckOf == DeckOf.player)
+        {
             m_deck = GameObject.FindGameObjectWithTag("Player").GetComponent<DeckHandle>();
-        else m_deck = GameObject.FindGameObjectWithTag("Cpu").GetComponent<DeckHandle>();
-
-        if (deckOf == DeckOf.player)
             m_energy = GameObject.FindGameObjectWithTag("Player").GetComponent<Energy>();
-        else m_energy = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Energy>();
+            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
+        }
+        else
+        {
+            m_deck = GameObject.FindGameObjectWithTag("Cpu").GetComponent<DeckHandle>();
+            m_energy = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Energy>();
+            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
+        }
 
         m_deck.OnUpdateHands += UpdateDeck;
 
@@ -71,7 +77,8 @@ public class DeckManager : MonoBehaviour
             cardImage.energyCount = m_energy;
             cardImage.selectConteriner = selectConteriner;
             cardImage.selectedConteriner = selectedConteriner;
-            cardImage.data = card;
+            cardImage.Data = card;
+            cardImage.ConnectedRobot = m_ConnectedRobot;
 
             spawCards.Add(cardImage);
         }

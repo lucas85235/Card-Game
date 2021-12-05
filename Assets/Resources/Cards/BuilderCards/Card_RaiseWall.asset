@@ -17,10 +17,14 @@ MonoBehaviour:
   description: Increases Defense by 1
   energy: 2
   effects:
-  - effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  skills:
+  - {fileID: 11400000, guid: 507945ee03af0864798ad51ff3346ff5, type: 2}
+  trigger: 0
