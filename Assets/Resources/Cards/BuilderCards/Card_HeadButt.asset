@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_HeadButt
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 8224c3f24d506744f9193681ec3ea2fd, type: 3}
-  title: Headbutt
-  description: Deals 8 to 15 damage
+  title: "Cabe\xE7ada"
+  description: Causa de 8 a 15 pontos de dano
   energy: 2
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
+  attribute: 
+  trigger: 0

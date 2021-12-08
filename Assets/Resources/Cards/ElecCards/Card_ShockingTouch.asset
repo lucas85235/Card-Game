@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_ShockingTouch
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 3c973d52e1cbb8c42aec24002fae347d, type: 3}
-  title: Shocking Touch
-  description: Deals 7 to 11 damage
+  title: Toque Chocante
+  description: "Causa de 7 a 11 pontos de dano el\xE9trico"
   energy: 1
   effects:
   - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}

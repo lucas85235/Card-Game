@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_Amperemeter
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 59b8e6aa0fec504479cbe57a8285e62e, type: 3}
-  title: Amperemeter
-  description: Increases attack by 1
+  title: "Amper\xEDmetro"
+  description: "Aumenta sua Intelig\xEAncia em 1 ponto"
   energy: 2
   effects:
   - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
@@ -24,3 +24,5 @@ MonoBehaviour:
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
+  attribute: 
+  trigger: 0

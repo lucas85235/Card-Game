@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card_ForceWall
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 7c91085b1df343e4c839cea53b3eb9fb, type: 3}
-  title: Force Shield
-  description: Creates a force shield with 15 HP
+  title: "Muralha de For\xE7a"
+  description: Cria um escudo com 15 Pontos de Vida
   energy: 3
   effects:
   - skills: []
