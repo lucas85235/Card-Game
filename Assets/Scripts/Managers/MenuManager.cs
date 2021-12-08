@@ -196,11 +196,11 @@ public class MenuManager : MonoBehaviour
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
         robotInfoText.text =
-            "Health: " + DataManager.Instance.GetCurrentRobot().Health() +
-            " Attack: " + DataManager.Instance.GetCurrentRobot().Attack() +
-            " Defence: " + DataManager.Instance.GetCurrentRobot().Defense() +
-            " Speed: " + DataManager.Instance.GetCurrentRobot().Speed() +
-            " Energy: " + DataManager.Instance.GetCurrentRobot().Energy();
+            "Vida: " + DataManager.Instance.GetCurrentRobot().Health() +
+            " Ataque: " + DataManager.Instance.GetCurrentRobot().Attack() +
+            " Defesa: " + DataManager.Instance.GetCurrentRobot().Defense() +
+            " Velocidade: " + DataManager.Instance.GetCurrentRobot().Speed() +
+            " Energia: " + DataManager.Instance.GetCurrentRobot().Energy();
 
         nameInfoText.text =
             DataManager.Instance.GetCurrentRobot().characterName + " - " +
