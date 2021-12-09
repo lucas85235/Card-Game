@@ -34,7 +34,10 @@ public class DeckManager : MonoBehaviour
         }
 
         m_deck.OnUpdateHands += UpdateDeck;
+    }
 
+    private void Start()
+    {
         if (deckOf == DeckOf.cpu)
         {
             Round.i.StartTurn.AddListener(() =>
@@ -48,7 +51,7 @@ public class DeckManager : MonoBehaviour
         }
 
         // Add Use Card Feedback Event
-        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );
+        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );        
     }
 
     // UseCard Event

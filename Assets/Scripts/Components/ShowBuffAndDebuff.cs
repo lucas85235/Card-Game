@@ -28,17 +28,53 @@ public class ShowBuffAndDebuff : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (deckOf == DeckOf.player)
+        {
+            SetStatsLeft();
+        }
+        else
+        {
+            SetStatsRight();
+        }
+    }
+
     public void SetStatsLeft()
     {
-        attack.text = "ATK: " + m_robot.StatDiff(Stats.attack);
-        defense.text = "DEF: " + m_robot.StatDiff(Stats.defence);
-        speed.text = "SPE: " + m_robot.StatDiff(Stats.speed);
+        attack.text = "ATK: " + "<color=#ffffff>" + SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + "</color>";
+        defense.text = "DEF: " + "<color=#ffffff>" + SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + "</color>";
+        speed.text = "SPE: " + "<color=#ffffff>" + SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + "</color>";
+    }
+
+    // azul 788CFF
+    // verde 99F050
+    // vermelho FD4902
+
+    private int SetDiff(int value, int diff)
+    {
+        // Debug.Log (value + " - " +  diff);
+        if (diff != 0)
+        {
+            int total = value + (value - diff);
+            Debug.Log ("total: " + total);
+
+            return total;
+        }
+
+        Debug.Log ("value: " + value);
+        return value;
+    }
+
+    private void SetNumberColor()
+    {
+
     }
 
     public void SetStatsRight()
     {
-        attack.text = m_robot.StatDiff(Stats.attack) + " :ATK";
-        defense.text = m_robot.StatDiff(Stats.defence) + " :DEF";
-        speed.text = m_robot.StatDiff(Stats.speed) + " :SPE";
+        attack.text = "<color=#ffffff>" + SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + "</color>" + " :ATK";
+        defense.text = "<color=#ffffff>" + SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + "</color>" + " :ATK";
+        speed.text = "<color=#ffffff>" + SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + "</color>" + " :ATK";
     }
 }
