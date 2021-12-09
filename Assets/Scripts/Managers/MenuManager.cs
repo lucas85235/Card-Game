@@ -119,26 +119,69 @@ public class MenuManager : MonoBehaviour
 
         #endregion
 
+        #region Lumber
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.H_LumberHead.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.LA_LumberLeftArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.L_LumberLeg.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.RA_LumberRightArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.T_LumberTorso.ToString()
+        });
+
+        #endregion
+
+        #region Metal
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.H_MetalHead.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.LA_MetalLeftArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.L_MetalLeg.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.RA_MetalRightArm.ToString()
+        });
+
+        newParts.Add(new RobotPartItem()
+        {
+            itemID = PartID.T_MetalTorso.ToString()
+        });
+
+        #endregion
+
         for (int i = 0; i < newParts.Count; i++)
         {
             DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
+            DataManager.Instance.AssignPartToRobot("code" + (i + 1), Mathf.FloorToInt(i / 5));
         }
-
-        DataManager.Instance.AssignPartToRobot("code1", 0);
-        DataManager.Instance.AssignPartToRobot("code2", 0);
-        DataManager.Instance.AssignPartToRobot("code3", 0);
-        DataManager.Instance.AssignPartToRobot("code4", 0);
-        DataManager.Instance.AssignPartToRobot("code5", 0);
-        DataManager.Instance.AssignPartToRobot("code6", 1);
-        DataManager.Instance.AssignPartToRobot("code7", 1);
-        DataManager.Instance.AssignPartToRobot("code8", 1);
-        DataManager.Instance.AssignPartToRobot("code9", 1);
-        DataManager.Instance.AssignPartToRobot("code10", 1);
-        DataManager.Instance.AssignPartToRobot("code11", 2);
-        DataManager.Instance.AssignPartToRobot("code12", 2);
-        DataManager.Instance.AssignPartToRobot("code13", 2);
-        DataManager.Instance.AssignPartToRobot("code14", 2);
-        DataManager.Instance.AssignPartToRobot("code15", 2);
     }
 
     private void Start()

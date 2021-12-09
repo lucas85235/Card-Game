@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RA_MetalRightArm
   m_EditorClassIdentifier: 
   id: RA_MetalRightArm
-  partSprite: {fileID: -2811501513268888928, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 3768779591750059388, guid: 56ed36d9797aeb9469ed10ce9cf3ef98, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
   electricResistence: 0
   acidResistence: 0
   cards:
-  - {fileID: 11400000, guid: dcd3a821081bcae458b83afdb93bbb9f, type: 2}
-  - {fileID: 11400000, guid: dcd3a821081bcae458b83afdb93bbb9f, type: 2}
-  - {fileID: 11400000, guid: b39c8b745b2804c4381d7af55cd94f61, type: 2}
-  - {fileID: 11400000, guid: b39c8b745b2804c4381d7af55cd94f61, type: 2}
-  shoulderSprite: {fileID: -6525317487527239520, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  - {fileID: 11400000, guid: 1964054f5091f0244bd9247816f5d659, type: 2}
+  - {fileID: 11400000, guid: 1964054f5091f0244bd9247816f5d659, type: 2}
+  - {fileID: 11400000, guid: 513ea3b32c8a3684485f90cbff41a5f9, type: 2}
+  - {fileID: 11400000, guid: 513ea3b32c8a3684485f90cbff41a5f9, type: 2}
+  shoulderSprite: {fileID: 5158252899930139437, guid: 56ed36d9797aeb9469ed10ce9cf3ef98, type: 3}

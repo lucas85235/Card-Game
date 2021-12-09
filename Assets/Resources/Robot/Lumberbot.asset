@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b059fea2386ffec4a9930d80c089b648, type: 3}
+  m_Name: Lumberbot
+  m_EditorClassIdentifier: 
+  characterName: Lumberbot
+  botFunction: Attacker
+  storyDescription: "Mesmo em 2060, a madeira ainda \xE9 utilizada em grande escala
+    na constru\xE7\xE3o civil e na fabrica\xE7\xE3o de m\xF3veis. Por ser uma atividade
+    perigosa, onde acidentes com galhos e troncos derrubados podem causar invalidez
+    permanente ou at\xE9 mesmo a morte, os Lumberbots come\xE7aram a fazer parte
+    da for\xE7a de trabalho em diversas regi\xF5es"
+  head: {fileID: 11400000, guid: 80ddfcb7a99e81b4bbd21052bc202cbb, type: 2}
+  torso: {fileID: 11400000, guid: afecb953c441eef4386d26663e300d4a, type: 2}
+  rightArm: {fileID: 11400000, guid: 7ce4dc78d934d2b419ba462784e2d88b, type: 2}
+  leftArm: {fileID: 11400000, guid: 1e191739074015246a745e7d44982654, type: 2}
+  leg: {fileID: 11400000, guid: 0fbd20b295f532249bf9a06134f5a148, type: 2}

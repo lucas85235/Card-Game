@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L_LumberLeg
   m_EditorClassIdentifier: 
   id: L_LumberLeg
-  partSprite: {fileID: -16726413310346473, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 6599127785757336278, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -30,5 +30,5 @@ MonoBehaviour:
   cards:
   - {fileID: 11400000, guid: 21d0243663e5e7245a3dc605fbd95cd6, type: 2}
   - {fileID: 11400000, guid: 21d0243663e5e7245a3dc605fbd95cd6, type: 2}
-  - {fileID: 11400000, guid: 5c5d55170da0ea34aa9e7e040103423a, type: 2}
-  - {fileID: 11400000, guid: 5c5d55170da0ea34aa9e7e040103423a, type: 2}
+  - {fileID: 11400000, guid: 4f29fe1ba9d6dde48bbc9cfe7d2d3452, type: 2}
+  - {fileID: 11400000, guid: 4f29fe1ba9d6dde48bbc9cfe7d2d3452, type: 2}

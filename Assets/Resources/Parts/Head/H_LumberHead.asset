@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: H_LumberHead
   m_EditorClassIdentifier: 
   id: H_LumberHead
-  partSprite: {fileID: 6154793613412492795, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 7652303022221314986, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
   health: 8
   energy: 0
   attack: 2
@@ -28,7 +28,7 @@ MonoBehaviour:
   electricResistence: 0
   acidResistence: 0
   cards:
-  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
-  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
-  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
-  - {fileID: 11400000, guid: 620d3fde7cc91cd479ac8bd4764dc36c, type: 2}
+  - {fileID: 11400000, guid: 2ef4903677bfc3642b8063df1d6d2228, type: 2}
+  - {fileID: 11400000, guid: 2ef4903677bfc3642b8063df1d6d2228, type: 2}
+  - {fileID: 11400000, guid: 067b0f54badfffc44a3f36bb13936d6e, type: 2}
+  - {fileID: 11400000, guid: 067b0f54badfffc44a3f36bb13936d6e, type: 2}

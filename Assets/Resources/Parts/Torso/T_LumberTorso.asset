@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_LumberTorso
   m_EditorClassIdentifier: 
   id: T_LumberTorso
-  partSprite: {fileID: 6913297356471620263, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: -5570166586047022488, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -31,4 +31,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
-  - {fileID: 11400000, guid: ece78858ddf74ac49b9576a029405910, type: 2}
+  - {fileID: 11400000, guid: f775d2407c2d09341a0008a1f92fb3ba, type: 2}
