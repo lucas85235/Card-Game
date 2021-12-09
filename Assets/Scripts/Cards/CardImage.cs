@@ -37,8 +37,7 @@ public class CardImage : MonoBehaviour
         description.text = Data.Description();
 
         Round.i.EndTurn.AddListener(() => OnStartTurn());
-        Round.i.EndTurn.AddListener(() => m_canSelect = true);
-        Round.i.EndTurn.AddListener(() => m_canSelect = false);
+        Round.i.StartTurn.AddListener(() => m_canSelect = false);
     }
 
     public void UseEffect()
