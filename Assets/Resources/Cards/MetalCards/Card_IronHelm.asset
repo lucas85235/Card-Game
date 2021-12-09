@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
+  m_Name: Card_IronHelm
+  m_EditorClassIdentifier: 
+  cardSprite: {fileID: 21300000, guid: ba992b5008d26b5439aa66c6df64310c, type: 3}
+  title: Elmo de Ferro
+  description: Aumenta a Defesa em 2 pontos
+  energy: 3
+  effects:
+  - skills: []
+    effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
+    value: {x: 2, y: 2}
+    chance: 1
+    selfApply: 1
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 0
+    effectMultiplierRange: {x: 0, y: 0}
+  skills: []
+  trigger: 0

@@ -28,8 +28,8 @@ MonoBehaviour:
   electricResistence: 0
   acidResistence: 0
   cards:
-  - {fileID: 11400000, guid: 2a06b1557f1642d40a0fe7ac305f342a, type: 2}
-  - {fileID: 11400000, guid: 2a06b1557f1642d40a0fe7ac305f342a, type: 2}
-  - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
-  - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
+  - {fileID: 11400000, guid: ff51f0aa6a721e048ad1edbe2ef3d405, type: 2}
+  - {fileID: 11400000, guid: ff51f0aa6a721e048ad1edbe2ef3d405, type: 2}
+  - {fileID: 11400000, guid: 67f24c36e65a50040b5c55a798b5a583, type: 2}
+  - {fileID: 11400000, guid: 67f24c36e65a50040b5c55a798b5a583, type: 2}
   shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}

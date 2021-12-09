@@ -28,7 +28,7 @@ MonoBehaviour:
   electricResistence: 0
   acidResistence: 0
   cards:
-  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
-  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
-  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
-  - {fileID: 11400000, guid: 620d3fde7cc91cd479ac8bd4764dc36c, type: 2}
+  - {fileID: 11400000, guid: 2ef4903677bfc3642b8063df1d6d2228, type: 2}
+  - {fileID: 11400000, guid: 2ef4903677bfc3642b8063df1d6d2228, type: 2}
+  - {fileID: 11400000, guid: 067b0f54badfffc44a3f36bb13936d6e, type: 2}
+  - {fileID: 11400000, guid: 067b0f54badfffc44a3f36bb13936d6e, type: 2}

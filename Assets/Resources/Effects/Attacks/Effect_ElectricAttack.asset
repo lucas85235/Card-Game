@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a08a414900efc43923e434983c50d0, type: 3}
   m_Name: Effect_ElectricAttack
   m_EditorClassIdentifier: 
-  attackElement: 0
+  attackElement: 2
   attackType: 1

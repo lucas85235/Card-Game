@@ -22,6 +22,18 @@ public class Effect_StatsBonus : Effect
         {
             emitter.ApplySpeedChange(value);
         }
+        if (statToModify == Stats.critChance)
+        {
+            emitter.ApplyCritChanceChange(value);
+        }
+        if (statToModify == Stats.accuracy)
+        {
+            emitter.ApplyAccuracyChange(value);
+        }
+        if (statToModify == Stats.evasion)
+        {
+            emitter.ApplyEvasionChange(value);
+        }
 
         return true;
     }

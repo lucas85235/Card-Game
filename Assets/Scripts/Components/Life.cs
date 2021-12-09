@@ -74,8 +74,8 @@ public class Life : MonoBehaviour
         if(usedCard != null)
         {
             ignoreShield = usedCard.Piercing;
-            hitChance -= Mathf.Clamp(1f + m_robot.Data().Accuracy() - GameController.i.GetTheOtherRobot(m_robot).Data().Evasion(), 0f, 1f) - usedCard.MissChance;
-            critChance = m_robot.Data().CritChance();
+            hitChance -= Mathf.Clamp(1f + m_robot.Accuracy() - GameController.i.GetTheOtherRobot(m_robot).Evasion(), 0f, 1f) - usedCard.MissChance;
+            critChance = m_robot.CritChance();
         }
 
         //Chance de errar o dano da carta

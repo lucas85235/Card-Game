@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ed1780d399d3346a56eaf0f8ece7bf, type: 3}
+  m_Name: Card_Flare
+  m_EditorClassIdentifier: 
+  cardSprite: {fileID: 21300000, guid: cc3ab5d070517b24c94471db6ae37897, type: 3}
+  title: "Clar\xE3o"
+  description: "Causa 5 pontos de dano no advers\xE1rio e reduz a precis\xE3o do
+    advers\xE1rio em 3%"
+  energy: 2
+  effects:
+  - skills: []
+    effect: {fileID: 11400000, guid: b97563af2fcd5ff4bb00e71ad7f9f1a0, type: 2}
+    value: {x: 5, y: 5}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 1
+    statToApplyEffectBonus: 5
+    effectMultiplierRange: {x: 1, y: 1}
+  - skills: []
+    effect: {fileID: 11400000, guid: c2bbd65046fc0ea45822bc96d0d4cb47, type: 2}
+    value: {x: 3, y: 3}
+    chance: 1
+    selfApply: 0
+    effectBonusByStat: 0
+    statToApplyEffectBonus: 5
+    effectMultiplierRange: {x: 1, y: 1}
+  skills: []
+  trigger: 0

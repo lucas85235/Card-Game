@@ -24,6 +24,9 @@ public class Robot : MonoBehaviour
     [SerializeField] private int m_currentAttack;
     [SerializeField] private int m_currentDefense;
     [SerializeField] private int m_currentSpeed;
+    [SerializeField] private int m_currentCrit;
+    [SerializeField] private int m_currentEvasion;
+    [SerializeField] private int m_currentAccuracy;
 
     private bool m_iconSpawInLeft;
 
@@ -35,6 +38,9 @@ public class Robot : MonoBehaviour
     public int Attack() => m_currentAttack;
     public int Defense() => m_currentDefense;
     public int Speed() => m_currentSpeed;
+    public int CritChance() => m_currentCrit;
+    public int Evasion() => m_currentEvasion;
+    public int Accuracy() => m_currentAccuracy;
 
     private void Awake()
     {
@@ -167,6 +173,84 @@ public class Robot : MonoBehaviour
     public void SpeedReset()
     {
         m_currentSpeed = m_Data.Speed();
+    }
+
+    // CritChance
+
+    public void ApplyCritChanceChange(int value)
+    {
+        m_currentCrit += value;
+
+        if (value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
+        }
+        else
+        {
+
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
+        }
+    }
+
+    public int CritChanceDiff() => m_currentCrit - m_Data.CritChance();
+
+    public void CritChanceReset()
+    {
+        m_currentCrit = m_Data.CritChance();
+    }
+
+    // Evasion
+
+    public void ApplyEvasionChange(int value)
+    {
+        m_currentEvasion += value;
+
+        if (value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
+        }
+        else
+        {
+
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
+        }
+    }
+
+    public int EvasionDiff() => m_currentEvasion - m_Data.Evasion();
+
+    public void EvasionReset()
+    {
+        m_currentEvasion = m_Data.Evasion();
+    }
+
+    // Accuracy
+
+    public void ApplyAccuracyChange(int value)
+    {
+        m_currentAccuracy += value;
+
+        if (value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
+        }
+        else
+        {
+
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
+        }
+    }
+
+    public int AccuracyDiff() => m_currentAccuracy - m_Data.Accuracy();
+
+    public void AccuracyReset()
+    {
+        m_currentAccuracy = m_Data.Accuracy();
     }
 
     public RobotData Data()
