@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: H_MetalHead
   m_EditorClassIdentifier: 
   id: H_MetalHead
-  partSprite: {fileID: 6154793613412492795, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 2168720964114918121, guid: 56ed36d9797aeb9469ed10ce9cf3ef98, type: 3}
   health: 8
   energy: 0
   attack: 0

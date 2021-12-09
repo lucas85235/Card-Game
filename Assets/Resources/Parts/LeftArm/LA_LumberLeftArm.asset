@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LA_LumberLeftArm
   m_EditorClassIdentifier: 
   id: LA_LumberLeftArm
-  partSprite: {fileID: 498635550302319560, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: -8765724142196079340, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
   health: 8
   energy: 0
   attack: 1
@@ -32,4 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ff51f0aa6a721e048ad1edbe2ef3d405, type: 2}
   - {fileID: 11400000, guid: 67f24c36e65a50040b5c55a798b5a583, type: 2}
   - {fileID: 11400000, guid: 67f24c36e65a50040b5c55a798b5a583, type: 2}
-  shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  shoulderSprite: {fileID: -269749574224240723, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}

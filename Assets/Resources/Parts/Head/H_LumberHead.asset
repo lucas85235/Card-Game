@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: H_LumberHead
   m_EditorClassIdentifier: 
   id: H_LumberHead
-  partSprite: {fileID: 6154793613412492795, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 7652303022221314986, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
   health: 8
   energy: 0
   attack: 2

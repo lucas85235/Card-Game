@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LA_MetalLeftArm
   m_EditorClassIdentifier: 
   id: LA_MetalLeftArm
-  partSprite: {fileID: 498635550302319560, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: -5717699714150320625, guid: 56ed36d9797aeb9469ed10ce9cf3ef98, type: 3}
   health: 8
   energy: 0
   attack: 2
@@ -32,4 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a964172a4fd4da5429d297b80213d771, type: 2}
   - {fileID: 11400000, guid: 065a83fd3cfc76f419d4687e0299e79b, type: 2}
   - {fileID: 11400000, guid: 065a83fd3cfc76f419d4687e0299e79b, type: 2}
-  shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  shoulderSprite: {fileID: -9018229277034713529, guid: 56ed36d9797aeb9469ed10ce9cf3ef98, type: 3}
