@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2727,7 +2727,7 @@ MonoBehaviour:
   playerOne: {fileID: 7680704849346759249}
   playerTwo: {fileID: 5937095137718756382}
   delayBetweenTasks: 1000
-  delayBetweenUseCards: 800
+  delayBetweenUseCards: 1200
   selectedConterinerPlayerOne: {fileID: 0}
   selectedConterinerPlayerTwo: {fileID: 0}
 --- !u!4 &801237790
@@ -4153,7 +4153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b035e327c72483a4faf126c28eb44f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToPlay: 20
+  timeToPlay: 30
   timeSlider: {fileID: 516943497}
   robots:
   - {fileID: 7680704849346759249}
@@ -5102,7 +5102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: END TURN
+  m_text: JOGAR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
