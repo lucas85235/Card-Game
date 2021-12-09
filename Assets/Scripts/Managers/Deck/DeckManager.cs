@@ -87,6 +87,7 @@ public class DeckManager : MonoBehaviour
         {
             foreach (var spaw in spawCards)
             {
+                spaw.SetCanSelect(false);
                 spaw.Select();
             }
         }
