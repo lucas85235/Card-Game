@@ -70,7 +70,7 @@ public class ShowBuffAndDebuff : MonoBehaviour
     public void SetStatsRight()
     {
         attack.text = SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + " :ATK";
-        defense.text = SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + " :ATK";
-        speed.text = SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + " :ATK";
+        defense.text = SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + " :DEF";
+        speed.text = SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + " :SPE";
     }
 }
