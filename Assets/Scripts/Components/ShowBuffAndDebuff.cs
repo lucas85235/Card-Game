@@ -42,39 +42,35 @@ public class ShowBuffAndDebuff : MonoBehaviour
 
     public void SetStatsLeft()
     {
-        attack.text = "ATK: " + "<color=#ffffff>" + SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + "</color>";
-        defense.text = "DEF: " + "<color=#ffffff>" + SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + "</color>";
-        speed.text = "SPE: " + "<color=#ffffff>" + SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + "</color>";
+        attack.text = "ATK: " + SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff());
+        defense.text = "DEF: " + SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff());
+        speed.text = "SPE: " + SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff());
     }
 
     // azul 788CFF
     // verde 99F050
     // vermelho FD4902
 
-    private int SetDiff(int value, int diff)
+    private string SetDiff(int value, int diff)
     {
-        // Debug.Log (value + " - " +  diff);
         if (diff != 0)
         {
-            int total = value + (value - diff);
-            Debug.Log ("total: " + total);
+            int total = value - diff;
 
-            return total;
+            if (total < value)
+            {
+                return "<color=#FD4902>" + total + "</color>";
+            }
+            else return "<color=#99F050>" + total + "</color>";
         }
 
-        Debug.Log ("value: " + value);
-        return value;
-    }
-
-    private void SetNumberColor()
-    {
-
+        return "<color=#ffffff>" + value + "</color>";
     }
 
     public void SetStatsRight()
     {
-        attack.text = "<color=#ffffff>" + SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + "</color>" + " :ATK";
-        defense.text = "<color=#ffffff>" + SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + "</color>" + " :ATK";
-        speed.text = "<color=#ffffff>" + SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + "</color>" + " :ATK";
+        attack.text = SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + " :ATK";
+        defense.text = SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + " :ATK";
+        speed.text = SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + " :ATK";
     }
 }
