@@ -1384,15 +1384,15 @@ RectTransform:
   m_GameObject: {fileID: 387490168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 762578578}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 475, y: 400}
-  m_SizeDelta: {x: 760, y: 200}
+  m_AnchoredPosition: {x: 465, y: 400}
+  m_SizeDelta: {x: 900, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387490170
 MonoBehaviour:
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 25
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -1603,15 +1603,15 @@ RectTransform:
   m_GameObject: {fileID: 438776061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 762578578}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -475, y: 400}
-  m_SizeDelta: {x: 760, y: 200}
+  m_AnchoredPosition: {x: -465, y: 400}
+  m_SizeDelta: {x: 900, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438776063
 MonoBehaviour:
@@ -1631,7 +1631,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 25
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -6807,6 +6807,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   - {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
   - {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
+  m_currentAttack: 0
+  m_currentDefense: 0
+  m_currentSpeed: 0
+  m_currentCrit: 0
+  m_currentEvasion: 0
+  m_currentAccuracy: 0
 --- !u!114 &5937095137718756383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7680,6 +7686,12 @@ MonoBehaviour:
   getFromDataManager: 1
   randData: 0
   datas: []
+  m_currentAttack: 0
+  m_currentDefense: 0
+  m_currentSpeed: 0
+  m_currentCrit: 0
+  m_currentEvasion: 0
+  m_currentAccuracy: 0
 --- !u!1 &7680704849694398553
 GameObject:
   m_ObjectHideFlags: 0
