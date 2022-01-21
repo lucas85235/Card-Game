@@ -21,6 +21,8 @@ public class Energy : MonoBehaviour
 
     public int EnergyAmount { get => currentAmount; }
     private int currentAmount;
+    private int maxAmount;
+    private int initialAmount;
 
     public int EnergyRoundAmount { get => currentRoundAmount; }
     private int currentRoundAmount;
@@ -42,6 +44,8 @@ public class Energy : MonoBehaviour
     public void InitGame() 
     {
         currentAmount = 5;
+        maxAmount = 5;
+        initialAmount = 5;
         currentRoundAmount = currentAmount;
         EnergyText(currentAmount);
     }
@@ -61,17 +65,23 @@ public class Energy : MonoBehaviour
     private void EnergyCharge() 
     {
         Debug.Log("EnergyCharge");
-        currentAmount = 5;
-        if (currentAmount > 5) currentAmount = 5;
+        
+        currentAmount = maxAmount;
+        
         currentRoundAmount = currentAmount;
         EnergyText(currentAmount);
+    }
+
+    public void ChangeMaxEnergyAmount(int setValue)
+    {
+        maxAmount = initialAmount + setValue;
     }
 
     private void EnergyText(int value) 
     {
         if (energyText != null) 
         {
-            energyText.text = value + " / 5";
+            energyText.text = value + " / " + maxAmount;
         }
         else Debug.LogWarning("energyText of " + name + " is null");
     }

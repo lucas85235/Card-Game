@@ -13,7 +13,7 @@ public class Effect_ApplyShortCircuitStatusEffect : Effect
 
         var newThornStatus = new StatusEffect_ShortCircuit();
 
-        newThornStatus.statusTrigger = StatusEffectTrigger.OnEndRound;
+        newThornStatus.statusTrigger = StatusEffectTrigger.OnStartRound;
         newThornStatus.Amount = value;
 
         target.ApplyStatusEffect(newThornStatus);

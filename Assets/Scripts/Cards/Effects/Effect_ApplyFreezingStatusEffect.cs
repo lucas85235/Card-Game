@@ -13,7 +13,7 @@ public class Effect_ApplyFreezingStatusEffect : Effect
 
         var newThornStatus = new StatusEffect_Freezing();
 
-        newThornStatus.statusTrigger = StatusEffectTrigger.OnEndRound;
+        newThornStatus.statusTrigger = StatusEffectTrigger.OnStartRound;
         newThornStatus.Amount = value;
 
         target.ApplyStatusEffect(newThornStatus);

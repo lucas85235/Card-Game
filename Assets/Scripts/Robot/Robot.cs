@@ -33,6 +33,8 @@ public class Robot : MonoBehaviour
     public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
     public Life life { get; private set; }
+    public Energy energy { get; private set; }
+
     private RobotAnimation m_RobotAnimation;
     
     public int Attack() => m_currentAttack;
@@ -47,6 +49,8 @@ public class Robot : MonoBehaviour
         if (randData && datas.Length > 1) m_Data = datas[Random.Range(0, datas.Length)];
 
         life = GetComponent<Life>();
+        energy = GetComponent<Energy>();
+
         TryGetComponent(out m_RobotAnimation);
 
         if (getFromDataManager) m_Data = DataManager.Instance.GetCurrentRobot();
@@ -68,6 +72,7 @@ public class Robot : MonoBehaviour
             // can be apply for more of one round
 
             RemoveAllBuffAndDebuff();
+            ActivateEarlyStatusEffects();
             Debug.LogWarning("Update Logic");
         });
 
@@ -263,14 +268,30 @@ public class Robot : MonoBehaviour
         StatusList = newStatusEffect.UpdateStatusList(StatusList);
     }
 
-    public void ActivateLateStatusEffects()
+    public bool ActivateEarlyStatusEffects()
+    {
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnStartRound && status.ActivateStatusEffect(this))
+            {
+                StatusList.Remove(status);
+            }
+        }
+
+        return true;
+    }
+
+    public async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
     {
         foreach (var status in StatusList)
         {
             if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
             {
                 StatusList.Remove(status);
+                await Task.Delay(timeBetweenStatusEffects);
             }
         }
+
+        return true;
     }
 }

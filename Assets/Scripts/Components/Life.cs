@@ -68,6 +68,7 @@ public class Life : MonoBehaviour
     public void TakeDamage(int decrement, AttackType type, CardData usedCard = null, List<EffectSkill> skills = null)
     {
         bool ignoreShield = false;
+        bool miss = false;
         float hitChance = 1;
         float critChance = 0;
 
@@ -82,6 +83,7 @@ public class Life : MonoBehaviour
         if (Random.Range(0f, 1f) > hitChance)
         {
             decrement = 0;
+            miss = true;
         }
 
         //Chance de aplicar um crítico no ataque
@@ -90,36 +92,48 @@ public class Life : MonoBehaviour
             decrement += Mathf.FloorToInt(decrement / 2);
         }
 
-        int damage = decrement;
-
-        if (HaveShield() && !ignoreShield)
-            damage = TakeDamageShield(decrement);
-
-        m_currentLife -= damage;
-
-        if (skills != null)
+        if (miss)
         {
-            foreach (var skill in skills)
+            Debug.Log("Misses attack");
+            return;
+        }
+
+        else
+        {
+            int damage = decrement;
+
+            if (HaveShield() && !ignoreShield)
+                damage = TakeDamageShield(decrement);
+
+            m_currentLife -= damage;
+
+            if(usedCard != null)
             {
-                if (skill != null)
+                if (skills != null)
                 {
-                    skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage, usedCard, skills);
+                    foreach (var skill in skills)
+                    {
+                        if (skill != null)
+                        {
+                            skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage, usedCard, skills);
+                        }
+                    }
+                }
+
+                foreach (var status in m_robot.StatusList)
+                {
+                    if (status != null && status.statusTrigger == StatusEffectTrigger.OnReceiveDamage && status.ActivateStatusEffect(m_robot, type))
+                    {
+                        m_robot.StatusList.Remove(status);
+                    }
                 }
             }
+
+            GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
+
+            LifeRules();
+            UpdateLifeSlider();
         }
-
-        foreach (var status in m_robot.StatusList)
-        {
-            if(status != null && status.statusTrigger == StatusEffectTrigger.OnReceiveDamage && status.ActivateStatusEffect(m_robot, type))
-            {
-                m_robot.StatusList.Remove(status);
-            }
-        }
-
-        GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
-
-        LifeRules();
-        UpdateLifeSlider();
     }
 
     private void DeathHandle()

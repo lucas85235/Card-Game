@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,8 +18,14 @@ public class StatusEffect
     {
         if(Amount <= 0)
         {
+            StatusEffectPosAction(affectedRobot);
             return true;
         }
         return false;
+    }
+
+    public virtual void StatusEffectPosAction(Robot affectedRobot)
+    {
+
     }
 }

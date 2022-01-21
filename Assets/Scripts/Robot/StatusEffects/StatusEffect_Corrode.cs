@@ -19,7 +19,7 @@ public class StatusEffect_Corrode : StatusEffect
 
     public override bool ActivateStatusEffect(Robot affectedRobot, AttackType criteria)
     {
-        affectedRobot.life.TakeDamage(Amount, AttackType.none);
+        affectedRobot.life.TakeDamage(1, AttackType.none);
         Amount--;
 
         return base.ActivateStatusEffect(affectedRobot, criteria);

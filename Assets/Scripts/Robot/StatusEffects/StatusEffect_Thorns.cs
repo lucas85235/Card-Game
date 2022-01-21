@@ -23,6 +23,7 @@ public class StatusEffect_Thorns : StatusEffect
         {
             GameController.i.GetTheOtherRobot(affectedRobot).life.TakeDamage(Amount, AttackType.none);
         }
+        Amount--;
 
         return base.ActivateStatusEffect(affectedRobot, criteria);
     }

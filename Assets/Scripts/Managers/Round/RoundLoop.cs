@@ -16,6 +16,9 @@ public class RoundLoop : Round
     [Tooltip("In millisecondsDelay")]
     public int delayBetweenUseCards = 800;
 
+    [Tooltip("In millisecondsDelay")]
+    public int delayBetweenStatusEffects = 600;
+
     [Header("CARDS")]
     public Transform selectedConterinerPlayerOne;
     public Transform selectedConterinerPlayerTwo;
@@ -152,11 +155,16 @@ public class RoundLoop : Round
             }
         }
 
+        foreach (var robot in sortRobots)
+        {
+            await robot.ActivateLateStatusEffects(delayBetweenStatusEffects);
+        }
+
         return true;
     }
 
     /// <summary>Reset shild of all sortRobots list</summary>
-    private void RemoveShild()
+    private void RemoveShield()
     {
         if (sortRobots == null) return;
 
@@ -168,6 +176,6 @@ public class RoundLoop : Round
 
     private void EndTurnInternalHandle()
     {
-        RemoveShild();
+        RemoveShield();
     }
 }
