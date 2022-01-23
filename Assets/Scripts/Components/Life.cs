@@ -33,22 +33,35 @@ public class Life : MonoBehaviour
 
     public bool HaveShield() => m_currentShield > 0;
 
+    private Dictionary<Element, Stats> elementToStats = new Dictionary<Element, Stats>();
+
     void Start()
     {
         m_robot = GetComponent<Robot>();
         TryGetComponent(out m_RobotAnimation);
 
-        if (lifeSlider == null) {
+        if (lifeSlider == null)
+        {
             Debug.LogError("lifeSlider is Null");
             return;
         }
-        
-        m_maxLife = m_robot.Data().Health();
+
+        m_maxLife = m_robot.DataRobotStats[Stats.health];
         lifeSlider.maxValue = m_maxLife;
         lifeSlider.value = m_maxLife;
-        m_currentLife = (int) lifeSlider.value;
+        m_currentLife = (int)lifeSlider.value;
 
         UpdateLifeSlider();
+        SetElementToStats();
+    }
+
+    private void SetElementToStats()
+    {
+        elementToStats[Element.normal] = Stats.defence;
+        elementToStats[Element.fire] = Stats.fireResistence;
+        elementToStats[Element.acid] = Stats.acidResistence;
+        elementToStats[Element.electric] = Stats.electricResistence;
+        elementToStats[Element.water] = Stats.waterResistence;
     }
 
     public void AddLife(int increment)
@@ -65,7 +78,7 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(int decrement, AttackType type, CardData usedCard = null, List<EffectSkill> skills = null)
+    public void TakeDamage(int decrement, AttackType type, Element AttackElement = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
     {
         bool ignoreShield = false;
         bool miss = false;
@@ -75,12 +88,13 @@ public class Life : MonoBehaviour
         if(usedCard != null)
         {
             ignoreShield = usedCard.Piercing;
-            hitChance -= Mathf.Clamp(1f + m_robot.Accuracy() - GameController.i.GetTheOtherRobot(m_robot).Evasion(), 0f, 1f) - usedCard.MissChance;
-            critChance = m_robot.CritChance();
+            hitChance -= Mathf.Clamp(m_robot.CurrentRobotStats[Stats.evasion] - GameController.i.GetTheOtherRobot(m_robot).CurrentRobotStats[Stats.accuracy], 0f, 1f) - usedCard.MissChance;
+            critChance = m_robot.CurrentRobotStats[Stats.critChance];
         }
 
         //Chance de errar o dano da carta
-        if (Random.Range(0f, 1f) > hitChance)
+
+        if (Random.Range(0f, 1f) < hitChance)
         {
             decrement = 0;
             miss = true;
@@ -100,7 +114,7 @@ public class Life : MonoBehaviour
 
         else
         {
-            int damage = decrement;
+            int damage = decrement - m_robot.CurrentRobotStats[elementToStats[AttackElement]];
 
             if (HaveShield() && !ignoreShield)
                 damage = TakeDamageShield(decrement);
@@ -115,7 +129,7 @@ public class Life : MonoBehaviour
                     {
                         if (skill != null)
                         {
-                            skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage, usedCard, skills);
+                            skill.ApplySkill(m_robot, GameController.i.GetTheOtherRobot(m_robot), damage, usedCard);
                         }
                     }
                 }
@@ -129,7 +143,7 @@ public class Life : MonoBehaviour
                 }
             }
 
-            GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
+            GameController.i.ShowAlertFeedback(decrement, Color.red, transform.localScale.x > 0);
 
             LifeRules();
             UpdateLifeSlider();
@@ -183,7 +197,7 @@ public class Life : MonoBehaviour
         shildSlider.maxValue = m_currentShield;
         shildSlider.value = m_currentLife;
 
-        UpdateShildSlider();
+        UpdateShieldSlider();
     }
 
     public void RemoveShild()
@@ -197,7 +211,7 @@ public class Life : MonoBehaviour
         // Debug.Log("Damage: " + damage);
         
         m_currentShield -= damage;
-        UpdateShildSlider();
+        UpdateShieldSlider();
 
         if (m_currentShield <= 0)
         {
@@ -209,7 +223,7 @@ public class Life : MonoBehaviour
         return 0;
     }
 
-    private void UpdateShildSlider()
+    private void UpdateShieldSlider()
     {
         if (shildSlider != null)
             shildSlider.value = m_currentShield;

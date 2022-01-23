@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class Effect : ScriptableObject
 {
-    public bool UseEffect(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
+    public bool UseEffectAction(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
     {
         return ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard);
     }

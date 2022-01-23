@@ -21,13 +21,20 @@ public struct CardEffectStruct
     public void UseEffect(Robot emitter, Robot target, CardData usedData)
     {
         var isRand = value.x != value.y;
-        var rand = Random.Range(value.x, value.y);
 
-        effectMultiplierRange.x = effectMultiplierRange.x < 1 ? 1 : effectMultiplierRange.x;
-        var finalValue = (isRand ? rand : value.x) * effectMultiplierRange.x;
+        var rand = Random.Range(value.x, value.y);
+        var finalValue = isRand ? rand : value.x;
+
+        if (effectBonusByStat)
+        {
+            effectMultiplierRange.x = effectMultiplierRange.x < 1 ? 1 : effectMultiplierRange.x;
+            var finalStatMultiplier = Random.Range(effectMultiplierRange.x, effectMultiplierRange.y);
+
+            finalValue += emitter.CurrentRobotStats[statToApplyEffectBonus] * finalStatMultiplier;
+        }
 
         Robot finalTarget = selfApply ? emitter : target;
 
-        effect.UseEffect(emitter, finalTarget, finalValue, chance, skills, usedData);
+        effect.UseEffectAction(emitter, finalTarget, finalValue, chance, skills, usedData);
     }
 }

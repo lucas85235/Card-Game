@@ -70,12 +70,12 @@ public class RoundLoop : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
-        if (playerOne.Speed() > playerTwo.Speed())
+        if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
         {
             sortRobots.Add(playerOne);
             sortRobots.Add(playerTwo);
         }
-        else if (playerOne.Speed() < playerTwo.Speed())
+        else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
         {
             sortRobots.Add(playerTwo);
             sortRobots.Add(playerOne);
