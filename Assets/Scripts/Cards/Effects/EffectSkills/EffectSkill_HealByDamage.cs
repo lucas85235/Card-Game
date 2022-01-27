@@ -6,9 +6,9 @@ public class EffectSkill_HealByDamage : EffectSkill
 {
     [SerializeField] private float healByDamagePercentage;
 
-    public override void ApplySkill(Robot emitter, Robot target, int value, CardData usedCard)
+    public override void ApplySkill(Robot emitter, Robot target, int value, CardData usedCard, List<EffectSkill> skills)
     {
-        base.ApplySkill(emitter, target, value, usedCard);
+        base.ApplySkill(emitter, target, value, usedCard, skills);
 
         emitter.life.AddLife(Mathf.FloorToInt(value * healByDamagePercentage));
     }

@@ -4,15 +4,13 @@ public enum Stats
     attack,
     energy,
     defence,
-    speed,
+    velocity,
     inteligence,
     accuracy,
     evasion,
     critChance,
     fireResistence,
-    electricResistence,
+    electroResistence,
     waterResistence,
-    acidResistence,
-
-    none
+    acidResistence
 }

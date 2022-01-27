@@ -103,7 +103,7 @@ public class RobotData : ScriptableObject
     {
         return head.FireResistence() + torso.FireResistence() + rightArm.FireResistence() + leftArm.FireResistence() + leg.FireResistence();
     }
-    public int WaterResistence() 
+    public int IceResistence() 
     {
         return head.WaterResistence() + torso.WaterResistence() + rightArm.WaterResistence() + leftArm.WaterResistence() + leg.WaterResistence();
     }

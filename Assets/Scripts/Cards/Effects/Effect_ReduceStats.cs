@@ -10,7 +10,18 @@ public class Effect_ReduceStats : Effect
     {
         if(!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard)) return false;
 
-        target.ApplyStatChange(statToModify, -value);
+        if (statToModify == Stats.defence)
+        {
+            target.ApplyDefenceChange(-value);
+        }
+        if (statToModify == Stats.attack)
+        {
+            target.ApplyAttackChange(-value);
+        }
+        if (statToModify == Stats.velocity)
+        {
+            target.ApplySpeedChange(-value);
+        }
 
         return true;
     }

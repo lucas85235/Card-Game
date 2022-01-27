@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 // Esse componente lida com uso de energia
 // Possui a total de energia e a energia
@@ -18,7 +17,7 @@ using TMPro;
 public class Energy : MonoBehaviour
 {
     [Header("Setup")]
-    public TextMeshProUGUI energyText;
+    public Text energyText;
 
     public int EnergyAmount { get => currentAmount; }
     private int currentAmount;
@@ -32,13 +31,12 @@ public class Energy : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            energyText = GameObject.FindGameObjectWithTag("Energy").GetComponent<TextMeshProUGUI>();
+            energyText = GameObject.FindGameObjectWithTag("Energy").GetComponent<Text>();
         }        
     }
 
     private void Start()
     {
-        InitGame();
         EnergyCharge();
         Round.i.EndTurn.AddListener(() => EnergyCharge());
     }

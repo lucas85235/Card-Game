@@ -17,13 +17,12 @@ MonoBehaviour:
   description: Causa de 8 a 15 pontos de dano
   energy: 2
   effects:
-  - skills: []
-    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 8, y: 15}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
-  skills: []
+  attribute: 
   trigger: 0

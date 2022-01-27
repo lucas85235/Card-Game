@@ -10,7 +10,30 @@ public class Effect_StatsBonus : Effect
     {
         if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard)) return false;
 
-        emitter.ApplyStatChange(statToModify, value);
+        if (statToModify == Stats.defence)
+        {
+            emitter.ApplyDefenceChange(value);
+        }
+        if (statToModify == Stats.attack)
+        {
+            emitter.ApplyAttackChange(value);
+        }
+        if (statToModify == Stats.velocity)
+        {
+            emitter.ApplySpeedChange(value);
+        }
+        if (statToModify == Stats.critChance)
+        {
+            emitter.ApplyCritChanceChange(value);
+        }
+        if (statToModify == Stats.accuracy)
+        {
+            emitter.ApplyAccuracyChange(value);
+        }
+        if (statToModify == Stats.evasion)
+        {
+            emitter.ApplyEvasionChange(value);
+        }
 
         return true;
     }

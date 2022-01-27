@@ -30,15 +30,15 @@ public class ShowBuffAndDebuff : MonoBehaviour
 
     public void SetStatsLeft()
     {
-        attack.text = "ATK: " + m_robot.StatDiff(Stats.attack);
-        defense.text = "DEF: " + m_robot.StatDiff(Stats.defence);
-        speed.text = "SPE: " + m_robot.StatDiff(Stats.speed);
+        attack.text = "ATK: " + m_robot.AttackDiff();
+        defense.text = "DEF: " + m_robot.DefenseDiff();
+        speed.text = "SPE: " + m_robot.SpeedDiff();
     }
 
     public void SetStatsRight()
     {
-        attack.text = m_robot.StatDiff(Stats.attack) + " :ATK";
-        defense.text = m_robot.StatDiff(Stats.defence) + " :DEF";
-        speed.text = m_robot.StatDiff(Stats.speed) + " :SPE";
+        attack.text = m_robot.AttackDiff() + " :ATK";
+        defense.text = m_robot.DefenseDiff() + " :DEF";
+        speed.text = m_robot.SpeedDiff() + " :SPE";
     }
 }
