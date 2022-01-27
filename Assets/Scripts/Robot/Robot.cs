@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
+using System.Linq;
 
 [RequireComponent(typeof(Life))]
 [RequireComponent(typeof(Energy))]
@@ -65,15 +66,18 @@ public class Robot : MonoBehaviour
     {
         RemoveAllBuffAndDebuff();
 
+        Round.i.EndTurn.AddListener(() =>
+        {
+            ActivateEarlyStatusEffects();
+        });
+
         Round.i.StartTurn.AddListener(() => {
 
             // remove this logic of here
             // because the buff and defuff
             // can be apply for more of one round
 
-            RemoveAllBuffAndDebuff();
-            ActivateEarlyStatusEffects();
-            Debug.LogWarning("Update Logic");
+            //RemoveAllBuffAndDebuff();
         });
 
         // Add Robot Attack Feedback To Event List
@@ -270,27 +274,35 @@ public class Robot : MonoBehaviour
 
     public bool ActivateEarlyStatusEffects()
     {
+        var toRemoveInStatusList = new List<StatusEffect>();
+
         foreach (var status in StatusList)
         {
             if (status.statusTrigger == StatusEffectTrigger.OnStartRound && status.ActivateStatusEffect(this))
             {
-                StatusList.Remove(status);
+                toRemoveInStatusList.Add(status);
             }
         }
+
+        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
 
         return true;
     }
 
     public async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
     {
+        var toRemoveInStatusList = new List<StatusEffect>();
+
         foreach (var status in StatusList)
         {
             if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
             {
-                StatusList.Remove(status);
                 await Task.Delay(timeBetweenStatusEffects);
+                toRemoveInStatusList.Add(status);
             }
         }
+
+        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
 
         return true;
     }

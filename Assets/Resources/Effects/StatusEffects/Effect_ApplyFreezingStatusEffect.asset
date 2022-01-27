@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651e4e58ec8c035458f2e77c72a299f0, type: 3}
   m_Name: Effect_ApplyFreezingStatusEffect
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  effectTrigger: 2

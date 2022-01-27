@@ -24,7 +24,7 @@ public class Effect_Attack : Effect
             // Debug.Log("DEF: " + emitter.Defense());
             // Debug.Log("DAMAGE: " + damage);
 
-            target.life.TakeDamage(damage, attackType);
+            target.life.TakeDamage(damage, attackType, attackElement, usedCard, skills);
         }
         else
         {

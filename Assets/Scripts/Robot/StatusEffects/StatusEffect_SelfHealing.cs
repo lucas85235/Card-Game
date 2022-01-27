@@ -19,7 +19,11 @@ public class StatusEffect_SelfHealing : StatusEffect
 
     public override bool ActivateStatusEffect(Robot affectedRobot, AttackType criteria)
     {
-        affectedRobot.life.AddLife(Amount);
+        if (Amount > 0)
+        {
+            affectedRobot.life.AddLife(Amount);
+        }
+        Amount--;
 
         return base.ActivateStatusEffect(affectedRobot, criteria);
     }

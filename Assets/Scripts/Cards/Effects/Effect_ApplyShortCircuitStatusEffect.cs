@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ApplyShortCircuitStatusEffect", menuName = "ScriptableObjects/Effects/ApplyShortCircuitStatusEffect")]
 public class Effect_ApplyShortCircuitStatusEffect : Effect
 {
+    [SerializeField] private Sprite icon;
+    [SerializeField] private StatusEffectTrigger effectTrigger;
     protected override bool ApplyEffectByChance(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
     {
         if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard))
@@ -11,12 +13,12 @@ public class Effect_ApplyShortCircuitStatusEffect : Effect
             return false;
         }
 
-        var newThornStatus = new StatusEffect_ShortCircuit();
+        var newShortCircuitStatus = new StatusEffect_ShortCircuit();
 
-        newThornStatus.statusTrigger = StatusEffectTrigger.OnStartRound;
-        newThornStatus.Amount = value;
+        newShortCircuitStatus.statusTrigger = effectTrigger;
+        newShortCircuitStatus.Amount = value;
 
-        target.ApplyStatusEffect(newThornStatus);
+        target.ApplyStatusEffect(newShortCircuitStatus);
 
         return true;
     }

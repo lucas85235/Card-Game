@@ -16,7 +16,7 @@ public class StatusEffect
 
     public virtual bool ActivateStatusEffect(Robot affectedRobot, AttackType criteria = AttackType.none)
     {
-        if(Amount <= 0)
+        if (Amount < 0)
         {
             StatusEffectPosAction(affectedRobot);
             return true;

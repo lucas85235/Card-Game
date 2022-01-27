@@ -4,6 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ApplyCorrodeStatusEffect", menuName = "ScriptableObjects/Effects/ApplyCorrodeStatusEffect")]
 public class Effect_ApplyCorrodeStatusEffect : Effect
 {
+    [SerializeField] private Sprite icon;
+    [SerializeField] private StatusEffectTrigger effectTrigger;
+
     protected override bool ApplyEffectByChance(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
     {
         if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard))
@@ -11,12 +14,12 @@ public class Effect_ApplyCorrodeStatusEffect : Effect
             return false;
         }
 
-        var newThornStatus = new StatusEffect_Corrode();
+        var newCorrodeStatus = new StatusEffect_Corrode();
 
-        newThornStatus.statusTrigger = StatusEffectTrigger.OnEndRound;
-        newThornStatus.Amount = value;
+        newCorrodeStatus.statusTrigger = effectTrigger;
+        newCorrodeStatus.Amount = value;
 
-        target.ApplyStatusEffect(newThornStatus);
+        target.ApplyStatusEffect(newCorrodeStatus);
 
         return true;
     }

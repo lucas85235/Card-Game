@@ -19,8 +19,10 @@ public class StatusEffect_Freezing : StatusEffect
 
     public override bool ActivateStatusEffect(Robot affectedRobot, AttackType criteria)
     {
-        affectedRobot.energy.ChangeMaxEnergyAmount(-Amount);
-
+        if (Amount > 0)
+        {
+            affectedRobot.energy.ChangeMaxEnergyAmount(-Amount);
+        }
         Amount--;
         return base.ActivateStatusEffect(affectedRobot, criteria);
     }

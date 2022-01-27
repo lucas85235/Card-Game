@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617336424f7d34f4082d732dfaa7ce69, type: 3}
   m_Name: Effect_ApplySelfHealingStatusEffect
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  effectTrigger: 1

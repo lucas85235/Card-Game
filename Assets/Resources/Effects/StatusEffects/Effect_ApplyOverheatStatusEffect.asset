@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260287189337463428c191f38185f91e, type: 3}
   m_Name: Effect_ApplyOverheatStatusEffect
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  effectTrigger: 1
