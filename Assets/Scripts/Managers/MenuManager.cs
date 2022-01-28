@@ -237,7 +237,9 @@ public class MenuManager : MonoBehaviour
     public void ChangeRobot(int value)
     {
         m_CurrentRobotIndex += value;
-        AudioManager.Instance.Play(AudiosList.changeRobot);
+        
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.Play(AudiosList.changeRobot);
 
         if (m_CurrentRobotIndex < 0) m_CurrentRobotIndex = DataManager.Instance.PlayerInfo.Robots.Length - 1;
         if (m_CurrentRobotIndex > DataManager.Instance.PlayerInfo.Robots.Length - 1) m_CurrentRobotIndex = 0;

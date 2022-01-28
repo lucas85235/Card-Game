@@ -28,6 +28,7 @@ public class CardImage : MonoBehaviour
     public Robot ConnectedRobot { get; set; }
 
     private bool m_canSelect = true;
+    public void SetCanSelect(bool state) => m_canSelect = state;
 
     void Start()
     {
@@ -37,8 +38,7 @@ public class CardImage : MonoBehaviour
         description.text = Data.Description();
 
         Round.i.EndTurn.AddListener(() => OnStartTurn());
-        Round.i.EndTurn.AddListener(() => m_canSelect = true);
-        Round.i.EndTurn.AddListener(() => m_canSelect = false);
+        Round.i.StartTurn.AddListener(() => m_canSelect = false);
     }
 
     public void UseEffect()
@@ -87,6 +87,8 @@ public class CardImage : MonoBehaviour
             transform.SetParent(selectedConteriner);
             OnSelect?.Invoke();
         }
+
+        transform.localScale = new Vector3(1f, 1f);
     }
 
     public void Deselect()
@@ -100,6 +102,8 @@ public class CardImage : MonoBehaviour
             transform.SetParent(selectConteriner);
             OnDeselect?.Invoke();
         }
+
+        transform.localScale = new Vector3(1f, 1f);
     }
 
     // destroy o objeto se estiver selecionado no inicio do proximo turno
