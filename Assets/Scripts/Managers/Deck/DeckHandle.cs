@@ -32,7 +32,7 @@ public class DeckHandle : MonoBehaviour
     {
         robot = GetComponent<Robot>();
 
-        SortDeck();
+        SortDeck(true);
 
         // Call the turn every EndTurn
         Round.i.EndTurn.AddListener(() => Turn());
@@ -40,7 +40,7 @@ public class DeckHandle : MonoBehaviour
         Turn();
     }
 
-    private void SortDeck()
+    private void SortDeck(bool applySkills)
     {
         deck = new List<CardData>();
         discard = new List<CardData>();
@@ -48,9 +48,16 @@ public class DeckHandle : MonoBehaviour
         // needed to reset handle after finishi deck
         hands = new List<CardData>();
 
-        foreach (var card in robot.Data().Cards())
+        
+
+        foreach (var card in robot.CurrentCards)
         {
             deck.Add(card);
+
+            if (!applySkills)
+            {
+                continue;
+            }
 
             foreach (var skill in card.Skills())
             {
@@ -70,7 +77,7 @@ public class DeckHandle : MonoBehaviour
         // add cards when you don't have enough
         if (deck.Count < 5)
         {
-            SortDeck();
+            SortDeck(false);
         }
 
         // add the cards from the hand to the discard

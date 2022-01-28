@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cc8dd391af584439a6f0f86555825e, type: 3}
   m_Name: Effect_ApplyCorrodeStatusEffect
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  effectTrigger: 1

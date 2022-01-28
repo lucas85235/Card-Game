@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // Esse componente lida com uso de energia
 // Possui a total de energia e a energia
@@ -17,10 +18,12 @@ using UnityEngine.UI;
 public class Energy : MonoBehaviour
 {
     [Header("Setup")]
-    public Text energyText;
+    public TextMeshProUGUI energyText;
 
     public int EnergyAmount { get => currentAmount; }
     private int currentAmount;
+    private int maxAmount;
+    private int initialAmount;
 
     public int EnergyRoundAmount { get => currentRoundAmount; }
     private int currentRoundAmount;
@@ -29,12 +32,14 @@ public class Energy : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            energyText = GameObject.FindGameObjectWithTag("Energy").GetComponent<Text>();
+            energyText = GameObject.FindGameObjectWithTag("Energy").GetComponent<TextMeshProUGUI>();
         }        
     }
 
     private void Start()
     {
+        InitGame();
+
         EnergyCharge();
         Round.i.EndTurn.AddListener(() => EnergyCharge());
     }
@@ -42,7 +47,8 @@ public class Energy : MonoBehaviour
     public void InitGame() 
     {
         currentAmount = 5;
-        currentRoundAmount = currentAmount;
+        maxAmount = 5;
+        initialAmount = 5;
         EnergyText(currentAmount);
     }
 
@@ -52,7 +58,7 @@ public class Energy : MonoBehaviour
         
         if (currentRoundAmount > currentAmount)
         {
-            Debug.Log("Energy Have Problem");
+            Debug.LogWarning("Energy Have Problem");
         }
 
         EnergyText(currentRoundAmount);
@@ -60,19 +66,26 @@ public class Energy : MonoBehaviour
 
     private void EnergyCharge() 
     {
-        Debug.Log("EnergyCharge");
-        currentAmount = 5;
-        if (currentAmount > 5) currentAmount = 5;
+        currentAmount = maxAmount;
+        
         currentRoundAmount = currentAmount;
         EnergyText(currentAmount);
     }
 
-    private void EnergyText(int value) 
+    public void ChangeMaxEnergyAmount(int setValue)
     {
-        if (energyText != null) 
+        maxAmount = initialAmount + setValue;
+
+        currentAmount = maxAmount;
+        currentRoundAmount = maxAmount;
+        EnergyText(currentAmount);
+    }
+
+    private void EnergyText(int value)
+    {
+        if (energyText != null)
         {
-            energyText.text = value + " / 5";
+            energyText.text = value + " / " + maxAmount;
         }
-        else Debug.LogWarning("energyText of " + name + " is null");
     }
 }

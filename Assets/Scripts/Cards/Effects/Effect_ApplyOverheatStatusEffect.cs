@@ -4,6 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ApplyOverheatStatusEffect", menuName = "ScriptableObjects/Effects/ApplyOverheatStatusEffect")]
 public class Effect_ApplyOverheatStatusEffect : Effect
 {
+    [SerializeField] private Sprite icon;
+    [SerializeField] private StatusEffectTrigger effectTrigger;
+
     protected override bool ApplyEffectByChance(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
     {
         if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard))
@@ -11,12 +14,12 @@ public class Effect_ApplyOverheatStatusEffect : Effect
             return false;
         }
 
-        var newThornStatus = new StatusEffect_Overheat();
+        var newOverheatStatus = new StatusEffect_Overheat();
 
-        newThornStatus.statusTrigger = StatusEffectTrigger.OnEndRound;
-        newThornStatus.Amount = value;
+        newOverheatStatus.statusTrigger = effectTrigger;
+        newOverheatStatus.Amount = value;
 
-        target.ApplyStatusEffect(newThornStatus);
+        target.ApplyStatusEffect(newOverheatStatus);
 
         return true;
     }

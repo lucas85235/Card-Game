@@ -3,6 +3,6 @@ public enum Element
     normal,
     fire,
     electric,
-    ice,
+    water,
     acid
 }

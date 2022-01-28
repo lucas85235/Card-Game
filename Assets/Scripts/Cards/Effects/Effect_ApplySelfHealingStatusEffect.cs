@@ -4,6 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ApplySelfHealingStatusEffect", menuName = "ScriptableObjects/Effects/ApplySelfHealingStatusEffect")]
 public class Effect_ApplySelfHealingStatusEffect : Effect
 {
+    [SerializeField] private Sprite icon;
+    [SerializeField] private StatusEffectTrigger effectTrigger;
+
     protected override bool ApplyEffectByChance(Robot emitter, Robot target, int value, float applicationChance, List<EffectSkill> skills, CardData usedCard)
     {
         if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard))
@@ -11,12 +14,12 @@ public class Effect_ApplySelfHealingStatusEffect : Effect
             return false;
         }
 
-        var newThornStatus = new StatusEffect_SelfHealing();
+        var newSelfHealingStatus = new StatusEffect_SelfHealing();
 
-        newThornStatus.statusTrigger = StatusEffectTrigger.OnEndRound;
-        newThornStatus.Amount = value;
+        newSelfHealingStatus.statusTrigger = effectTrigger;
+        newSelfHealingStatus.Amount = value;
 
-        target.ApplyStatusEffect(newThornStatus);
+        target.ApplyStatusEffect(newSelfHealingStatus);
 
         return true;
     }

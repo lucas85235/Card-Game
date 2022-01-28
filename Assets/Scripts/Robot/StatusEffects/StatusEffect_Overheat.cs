@@ -19,7 +19,11 @@ public class StatusEffect_Overheat : StatusEffect
 
     public override bool ActivateStatusEffect(Robot affectedRobot, AttackType criteria)
     {
-        affectedRobot.life.TakeDamage(Amount, AttackType.none);
+        if(Amount > 0)
+        {
+            affectedRobot.life.TakeDamage(Amount);
+        }
+
         Amount--;
 
         return base.ActivateStatusEffect(affectedRobot, criteria);

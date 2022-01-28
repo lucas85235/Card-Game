@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bf3061292705f4f8b0bf7c34ef7785, type: 3}
   m_Name: Effect_ApplyShortCircuitStatusEffect
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  effectTrigger: 2

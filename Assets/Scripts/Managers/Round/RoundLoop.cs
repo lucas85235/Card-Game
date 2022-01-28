@@ -16,6 +16,9 @@ public class RoundLoop : Round
     [Tooltip("In millisecondsDelay")]
     public int delayBetweenUseCards = 800;
 
+    [Tooltip("In millisecondsDelay")]
+    public int delayBetweenStatusEffects = 600;
+
     [Header("CARDS")]
     public Transform selectedConterinerPlayerOne;
     public Transform selectedConterinerPlayerTwo;
@@ -48,8 +51,6 @@ public class RoundLoop : Round
 
     private async void StartTurnPlaysHandle()
     {
-        Debug.Log("StartTurnPlaysHandle");
-
         await Task.Delay(delayBetweenTasks);
 
         // Use All Cards
@@ -67,12 +68,12 @@ public class RoundLoop : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
-        if (playerOne.Speed() > playerTwo.Speed())
+        if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
         {
             sortRobots.Add(playerOne);
             sortRobots.Add(playerTwo);
         }
-        else if (playerOne.Speed() < playerTwo.Speed())
+        else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
         {
             sortRobots.Add(playerTwo);
             sortRobots.Add(playerOne);
@@ -116,7 +117,7 @@ public class RoundLoop : Round
         {
             for (int j = 0; j < sortRobots[i].selectedCardsConteriner.childCount; j++)
             {
-                sortRobots[i].selectedCardsConteriner.GetChild(i).TryGetComponent(out CardImage cardImage);
+                sortRobots[i].selectedCardsConteriner.GetChild(j).TryGetComponent(out CardImage cardImage);
 
                 if (!m_roundCards.ContainsKey(cardImage.Data.Priority))
                 {
@@ -145,6 +146,11 @@ public class RoundLoop : Round
                 card.UseEffect();
                 card.gameObject.SetActive(false);
 
+                if (card.Data.SingleUse)
+                {
+                    card.ConnectedRobot.RemoveCard(card.Data);
+                }
+
                 if (card.ConnectedRobot.life.isDead)
                 {
                     return true;
@@ -152,11 +158,16 @@ public class RoundLoop : Round
             }
         }
 
+        foreach (var robot in sortRobots)
+        {
+            await robot.ActivateLateStatusEffects(delayBetweenStatusEffects);
+        }
+
         return true;
     }
 
     /// <summary>Reset shild of all sortRobots list</summary>
-    private void RemoveShild()
+    private void RemoveShield()
     {
         if (sortRobots == null) return;
 
@@ -168,6 +179,6 @@ public class RoundLoop : Round
 
     private void EndTurnInternalHandle()
     {
-        RemoveShild();
+        RemoveShield();
     }
 }
