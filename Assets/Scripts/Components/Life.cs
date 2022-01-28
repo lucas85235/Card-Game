@@ -31,6 +31,7 @@ public class Life : MonoBehaviour
     private int m_currentShield;
 
     private RobotAnimation m_RobotAnimation;
+    private Dictionary<Element, Stats> m_ElementToStats = new Dictionary<Element, Stats>();
 
     public bool HaveShield() => m_currentShield > 0;
 
@@ -44,12 +45,22 @@ public class Life : MonoBehaviour
             return;
         }
         
-        m_maxLife = m_robot.Data().Health();
+        m_maxLife = m_robot.DataStats[Stats.health];
         lifeSlider.maxValue = m_maxLife;
         lifeSlider.value = m_maxLife;
         m_currentLife = (int) lifeSlider.value;
 
         UpdateLifeSlider();
+        SetElementToStats();
+    }
+
+    private void SetElementToStats()
+    {
+        m_ElementToStats[Element.acid] = Stats.acidResistence;
+        m_ElementToStats[Element.water] = Stats.waterResistence;
+        m_ElementToStats[Element.fire] = Stats.fireResistence;
+        m_ElementToStats[Element.electric] = Stats.electricResistence;
+        m_ElementToStats[Element.normal] = Stats.defence;
     }
 
     public void AddLife(int increment)
@@ -65,79 +76,76 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(int decrement, AttackType type = AttackType.none, Element attackElement = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
+    public void TakeDamage(int decrement, AttackType type = AttackType.none, Element element = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
     {
         bool ignoreShield = false;
-        bool miss = false;
         float hitChance = 1;
         float critChance = 0;
 
         if(usedCard != null)
         {
             ignoreShield = usedCard.Piercing;
-            hitChance = Mathf.Clamp(1f + m_robot.Accuracy() - GameController.i.GetTheOtherRobot(m_robot).Evasion(), 0f, 1f) - usedCard.MissChance;
-            critChance = m_robot.CritChance();
+            hitChance = Mathf.Clamp(1f + (m_robot.CurrentRobotStats[Stats.evasion] - GameController.i.GetTheOtherRobot(m_robot).CurrentRobotStats[Stats.accuracy]) / 100, 0f, 1f) - usedCard.MissChance;
+            critChance = m_robot.CurrentRobotStats[Stats.critChance];
         }
 
         //Chance de errar o dano da carta
         if (Random.Range(0f, 1f) > hitChance)
         {
-            decrement = 0;
-            miss = true;
-        }
-
-        //Chance de aplicar um crítico no ataque
-        else if (Random.Range(0f, 1f) < critChance)
-        {
-            decrement += Mathf.FloorToInt(decrement / 2);
-        }
-
-        if (miss)
-        {
             Debug.Log("Misses attack");
             return;
         }
 
-        else
+        //Chance de aplicar um crítico no ataque
+        if (Random.Range(0f, 1f) < critChance)
         {
-            int damage = decrement;
+            decrement += Mathf.FloorToInt(decrement / 2);
+        }
 
-            if (HaveShield() && !ignoreShield)
-                damage = TakeDamageShield(decrement);
+        int resistence = 0;
 
-            m_currentLife -= damage;
+        if (type != AttackType.none)
+        {
+            resistence = m_robot.CurrentRobotStats[m_ElementToStats[element]];
+        }
 
-            if(usedCard != null)
+        int damage = decrement - resistence;
+
+        if (HaveShield() && !ignoreShield)
+            damage = TakeDamageShield(decrement);
+
+        m_currentLife -= damage;
+
+        if (usedCard != null)
+        {
+            if (skills != null)
             {
-                if (skills != null)
+                foreach (var skill in skills)
                 {
-                    foreach (var skill in skills)
+                    if (skill != null)
                     {
-                        if (skill != null)
-                        {
-                            skill.ApplySkill(GameController.i.GetTheOtherRobot(m_robot), m_robot, damage, usedCard);
-                        }
+                        skill.ApplySkill(GameController.i.GetTheOtherRobot(m_robot), m_robot, damage, usedCard);
                     }
                 }
-
-                var statusToRemove = new List<StatusEffect>();
-
-                foreach (var status in m_robot.StatusList)
-                {
-                    if (status != null && status.statusTrigger == StatusEffectTrigger.OnReceiveDamage && status.ActivateStatusEffect(m_robot, type))
-                    {
-                        statusToRemove.Add(status);
-                    }
-                }
-
-                m_robot.StatusList = m_robot.StatusList.Except(statusToRemove).ToList();
             }
 
-            GameController.i.ShowAlertText(decrement, Color.red, transform.localScale.x > 0);
+            var statusToRemove = new List<StatusEffect>();
 
-            LifeRules();
-            UpdateLifeSlider();
+            foreach (var status in m_robot.StatusList)
+            {
+                if (status != null && status.statusTrigger == StatusEffectTrigger.OnReceiveDamage && status.ActivateStatusEffect(m_robot, type))
+                {
+                    statusToRemove.Add(status);
+                }
+            }
+
+            m_robot.StatusList = m_robot.StatusList.Except(statusToRemove).ToList();
         }
+
+        GameController.i.ShowAlertText(decrement, transform.localScale.x > 0, Stats.health, Color.red);
+
+        LifeRules();
+        UpdateLifeSlider();
     }
 
     private void DeathHandle()

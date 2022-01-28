@@ -68,12 +68,12 @@ public class RoundLoop : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
-        if (playerOne.Speed() > playerTwo.Speed())
+        if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
         {
             sortRobots.Add(playerOne);
             sortRobots.Add(playerTwo);
         }
-        else if (playerOne.Speed() < playerTwo.Speed())
+        else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
         {
             sortRobots.Add(playerTwo);
             sortRobots.Add(playerOne);
@@ -145,6 +145,11 @@ public class RoundLoop : Round
 
                 card.UseEffect();
                 card.gameObject.SetActive(false);
+
+                if (card.Data.SingleUse)
+                {
+                    card.ConnectedRobot.RemoveCard(card.Data);
+                }
 
                 if (card.ConnectedRobot.life.isDead)
                 {

@@ -18,8 +18,8 @@ MonoBehaviour:
   energy: 1
   effects:
   - skills: []
-    effect: {fileID: 11400000, guid: 5d30030398e854449a57bda442f91877, type: 2}
-    value: {x: 3, y: 3}
+    effect: {fileID: 11400000, guid: 39d73b79c5a2d7a4cafca7e70c9b9253, type: 2}
+    value: {x: 2, y: 2}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0

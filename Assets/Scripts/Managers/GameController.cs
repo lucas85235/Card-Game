@@ -9,6 +9,9 @@ using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController i;
+
+
     [Header("Setup")]
     [SerializeField] private float timeToPlay;
     [SerializeField] private Slider timeSlider;
@@ -18,21 +21,33 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject alertText;
     [SerializeField] private RectTransform alertLeft;
     [SerializeField] private RectTransform alertRight;
-    [SerializeField] private List<IconStruct> icons;
 
-    private Dictionary<IconList, Sprite> m_IconDictionary;
+    [Serializable]
+    private struct Icon
+    {
+        public Sprite sprite;
+        public Stats stat;
+        public bool positive;
+    }
+
+    [SerializeField] private List<Icon> iconList;
+
     private Coroutine timeRoundCoroutine;
-
-    public static GameController i;
+    private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
 
     private void Awake()
     {
         i = this;
 
-        m_IconDictionary = new Dictionary<IconList, Sprite>();
+        foreach (var icon in iconList)
+        {
+            if(!m_IconDictionary.ContainsKey(icon.stat))
+            {
+                m_IconDictionary[icon.stat] = new Dictionary<bool, Sprite>();
+            }
 
-        foreach (var icon in icons)
-            m_IconDictionary[icon.name] = icon.sprite;
+            m_IconDictionary[icon.stat][icon.positive] = icon.sprite;
+        }
     }
 
     void Start()
@@ -46,24 +61,41 @@ public class GameController : MonoBehaviour
         Round.i.EndTurn.AddListener(() => StartCountdown());
     }
 
-    public void ShowAlertText(int decrement, Color textColor, bool left, IconList iconName = IconList.none, bool debuff = false)
+    public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
     {
         var referenceRect = left ? alertLeft : alertRight;
+        int direction;
 
         var newAlert = Instantiate(alertText, referenceRect);
         newAlert.LeanScaleX(transform.localScale.x > 0 ? 1 : -1, 0);
 
         var imageObject = newAlert.transform.Find("AlertImage").gameObject;
 
-        if (iconName == IconList.none) Destroy(imageObject);
+        if (!m_IconDictionary.ContainsKey(statToShow) || !m_IconDictionary[statToShow].ContainsKey(value > 0))
+        {
+            Destroy(imageObject);
+        }
         else
         {
             imageObject.TryGetComponent(out Image imageComponent);
-            imageComponent.sprite = m_IconDictionary[iconName];
+            imageComponent.sprite = m_IconDictionary[statToShow][value > 0];
+        }
+
+        if(value > 0)
+        {
+            AudioManager.Instance.Play(AudiosList.robotEffect);
+            direction = 1;
+            textColor = Color.blue;
+        }
+        else
+        {
+            AudioManager.Instance.Play(AudiosList.robotDeffect);
+            direction = -1;
+            textColor = Color.red;
         }
 
         newAlert.transform.Find("AlertText").TryGetComponent(out TextMeshProUGUI textComponent);
-        textComponent.text = decrement.ToString();
+        textComponent.text = value.ToString();
         textComponent.color = textColor;
 
         newAlert.TryGetComponent(out CanvasGroup textCGroup);
@@ -72,8 +104,6 @@ public class GameController : MonoBehaviour
             {
                 textCGroup.alpha = value;
             });
-
-        var direction = debuff ? -1 : 1;
 
         newAlert.TryGetComponent(out RectTransform textRect);
         textRect.LeanMoveLocalY(200 * direction, 2)
@@ -130,12 +160,5 @@ public class GameController : MonoBehaviour
     private void OnDestroy()
     {
         LeanTween.cancelAll();
-    }
-
-    [Serializable]
-    private struct IconStruct
-    {
-        public IconList name;
-        public Sprite sprite;
     }
 }

@@ -21,29 +21,17 @@ public class Robot : MonoBehaviour
     public bool randData = false;
     public RobotData[] datas;
 
-    [Header("CURRENT")]
-    [SerializeField] private int m_currentAttack;
-    [SerializeField] private int m_currentDefense;
-    [SerializeField] private int m_currentSpeed;
-    [SerializeField] private int m_currentCrit;
-    [SerializeField] private int m_currentEvasion;
-    [SerializeField] private int m_currentAccuracy;
-
-    private bool m_iconSpawInLeft;
-
     public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
     public Life life { get; private set; }
     public Energy energy { get; private set; }
 
+    public Dictionary<Stats, int> CurrentRobotStats { get; private set; } = new Dictionary<Stats, int>();
+    public Dictionary<Stats, int> DataStats { get; private set; } = new Dictionary<Stats, int>();
+    public List<CardData> CurrentCards { get; private set; }
+
     private RobotAnimation m_RobotAnimation;
-    
-    public int Attack() => m_currentAttack;
-    public int Defense() => m_currentDefense;
-    public int Speed() => m_currentSpeed;
-    public int CritChance() => m_currentCrit;
-    public int Evasion() => m_currentEvasion;
-    public int Accuracy() => m_currentAccuracy;
+    private bool m_iconSpawInLeft;
 
     private void Awake()
     {
@@ -60,6 +48,9 @@ public class Robot : MonoBehaviour
         m_iconSpawInLeft = transform.localScale.x > 0;
 
         GetComponent<RobotAnimation>().ChangeRobotSprites(m_Data);
+
+        SetStats();
+        CurrentCards = m_Data.Cards();
     }
 
     private void Start()
@@ -86,6 +77,45 @@ public class Robot : MonoBehaviour
         );
     }
 
+    private void SetStats()
+    {
+        CurrentRobotStats[Stats.attack] = m_Data.Attack();
+        DataStats[Stats.attack] = m_Data.Attack();
+
+        CurrentRobotStats[Stats.defence] = m_Data.Defense();
+        DataStats[Stats.defence] = m_Data.Defense();
+
+        CurrentRobotStats[Stats.speed] = m_Data.Speed();
+        DataStats[Stats.speed] = m_Data.Speed();
+
+        CurrentRobotStats[Stats.evasion] = m_Data.Evasion();
+        DataStats[Stats.evasion] = m_Data.Evasion();
+
+        CurrentRobotStats[Stats.accuracy] = m_Data.Accuracy();
+        DataStats[Stats.accuracy] = m_Data.Accuracy();
+
+        CurrentRobotStats[Stats.inteligence] = m_Data.Inteligence();
+        DataStats[Stats.inteligence] = m_Data.Inteligence();
+
+        CurrentRobotStats[Stats.health] = m_Data.Health();
+        DataStats[Stats.health] = m_Data.Health();
+
+        CurrentRobotStats[Stats.critChance] = m_Data.CritChance();
+        DataStats[Stats.critChance] = m_Data.CritChance();
+
+        CurrentRobotStats[Stats.fireResistence] = m_Data.FireResistence();
+        DataStats[Stats.fireResistence] = m_Data.FireResistence();
+
+        CurrentRobotStats[Stats.waterResistence] = m_Data.WaterResistence();
+        DataStats[Stats.waterResistence] = m_Data.WaterResistence();
+
+        CurrentRobotStats[Stats.acidResistence] = m_Data.AcidResistence();
+        DataStats[Stats.acidResistence] = m_Data.AcidResistence();
+
+        CurrentRobotStats[Stats.electricResistence] = m_Data.ElectricResistence();
+        DataStats[Stats.electricResistence] = m_Data.ElectricResistence();
+    }
+
     /// <summary>Set Robot Behaviour After Attack Event Called</summary>
     private void RobotAttackFeedback(Robot robot, Robot target)
     {
@@ -95,176 +125,33 @@ public class Robot : MonoBehaviour
 
     private void RemoveAllBuffAndDebuff()
     {
-        AttackReset();
-        DefenseReset();
-        SpeedReset();
+        StatReset(Stats.attack);
+        StatReset(Stats.defence);
+        StatReset(Stats.speed);
     }
 
-    // ATTACK
-
-    public void ApplyAttackChange(int value)
+    public void ApplyStatChange(Stats statToChange, int value)
     {
-        m_currentAttack += value;
+        CurrentRobotStats[statToChange] += value;
 
-        if(value > 0)
-        {
-            AudioManager.Instance.Play(AudiosList.robotEffect);
-            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.attackBuff);
-        }
-        else
-        {
-            if (m_currentAttack < 1)
-            {
-                m_currentAttack = 0;
-            }
-            AudioManager.Instance.Play(AudiosList.robotDeffect);
-            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.attackDebuff, true);
-        }
+        var textColor = value > 0 ? Color.blue : Color.red;
+
+        GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
-    public int AttackDiff() => m_currentAttack - m_Data.Attack();
-
-    public void AttackReset()
+    public int StatDiff(Stats statToCompare)
     {
-        m_currentAttack = m_Data.Attack();
+        return CurrentRobotStats[statToCompare] - DataStats[statToCompare];
     }
 
-    // DEFENSE
-
-    public void ApplyDefenceChange(int value)
+    public void StatReset(Stats statToReset)
     {
-        m_currentDefense += value;
-
-        if (value > 0)
-        {
-            AudioManager.Instance.Play(AudiosList.robotEffect);
-            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.defenceBuff);
-        }
-        else
-        {
-            if (m_currentAttack < 1)
-            {
-                m_currentAttack = 0;
-            }
-            AudioManager.Instance.Play(AudiosList.robotDeffect);
-            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.defenceDebuff, true);
-        }
+        CurrentRobotStats[statToReset] = DataStats[statToReset];
     }
 
-    public int DefenseDiff() => m_currentDefense - m_Data.Defense();
-
-    public void DefenseReset()
+    public void RemoveCard(CardData cardToRemove)
     {
-        m_currentDefense = m_Data.Defense();
-    }
-
-    // SPEED
-
-    public void ApplySpeedChange(int value)
-    {
-        m_currentSpeed += value;
-
-        if(value > 0)
-        {
-            AudioManager.Instance.Play(AudiosList.robotEffect);
-            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
-        }
-        else
-        {
-
-            AudioManager.Instance.Play(AudiosList.robotDeffect);
-            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
-        }
-    }
-
-    public int SpeedDiff() => m_currentSpeed - m_Data.Speed();
-
-    public void SpeedReset()
-    {
-        m_currentSpeed = m_Data.Speed();
-    }
-
-    // CritChance
-
-    public void ApplyCritChanceChange(int value)
-    {
-        m_currentCrit += value;
-
-        if (value > 0)
-        {
-            AudioManager.Instance.Play(AudiosList.robotEffect);
-            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
-        }
-        else
-        {
-
-            AudioManager.Instance.Play(AudiosList.robotDeffect);
-            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
-        }
-    }
-
-    public int CritChanceDiff() => m_currentCrit - m_Data.CritChance();
-
-    public void CritChanceReset()
-    {
-        m_currentCrit = m_Data.CritChance();
-    }
-
-    // Evasion
-
-    public void ApplyEvasionChange(int value)
-    {
-        m_currentEvasion += value;
-
-        if (value > 0)
-        {
-            AudioManager.Instance.Play(AudiosList.robotEffect);
-            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
-        }
-        else
-        {
-
-            AudioManager.Instance.Play(AudiosList.robotDeffect);
-            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
-        }
-    }
-
-    public int EvasionDiff() => m_currentEvasion - m_Data.Evasion();
-
-    public void EvasionReset()
-    {
-        m_currentEvasion = m_Data.Evasion();
-    }
-
-    // Accuracy
-
-    public void ApplyAccuracyChange(int value)
-    {
-        m_currentAccuracy += value;
-
-        if (value > 0)
-        {
-            AudioManager.Instance.Play(AudiosList.robotEffect);
-            GameController.i.ShowAlertText(value, Color.blue, m_iconSpawInLeft, IconList.speedBuff);
-        }
-        else
-        {
-
-            AudioManager.Instance.Play(AudiosList.robotDeffect);
-            GameController.i.ShowAlertText(value, Color.black, m_iconSpawInLeft, IconList.speedDebuff, true);
-        }
-    }
-
-    public int AccuracyDiff() => m_currentAccuracy - m_Data.Accuracy();
-
-    public void AccuracyReset()
-    {
-        m_currentAccuracy = m_Data.Accuracy();
-    }
-
-    public RobotData Data()
-    {
-        return m_Data;
+        CurrentCards.Remove(cardToRemove);
     }
 
     public void ApplyStatusEffect(StatusEffect newStatusEffect)

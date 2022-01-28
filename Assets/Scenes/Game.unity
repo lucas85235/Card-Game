@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2728,6 +2728,7 @@ MonoBehaviour:
   playerTwo: {fileID: 5937095137718756382}
   delayBetweenTasks: 1000
   delayBetweenUseCards: 1200
+  delayBetweenStatusEffects: 600
   selectedConterinerPlayerOne: {fileID: 0}
   selectedConterinerPlayerTwo: {fileID: 0}
 --- !u!4 &801237790
@@ -4161,19 +4162,25 @@ MonoBehaviour:
   alertText: {fileID: 1084947385375896570, guid: 5b899bb65b4661e45af95026f8a5d603, type: 3}
   alertLeft: {fileID: 785089978}
   alertRight: {fileID: 1584273554}
-  icons:
-  - name: 1
-    sprite: {fileID: 21300000, guid: 16063f63bb4c1d94a993c30425a8dd4a, type: 3}
-  - name: 2
-    sprite: {fileID: 21300000, guid: 8cb66f0bf6250f74091f5ea36dafab4c, type: 3}
-  - name: 3
-    sprite: {fileID: 21300000, guid: e00661dd76f1b2e45b10b87f1469ffc9, type: 3}
-  - name: 4
-    sprite: {fileID: 21300000, guid: 84ed60e040479c5449348de76c82b645, type: 3}
-  - name: 5
-    sprite: {fileID: 21300000, guid: 38cce508b5d17e142aa45137ab7c8067, type: 3}
-  - name: 6
-    sprite: {fileID: 21300000, guid: cffec93f29ed2d04a957b6b9b2a8cbbc, type: 3}
+  iconList:
+  - sprite: {fileID: 21300000, guid: e00661dd76f1b2e45b10b87f1469ffc9, type: 3}
+    stat: 3
+    positive: 1
+  - sprite: {fileID: 21300000, guid: 84ed60e040479c5449348de76c82b645, type: 3}
+    stat: 3
+    positive: 0
+  - sprite: {fileID: 21300000, guid: 38cce508b5d17e142aa45137ab7c8067, type: 3}
+    stat: 4
+    positive: 1
+  - sprite: {fileID: 21300000, guid: cffec93f29ed2d04a957b6b9b2a8cbbc, type: 3}
+    stat: 4
+    positive: 0
+  - sprite: {fileID: 21300000, guid: 16063f63bb4c1d94a993c30425a8dd4a, type: 3}
+    stat: 1
+    positive: 1
+  - sprite: {fileID: 21300000, guid: 8cb66f0bf6250f74091f5ea36dafab4c, type: 3}
+    stat: 1
+    positive: 0
 --- !u!1 &1320332619
 GameObject:
   m_ObjectHideFlags: 0
@@ -6800,9 +6807,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   - {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
   - {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
-  m_currentAttack: 0
-  m_currentDefense: 0
-  m_currentSpeed: 0
 --- !u!114 &5937095137718756383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7676,9 +7680,6 @@ MonoBehaviour:
   getFromDataManager: 1
   randData: 0
   datas: []
-  m_currentAttack: 0
-  m_currentDefense: 0
-  m_currentSpeed: 0
 --- !u!1 &7680704849694398553
 GameObject:
   m_ObjectHideFlags: 0
