@@ -6,7 +6,7 @@ using TMPro;
 
 public class ShowBuffAndDebuff : MonoBehaviour
 {
-    [Header("Set")]
+    [Header("Setup")]
     public DeckOf deckOf;
     public TextMeshProUGUI attack;
     public TextMeshProUGUI defense;
@@ -34,43 +34,40 @@ public class ShowBuffAndDebuff : MonoBehaviour
         {
             SetStatsLeft();
         }
-        else
-        {
-            SetStatsRight();
-        }
+        else SetStatsRight();
     }
 
     public void SetStatsLeft()
     {
-        attack.text = "ATK: " + SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff());
-        defense.text = "DEF: " + SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff());
-        speed.text = "SPE: " + SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff());
+        attack.text = "ATK: " + GetStatusWithColor(Stats.attack);
+        defense.text = "DEF: " + GetStatusWithColor(Stats.defence);
+        speed.text = "SPE: " + GetStatusWithColor(Stats.speed);
     }
-
-    // azul 788CFF
-    // verde 99F050
-    // vermelho FD4902
-
-    private string SetDiff(int value, int diff)
-    {
-        if (diff != 0)
-        {
-            int total = value - diff;
-
-            if (total < value)
-            {
-                return "<color=#FD4902>" + total + "</color>";
-            }
-            else return "<color=#99F050>" + total + "</color>";
-        }
-
-        return "<color=#ffffff>" + value + "</color>";
-    }
-
     public void SetStatsRight()
     {
-        attack.text = SetDiff(m_robot.Data().Attack(), m_robot.AttackDiff()) + " :ATK";
-        defense.text = SetDiff(m_robot.Data().Defense(), m_robot.DefenseDiff()) + " :DEF";
-        speed.text = SetDiff(m_robot.Data().Speed(), m_robot.SpeedDiff()) + " :SPE";
+        attack.text = GetStatusWithColor(Stats.attack) + " :ATK";
+        defense.text = GetStatusWithColor(Stats.defence) + " :DEF";
+        speed.text = GetStatusWithColor(Stats.speed) + " :SPE";
+    }
+
+    // Blue 788CFF
+    // Green 99F050
+    // Red FD4902
+
+    private string GetStatusWithColor(Stats statTyper)
+    {
+        int diff = m_robot.StatDiff(statTyper);
+        int currentStat = m_robot.CurrentRobotStats[statTyper];
+
+        if (diff != 0)
+        {
+            if (diff < 0)
+            {
+                return "<color=#FD4902>" + currentStat + "</color>";
+            }
+            else return "<color=#99F050>" + currentStat + "</color>";
+        }
+
+        return "<color=#ffffff>" + currentStat + "</color>";
     }
 }
