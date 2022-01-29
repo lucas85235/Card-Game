@@ -96,7 +96,7 @@ public class Life : MonoBehaviour
             return;
         }
 
-        //Chance de aplicar um crítico no ataque
+        //Chance de aplicar um crï¿½tico no ataque
         if (Random.Range(0f, 1f) < critChance)
         {
             decrement += Mathf.FloorToInt(decrement / 2);
@@ -110,6 +110,8 @@ public class Life : MonoBehaviour
         }
 
         int damage = decrement - resistence;
+
+        GameController.i.ShowAlertText(damage, transform.localScale.x > 0, Stats.health, Color.red);
 
         if (HaveShield() && !ignoreShield)
             damage = TakeDamageShield(decrement);
@@ -141,8 +143,6 @@ public class Life : MonoBehaviour
 
             m_robot.StatusList = m_robot.StatusList.Except(statusToRemove).ToList();
         }
-
-        GameController.i.ShowAlertText(decrement, transform.localScale.x > 0, Stats.health, Color.red);
 
         LifeRules();
         UpdateLifeSlider();

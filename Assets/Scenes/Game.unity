@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4341,6 +4341,12 @@ MonoBehaviour:
   - sprite: {fileID: 21300000, guid: 8cb66f0bf6250f74091f5ea36dafab4c, type: 3}
     stat: 1
     positive: 0
+  - sprite: {fileID: 21300000, guid: cc4444cb184d82e45b42d3d3a76f6178, type: 3}
+    stat: 5
+    positive: 1
+  - sprite: {fileID: 21300000, guid: 8adbf990e24d56a4bb1e92327e9bae69, type: 3}
+    stat: 5
+    positive: 0
 --- !u!1 &1320332619
 GameObject:
   m_ObjectHideFlags: 0
@@ -6979,12 +6985,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   - {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
   - {fileID: 11400000, guid: 529ddf9d83108c84fbc71309ba601afc, type: 2}
-  m_currentAttack: 0
-  m_currentDefense: 0
-  m_currentSpeed: 0
-  m_currentCrit: 0
-  m_currentEvasion: 0
-  m_currentAccuracy: 0
 --- !u!114 &5937095137718756383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7858,12 +7858,6 @@ MonoBehaviour:
   getFromDataManager: 1
   randData: 0
   datas: []
-  m_currentAttack: 0
-  m_currentDefense: 0
-  m_currentSpeed: 0
-  m_currentCrit: 0
-  m_currentEvasion: 0
-  m_currentAccuracy: 0
 --- !u!1 &7680704849694398553
 GameObject:
   m_ObjectHideFlags: 0

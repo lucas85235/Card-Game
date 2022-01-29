@@ -17,12 +17,13 @@ MonoBehaviour:
   description: "Aumenta sua Intelig\xEAncia em 1 ponto"
   energy: 2
   effects:
-  - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: fd8313fc8d0899c408442fcb1fedeb98, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
-  attribute: 
+  skills: []
   trigger: 0
