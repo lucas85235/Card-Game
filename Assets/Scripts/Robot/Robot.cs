@@ -35,14 +35,19 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
-        if (randData && datas.Length > 1) m_Data = datas[Random.Range(0, datas.Length)];
-
+        if (randData && datas.Length > 1)
+        {
+            m_Data = datas[Random.Range(0, datas.Length)];
+        }
         life = GetComponent<Life>();
         energy = GetComponent<Energy>();
 
         TryGetComponent(out m_RobotAnimation);
 
-        if (getFromDataManager) m_Data = DataManager.Instance.GetCurrentRobot();
+        if (getFromDataManager)
+        {
+            m_Data = DataManager.Instance.GetCurrentRobot();
+        }
         m_RobotAnimation.ChangeRobotSprites(m_Data);
 
         m_iconSpawInLeft = transform.localScale.x > 0;
