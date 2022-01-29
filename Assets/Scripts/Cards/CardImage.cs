@@ -28,7 +28,16 @@ public class CardImage : MonoBehaviour
     public Robot ConnectedRobot { get; set; }
 
     private bool m_canSelect = true;
+    private bool m_canInteract = true;
+
+    private RectTransform m_CardRectTransform;
+
     public void SetCanSelect(bool state) => m_canSelect = state;
+
+    private void Awake()
+    {
+        TryGetComponent(out m_CardRectTransform);
+    }
 
     void Start()
     {
@@ -51,14 +60,31 @@ public class CardImage : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        if (!m_canSelect) return;
-        transform.localScale = new Vector3(1.2f, 1.2f);
+        if (!m_canSelect || !m_canInteract)
+        {
+            return;
+        }
+
+        var scaleOrientation = !selected ? 1 : -1;
+
+        m_CardRectTransform.sizeDelta *= 2;
+        StartCoroutine(MoveCard(scaleOrientation));
+    }
+
+    private IEnumerator MoveCard(float value)
+    {
+        yield return null;
+        m_CardRectTransform.position = new Vector3(m_CardRectTransform.position.x, m_CardRectTransform.position.y + (m_CardRectTransform.rect.height / 9f) * value, m_CardRectTransform.position.z);
     }
 
     public void OnPointerExit()
     {
-        if (!m_canSelect) return;
-        transform.localScale = new Vector3(1f, 1f);
+        if (!m_canSelect || !m_canInteract)
+        {
+            return;
+        }
+
+        m_CardRectTransform.sizeDelta *= .5f;
     }
 
     public void OnClick()
@@ -82,13 +108,14 @@ public class CardImage : MonoBehaviour
         {
             AudioManager.Instance.Play(AudiosList.cardPush);
 
-            selected = !selected;
+            selected = true;
+
             energyCount.UseRoundEnergy(-Data.Energy());
-            transform.SetParent(selectedConteriner);
+
+            m_CardRectTransform.SetParent(selectedConteriner);
+
             OnSelect?.Invoke();
         }
-
-        transform.localScale = new Vector3(1f, 1f);
     }
 
     public void Deselect()
@@ -97,13 +124,14 @@ public class CardImage : MonoBehaviour
         {
             AudioManager.Instance.Play(AudiosList.cardPush);
 
-            selected = !selected;
+            selected = false;
+
             energyCount.UseRoundEnergy(Data.Energy());
-            transform.SetParent(selectConteriner);
+
+            m_CardRectTransform.SetParent(selectConteriner);
+
             OnDeselect?.Invoke();
         }
-
-        transform.localScale = new Vector3(1f, 1f);
     }
 
     // destroy o objeto se estiver selecionado no inicio do proximo turno
@@ -111,7 +139,7 @@ public class CardImage : MonoBehaviour
     {
         if (selected)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

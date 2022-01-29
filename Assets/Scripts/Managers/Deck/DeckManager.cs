@@ -57,7 +57,16 @@ public class DeckManager : MonoBehaviour
     // UseCard Event
     private void UseCardFeedback(CardImage card)
     {
-        card.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        card.gameObject.TryGetComponent(out RectTransform cardTransform);
+
+        cardTransform.sizeDelta *= 1.2f;
+        StartCoroutine(MoveCard(cardTransform));
+    }
+
+    private IEnumerator MoveCard(RectTransform cardTransform)
+    {
+        yield return null;
+        cardTransform.localPosition = new Vector3(cardTransform.localPosition.x, cardTransform.localPosition.y - (cardTransform.rect.height / 18f), cardTransform.localPosition.z);
     }
 
     private void UpdateDeck(List<CardData> cards)
