@@ -65,13 +65,17 @@ public class Life : MonoBehaviour
 
     public void AddLife(int increment)
     {
-        if (increment < 0)
-        {
-            TakeDamage(-increment);
-            return;
-        }
+        var inteligence = m_robot.CurrentRobotStats[Stats.inteligence];
+        increment = increment - inteligence;
 
-        m_currentLife = Mathf.Max(m_currentLife + increment, m_maxLife);
+        Debug.Log("Increment: " + increment);
+
+        m_currentLife += increment;
+
+        GameController.i.ShowAlertText(increment, transform.localScale.x > 0, Stats.health, Color.green);
+
+        if (m_currentLife > m_maxLife)
+            m_currentLife = m_maxLife;
 
         UpdateLifeSlider();
     }
@@ -89,14 +93,14 @@ public class Life : MonoBehaviour
             critChance = m_robot.CurrentRobotStats[Stats.critChance];
         }
 
-        //Chance de errar o dano da carta
+        // Chance de errar o dano da carta
         if (Random.Range(0f, 1f) > hitChance)
         {
             Debug.Log("Misses attack");
             return;
         }
 
-        //Chance de aplicar um cr�tico no ataque
+        // Chance de aplicar um critico no ataque
         if (Random.Range(0f, 1f) < critChance)
         {
             decrement += Mathf.FloorToInt(decrement / 2);
@@ -114,7 +118,7 @@ public class Life : MonoBehaviour
         GameController.i.ShowAlertText(damage, transform.localScale.x > 0, Stats.health, Color.red);
 
         if (HaveShield() && !ignoreShield)
-            damage = TakeDamageShield(decrement);
+            damage = TakeDamageShield(damage);
 
         m_currentLife -= damage;
 
