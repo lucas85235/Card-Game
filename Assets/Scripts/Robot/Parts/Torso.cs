@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Torso", menuName = "ScriptableObjects/Parts/Torso", order = 2)]
 public class Torso : RobotPart
 {
+    [Header("Special Sprite")]
+    [SerializeField] private Sprite shoulderSprite;
+
     public override void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem)
     {
         robotData.SetTorso(this);
@@ -12,4 +15,6 @@ public class Torso : RobotPart
             robotData.SetTorso(null);
         }
     }
+
+    public Sprite SpecialSprite() { return shoulderSprite; }
 }

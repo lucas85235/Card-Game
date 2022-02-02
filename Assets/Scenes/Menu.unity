@@ -1939,7 +1939,7 @@ GameObject:
   - component: {fileID: 386148432}
   - component: {fileID: 386148431}
   m_Layer: 5
-  m_Name: IdText
+  m_Name: DescriptionInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2440,7 +2440,7 @@ Transform:
   m_GameObject: {fileID: 463162724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1341590652}
   - {fileID: 1107782292}
@@ -2479,7 +2479,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpriteRen: {fileID: 1736073640}
+  neckSpriteRen: {fileID: 2094779954}
   torsoSpriteRen: {fileID: 1341590653}
+  waistSpriteRen: {fileID: 311634562}
   rightShoulderSpriteRen: {fileID: 2011660047}
   rightArmSpriteRen: {fileID: 1994964}
   rightHandSpriteRen: {fileID: 372245753}
@@ -3187,7 +3189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpriteRen: {fileID: 572341134}
+  neckSpriteRen: {fileID: 0}
   torsoSpriteRen: {fileID: 1561280908}
+  waistSpriteRen: {fileID: 0}
   rightShoulderSpriteRen: {fileID: 1898973705}
   rightArmSpriteRen: {fileID: 489664411}
   rightHandSpriteRen: {fileID: 0}
@@ -3996,7 +4000,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpriteRen: {fileID: 1169433961}
+  neckSpriteRen: {fileID: 0}
   torsoSpriteRen: {fileID: 1884272061}
+  waistSpriteRen: {fileID: 0}
   rightShoulderSpriteRen: {fileID: 1985847889}
   rightArmSpriteRen: {fileID: 1326978046}
   rightHandSpriteRen: {fileID: 0}
@@ -4738,7 +4744,7 @@ GameObject:
   - component: {fileID: 1224883524}
   - component: {fileID: 1224883523}
   m_Layer: 5
-  m_Name: StatsText
+  m_Name: RobotInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5494,7 +5500,7 @@ GameObject:
   - component: {fileID: 1376387830}
   - component: {fileID: 1376387829}
   m_Layer: 5
-  m_Name: IdText (1)
+  m_Name: NameInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6087,9 +6093,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotAnimation: {fileID: 463162727}
-  nameInfoText: {fileID: 0}
-  descriptionInfoText: {fileID: 0}
-  robotInfoText: {fileID: 0}
+  nameInfoText: {fileID: 1376387829}
+  descriptionInfoText: {fileID: 386148431}
+  robotInfoText: {fileID: 1224883523}
   cardConfiner: {fileID: 453180936}
   cardInfoPrefab: {fileID: 6125327348924141773, guid: 8775cffe9e2c16e4eb2ee45e86544ecd, type: 3}
 --- !u!1 &1708235259
@@ -6928,7 +6934,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpriteRen: {fileID: 1023885651}
+  neckSpriteRen: {fileID: 0}
   torsoSpriteRen: {fileID: 674304679}
+  waistSpriteRen: {fileID: 0}
   rightShoulderSpriteRen: {fileID: 1820601950}
   rightArmSpriteRen: {fileID: 1725828143}
   rightHandSpriteRen: {fileID: 0}
@@ -8149,7 +8157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpriteRen: {fileID: 2123185174278071432}
+  neckSpriteRen: {fileID: 0}
   torsoSpriteRen: {fileID: 2123185174557507607}
+  waistSpriteRen: {fileID: 0}
   rightShoulderSpriteRen: {fileID: 2123185173714816260}
   rightArmSpriteRen: {fileID: 2123185174273555644}
   rightHandSpriteRen: {fileID: 0}
@@ -8812,7 +8822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpriteRen: {fileID: 5013382220854934178}
+  neckSpriteRen: {fileID: 0}
   torsoSpriteRen: {fileID: 5013382220053290557}
+  waistSpriteRen: {fileID: 0}
   rightShoulderSpriteRen: {fileID: 5013382221232116526}
   rightArmSpriteRen: {fileID: 5013382220842934934}
   rightHandSpriteRen: {fileID: 0}

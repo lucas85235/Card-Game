@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_BuilderTorso
   m_EditorClassIdentifier: 
   id: T_BuilderTorso
-  partSprite: {fileID: 6913297356471620263, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 21300000, guid: 86c39b0d5ad24a847b577ab5541066f2, type: 3}
   health: 12
   energy: 0
   attack: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: ece78858ddf74ac49b9576a029405910, type: 2}
+  shoulderSprite: {fileID: 21300000, guid: dae7171ba721ebc4593efa8af3284e7f, type: 3}
