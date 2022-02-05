@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Head", menuName = "ScriptableObjects/Parts/Head", order = 1)]
 public class Head : RobotPart
 {
+    [Header("Special Sprite")]
+    [SerializeField] private Sprite neckSprite;
+
     public override void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem)
     {
         robotData.SetHead(this);
@@ -12,4 +15,6 @@ public class Head : RobotPart
             robotData.SetHead(null);
         }
     }
+
+    public Sprite SpecialSprite() => neckSprite;
 }

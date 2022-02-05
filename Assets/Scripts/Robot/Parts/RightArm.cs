@@ -3,8 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RightArm", menuName = "ScriptableObjects/Parts/RightArm", order = 5)]
 public class RightArm : RobotPart
 {
-    [Header("SpecialSprite")]
-    [SerializeField] private Sprite shoulderSprite;
+    [Header("Special Sprite")]
+    [SerializeField] private Sprite armSprite;
+    [SerializeField] private Sprite handSprite;
 
     public override void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem)
     {
@@ -16,5 +17,6 @@ public class RightArm : RobotPart
         }
     }
 
-    public Sprite SpecialSprite() { return shoulderSprite; }
+    public Sprite ArmSprite() => armSprite;
+    public Sprite HandSprite() => handSprite;
 }

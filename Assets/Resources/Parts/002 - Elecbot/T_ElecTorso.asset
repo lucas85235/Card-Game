@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_ElecTorso
   m_EditorClassIdentifier: 
   id: T_ElecTorso
-  partSprite: {fileID: -405762243776489149, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
+  partSprite: {fileID: 21300000, guid: 2f56a5968faf5f046ba81b4947b74191, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: 69f021cb619bb8d488d2845d6fbc9f43, type: 2}
+  waistSprite: {fileID: 21300000, guid: 9a4d060f9d235e242bc2e014452c62bf, type: 3}

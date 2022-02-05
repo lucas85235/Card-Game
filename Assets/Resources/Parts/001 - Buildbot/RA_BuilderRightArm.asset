@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RA_BuilderRightArm
   m_EditorClassIdentifier: 
   id: RA_BuilderRightArm
-  partSprite: {fileID: -2811501513268888928, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 21300000, guid: d9cdcdb34a0f3d24f9f667952e3c9368, type: 3}
   health: 8
   energy: 0
   attack: 2
@@ -32,4 +32,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dcd3a821081bcae458b83afdb93bbb9f, type: 2}
   - {fileID: 11400000, guid: b39c8b745b2804c4381d7af55cd94f61, type: 2}
   - {fileID: 11400000, guid: b39c8b745b2804c4381d7af55cd94f61, type: 2}
-  shoulderSprite: {fileID: -6525317487527239520, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  armSprite: {fileID: 21300000, guid: 83496f4fdd444ea4193676dea2f57e66, type: 3}
+  handSprite: {fileID: 21300000, guid: 7b4ffccb35a994c40afdfdf213546395, type: 3}

@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class RobotAnimation : MonoBehaviour
 {
+    [Header("Torso")]
     [SerializeField] private SpriteRenderer headSpriteRen;
+    [SerializeField] private SpriteRenderer neckSpriteRen;
     [SerializeField] private SpriteRenderer torsoSpriteRen;
-    [SerializeField] private SpriteRenderer legsSpriteRen;
+    [SerializeField] private SpriteRenderer waistSpriteRen;
+
+    [Header("Right Arms")]
     [SerializeField] private SpriteRenderer rightShoulderSpriteRen;
-    [SerializeField] private SpriteRenderer leftShoulderSpriteRen;
     [SerializeField] private SpriteRenderer rightArmSpriteRen;
+    [SerializeField] private SpriteRenderer rightHandSpriteRen;
+
+    [Header("Left Arms")]
+    [SerializeField] private SpriteRenderer leftShoulderSpriteRen;
     [SerializeField] private SpriteRenderer leftArmSpriteRen;
+    [SerializeField] private SpriteRenderer leftHandSpriteRen;
+
+    [Header("Legs")]
+    [SerializeField] private SpriteRenderer bowlSpriteRen;
+    [SerializeField] private SpriteRenderer rightLegSpriteRen;
+    [SerializeField] private SpriteRenderer rightFootSpriteRen;
+    [SerializeField] private SpriteRenderer leftLegSpriteRen;
+    [SerializeField] private SpriteRenderer leftFootSpriteRen;
 
     private Animator m_Animator;
 
@@ -25,15 +40,29 @@ public class RobotAnimation : MonoBehaviour
     
     public void ChangeRobotSprites(RobotData newRobot)
     {
-        //Retorna sprites na ordem: Tronco - Pernas - Cabeça - Ombro Direito - Braço Direito - Ombro Esquerdo - Braço Esquerdo
         var newSprites = newRobot.Sprites();
 
-        torsoSpriteRen.sprite = newSprites[0];
-        legsSpriteRen.sprite = newSprites[1];
-        headSpriteRen.sprite = newSprites[2];
-        rightShoulderSpriteRen.sprite = newSprites[3];
-        rightArmSpriteRen.sprite = newSprites[4];
-        leftShoulderSpriteRen.sprite = newSprites[5];
-        leftArmSpriteRen.sprite = newSprites[6];
+        headSpriteRen.sprite = newSprites["head"];
+        neckSpriteRen.sprite = newSprites["head-special"];
+        torsoSpriteRen.sprite = newSprites["torso"];
+        waistSpriteRen.sprite = newSprites["torso-special"];
+
+        bowlSpriteRen.sprite = newSprites["leg-bowl"];
+        rightLegSpriteRen.sprite = newSprites["leg-right"];
+        rightFootSpriteRen.sprite = newSprites["hoot-right"];
+        leftLegSpriteRen.sprite = newSprites["leg-left"];
+        leftFootSpriteRen.sprite = newSprites["foot-left"];
+
+        rightShoulderSpriteRen.sprite = newSprites["right-arm-shouder"];
+        rightArmSpriteRen.sprite = newSprites["right-arm"];
+        if ( newSprites.ContainsKey("right-hand") )
+            rightHandSpriteRen.sprite = newSprites["right-hand"];
+        else rightHandSpriteRen.sprite = null;
+
+        leftShoulderSpriteRen.sprite = newSprites["left-arm-shouder"];
+        leftArmSpriteRen.sprite = newSprites["left-arm"];
+        if ( newSprites.ContainsKey("left-hand") )
+            leftHandSpriteRen.sprite = newSprites["left-hand"];
+        else leftHandSpriteRen.sprite = null;
     }
 }

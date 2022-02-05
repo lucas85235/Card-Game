@@ -177,7 +177,7 @@ public class MenuManager : MonoBehaviour
 
         #endregion
 
-        for (int i = 0; i < newParts.Count; i++)
+        for (int i = 0; i < newParts.Count - 1; i++)
         {
             DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
             DataManager.Instance.AssignPartToRobot("code" + (i + 1), Mathf.FloorToInt(i / 5));

@@ -20,101 +20,37 @@ public class RobotData : ScriptableObject
     [SerializeField] private Leg leg;
 
     #region PartsGetsAndSets
-    public Head GetHead()
-    {
-        return head;
-    }
-    public Torso GetTorso()
-    {
-        return torso;
-    }
-    public RightArm GetRightArm()
-    {
-        return rightArm;
-    }
-    public LeftArm GetLeftArm()
-    {
-        return leftArm;
-    }
-    public Leg GetLeg()
-    {
-        return leg;
-    }
-    public void SetHead(Head _head)
-    {
-        head = _head;
-    }
-    public void SetTorso(Torso _torso)
-    {
-        torso = _torso;
-    }
-    public void SetRightArm(RightArm _rightArm)
-    {
-        rightArm = _rightArm;
-    }
-    public void SetLeftArm(LeftArm _leftArm)
-    {
-        leftArm = _leftArm;
-    }
-    public void SetLeg(Leg _leg)
-    {
-        leg = _leg;
-    }
+
+    public Head GetHead() => head;
+    public Torso GetTorso() => torso;
+    public RightArm GetRightArm() => rightArm;
+    public LeftArm GetLeftArm() => leftArm;
+    public Leg GetLeg() => leg;
+    
+    public void SetHead(Head _head) => head = _head;
+    public void SetTorso(Torso _torso) => torso = _torso;
+    public void SetRightArm(RightArm _rightArm) => rightArm = _rightArm;
+    public void SetLeftArm(LeftArm _leftArm) => leftArm = _leftArm;
+    public void SetLeg(Leg _leg) => leg = _leg;
+
     #endregion
 
     #region PartsStats
-    public int Health()
-    {
-        return head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
-    }
-    public int Energy() 
-    { 
-        return head.Energy() + torso.Energy() + rightArm.Energy() + leftArm.Energy() + leg.Energy(); 
-    }
-    public int Attack() 
-    {
-        return head.Attack() + torso.Attack() + rightArm.Attack() + leftArm.Attack() + leg.Attack(); 
-    }
-    public int Defense()
-    { 
-        return head.Defense() + torso.Defense() + rightArm.Defense() + leftArm.Defense() + leg.Defense(); 
-    }
-    public int Speed()
-    {
-        return head.Speed() + torso.Speed() + rightArm.Speed() + leftArm.Speed() + leg.Speed();
-    }
-    public int Inteligence() 
-    {
-        return head.Inteligence() + torso.Inteligence() + rightArm.Inteligence() + leftArm.Inteligence() + leg.Inteligence();
-    }
-    public int Accuracy() 
-    { 
-        return head.Accuracy() + torso.Accuracy() + rightArm.Accuracy() + leftArm.Accuracy() + leg.Accuracy();
-    }
-    public int Evasion() 
-    {
-        return head.Evasion() + torso.Evasion() + rightArm.Evasion() + leftArm.Evasion() + leg.Evasion();
-    }
-    public int CritChance() 
-    { 
-        return head.CritChance() + torso.CritChance() + rightArm.CritChance() + leftArm.CritChance() + leg.CritChance(); 
-    }
-    public int FireResistence() 
-    {
-        return head.FireResistence() + torso.FireResistence() + rightArm.FireResistence() + leftArm.FireResistence() + leg.FireResistence();
-    }
-    public int WaterResistence() 
-    {
-        return head.WaterResistence() + torso.WaterResistence() + rightArm.WaterResistence() + leftArm.WaterResistence() + leg.WaterResistence();
-    }
-    public int ElectricResistence() 
-    {
-        return head.ElectricResistence() + torso.ElectricResistence() + rightArm.ElectricResistence() + leftArm.ElectricResistence() + leg.ElectricResistence();
-    }
-    public int AcidResistence() 
-    {
-        return head.AcidResistence() + torso.AcidResistence() + rightArm.AcidResistence() + leftArm.AcidResistence() + leg.AcidResistence();
-    }
+
+    public int Health() => head.Health() + torso.Health() + rightArm.Health() + leftArm.Health() + leg.Health();
+    public int Energy() => head.Energy() + torso.Energy() + rightArm.Energy() + leftArm.Energy() + leg.Energy(); 
+    public int Attack()  => head.Attack() + torso.Attack() + rightArm.Attack() + leftArm.Attack() + leg.Attack(); 
+    public int Defense() => head.Defense() + torso.Defense() + rightArm.Defense() + leftArm.Defense() + leg.Defense(); 
+    public int Speed() => head.Speed() + torso.Speed() + rightArm.Speed() + leftArm.Speed() + leg.Speed();
+    public int Inteligence()  => head.Inteligence() + torso.Inteligence() + rightArm.Inteligence() + leftArm.Inteligence() + leg.Inteligence();
+    public int Accuracy() => head.Accuracy() + torso.Accuracy() + rightArm.Accuracy() + leftArm.Accuracy() + leg.Accuracy();
+    public int Evasion()  => head.Evasion() + torso.Evasion() + rightArm.Evasion() + leftArm.Evasion() + leg.Evasion();
+    public int CritChance() => head.CritChance() + torso.CritChance() + rightArm.CritChance() + leftArm.CritChance() + leg.CritChance(); 
+    public int FireResistence()  => head.FireResistence() + torso.FireResistence() + rightArm.FireResistence() + leftArm.FireResistence() + leg.FireResistence();
+    public int WaterResistence()  => head.WaterResistence() + torso.WaterResistence() + rightArm.WaterResistence() + leftArm.WaterResistence() + leg.WaterResistence();
+    public int ElectricResistence()  => head.ElectricResistence() + torso.ElectricResistence() + rightArm.ElectricResistence() + leftArm.ElectricResistence() + leg.ElectricResistence();
+    public int AcidResistence()  => head.AcidResistence() + torso.AcidResistence() + rightArm.AcidResistence() + leftArm.AcidResistence() + leg.AcidResistence();
+    
     #endregion
 
     public List<CardData> Cards()
@@ -130,17 +66,31 @@ public class RobotData : ScriptableObject
         return cardList;
     }
 
-    public List<Sprite> Sprites()
+    public Dictionary<string, Sprite> Sprites()
     {
-        var spritesList = new List<Sprite>();
+        var spritesList = new Dictionary<string, Sprite>();
 
-        spritesList.Add(torso.Sprite());
-        spritesList.Add(leg.Sprite());
-        spritesList.Add(head.Sprite());
-        spritesList.Add(rightArm.SpecialSprite());
-        spritesList.Add(rightArm.Sprite());
-        spritesList.Add(leftArm.SpecialSprite());
-        spritesList.Add(leftArm.Sprite());
+        spritesList.Add("head", head.Sprite());
+        spritesList.Add("head-special", head.SpecialSprite());
+
+        spritesList.Add("torso", torso.Sprite());
+        spritesList.Add("torso-special", torso.SpecialSprite());
+
+        spritesList.Add("leg-bowl", leg.Sprite());
+        spritesList.Add("leg-right", leg.RightLeg());
+        spritesList.Add("hoot-right", leg.RightFoot());
+        spritesList.Add("leg-left", leg.LeftLeg());
+        spritesList.Add("foot-left", leg.LeftFoot());
+
+        spritesList.Add("right-arm-shouder", rightArm.Sprite());
+        spritesList.Add("right-arm", rightArm.ArmSprite());
+        if ( rightArm.HandSprite() != null )
+            spritesList.Add("right-hand", rightArm.HandSprite());
+
+        spritesList.Add("left-arm-shouder", leftArm.Sprite());
+        spritesList.Add("left-arm", leftArm.ArmSprite());
+        if ( leftArm.HandSprite() != null )
+            spritesList.Add("left-hand", leftArm.HandSprite());
 
         return spritesList;
     }

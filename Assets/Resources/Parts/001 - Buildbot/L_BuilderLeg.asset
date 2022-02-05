@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L_BuilderLeg
   m_EditorClassIdentifier: 
   id: L_BuilderLeg
-  partSprite: {fileID: -16726413310346473, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  partSprite: {fileID: 21300000, guid: 9cb4d3430c3362f45bd7586fcd3691ce, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -32,3 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21d0243663e5e7245a3dc605fbd95cd6, type: 2}
   - {fileID: 11400000, guid: 5c5d55170da0ea34aa9e7e040103423a, type: 2}
   - {fileID: 11400000, guid: 5c5d55170da0ea34aa9e7e040103423a, type: 2}
+  rightLeg: {fileID: 21300000, guid: 205be683874cbd046bde36eaf5fe4504, type: 3}
+  leftLeg: {fileID: 21300000, guid: a15058d80b328e7439b27d491c94b6cf, type: 3}
+  rightFoot: {fileID: 21300000, guid: c7c91e17c4a93bd468e8cf11cf41dbbd, type: 3}
+  leftFoot: {fileID: 21300000, guid: 0ba0681eeb84c104e9fff88db0874ecc, type: 3}

@@ -5,46 +5,40 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-using Random = UnityEngine.Random;
-
 public class GameController : MonoBehaviour
 {
-    public static GameController i;
-
-
     [Header("Setup")]
     [SerializeField] private float timeToPlay;
     [SerializeField] private Slider timeSlider;
-    [SerializeField] private Robot[] robots;
 
     [Header("Alert")]
     [SerializeField] private GameObject alertText;
     [SerializeField] private RectTransform alertLeft;
     [SerializeField] private RectTransform alertRight;
 
-    [Serializable]
-    private struct Icon
-    {
-        public Sprite sprite;
-        public Stats stat;
-        public bool positive;
-    }
-
+    [Header("Icons")]
     [SerializeField] private List<Icon> iconList;
 
+    private List<Robot> robots;
     private Coroutine timeRoundCoroutine;
     private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
+
+    public static GameController i;
 
     private void Awake()
     {
         i = this;
 
+        var round = FindObjectOfType<RoundLoop>();
+        robots = new List<Robot>();
+
+        robots.Add(round.playerOne);
+        robots.Add(round.playerTwo);
+
         foreach (var icon in iconList)
         {
             if(!m_IconDictionary.ContainsKey(icon.stat))
-            {
                 m_IconDictionary[icon.stat] = new Dictionary<bool, Sprite>();
-            }
 
             m_IconDictionary[icon.stat][icon.positive] = icon.sprite;
         }
@@ -74,7 +68,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(imageObject);
         }
-        else
+        else 
         {
             imageObject.TryGetComponent(out Image imageComponent);
             imageComponent.sprite = m_IconDictionary[statToShow][value > 0];
@@ -97,7 +91,7 @@ public class GameController : MonoBehaviour
 
         newAlert.TryGetComponent(out CanvasGroup textCGroup);
         LeanTween.value(1, 0, 2)
-            .setOnUpdate((float value) =>
+            .setOnUpdate( (float value) =>
             {
                 textCGroup.alpha = value;
             });
@@ -158,4 +152,12 @@ public class GameController : MonoBehaviour
     {
         LeanTween.cancelAll();
     }
+
+    [Serializable]
+    private struct Icon
+    {
+        public Sprite sprite;
+        public Stats stat;
+        public bool positive;
+    }    
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LA_ElecLeftArm
   m_EditorClassIdentifier: 
   id: LA_ElecLeftArm
-  partSprite: {fileID: -1775922787539150558, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
+  partSprite: {fileID: 21300000, guid: fb24c823eb6a4c643a933b7184fc16ef, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -32,4 +32,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1ad5998766161b48be1a523ae591736, type: 2}
   - {fileID: 11400000, guid: eeaf2ec2bbefed942928bb255c030191, type: 2}
   - {fileID: 11400000, guid: eeaf2ec2bbefed942928bb255c030191, type: 2}
-  shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  armSprite: {fileID: 21300000, guid: a1c9595be575c0042b9897ed2d31cc39, type: 3}
+  handSprite: {fileID: 0}
