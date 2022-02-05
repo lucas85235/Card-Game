@@ -55,12 +55,14 @@ public class RobotAnimation : MonoBehaviour
 
         rightShoulderSpriteRen.sprite = newSprites["right-arm-shouder"];
         rightArmSpriteRen.sprite = newSprites["right-arm"];
-        if ( newSprites.ContainsKey("right-arm-hand") )
-            rightHandSpriteRen.sprite = newSprites["right-arm-hand"];
+        if ( newSprites.ContainsKey("right-hand") )
+            rightHandSpriteRen.sprite = newSprites["right-hand"];
+        else rightHandSpriteRen.sprite = null;
 
         leftShoulderSpriteRen.sprite = newSprites["left-arm-shouder"];
         leftArmSpriteRen.sprite = newSprites["left-arm"];
-        if ( newSprites.ContainsKey("left-arm-hand") )
-            leftHandSpriteRen.sprite = newSprites["left-arm-hand"];
+        if ( newSprites.ContainsKey("left-hand") )
+            leftHandSpriteRen.sprite = newSprites["left-hand"];
+        else leftHandSpriteRen.sprite = null;
     }
 }

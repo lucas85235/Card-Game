@@ -4,7 +4,7 @@ using UnityEngine;
 public class Torso : RobotPart
 {
     [Header("Special Sprite")]
-    [SerializeField] private Sprite shoulderSprite;
+    [SerializeField] private Sprite waistSprite;
 
     public override void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem)
     {
@@ -16,5 +16,5 @@ public class Torso : RobotPart
         }
     }
 
-    public Sprite SpecialSprite() { return shoulderSprite; }
+    public Sprite SpecialSprite() => waistSprite;
 }

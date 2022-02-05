@@ -115,6 +115,8 @@ public class Life : MonoBehaviour
 
         int damage = decrement - resistence;
 
+        if (damage < 1) damage = 1;
+
         GameController.i.ShowAlertText(damage, transform.localScale.x > 0, Stats.health, Color.red);
 
         if (HaveShield() && !ignoreShield)

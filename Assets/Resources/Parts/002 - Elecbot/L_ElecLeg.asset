@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L_ElecLeg
   m_EditorClassIdentifier: 
   id: L_ElecLeg
-  partSprite: {fileID: 3886836005308285829, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
+  partSprite: {fileID: 21300000, guid: 7afe93ec244e5bf49bbeb6fb4343ea0c, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -32,3 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21d0243663e5e7245a3dc605fbd95cd6, type: 2}
   - {fileID: 11400000, guid: f6ae51a81b9bad149a944a2c6b51030a, type: 2}
   - {fileID: 11400000, guid: f6ae51a81b9bad149a944a2c6b51030a, type: 2}
+  rightLeg: {fileID: 21300000, guid: 5ac5b3622723fbb4e8a9ede5b54551e1, type: 3}
+  leftLeg: {fileID: 21300000, guid: 99df7327db1c6e74e8f1c25f3bb5bd31, type: 3}
+  rightFoot: {fileID: 21300000, guid: 102d6157c00bb224cb62ea297740effd, type: 3}
+  leftFoot: {fileID: 21300000, guid: 39faf56c90f0d844880c9b2f4bde9f74, type: 3}

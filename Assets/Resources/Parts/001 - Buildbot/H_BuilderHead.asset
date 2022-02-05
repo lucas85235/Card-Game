@@ -33,4 +33,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
   - {fileID: 11400000, guid: 620d3fde7cc91cd479ac8bd4764dc36c, type: 2}
   - {fileID: 11400000, guid: dc6de1b1405479144bd3ba0db683a526, type: 2}
-  shoulderSprite: {fileID: 21300000, guid: 67d7f94e672c10544a084f47acc8307f, type: 3}
+  neckSprite: {fileID: 21300000, guid: 67d7f94e672c10544a084f47acc8307f, type: 3}
