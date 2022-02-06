@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Card_Flare
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: cc3ab5d070517b24c94471db6ae37897, type: 3}
-  title: "Clar\xE3o"
-  description: "Causa 5 pontos de dano no advers\xE1rio e reduz a precis\xE3o do
-    advers\xE1rio em 3%"
+  textKey: Flare
   energy: 2
   effects:
   - skills: []

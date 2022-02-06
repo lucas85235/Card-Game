@@ -42,12 +42,19 @@ public class CardImage : MonoBehaviour
     void Start()
     {
         image.sprite = Data.Sprite();
-        title.text = Data.Title();
         energy.text = Data.Energy().ToString();
-        description.text = Data.Description();
+
+        LanguageManager.Instance.OnChangeLanguage += UpdateText;
+        UpdateText();
 
         Round.i.EndTurn.AddListener(() => OnStartTurn());
         Round.i.StartTurn.AddListener(() => m_canSelect = false);
+    }
+
+    private void UpdateText()
+    {
+        title.text = LanguageManager.Instance.GetKeyValue(Data.TitleKey());
+        description.text = LanguageManager.Instance.GetKeyValue(Data.DescriptionKey());
     }
 
     public void UseEffect()
@@ -146,6 +153,8 @@ public class CardImage : MonoBehaviour
     // limpa as callbacks
     private void OnDestroy()
     {
+        LanguageManager.Instance.OnChangeLanguage -= UpdateText;
+
         OnSelect = null;
         OnDeselect = null;
     }

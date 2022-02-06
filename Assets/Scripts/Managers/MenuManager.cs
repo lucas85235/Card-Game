@@ -22,8 +22,6 @@ public class MenuManager : MonoBehaviour
     {
         LoadTestData();
 
-        FillRobotInformation();
-
         DataManager.Instance.PlayerInfo.CurrentRobotIndex = m_CurrentRobotIndex;
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
     }
@@ -186,6 +184,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        FillRobotInformation();
+
         AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
     }
@@ -196,11 +196,11 @@ public class MenuManager : MonoBehaviour
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
         robotInfoText.text =
-            "Vida: " + DataManager.Instance.GetCurrentRobot().Health() +
-            " Ataque: " + DataManager.Instance.GetCurrentRobot().Attack() +
-            " Defesa: " + DataManager.Instance.GetCurrentRobot().Defense() +
-            " Velocidade: " + DataManager.Instance.GetCurrentRobot().Speed() +
-            " Energia: " + DataManager.Instance.GetCurrentRobot().Energy();
+            LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() +
+            LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() +
+            LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() +
+            LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() +
+            LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy();
 
         nameInfoText.text =
             DataManager.Instance.GetCurrentRobot().characterName + " - " +
@@ -222,13 +222,18 @@ public class MenuManager : MonoBehaviour
             cardImage.sprite = card.Sprite();
 
             newCardInfo.transform.Find("StatsText").TryGetComponent(out TextMeshProUGUI statsText);
-            statsText.text = card.Title();
+            statsText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
 
             newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
-            descriptionText.text = card.Description();
+            descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
         }
     }
 
+    public void ReceiveLanguageChange(int value)
+    {
+        LanguageManager.Instance.LoadLocalizedText(languageIndex: value);
+    }
+    
     public void StartGame()
     {
         TransitionManager.Instance.StartTransition("Game");

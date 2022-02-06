@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Card_RepairTools
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 9ac6972fdeced184cba21fcccf8f358d, type: 3}
-  title: Ferramentas de Reparo
-  description: Cura de 2 a 6 Pontos de Vida
+  textKey: RepairTools
   energy: 2
   effects:
-  - effect: {fileID: 11400000, guid: 8fe25342434c65a499a642f7aec6b749, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: 8fe25342434c65a499a642f7aec6b749, type: 2}
     value: {x: 2, y: 6}
     chance: 1
     selfApply: 1
     effectBonusByStat: 1
     statToApplyEffectBonus: 5
     effectMultiplierRange: {x: 1, y: 1}
-  attribute: 
+  skills: []
   trigger: 0

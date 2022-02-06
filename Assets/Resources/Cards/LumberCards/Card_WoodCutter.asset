@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_WoodCutter
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 9ba4205dc72853141a2bb7eb8aeb64f8, type: 3}
-  title: Cortador de Madeira
-  description: Causa de 6 a 10 pontos de dano
+  textKey: WoodCutter
   energy: 1
   effects:
   - skills: []

@@ -8,8 +8,7 @@ public class CardData : ScriptableObject
 {
     [Header("Visual")]
     [SerializeField] private Sprite cardSprite;
-    [SerializeField] private string title;
-    [SerializeField] private string description;
+    [SerializeField] private string textKey;
 
     [Header("Costs")]
     [SerializeField] private int energy;
@@ -26,8 +25,8 @@ public class CardData : ScriptableObject
     public bool SingleUse { get; set; } = false;
 
     public Sprite Sprite() { return cardSprite; }
-    public string Title() { return title; }
-    public string Description() { return description; }
+    public string TitleKey() { return "Card_" + textKey + "_Title"; }
+    public string DescriptionKey() { return "Card_" + textKey + "_Description"; }
     public int Energy() { return energy; }
     public List<CardEffectStruct> Effects() { return effects; }
     public List<CardSkill> Skills() { return skills; }

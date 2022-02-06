@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_Timber
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: da14657bd12d67243bdc2d284c627869, type: 3}
-  title: Madeira!
-  description: Causa 15 pontos de dano
+  textKey: Timber
   energy: 4
   effects:
   - skills: []

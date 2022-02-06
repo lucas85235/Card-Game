@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_IronBeard
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: cb3894227455f8c40a97cc0ab9941392, type: 3}
-  title: Barba de Ferro
-  description: "Aumenta a chance de cr\xEDtico em 5%."
+  textKey: IronBeard
   energy: 2
   effects:
   - skills: []

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_Chainsaw
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 970c9ce791dc2df43b6a2cd73c50a0e6, type: 3}
-  title: "Serra El\xE9trica"
-  description: Causa de 10 a 12 pontos de dano
+  textKey: Chainsaw
   energy: 2
   effects:
   - skills: []

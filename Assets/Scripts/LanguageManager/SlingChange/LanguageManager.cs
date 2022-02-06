@@ -14,7 +14,7 @@ public class LanguageManager : MonoBehaviour
     [HideInInspector]
     public const string saveLanguageKey = "Language";
     public string SaveLanguageKey { get => saveLanguageKey; }
-    private string languageSelected = "language_text_en-us";
+    private string languageSelected = "language_text_pt-br";
 
     [HideInInspector] public string[] languageOptions = {
         "language_text_pt-br",
@@ -41,39 +41,56 @@ public class LanguageManager : MonoBehaviour
     }
 
     /// <summary> carrega a linguagem que foi salve ou a padrão caso não tenha salvo </summary>
-    public void LoadSaveLanguage() => LoadLocazidedText(languageSelected);
+    public void LoadSaveLanguage() => LoadLocalizedText(languageSelected);
 
     /// <summary> Use esse evento para trocar os textos após a mudança de linguagem </summary>
     public Action OnChangeLanguage;
 
     public static LanguageManager Instance;
 
-    void Awake() 
+    void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
-        
+        DontDestroyOnLoad(gameObject);
+
+        if (selectLanguage == Languages.ptBr)
+        {
+            languageSelected = languageOptions[0];
+        }
+        if (selectLanguage == Languages.enUs)
+        {
+            languageSelected = languageOptions[1];
+        }
+
+        PlayerPrefs.DeleteAll();
+
         if (!PlayerPrefs.HasKey(saveLanguageKey))
         {
-            PlayerPrefs.SetString(saveLanguageKey, languageOptions[1]);
+            PlayerPrefs.SetString(saveLanguageKey, languageSelected);
             PlayerPrefs.Save();
         }
 
         // Load Saved Key
         languageSelected = PlayerPrefs.GetString(saveLanguageKey);
-        LoadLocazidedText(languageSelected);
-        
-        if (languageSelected == languageOptions[0]) selectLanguage = Languages.ptBr;
-        if (languageSelected == languageOptions[1]) selectLanguage = Languages.enUs;
+        LoadLocalizedText(languageSelected);
     }
 
     // acha e carrega o arquivo com as traduções
-    public void LoadLocazidedText(string fileName) 
+    public void LoadLocalizedText(string fileName= "", int languageIndex=-1) 
     {
         isReady = false;
 
+        string fileToGet = languageIndex == -1 ? fileName : languageOptions[languageIndex];
+
         localizedText = new Dictionary<string, string>();
 
-        TextAsset file = Resources.Load(fileName) as TextAsset;
+        TextAsset file = Resources.Load("Localization/" + fileToGet) as TextAsset;
         var dataAsJson = file.text;
         LanguageData loaderData = JsonUtility.FromJson<LanguageData>(dataAsJson);
         
@@ -82,22 +99,27 @@ public class LanguageManager : MonoBehaviour
             localizedText.Add(loaderData.items[i].key, loaderData.items[i].value);
         }
 
-        SaveLanguage(fileName);
+        SaveLanguage(fileToGet);
 
-        PlayerPrefs.SetString(saveLanguageKey, fileName);
+        PlayerPrefs.SetString(saveLanguageKey, fileToGet);
         PlayerPrefs.Save();
+
+        languageSelected = fileToGet;
+
+        isReady = true;
 
         if (OnChangeLanguage != null) OnChangeLanguage();
         
         Debug.Log("Data loader, dictionary contains: " + localizedText.Count + " entries");
-        isReady = true;
     }
 
     // retorna o valor definido para a chave
     public string GetKeyValue(string key) 
     {
-        if (!isReady) LoadLocazidedText(languageOptions[0]);
-
+        if (!isReady)
+        {
+            LoadLocalizedText(languageSelected);
+        }
         string resul = missingText;
 
         if (localizedText.ContainsKey(key)) 

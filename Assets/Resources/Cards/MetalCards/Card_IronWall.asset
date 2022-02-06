@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_IronWall
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 5331a22bdcb100e4787b60143348990a, type: 3}
-  title: Muro de Ferro
-  description: Cria um Escudo com 15 Pontos de Vida
+  textKey: IronWall
   energy: 5
   effects:
   - skills: []

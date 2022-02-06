@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_Concentration
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: badc672fdf4194843a6a749a1bae9679, type: 3}
-  title: "Concentra\xE7\xE3o"
-  description: "Aumenta a Precis\xE3o em 5%"
+  textKey: Concentration
   energy: 2
   effects:
   - skills: []

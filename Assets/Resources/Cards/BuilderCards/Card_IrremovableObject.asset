@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_IrremovableObject
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 880fbc4f48bd11147b8a3de6715b881f, type: 3}
-  title: "Objeto Irremov\xEDvel"
-  description: Cria um escudo com 10 Pontos de Vida
+  textKey: IrremovableObject
   energy: 2
   effects:
   - skills: []

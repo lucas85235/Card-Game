@@ -1,0 +1,170 @@
+{"items":
+    [
+        {"key":"play", "value":"Jogar"},
+        {"key":"configurations", "value":"Configurações"},
+        {"key":"robots", "value":"Robôs"},
+        {"key":"quit", "value":"Sair"},
+        {"key":"close", "value":"Fechar"},
+        {"key":"return", "value":"Voltar"},
+        {"key":"inventory", "value":"Inventário"},
+        {"key":"restart", "value":"Recomeçar"},
+
+        {"key":"conf_audio_all", "value":"Geral"},
+        {"key":"conf_audio_music", "value":"Música"},
+        {"key":"conf_audio_sfx", "value":"Efeitos Sonoros"},
+        {"key":"conf_language", "value":"Idioma"},
+
+        {"key":"menu_help_title", "value":"Como jogar?"},
+        {"key":"menu_help_content", "value":"É muito simples, basta clicar nas cartas e terminar a jogada antes que o tempo acabe."},
+        
+        {"key":"battle_deck", "value":"Deck"},
+        {"key":"battle_discard", "value":"Descarte"},
+        {"key":"battle_victory", "value":"Vitória"},
+        {"key":"battle_defeat", "value":"Derrota"},
+
+        {"key":"health", "value":"Vida"},
+        {"key":"energy", "value":"Energia"},
+        {"key":"attack", "value":"Ataque"},
+        {"key":"defense", "value":"Defesa"},
+        {"key":"speed", "value":"Velocidade"},
+        {"key":"inteligence", "value":"Inteligência"},
+        {"key":"accuracy", "value":"Acurácia"},
+        {"key":"evasion", "value":"Evasão"},
+        {"key":"critChance", "value":"Chance de crítico"},
+        {"key":"fireResistence", "value":"Resistência à fogo"},
+        {"key":"waterResistence", "value":"Resistência à água"},
+        {"key":"electricResistence", "value":"Resistência à eletricidade"},
+        {"key":"acidResistence", "value":"Resistência à ácido"},
+
+
+
+        {"key":"Card_ConcreteFist_Title", "value":"Soco de Concreto"},
+        {"key":"Card_ConcreteFist_Description", "value":"Aumenta seu Ataque em 1 ponto"},
+
+        {"key":"Card_ForceShield_Title", "value":"Escudo de Força"},
+        {"key":"Card_ForceShield_Description", "value":"Cria um escudo com 3 Pontos de Vida"},
+
+        {"key":"Card_ForceWall_Title", "value":"Muralha de Força"},
+        {"key":"Card_ForceWall_Description", "value":"Cria um escudo com 15 Pontos de Vida"},
+
+        {"key":"Card_HammerTime_Title", "value":"Marretada"},
+        {"key":"Card_HammerTime_Description", "value":"Causa de 10 a 15 pontos de dano. Reduz a Defesa do adversário em 1 ponto"},
+
+        {"key":"Card_HeadButt_Title", "value":"Cabeçada"},
+        {"key":"Card_HeadButt_Description", "value":"Causa de 8 a 15 pontos de dano"},
+
+        {"key":"Card_IrremovableObject_Title", "value":"Objeto Irremovível"},
+        {"key":"Card_IrremovableObject_Description", "value":"Cria um escudo com 10 Pontos de Vida"},
+
+        {"key":"Card_Kick_Title", "value":"Chute"},
+        {"key":"Card_Kick_Description", "value":"Causa de 6 a 13 pontos de dano"},
+
+        {"key":"Card_Punch_Title", "value":"Soco"},
+        {"key":"Card_Punch_Description", "value":"Causa de 7 a 11 pontos de dano"},
+
+        {"key":"Card_RaiseWall_Title", "value":"Levantar Muro"},
+        {"key":"Card_RaiseWall_Description", "value":"Aumenta sua Defesa em 1 ponto"},
+
+        {"key":"Card_RockyHelmet_Title", "value":"Capacete Rochoso"},
+        {"key":"Card_RockyHelmet_Description", "value":"Aumenta sua Defesa em 2 pontos"},
+
+        {"key":"Card_Amperemeter_Title", "value":"Amperímetro"},
+        {"key":"Card_Amperemeter_Description", "value":"Aumenta sua Inteligência em 1 ponto"},
+
+        {"key":"Card_ForceArmor_Title", "value":"Armadura de Força"},
+        {"key":"Card_ForceArmor_Description", "value":"Cria um escudo com 12 Pontos de Vida"},
+
+        {"key":"Card_LightningReflexes_Title", "value":"Reflexos Rápidos"},
+        {"key":"Card_LightningReflexes_Description", "value":"Aumenta sua Defesa sua a Velocidade em 1 ponto cada"},
+
+        {"key":"Card_LightningRod_Title", "value":"Raio"},
+        {"key":"Card_LightningRod_Description", "value":"Causa de 6 a 15 pontos de dano elétrico. A inteligência é multiplicada por 2 neste ataque"},
+
+        {"key":"Card_ProtectionHelmet_Title", "value":"Capacete de Proteção"},
+        {"key":"Card_ProtectionHelmet_Description", "value":"Aumenta sua Defesa em 1 ponto"},
+
+        {"key":"Card_QuickKick_Title", "value":"Chute Rápido"},
+        {"key":"Card_QuickKick_Description", "value":"Causa de 5 a 10 pontos de dano"},
+
+        {"key":"Card_RepairTools_Title", "value":"Ferramentas de Reparo"},
+        {"key":"Card_RepairTools_Description", "value":"Cura de 2 a 6 Pontos de Vida"},
+
+        {"key":"Card_ShockingTouch_Title", "value":"Toque Chocante"},
+        {"key":"Card_ShockingTouch_Description", "value":"Causa de 7 a 11 pontos de dano elétrico"},
+
+        {"key":"Card_Chainsaw_Title", "value":"Serra Elétrica"},
+        {"key":"Card_Chainsaw_Description", "value":"Causa de 10 a 12 pontos de dano"},
+
+        {"key":"Card_Evasion_Title", "value":"Evasão"},
+        {"key":"Card_Evasion_Description", "value":"Aumenta a Defesa em 2 pontos"},
+
+        {"key":"Card_Intimidate_Title", "value":"Intimidar"},
+        {"key":"Card_Intimidate_Description", "value":"Reduz o Ataque do adversário em 2 pontos"},
+
+        {"key":"Card_IronBeard_Title", "value":"Barba de Ferro"},
+        {"key":"Card_IronBeard_Description", "value":"Aumenta a chance de crítico em 5%."},
+
+        {"key":"Card_LumberjackAxe_Title", "value":"Machado de Lenhador"},
+        {"key":"Card_LumberjackAxe_Description", "value":"Causa de 12 a 14 pontos de dano"},
+
+        {"key":"Card_Timber_Title", "value":"Madeira!"},
+        {"key":"Card_Timber_Description", "value":"Causa 15 pontos de dano"},
+
+        {"key":"Card_WoodCutter_Title", "value":"Cortador de Madeira"},
+        {"key":"Card_WoodCutter_Description", "value":"Causa de 6 a 10 pontos de dano"},
+
+        {"key":"Card_WoodenSkin_Title", "value":"Pele de Madeira"},
+        {"key":"Card_WoodenSkin_Description", "value":"Aumenta a Defesa em 2 pontos"},
+
+        {"key":"Card_Concentration_Title", "value":"Concentração"},
+        {"key":"Card_Concentration_Description", "value":"Aumenta a Precisão em 5%"},
+
+        {"key":"Card_Flame_Title", "value":"Chama"},
+        {"key":"Card_Flame_Description", "value":"Causa de 8 a 14 pontos de dano no adversário"},
+
+        {"key":"Card_Flare_Title", "value":"Clarão"},
+        {"key":"Card_Flare_Description", "value":"Causa 5 pontos de dano no adversário e reduz a precisão do adversário em 3%"},
+
+        {"key":"Card_GrabClaw_Title", "value":"A Garra Agarra"},
+        {"key":"Card_GrabClaw_Description", "value":"Causa de 6 a 8 pontos de dano"},
+
+        {"key":"Card_IronHelm_Title", "value":"Elmo de Ferro"},
+        {"key":"Card_IronHelm_Description", "value":"Aumenta a Defesa em 2 pontos"},
+
+        {"key":"Card_IronShield_Title", "value":"Escudo de Ferro"},
+        {"key":"Card_IronShield_Description", "value":"Cria um Escudo de Força com 5 pontos de vida"},
+
+        {"key":"Card_IronWall_Title", "value":"Muro de Ferro"},
+        {"key":"Card_IronWall_Description", "value":"Cria um Escudo com 15 Pontos de Vida"},
+
+        {"key":"Card_MendMetal_Title", "value":"Soldar Metal"},
+        {"key":"Card_MendMetal_Description", "value":"Cura de 4 a 10 Pontos de Vida, baseado em sua Inteligência"},
+
+        {"key":"Card_BulkUp_Title", "value":"Marombado"},
+        {"key":"Card_BulkUp_Description", "value":"Aumenta seu Ataque em 2 pontos"},
+
+        {"key":"Card_Cross_Title", "value":"Cruzado"},
+        {"key":"Card_Cross_Description", "value":"Causa de 7 a 13 pontos de dano"},
+
+        {"key":"Card_Feint_Title", "value":"Finta"},
+        {"key":"Card_Feint_Description", "value":"Reduz a Defesa do adversário em 1 ponto"},
+
+        {"key":"Card_HighGuard_Title", "value":"Guarda Alta"},
+        {"key":"Card_HighGuard_Description", "value":"Aumenta sua Defesa em 1 ponto"},
+
+        {"key":"Card_Hook_Title", "value":"Gancho"},
+        {"key":"Card_Hook_Description", "value":"Causa de 9 a 11 pontos de dano"},
+
+        {"key":"Card_Jab_Title", "value":"Jab"},
+        {"key":"Card_Jab_Description", "value":"Causa de 4 a 8 pontos de dano"},
+
+        {"key":"Card_Taunt_Title", "value":"Provocar"},
+        {"key":"Card_Taunt_Description", "value":"Reduz o Ataque do adversário em 1 ponto"},
+
+        {"key":"Card_Uppercut_Title", "value":"Uppercut"},
+        {"key":"Card_Uppercut_Description", "value":"Causa de 8 a 14 pontos de dano. O Ataque é multiplicado por 2 neste golpe"},
+
+        {"key":"Card_TestCard_Title", "value":"Carta de Teste"},
+        {"key":"Card_TestCard_Description", "value":"Carta para testar novas funcionaliades"}
+    ]
+}

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_Flame
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 9954cad2a1d377b469abcd2458d45c58, type: 3}
-  title: Chama
-  description: "Causa de 8 a 14 pontos de dano no advers\xE1rio"
+  textKey: Flame
   energy: 2
   effects:
   - skills: []

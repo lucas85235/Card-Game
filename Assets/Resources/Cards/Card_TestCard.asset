@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_TestCard
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: da14657bd12d67243bdc2d284c627869, type: 3}
-  title: Carta de Teste
-  description: Carta para testar novas funcionaliades
+  textKey: TestCard
   energy: 1
   effects:
   - skills: []

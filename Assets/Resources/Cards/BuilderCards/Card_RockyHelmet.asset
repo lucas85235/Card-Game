@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_RockyHelmet
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 38399759e92f32e489779739a643ddb7, type: 3}
-  title: Capacete Rochoso
-  description: Aumenta sua Defesa em 2 pontos
+  textKey: RockyHelmet
   energy: 4
   effects:
   - skills: []

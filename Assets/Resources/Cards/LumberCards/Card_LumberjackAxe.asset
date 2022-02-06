@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_LumberjackAxe
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 5a67cee9fa7582b48ba8ac67f886a153, type: 3}
-  title: Machado de Lenhador
-  description: Causa de 12 a 14 pontos de dano
+  textKey: LumberjackAxe
   energy: 2
   effects:
   - skills: []

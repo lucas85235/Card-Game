@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Card_QuickKick
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 066c622697f5f8445ab64c6351f2fae1, type: 3}
-  title: "Chute R\xE1pido"
-  description: Causa de 5 a 10 pontos de dano
+  textKey: QuickKick
   energy: 1
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 5, y: 10}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
-  attribute: 
+  skills: []
   trigger: 0

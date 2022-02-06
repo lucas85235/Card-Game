@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: Card_LightningRod
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 5599692a044e8c14e87d319845a7be24, type: 3}
-  title: Raio
-  description: "Causa de 6 a 15 pontos de dano el\xE9trico. A intelig\xEAncia \xE9
-    multiplicada por 2 neste ataque"
+  textKey: LightningRod
   energy: 5
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 16, y: 23}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 5
     effectMultiplierRange: {x: 2, y: 2}
-  attribute: 
+  skills: []
   trigger: 0
