@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RA_LumberRightArm
   m_EditorClassIdentifier: 
   id: RA_LumberRightArm
-  partSprite: {fileID: -7168231181365896844, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
+  partSprite: {fileID: 21300000, guid: e7b5cdff96742a545962840e92459824, type: 3}
   health: 8
   energy: 0
   attack: 3
@@ -32,4 +32,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19d4658e987a8e046a1ed88def54dc65, type: 2}
   - {fileID: 11400000, guid: 6faf035a95e4d25438741d85ea8b1de5, type: 2}
   - {fileID: 11400000, guid: 6faf035a95e4d25438741d85ea8b1de5, type: 2}
-  shoulderSprite: {fileID: -850506510745304743, guid: ec5e68e3527d4824db5fe81840fed554, type: 3}
+  armSprite: {fileID: 21300000, guid: d5957db412e60064dbda09ab34deecad, type: 3}
+  handSprite: {fileID: 21300000, guid: c134424e3fe2aec42babf0ea2a27b5c0, type: 3}
