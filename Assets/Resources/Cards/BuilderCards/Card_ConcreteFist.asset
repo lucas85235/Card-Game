@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_ConcreteFist
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 8e596edd5d77dd646ba4858a0050785c, type: 3}
-  title: Soco de Concreto
-  description: Aumenta seu Ataque em 1 ponto
+  textKey: ConcreteFist
   energy: 3
   effects:
   - skills: []

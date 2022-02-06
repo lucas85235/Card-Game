@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Card_Kick
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d0ccf467e3222c847a8e2bd429b881eb, type: 3}
-  title: Chute
-  description: Causa de 6 a 13 pontos de dano
+  textKey: Kick
   energy: 1
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 6, y: 13}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
-  attribute: 
+  skills: []
   trigger: 0

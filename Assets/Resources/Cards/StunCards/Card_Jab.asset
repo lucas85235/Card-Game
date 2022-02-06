@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Card_Jab
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 7ce49f03f32746a48a33219d72649d83, type: 3}
-  title: Jab
-  description: Causa de 4 a 8 pontos de dano
+  textKey: Jab
   energy: 0
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 4, y: 8}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
-  attribute: 
+  skills: []
   trigger: 0

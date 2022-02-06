@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Card_BulkUp
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d292939c7e0d1414db78403e798ee1a2, type: 3}
-  title: Marombado
-  description: Aumenta seu Ataque em 2 pontos
+  textKey: BulkUp
   energy: 3
   effects:
-  - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
     value: {x: 2, y: 2}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
-  attribute: 
+  skills: []
   trigger: 0

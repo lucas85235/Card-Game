@@ -1,0 +1,170 @@
+{"items":
+    [
+        {"key":"play", "value":"Play"},
+        {"key":"configurations", "value":"Configurations"},
+        {"key":"robots", "value":"Robots"},
+        {"key":"quit", "value":"Quit"},
+        {"key":"close", "value":"Close"},
+        {"key":"return", "value":"Return"},
+        {"key":"inventory", "value":"Inventory"},
+        {"key":"restart", "value":"Restart"},
+
+        {"key":"conf_audio_all", "value":"Geral"},
+        {"key":"conf_audio_music", "value":"Music"},
+        {"key":"conf_audio_sfx", "value":"SFX"},
+        {"key":"conf_language", "value":"Language"},
+
+        {"key":"menu_help_title", "value":"How to play?"},
+        {"key":"menu_help_content", "value":"It's very simple, just click on the cards and finish the round before the time expires."},
+        
+        {"key":"battle_deck", "value":"Deck"},
+        {"key":"battle_discard", "value":"Discard"},
+        {"key":"battle_victory", "value":"Victory"},
+        {"key":"battle_defeat", "value":"Defeat"},
+
+        {"key":"health", "value":"Health"},
+        {"key":"energy", "value":"Energy"},
+        {"key":"attack", "value":"Attack"},
+        {"key":"defense", "value":"Defense"},
+        {"key":"speed", "value":"Speed"},
+        {"key":"inteligence", "value":"Inteligence"},
+        {"key":"accuracy", "value":"Accuracy"},
+        {"key":"evasion", "value":"Evasion"},
+        {"key":"critChance", "value":"Crit Chance"},
+        {"key":"fireResistence", "value":"Fire Resistence"},
+        {"key":"waterResistence", "value":"Water Resistence"},
+        {"key":"electricResistence", "value":"Electric Resistence"},
+        {"key":"acidResistence", "value":"Acid Resistence"},
+
+
+
+        {"key":"Card_ConcreteFist_Title", "value":"Concrete Fist"},
+        {"key":"Card_ConcreteFist_Description", "value":"Increase attack by 1 point"},
+
+        {"key":"Card_ForceShield_Title", "value":"Force Shield"},
+        {"key":"Card_ForceShield_Description", "value":"Creates a shield with 3 health points"},
+
+        {"key":"Card_ForceWall_Title", "value":"Force Wall"},
+        {"key":"Card_ForceWall_Description", "value":"Creates a shield with 15 health points"},
+
+        {"key":"Card_HammerTime_Title", "value":"Hammer Time"},
+        {"key":"Card_HammerTime_Description", "value":"Deals 10 to 15 damage. Reduce enemy defense by 1 point"},
+        
+        {"key":"Card_HeadButt_Title", "value":"HeadButt"},
+        {"key":"Card_HeadButt_Description", "value":"Deals 8 to 15 damage"},
+
+        {"key":"Card_IrremovableObject_Title", "value":"Irremovable Object"},
+        {"key":"Card_IrremovableObject_Description", "value":"Creates a shield with 10 health points"},
+
+        {"key":"Card_Kick_Title", "value":"Kick"},
+        {"key":"Card_Kick_Description", "value":"Deals 6 to 13 damage"},
+
+        {"key":"Card_Punch_Title", "value":"Punch"},
+        {"key":"Card_Punch_Description", "value":"Deals 7 to 11 damage"},
+
+        {"key":"Card_RaiseWall_Title", "value":"Raise Wall"},
+        {"key":"Card_RaiseWall_Description", "value":"Increase defense by 1 point"},
+
+        {"key":"Card_RockyHelmet_Title", "value":"Rocky Helmet"},
+        {"key":"Card_RockyHelmet_Description", "value":"Increase defense by 2 points"},
+
+        {"key":"Card_Amperemeter_Title", "value":"Amperemeter"},
+        {"key":"Card_Amperemeter_Description", "value":"Increase inteligence by 1 point"},
+
+        {"key":"Card_ForceArmor_Title", "value":"Force Armor"},
+        {"key":"Card_ForceArmor_Description", "value":"Creates a shield with 12 health points"},
+
+        {"key":"Card_LightningReflexes_Title", "value":"Lightning Reflexes"},
+        {"key":"Card_LightningReflexes_Description", "value":"Increase defense and speed by 1 point each"},
+
+        {"key":"Card_LightningRod_Title", "value":"Lightning Rod"},
+        {"key":"Card_LightningRod_Description", "value":"Deals 6 to 15 electric damage plus 2 times your inteligence"},
+
+        {"key":"Card_ProtectionHelmet_Title", "value":"Protection Helmet"},
+        {"key":"Card_ProtectionHelmet_Description", "value":"Increase defense by 1 point"},
+
+        {"key":"Card_QuickKick_Title", "value":"Quick Kick"},
+        {"key":"Card_QuickKick_Description", "value":"Deals 5 to 10 damage"},
+
+        {"key":"Card_RepairTools_Title", "value":"Repair Tools"},
+        {"key":"Card_RepairTools_Description", "value":"Cure 2 to 6 health points"},
+
+        {"key":"Card_ShockingTouch_Title", "value":"Shocking Touch"},
+        {"key":"Card_ShockingTouch_Description", "value":"Deals 7 to 11 electric damage"},
+
+        {"key":"Card_Chainsaw_Title", "value":"Chainsaw"},
+        {"key":"Card_Chainsaw_Description", "value":"Deals 10 to 12 damage"},
+
+        {"key":"Card_Evasion_Title", "value":"Evasion"},
+        {"key":"Card_Evasion_Description", "value":"Increase defense by 2 points"},
+
+        {"key":"Card_Intimidate_Title", "value":"Intimidate"},
+        {"key":"Card_Intimidate_Description", "value":"Reduce enemy attack by 2 points"},
+
+        {"key":"Card_IronBeard_Title", "value":"Iron Beard"},
+        {"key":"Card_IronBeard_Description", "value":"Increase crit chance by 5%"},
+
+        {"key":"Card_LumberjackAxe_Title", "value":"Lumberjack Axe"},
+        {"key":"Card_LumberjackAxe_Description", "value":"Deals 12 to 14 damage"},
+
+        {"key":"Card_Timber_Title", "value":"Timber!"},
+        {"key":"Card_Timber_Description", "value":"Deals 15 damage"},
+
+        {"key":"Card_WoodCutter_Title", "value":"Wood Cutter"},
+        {"key":"Card_WoodCutter_Description", "value":"Deals 6 to 10 damage"},
+
+        {"key":"Card_WoodenSkin_Title", "value":"Wooden Skin"},
+        {"key":"Card_WoodenSkin_Description", "value":"Increase defense by 2 points"},
+
+        {"key":"Card_Concentration_Title", "value":"Concentration"},
+        {"key":"Card_Concentration_Description", "value":"Increase accuracy by 5%"},
+
+        {"key":"Card_Flame_Title", "value":"Flame"},
+        {"key":"Card_Flame_Description", "value":"Deals 8 to 14 damage"},
+
+        {"key":"Card_Flare_Title", "value":"Flare"},
+        {"key":"Card_Flare_Description", "value":"Deals 5 damage and reduce enemy accuracy by 3%"},
+
+        {"key":"Card_GrabClaw_Title", "value":"Grab Claw"},
+        {"key":"Card_GrabClaw_Description", "value":"Deals 6 to 8 damage"},
+
+        {"key":"Card_IronHelm_Title", "value":"Iron Helm"},
+        {"key":"Card_IronHelm_Description", "value":"Increase defense by 2 point"},
+
+        {"key":"Card_IronShield_Title", "value":"Iron Shield"},
+        {"key":"Card_IronShield_Description", "value":"Creates a shield with 5 health points"},
+
+        {"key":"Card_IronWall_Title", "value":"Iron Wall"},
+        {"key":"Card_IronWall_Description", "value":"Creates a shield with 15 health points"},
+
+        {"key":"Card_MendMetal_Title", "value":"Mend Metal"},
+        {"key":"Card_MendMetal_Description", "value":"Cure 4 to 10 health points"},
+
+        {"key":"Card_BulkUp_Title", "value":"Bulk Up"},
+        {"key":"Card_BulkUp_Description", "value":"Increase attack by 2 point"},
+
+        {"key":"Card_Cross_Title", "value":"Cross"},
+        {"key":"Card_Cross_Description", "value":"Deals 7 to 13 damage"},
+
+        {"key":"Card_Feint_Title", "value":"Feint"},
+        {"key":"Card_Feint_Description", "value":"Reduce enemy defency by 1 point"},
+
+        {"key":"Card_HighGuard_Title", "value":"High Guard"},
+        {"key":"Card_HighGuard_Description", "value":"Increase defense by 1 point"},
+
+        {"key":"Card_Hook_Title", "value":"Hook"},
+        {"key":"Card_Hook_Description", "value":"Deals 9 to 11 damage"},
+
+        {"key":"Card_Jab_Title", "value":"Jab"},
+        {"key":"Card_Jab_Description", "value":"Deals 4 to 8 damage"},
+
+        {"key":"Card_Taunt_Title", "value":"Taunt"},
+        {"key":"Card_Taunt_Description", "value":"Reduce enemy attack by 1 point"},
+
+        {"key":"Card_Uppercut_Title", "value":"Uppercut"},
+        {"key":"Card_Uppercut_Description", "value":"Deals 8 to 14 damage plus two times your attack"},
+
+        {"key":"Card_TestCard_Title", "value":"TestCard"},
+        {"key":"Card_TestCard_Description", "value":"Card to test new mechanics"}
+    ]
+}

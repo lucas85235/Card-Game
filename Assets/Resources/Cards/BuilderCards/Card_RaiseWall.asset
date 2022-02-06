@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_RaiseWall
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 6367fd24865b1314da1676f38bdf6979, type: 3}
-  title: Levantar Muro
-  description: Aumenta sua Defesa em 1 ponto
+  textKey: RaiseWall
   energy: 2
   effects:
   - skills: []

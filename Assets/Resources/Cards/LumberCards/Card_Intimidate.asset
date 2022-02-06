@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_Intimidate
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 731603c3c22b43a4f99c0cb89a89cfe3, type: 3}
-  title: Intimidar
-  description: "Reduz o Ataque do advers\xE1rio em 2 pontos"
+  textKey: Intimidate
   energy: 4
   effects:
   - skills: []

@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: Card_Uppercut
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 28635e0039bc9d447a8a92b52bcea956, type: 3}
-  title: Uppercut
-  description: "Causa de 8 a 14 pontos de dano. O Ataque \xE9 multiplicado por 2
-    neste golpe"
+  textKey: Uppercut
   energy: 5
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 8, y: 14}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 2, y: 2}
-  - effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: b70d15c99d9e32545b53bae8b218cdb1, type: 2}
     value: {x: 6, y: 6}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 2, y: 2}
-  attribute: 
+  skills: []
   trigger: 0

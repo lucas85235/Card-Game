@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_IronHelm
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: ba992b5008d26b5439aa66c6df64310c, type: 3}
-  title: Elmo de Ferro
-  description: Aumenta a Defesa em 2 pontos
+  textKey: IronHelm
   energy: 3
   effects:
   - skills: []

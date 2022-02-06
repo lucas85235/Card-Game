@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_GrabClaw
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 3a124874c9d93694d93c98655bb1b585, type: 3}
-  title: A Garra Agarra
-  description: Causa de 6 a 8 pontos de dano
+  textKey: GrabClaw
   energy: 1
   effects:
   - skills: []

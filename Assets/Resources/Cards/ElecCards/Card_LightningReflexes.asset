@@ -13,23 +13,24 @@ MonoBehaviour:
   m_Name: Card_LightningReflexes
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 2403614d9f32f484b97e28ce52d5b87b, type: 3}
-  title: "Reflexos R\xE1pidos"
-  description: Aumenta sua Defesa sua a Velocidade em 1 ponto cada
+  textKey: LightningReflexes
   energy: 3
   effects:
-  - effect: {fileID: 11400000, guid: 7037a0fbe1cc5af46935d7f252e86ee3, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: 7037a0fbe1cc5af46935d7f252e86ee3, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
-  - effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: d754e1488e773d9488f38e899a5f3675, type: 2}
     value: {x: 1, y: 1}
     chance: 1
     selfApply: 1
     effectBonusByStat: 0
     statToApplyEffectBonus: 0
     effectMultiplierRange: {x: 0, y: 0}
-  attribute: 
+  skills: []
   trigger: 0

@@ -101,8 +101,8 @@ public class DeckHandle : MonoBehaviour
             deck.RemoveAt(s);
         }
 
-        deckText.text = "Deck: " + deck.Count;
-        discardText.text = "Discard: " + discard.Count;
+        deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
+        discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
 
         Invoke("UpdateHands", 0.1f);
     }

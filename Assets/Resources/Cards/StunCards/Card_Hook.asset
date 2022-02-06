@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Card_Hook
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 8edade9c43aabcc409cd906bba995ae1, type: 3}
-  title: Gancho
-  description: Causa de 9 a 11 pontos de dano
+  textKey: Hook
   energy: 2
   effects:
-  - effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
+  - skills: []
+    effect: {fileID: 11400000, guid: df686af70ca395d419fd9f0b022b3048, type: 2}
     value: {x: 9, y: 11}
     chance: 1
     selfApply: 0
     effectBonusByStat: 1
     statToApplyEffectBonus: 1
     effectMultiplierRange: {x: 1, y: 1}
-  attribute: 
+  skills: []
   trigger: 0

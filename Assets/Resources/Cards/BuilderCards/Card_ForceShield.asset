@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_ForceShield
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 0490f14ef39205543a4fba3ceb0963c4, type: 3}
-  title: "Escudo de For\xE7a"
-  description: Cria um escudo com 3 Pontos de Vida
+  textKey: ForceShield
   energy: 1
   effects:
   - skills: []

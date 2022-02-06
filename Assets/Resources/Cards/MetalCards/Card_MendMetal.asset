@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_MendMetal
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 0e97b4005d024474a8e4c96c3ef2bc21, type: 3}
-  title: Soldar Metal
-  description: "Cura de 4 a 10 Pontos de Vida, baseado em sua Intelig\xEAncia"
+  textKey: MendMetal
   energy: 3
   effects:
   - skills: []

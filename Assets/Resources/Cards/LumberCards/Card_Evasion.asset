@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_Evasion
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 0d8b4f57217c10742911d2d87cee2abf, type: 3}
-  title: "Evas\xE3o"
-  description: Aumenta a Defesa em 2 pontos
+  textKey: Evasion
   energy: 2
   effects:
   - skills: []

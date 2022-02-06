@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Card_IronShield
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 4a056e1e78ca581448104024bdb92f66, type: 3}
-  title: Escudo de Ferro
-  description: "Cria um Escudo de For\xE7a com 5 pontos de vida"
+  textKey: IronShield
   energy: 2
   effects:
   - skills: []
