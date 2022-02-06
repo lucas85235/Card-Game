@@ -29,30 +29,37 @@ public class DialogueSystem : MonoBehaviour
     void Start()
     {
         startDialogueEvent.Invoke();
-        
-        nextIndex.onClick.AddListener(() =>
-        {
-            if (runnigText)
-            {
-                StopAllCoroutines();
-                textField.text = GetText();
-                runnigText = false;
-                return;
-            } 
-
-            if (index < dialogue.Length - 1)
-            {
-                if (canNext) StartCoroutine(NextText());
-            }
-            else endDialogueEvent.Invoke();
-        });
-
+        nextIndex.onClick.AddListener(() => Next());
         SetDialogueText();
+        CheckString();
     }
 
     public void LoadSceneTest(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    public void Next()
+    {
+        if (runnigText)
+        {
+            StopAllCoroutines();
+            textField.text = GetText();
+            runnigText = false;
+
+            if (dialogue[index].unityEvent != null)
+            {
+                dialogue[index].unityEvent.Invoke();
+            }
+
+            return;
+        }
+
+        if (index < dialogue.Length - 1)
+        {
+            if (canNext) StartCoroutine(NextText());
+        }
+        else endDialogueEvent.Invoke();
     }
 
     private IEnumerator NextText()
@@ -73,12 +80,7 @@ public class DialogueSystem : MonoBehaviour
         string setence = "";
         setence = GetText();
 
-        StartCoroutine( TextRoutine(setence) );
-
-        if (dialogue[index].unityEvent != null)
-        {
-            dialogue[index].unityEvent.Invoke();
-        }
+        StartCoroutine(TextRoutine(setence));
     }
 
     private string GetText()
@@ -102,6 +104,29 @@ public class DialogueSystem : MonoBehaviour
         }
 
         runnigText = false;
+
+        if (dialogue[index].unityEvent != null)
+        {
+            dialogue[index].unityEvent.Invoke();
+        }
+    }
+
+    private void CheckString()
+    {
+        var tempString = "12 P a PLAYER 11";
+
+        if (tempString.Contains("PLAYER"))
+        {
+            Debug.Log("Constains");
+
+            var a = tempString.IndexOf("PLAYER");
+            tempString = tempString.Remove(a, 6);
+            var f = tempString.Insert(a, "jogador");
+
+            Debug.Log(a);
+            Debug.Log(tempString);
+            Debug.Log(f);
+        }
     }
 
     [System.Serializable]
