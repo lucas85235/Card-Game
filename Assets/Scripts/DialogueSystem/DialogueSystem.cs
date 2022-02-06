@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
     [Header("UI Setup")]
-    public Text textField;
+    public TextMeshProUGUI textField;
     public Button nextIndex;
+    public float timeBetweenLetters = 0.05f;
 
     [Header("Dialogue Setup")]
     public bool useTranslateSystem = false;
@@ -19,9 +21,10 @@ public class DialogueSystem : MonoBehaviour
     public UnityEvent endDialogueEvent = new UnityEvent();
     public UnityEvent startDialogueEvent = new UnityEvent();
 
-    protected int index = 0;
-    protected bool canNext = true;
+    private int index = 0;
+    private bool canNext = true;
     private float timeBetweenIndexs = 0.2f;
+    private bool runnigText = false;
 
     void Start()
     {
@@ -29,6 +32,14 @@ public class DialogueSystem : MonoBehaviour
         
         nextIndex.onClick.AddListener(() =>
         {
+            if (runnigText)
+            {
+                StopAllCoroutines();
+                textField.text = GetText();
+                runnigText = false;
+                return;
+            } 
+
             if (index < dialogue.Length - 1)
             {
                 if (canNext) StartCoroutine(NextText());
@@ -59,16 +70,38 @@ public class DialogueSystem : MonoBehaviour
 
     private void SetDialogueText()
     {
-        if (useTranslateSystem)
-        {
-            textField.text = LanguageManager.Instance.GetKeyValue(dialogue[index].dialogue);
-        }
-        else textField.text = dialogue[index].dialogue;
+        string setence = "";
+        setence = GetText();
+
+        StartCoroutine( TextRoutine(setence) );
 
         if (dialogue[index].unityEvent != null)
         {
             dialogue[index].unityEvent.Invoke();
         }
+    }
+
+    private string GetText()
+    {
+        if (useTranslateSystem)
+        {
+            return LanguageManager.Instance.GetKeyValue(dialogue[index].dialogue);
+        }
+        else return dialogue[index].dialogue;
+    }
+
+    public IEnumerator TextRoutine(string setence)
+    {
+        runnigText = true;
+        textField.text = "";
+
+        foreach (var letter in setence)
+        {
+            textField.text += letter;
+            yield return new WaitForSeconds(timeBetweenLetters);
+        }
+
+        runnigText = false;
     }
 
     [System.Serializable]
