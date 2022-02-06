@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,15 @@ public class DialogueSystem : MonoBehaviour
     public TextMeshProUGUI textField;
     public Button nextIndex;
     public float timeBetweenLetters = 0.05f;
+
+    [Header("History")]
+    public InputField nameInput;
+    public Text nameBox;
+    public Image characterImage;
+    public Sprite menSprite;
+    public Sprite womanSprite;
+    [SerializeField] private string playerName = "Jogador";
+    [SerializeField] private Character character;
 
     [Header("Dialogue Setup")]
     public bool useTranslateSystem = false;
@@ -31,7 +41,6 @@ public class DialogueSystem : MonoBehaviour
         startDialogueEvent.Invoke();
         nextIndex.onClick.AddListener(() => Next());
         SetDialogueText();
-        CheckString();
     }
 
     public void LoadSceneTest(string scene)
@@ -39,12 +48,39 @@ public class DialogueSystem : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void SetName()
+    {
+        playerName = nameInput.text;
+    }
+
+    public void SetBoxWithPlayerName()
+    {
+        nameBox.text = playerName;
+    }
+
+    public void SetCharacter(string characterName)
+    {
+        character = (Character) Enum.Parse(typeof(Character), characterName, true);
+        SetCharacterImage();
+    }
+
+    public void SetCharacterImage()
+    {
+        if (character == Character.Men)
+        {
+            characterImage.sprite = menSprite;
+        }
+        else characterImage.sprite = womanSprite;
+    }
+
     public void Next()
     {
         if (runnigText)
         {
             StopAllCoroutines();
-            textField.text = GetText();
+            var sentence = GetText();
+            sentence = CheckString(sentence);
+            textField.text = sentence;
             runnigText = false;
 
             if (dialogue[index].unityEvent != null)
@@ -92,12 +128,14 @@ public class DialogueSystem : MonoBehaviour
         else return dialogue[index].dialogue;
     }
 
-    public IEnumerator TextRoutine(string setence)
+    public IEnumerator TextRoutine(string sentence)
     {
         runnigText = true;
         textField.text = "";
 
-        foreach (var letter in setence)
+        sentence = CheckString(sentence);
+
+        foreach (var letter in sentence)
         {
             textField.text += letter;
             yield return new WaitForSeconds(timeBetweenLetters);
@@ -111,22 +149,19 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    private void CheckString()
+    private string CheckString(string sentence)
     {
-        var tempString = "12 P a PLAYER 11";
-
-        if (tempString.Contains("PLAYER"))
+        if (sentence.Contains("PLAYER"))
         {
             Debug.Log("Constains");
 
-            var a = tempString.IndexOf("PLAYER");
-            tempString = tempString.Remove(a, 6);
-            var f = tempString.Insert(a, "jogador");
+            var a = sentence.IndexOf("PLAYER");
+            sentence = sentence.Remove(a, 6);
+            var final = sentence.Insert(a, playerName);
 
-            Debug.Log(a);
-            Debug.Log(tempString);
-            Debug.Log(f);
+            return final;
         }
+        else return sentence;
     }
 
     [System.Serializable]
@@ -134,5 +169,11 @@ public class DialogueSystem : MonoBehaviour
     {
         public string dialogue;
         public UnityEvent unityEvent;
+    }
+
+    public enum Character
+    {
+        Men,
+        Woman,
     }
 }
