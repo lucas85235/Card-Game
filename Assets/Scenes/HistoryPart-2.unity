@@ -410,6 +410,127 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268437164}
   m_CullTransparentMesh: 1
+--- !u!1 &435722227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 435722228}
+  - component: {fileID: 435722231}
+  - component: {fileID: 435722230}
+  - component: {fileID: 435722229}
+  m_Layer: 5
+  m_Name: NextButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &435722228
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435722227}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1270271077}
+  m_Father: {fileID: 2102108431}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -260, y: -290}
+  m_SizeDelta: {x: 180, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &435722229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435722227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 435722230}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &435722230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435722227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.25
+--- !u!222 &435722231
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435722227}
+  m_CullTransparentMesh: 1
 --- !u!1 &467954497
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,85 +819,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &562077571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 562077572}
-  - component: {fileID: 562077574}
-  - component: {fileID: 562077573}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &562077572
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562077571}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1691617534}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &562077573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562077571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Next
---- !u!222 &562077574
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562077571}
-  m_CullTransparentMesh: 1
 --- !u!1 &664338483
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,28 +1002,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 515028222}
-  nextIndex: {fileID: 1691617531}
+  nextIndex: {fileID: 1593765390}
   data: {fileID: 11400000, guid: 87d608117c037b44687e3189fcf0b9b5, type: 2}
   nameInput: {fileID: 0}
   nameBox: {fileID: 467954498}
   characterImage: {fileID: 502619025}
   menSprite: {fileID: 21300000, guid: b9f65118c8fc05d4e80016bde159fd50, type: 3}
   womanSprite: {fileID: 21300000, guid: 839057a0047bdde41892fcdd534a2535, type: 3}
-  useTranslateSystem: 0
+  useTranslateSystem: 1
   dialogue:
-  - dialogue: "Cheguei em casa, m\xE3e!"
+  - dialogue: history_part4_1
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "Nossa, que bagun\xE7a \xE9 essa?"
+  - dialogue: history_part4_2
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "M\xE3e, cad\xEA a senhoraaaa?"
+  - dialogue: history_part4_3
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "Ser\xE1 que aconteceu alguma coisa?"
+  - dialogue: history_part4_4
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1001,7 +1043,7 @@ MonoBehaviour:
             m_StringArgument: Mom
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Xiiiiu\u2026 n\xE3o fa\xE7a barulho, filho! Ele est\xE1 aqui!"
+  - dialogue: history_part4_5
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1045,8 +1087,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - dialogue: "H\xE3? M\xE3e? \u201CEle\u201D quem? E por que a senhora est\xE1 escondida
-      no arm\xE1rio\u2026"
+  - dialogue: history_part4_6
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1066,13 +1107,11 @@ MonoBehaviour:
             m_StringArgument: Mom
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: ELE, MEU FILHO! O BUTLERBOT ENLOUQUECEU!!! EU ESTAVA ESCONDIDA PLANEJANDO
-      UMA FORMA DE FUGIR MAS ELE ME ENCONTROU!
+  - dialogue: history_part4_7
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "CORRA, MEU FILHO! EU VOU SEGURAR O ROB\xD4 PARA VOC\xCA ESCAPAR! V\xC1
-      LOGO!"
+  - dialogue: history_part4_8
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1092,7 +1131,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "BOTBATTLE, COME\xC7AR!!!"
+  - dialogue: history_part4_9
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1623,16 +1662,164 @@ RectTransform:
   - {fileID: 1728670243}
   - {fileID: 89559173}
   - {fileID: 910300273}
-  - {fileID: 1691617534}
+  - {fileID: 1593765389}
   - {fileID: 1282928969}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1270271076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270271077}
+  - component: {fileID: 1270271080}
+  - component: {fileID: 1270271079}
+  - component: {fileID: 1270271078}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1270271077
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270271076}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 435722228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1270271078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270271076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdfd34ecc0acef4ca6543af24770665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: history_next
+--- !u!114 &1270271079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270271076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Next
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1270271080
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270271076}
+  m_CullTransparentMesh: 1
 --- !u!1 &1273395510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,7 +2463,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574268287}
   m_CullTransparentMesh: 1
---- !u!1 &1691617530
+--- !u!1 &1593765388
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2284,10 +2471,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1691617534}
-  - component: {fileID: 1691617533}
-  - component: {fileID: 1691617532}
-  - component: {fileID: 1691617531}
+  - component: {fileID: 1593765389}
+  - component: {fileID: 1593765392}
+  - component: {fileID: 1593765391}
+  - component: {fileID: 1593765390}
   m_Layer: 5
   m_Name: NextButton
   m_TagString: Untagged
@@ -2295,13 +2482,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1691617531
+--- !u!224 &1593765389
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593765388}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1804111748}
+  m_Father: {fileID: 1238010672}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 1660, y: 250}
+  m_SizeDelta: {x: 180, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1593765390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691617530}
+  m_GameObject: {fileID: 1593765388}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -2335,17 +2542,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1691617532}
+  m_TargetGraphic: {fileID: 1593765391}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1691617532
+--- !u!114 &1593765391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691617530}
+  m_GameObject: {fileID: 1593765388}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -2369,34 +2576,14 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.25
---- !u!222 &1691617533
+--- !u!222 &1593765392
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691617530}
+  m_GameObject: {fileID: 1593765388}
   m_CullTransparentMesh: 1
---- !u!224 &1691617534
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691617530}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 562077572}
-  m_Father: {fileID: 1238010672}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -260, y: -290}
-  m_SizeDelta: {x: 180, y: 70}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1699455931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,85 +2679,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 423.25, y: 443.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1700310333
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1700310334}
-  - component: {fileID: 1700310336}
-  - component: {fileID: 1700310335}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1700310334
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700310333}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1956503705}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1700310335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700310333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Next
---- !u!222 &1700310336
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700310333}
-  m_CullTransparentMesh: 1
 --- !u!1 &1728670242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,7 +2718,64 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1956503704
+--- !u!1001 &1766786663
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 583.2693
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 206.99991
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -387.08743
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046237791639116788, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112751679344503073, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+      propertyPath: m_Name
+      value: LanguageManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae0102bf556783c40811112a9ca30dfa, type: 3}
+--- !u!1 &1804111747
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2618,118 +2783,145 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1956503705}
-  - component: {fileID: 1956503708}
-  - component: {fileID: 1956503707}
-  - component: {fileID: 1956503706}
+  - component: {fileID: 1804111748}
+  - component: {fileID: 1804111751}
+  - component: {fileID: 1804111750}
+  - component: {fileID: 1804111749}
   m_Layer: 5
-  m_Name: NextButton
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1956503705
+--- !u!224 &1804111748
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956503704}
+  m_GameObject: {fileID: 1804111747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1700310334}
-  m_Father: {fileID: 2102108431}
-  m_RootOrder: 5
+  m_Children: []
+  m_Father: {fileID: 1593765389}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -260, y: -290}
-  m_SizeDelta: {x: 180, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1956503706
+--- !u!114 &1804111749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956503704}
+  m_GameObject: {fileID: 1804111747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bdfd34ecc0acef4ca6543af24770665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1956503707}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1956503707
+  key: history_next
+--- !u!114 &1804111750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956503704}
+  m_GameObject: {fileID: 1804111747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.25
---- !u!222 &1956503708
+  m_text: Next
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1804111751
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956503704}
+  m_GameObject: {fileID: 1804111747}
   m_CullTransparentMesh: 1
 --- !u!1 &2038452128
 GameObject:
@@ -2995,10 +3187,10 @@ RectTransform:
   - {fileID: 1196223445}
   - {fileID: 873948127}
   - {fileID: 2112875444}
-  - {fileID: 1956503705}
+  - {fileID: 435722228}
   - {fileID: 1341523611}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3057,14 +3249,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 1077069663}
-  nextIndex: {fileID: 1956503706}
+  nextIndex: {fileID: 435722229}
   data: {fileID: 11400000, guid: 87d608117c037b44687e3189fcf0b9b5, type: 2}
   nameInput: {fileID: 0}
   nameBox: {fileID: 2132121963}
   characterImage: {fileID: 974235326}
   menSprite: {fileID: 21300000, guid: b9f65118c8fc05d4e80016bde159fd50, type: 3}
   womanSprite: {fileID: 21300000, guid: 839057a0047bdde41892fcdd534a2535, type: 3}
-  useTranslateSystem: 0
+  useTranslateSystem: 1
   dialogue:
   - dialogue: 
     unityEvent:
@@ -3082,8 +3274,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Ei, Steven, o moleque at\xE9 que joga bem! Acho que n\xE3o dever\xEDamos
-      ter pegado t\xE3o leve.."
+  - dialogue: history_part3_1
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3103,7 +3294,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "N\xE3o \xE9, ELECBOT? Eu falei que ele tinha potencial"
+  - dialogue: history_part3_2
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3123,8 +3314,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "U\xE9, por que o seu Warbot fala e o meu n\xE3o!? T\xE1 usando hack?
-      Oo"
+  - dialogue: history_part3_3
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3144,7 +3334,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "\xD4, claro que n\xE3o! \xC9 s\xF3 a IA do Elecbot que resolveu tagarelar."
+  - dialogue: history_part3_4
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3164,7 +3354,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "P\xF4, Steven, isso machuca meus sentimentos.."
+  - dialogue: history_part3_5
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3184,14 +3374,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Foi mal, ELEC, n\xE3o quis ofender\u2026 ahaha! PLAYER, assim que
-      voc\xEA conseguir sua licen\xE7a de combatente, uma IA ser\xE1 vinculada ao
-      seu registro."
+  - dialogue: history_part3_6
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "Dessa forma, ele poder\xE1 te ajudar nas batalhas, pois, lembre-se,
-      duas cabe\xE7as pensam melhor que uma!"
+  - dialogue: history_part3_7
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3211,7 +3398,7 @@ MonoBehaviour:
             m_StringArgument: Stev
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Ah\u2026 agora eu entendi! Vou j\xE1 correr atr\xE1s dessa licen\xE7a!"
+  - dialogue: history_part3_8
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3231,7 +3418,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "N\xE3o \xE9, ELECBOT? Eu falei que ele tinha potencial"
+  - dialogue: history_part3_9
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3251,7 +3438,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "A\xED, sim! Mal posso esperar para conhecer o meu novo amigo de treino!"
+  - dialogue: history_part3_10
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3271,15 +3458,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Fa\xE7a isso assim tiver um tempinho, PLAYER. Adquirir a licen\xE7a
-      \xE9 o primeiro passo para ingressar no mundo das lutas profissionais de Warbots,
-      segundo o regimento da Liga Warbot. Falando nisso\u2026"
+  - dialogue: history_part3_11
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "Voc\xEA ficou sabendo dos incidentes envolvendo rob\xF4s descontrolados?
-      Parece que houve um aumento no n\xFAmero de casos identificados desde a semana
-      passada\u2026"
+  - dialogue: history_part3_12
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3299,14 +3482,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Sim, eu vi no notici\xE1rio da manh\xE3. Aparentemente, os rob\xF4s
-      perdem o controle e saem destruindo tudo ao seu redor. "
+  - dialogue: history_part3_13
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "N\xE3o conseguiram identificar a causa e nem os respons\xE1veis, j\xE1
-      que, quando finalmente param de funcionar, os rob\xF4s s\xE3o reinicializados
-      para as configura\xE7\xF5es de f\xE1brica."
+  - dialogue: history_part3_14
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3326,14 +3506,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Exatamente. E \xE9 por esse motivo que os organizadores da Liga Warbot,
-      que, teoricamente, s\xE3o as pessoas mais entendidas do assunto"
+  - dialogue: history_part3_15
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "est\xE3o espalhados pela cidade em busca de informa\xE7\xF5es que
-      possam ajuda a solucionar esse mist\xE9rio. N\xE3o se espante caso esbarre
-      com um Combatente de Elite pelas redondezas."
+  - dialogue: history_part3_16
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3353,9 +3530,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Uau\u2026 mas que situa\xE7\xE3o, hein? E o que acontece com a IA
-      do Warbot que \xE9 reinicializado com as configura\xE7\xF5es de f\xE1brica?
-      N\xE3o vai dizer que ela morre! Oo"
+  - dialogue: history_part3_17
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3375,8 +3550,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Ah, isso n\xE3o! A IA fica guardada na BOT-CHAIN, a rede de dados
-      dos Warbots. Quando o Warbot perde o controle ela \xE9 simplesmente desconectada."
+  - dialogue: history_part3_18
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3396,7 +3570,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Entendi. E j\xE1 fizeram algum tipo de checagem nas IA afetadas?"
+  - dialogue: history_part3_19
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3416,12 +3590,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Sim, mas sem sucesso. Tudo o que se sabe \xE9 que a IA \xE9 subitamente
-      desconectada e n\xE3o consegue retornar ao rob\xF4."
+  - dialogue: history_part3_20
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "O mesmo vale ao botmote, que fica inutiliz\xE1vel no per\xEDodo."
+  - dialogue: history_part3_21
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3441,9 +3614,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Ser\xE1 que \xE9 algum tipo de v\xEDrus ou algo assim? Soube que,
-      no passado, as pessoas passavam o maior perrengue por conta de programas maliciosos
-      instalados em suas m\xE1quinas."
+  - dialogue: history_part3_22
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3463,13 +3634,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "\xC9 uma possibilidade, sabia? Mas, como disse, ainda n\xE3o h\xE1
-      dados o suficiente para se concluir qualquer coisa."
+  - dialogue: history_part3_23
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: "Como forma de precau\xE7\xE3o, eu tenho at\xE9 deixado o Elecbot desmontado
-      ap\xF3s os treinos, vai que\u2026"
+  - dialogue: history_part3_24
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3489,7 +3658,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: Ele me desmonta mesmo! E isso me deixa triste. ;-;
+  - dialogue: history_part3_25
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3509,8 +3678,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Ahaha! N\xE3o seja t\xE3o dram\xE1tico, Elecbot. Quando n\xE3o t\xE1
-      ocupado no Botverso, voc\xEA n\xE3o para de tagarelar do Botmote!"
+  - dialogue: history_part3_26
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3530,9 +3698,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "O mundo virtual \xE9 muito sem gra\xE7a. Eu gosto de sentir meus bra\xE7os
-      e pernas! Al\xE9m, do mais, eu sempre me assusto com aquele avatar feioso que
-      tem a sua cara!"
+  - dialogue: history_part3_27
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3552,7 +3718,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Poxa, isso machuca\u2026 ahaha!"
+  - dialogue: history_part3_28
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3572,8 +3738,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "\xC9, vou tomar cuidado tamb\xE9m\u2026 vamos continuar os treinos?
-      Preciso estar preparado para me defender, caso encontre um rob\xF4 desses."
+  - dialogue: history_part3_29
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3593,7 +3758,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Muito bem, vamos l\xE1!"
+  - dialogue: history_part3_30
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -3609,7 +3774,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "PLAYER e STEVEN batalharam por algumas horas\u2026"
+  - dialogue: history_part3_31
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3629,8 +3794,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Ufa, valeu pelo treino, Steven. Acho que estou come\xE7ando a pegar
-      a manha."
+  - dialogue: history_part3_32
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3650,8 +3814,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Est\xE1 no caminho certo. Se o Elecbot n\xE3o tivesse levado a s\xE9rio,
-      estaria em frangalhos agora\u2026"
+  - dialogue: history_part3_33
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3671,9 +3834,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Nem comece, Steven! Mas foi um bom aquecimento, PLAYER. S\xF3 n\xE3o
-      foi melhor porque as pe\xE7as que voc\xEA est\xE1 usando j\xE1 est\xE3o bastante
-      surradas pelo tempo\u2026"
+  - dialogue: history_part3_34
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3693,7 +3854,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Nossa, senti um tom de amea\xE7a\u2026 ;-;"
+  - dialogue: history_part3_35
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3713,12 +3874,11 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "Viu? Quem manda ser t\xE3o linguarudo? Quem fala o que quer\u2026"
+  - dialogue: history_part3_36
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: Bom, vou indo. Mais uma vez, muito obrigado Steven! E Elecbot, obrigado
-      pela luta!
+  - dialogue: history_part3_37
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3738,7 +3898,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "N\xE3o tem de qu\xEA! Estamos a\xED! ;)"
+  - dialogue: history_part3_38
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3758,7 +3918,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "At\xE9 mais, pessoal!"
+  - dialogue: history_part3_39
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3778,7 +3938,7 @@ MonoBehaviour:
             m_StringArgument: Elecbot
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: "N\xE3o vaaaa\xE1! Ele vai me desmontaaaar!"
+  - dialogue: history_part3_40
     unityEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -3798,7 +3958,7 @@ MonoBehaviour:
             m_StringArgument: Steven
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: Ahaha! Se cuidem!
+  - dialogue: history_part3_41
     unityEvent:
       m_PersistentCalls:
         m_Calls: []

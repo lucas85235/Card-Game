@@ -143,6 +143,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (useTranslateSystem)
         {
+            if (dialogue[index].dialogue == "") return "";
             return LanguageManager.Instance.GetKeyValue(dialogue[index].dialogue);
         }
         else return dialogue[index].dialogue;

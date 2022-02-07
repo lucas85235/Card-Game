@@ -1,6 +1,7 @@
 {"items":
     [
         {"key":"play", "value":"Jogar"},
+        {"key":"quick_match", "value":"PARTIDA \nRÁPIDA"},
         {"key":"configurations", "value":"Configurações"},
         {"key":"robots", "value":"Robôs"},
         {"key":"quit", "value":"Sair"},
@@ -35,6 +36,119 @@
         {"key":"waterResistence", "value":"Resistência à água"},
         {"key":"electricResistence", "value":"Resistência à eletricidade"},
         {"key":"acidResistence", "value":"Resistência à ácido"},
+
+        {"key":"history_next", "value":"Próximo"},
+        {"key":"history_yes", "value":"Sim"},
+        {"key":"history_no", "value":"Não"},
+        {"key":"history_input", "value":"Seu nome..."},
+        {"key":"history_name", "value":"Nome"},
+        {"key":"history_confirm", "value":"Confirmar"},
+        {"key":"history_confirm1", "value":"Confirmar nome selecionado?"},
+        {"key":"history_confirm2", "value":"Confirmar seleção?"},
+
+        {"key":"history_part_1", "value":"Parte 1"},
+        {"key":"history_part_2", "value":"Parte 2"},
+        {"key":"history_part_3", "value":"Parte 3"},
+
+
+
+        {"key":"history_part1_1", "value":"Olá, parabéns por adquirir seu novo Warbot! Eu sou AI-BOT e te ajudarei a configurar seu novo amigo! :)"},
+        {"key":"history_part1_2", "value":"Primeiro, como devo lhe chamar?"},
+        {"key":"history_part1_3", "value":"Entendido. Então chamarei você de PLAYER."},
+        {"key":"history_part1_4", "value":"PLAYER, agora selecione a aparência de seu avatar."},
+        {"key":"history_part1_5", "value":"Ô, Steven, por que o sistema pede para criar um avatar para uso do Botmote? Achei que esse aparelho servisse apenas para controlar o Warbot durante as batalhas…"},
+        {"key":"history_part1_6", "value":"Seus pais gerenciam um centro de reciclagem de metal, então ele cresceu cercado por peças e mais peças de Warbots. "},
+        {"key":"history_part1_7", "value":"Inclusive, foi ele quem juntou as peças para a construção do meu próprio robô. Se tem alguém que manja de robótica, esse alguém é o Steven"},
+        {"key":"history_part1_8", "value":"Confesso que não sou muito chegado nesse negócio mundo virtual, não. Minha parada é mais física: Montar robôs e depois destruí-los em batalha. Ahaha!"},
+        {"key":"history_part1_9", "value":"Quer algo mais divertido?"},
+
+        {"key":"history_part1_10", "value":"Então somos dois! Ahaha. Mas e aí, como ele está?"},
+        {"key":"history_part1_11", "value":"Só mais uns apertinhos aqui… outro ali e… pronto! Seu Warbot acaba de nascer!"},
+        {"key":"history_part1_12", "value":"Sério? Deixa eu ver, deixa eu ver!"},
+        {"key":"history_part1_13", "value":"Nooooossa! Ficou incrível! Steven, você é o cara! Valeu mesmo!"},
+        {"key":"history_part1_14", "value":"Ah, deixa disso! Não deu trabalho nenhum. Vamos logo testar?"},
+        {"key":"history_part1_15", "value":"Só se for agora! BOTBATTLE… COMEÇAR!"},
+
+
+
+        {"key":"history_part2_1", "value":"Dizem que as batalhas entre Warbots são muito fáceis de aprender, mas difíceis de masterizar."},
+        {"key":"history_part2_2", "value":"É uma batalha realizada por turnos, cujo objetivo é desativar o robô adversário, reduzindo sua barra de vitalidade a zero."},
+        {"key":"history_part2_3", "value":"A vitalidade é indicada pela barra verde e fica localizada em cima do Warbot. Quando ela chega a zero, o robô é desativado e a luta se encerra."},
+        {"key":"history_part2_4", "value":"Há três tipos de carta, cada uma com uma cor distinta: as vermelhas correspondem às cartas de ataque, que causam dano ao adversário;"},
+        {"key":"history_part2_5", "value":"as azuis são as cartas de defesa, que geram escudos para proteger seu robô de eventuais danos"},
+        {"key":"history_part2_6", "value":"por fim, as cartas verdes representam as cartas de suporte, que concedem vantagens ao seu robô, como o aumento de força ou diminuição de defesa do adversário."},
+        {"key":"history_part2_7", "value":"Com o tempo, você vai pegando o jeito."},
+        {"key":"history_part2_8", "value":"E fique atento à energia de seu robô."},
+        {"key":"history_part2_9", "value":"Cada carta tem um custo de uso, indicado pela numeração em seu canto superior esquerdo."},
+
+        {"key":"history_part2_10", "value":"Cada vez que você utiliza um movimento, esse número é subtraído da reserva de energia do turno."},
+        {"key":"history_part2_11", "value":"Caso o custo da carta seja superior à energia restante no turno, você não poderá selecionar o movimento. "},
+        {"key":"history_part2_12", "value":"A barra de energia retorna completa a cada início de turno, então use com sabedoria!"},
+        {"key":"history_part2_13", "value":"Por fim, mais uma coisa: no geral, os robôs com maior atributo de velocidade atacam antes."},
+        {"key":"history_part2_14", "value":"Porém, isso nem sempre se aplica, pois algumas cartas, como as de escudo, possuem prioridade de uso, agindo na frente das outras."},
+        {"key":"history_part2_15", "value":"Mas isso está expresso na descrição das cartas, então vale a pena dar uma conferida no baralho antes de cada luta."},
+        {"key":"history_part2_16", "value":"No geral, é isso. Basicamente, você precisa selecionar um ou mais ataques, entre as cartas sorteadas, até o limite de energia disponível por rodada."},
+        {"key":"history_part2_17", "value":"Entendeu direitinho? Agora vamos ver como você se sai."},
+
+
+
+        {"key":"history_part3_1", "value":"Ei, Steven, o moleque até que joga bem! Acho que não deveríamos ter pegado tão leve."},
+        {"key":"history_part3_2", "value":"Não é, ELECBOT? Eu falei que ele tinha potencial"},
+        {"key":"history_part3_3", "value":"Ué, por que o seu Warbot fala e o meu não!? Tá usando hack? Oo"},
+        {"key":"history_part3_4", "value":"Ô, claro que não! É só a IA do Elecbot que resolveu tagarelar."},
+        {"key":"history_part3_5", "value":"Pô, Steven, isso machuca meus sentimentos.."},
+        {"key":"history_part3_6", "value":"Foi mal, ELEC, não quis ofender… ahaha! PLAYER, assim que você conseguir sua licença de combatente, uma IA será vinculada ao seu registro."},
+        {"key":"history_part3_7", "value":"Dessa forma, ele poderá te ajudar nas batalhas, pois, lembre-se, duas cabeças pensam melhor que uma!"},
+        {"key":"history_part3_8", "value":"Ah… agora eu entendi! Vou já correr atrás dessa licença!"},
+        {"key":"history_part3_9", "value":"Não é, ELECBOT? Eu falei que ele tinha potencial"},
+
+        {"key":"history_part3_10", "value":"Aí, sim! Mal posso esperar para conhecer o meu novo amigo de treino!"},
+        {"key":"history_part3_11", "value":"Faça isso assim tiver um tempinho, PLAYER. Adquirir a licença é o primeiro passo para ingressar no mundo das lutas profissionais de Warbots, segundo o regimento da Liga Warbot. Falando nisso…"},
+        {"key":"history_part3_12", "value":"Você ficou sabendo dos incidentes envolvendo robôs descontrolados? Parece que houve um aumento no número de casos identificados desde a semana passada…"},
+        {"key":"history_part3_13", "value":"Sim, eu vi no noticiário da manhã. Aparentemente, os robôs perdem o controle e saem destruindo tudo ao seu redor. "},
+        {"key":"history_part3_14", "value":"Não conseguiram identificar a causa e nem os responsáveis, já que, quando finalmente param de funcionar, os robôs são reinicializados para as configurações de fábrica."},
+        {"key":"history_part3_15", "value":"Exatamente. E é por esse motivo que os organizadores da Liga Warbot, que, teoricamente, são as pessoas mais entendidas do assunto"},
+        {"key":"history_part3_16", "value":"estão espalhados pela cidade em busca de informações que possam ajuda a solucionar esse mistério. Não se espante caso esbarre com um Combatente de Elite pelas redondezas."},
+        {"key":"history_part3_17", "value":"Uau… mas que situação, hein? E o que acontece com a IA do Warbot que é reinicializado com as configurações de fábrica? Não vai dizer que ela morre! Oo"},
+        {"key":"history_part3_18", "value":"Ah, isso não! A IA fica guardada na BOT-CHAIN, a rede de dados dos Warbots. Quando o Warbot perde o controle ela é simplesmente desconectada."},
+        {"key":"history_part3_19", "value":"Entendi. E já fizeram algum tipo de checagem nas IA afetadas?"},
+
+        {"key":"history_part3_20", "value":"Sim, mas sem sucesso. Tudo o que se sabe é que a IA é subitamente desconectada e não consegue retornar ao robô."},
+        {"key":"history_part3_21", "value":"O mesmo vale ao botmote, que fica inutilizável no período."},
+        {"key":"history_part3_22", "value":"Será que é algum tipo de vírus ou algo assim? Soube que, no passado, as pessoas passavam o maior perrengue por conta de programas maliciosos instalados em suas máquinas."},
+        {"key":"history_part3_23", "value":"É uma possibilidade, sabia? Mas, como disse, ainda não há dados o suficiente para se concluir qualquer coisa."},
+        {"key":"history_part3_24", "value":"Como forma de precaução, eu tenho até deixado o Elecbot desmontado após os treinos, vai que…"},
+        {"key":"history_part3_25", "value":"Ele me desmonta mesmo! E isso me deixa triste. ;-;"},
+        {"key":"history_part3_26", "value":"Ahaha! Não seja tão dramático, Elecbot. Quando não tá ocupado no Botverso, você não para de tagarelar do Botmote!"},
+        {"key":"history_part3_27", "value":"O mundo virtual é muito sem graça. Eu gosto de sentir meus braços e pernas! Além, do mais, eu sempre me assusto com aquele avatar feioso que tem a sua cara!"},
+        {"key":"history_part3_28", "value":"Poxa, isso machuca… ahaha!"},
+        {"key":"history_part3_29", "value":"É, vou tomar cuidado também… vamos continuar os treinos? Preciso estar preparado para me defender, caso encontre um robô desses."},
+
+        {"key":"history_part3_30", "value":"Muito bem, vamos lá!"},
+        {"key":"history_part3_31", "value":"PLAYER e STEVEN batalharam por algumas horas…"},
+        {"key":"history_part3_32", "value":"Ufa, valeu pelo treino, Steven. Acho que estou começando a pegar a manha."},
+        {"key":"history_part3_33", "value":"Está no caminho certo. Se o Elecbot não tivesse levado a sério, estaria em frangalhos agora…"},
+        {"key":"history_part3_34", "value":"Nem comece, Steven! Mas foi um bom aquecimento, PLAYER. Só não foi melhor porque as peças que você está usando já estão bastante surradas pelo tempo…"},
+        {"key":"history_part3_35", "value":"Nossa, senti um tom de ameaça… ;-;"},
+        {"key":"history_part3_36", "value":"Viu? Quem manda ser tão linguarudo? Quem fala o que quer…"},
+        {"key":"history_part3_37", "value":"Bom, vou indo. Mais uma vez, muito obrigado Steven! E Elecbot, obrigado pela luta!"},
+        {"key":"history_part3_38", "value":"Não tem de quê! Estamos aí! ;)"},
+        {"key":"history_part3_39", "value":"Até mais, pessoal!"},
+
+        {"key":"history_part3_40", "value":"Não vaaaaá! Ele vai me desmontaaaar!"},
+        {"key":"history_part3_41", "value":"Ahaha! Se cuidem!"},
+
+
+
+        {"key":"history_part4_1", "value":"Cheguei em casa, mãe!"},
+        {"key":"history_part4_2", "value":"Nossa, que bagunça é essa?"},
+        {"key":"history_part4_3", "value":"Mãe, cadê a senhoraaaa?"},
+        {"key":"history_part4_4", "value":"Será que aconteceu alguma coisa?"},
+        {"key":"history_part4_5", "value":"Xiiiiu… não faça barulho, filho! Ele está aqui!"},
+        {"key":"history_part4_6", "value":"Hã? Mãe? “Ele” quem? E por que a senhora está escondida no armário…"},
+        {"key":"history_part4_7", "value":"ELE, MEU FILHO! O BUTLERBOT ENLOUQUECEU!!! EU ESTAVA ESCONDIDA PLANEJANDO UMA FORMA DE FUGIR MAS ELE ME ENCONTROU!"},
+        {"key":"history_part4_8", "value":"CORRA, MEU FILHO! EU VOU SEGURAR O ROBÔ PARA VOCÊ ESCAPAR! VÁ LOGO!"},
+        {"key":"history_part4_9", "value":"BOTBATTLE, COMEÇAR!!!"},
 
 
 

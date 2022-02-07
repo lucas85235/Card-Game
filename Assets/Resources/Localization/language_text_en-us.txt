@@ -1,6 +1,7 @@
 {"items":
     [
         {"key":"play", "value":"Play"},
+        {"key":"quick_match", "value":"QUICK \nPLAY"},
         {"key":"configurations", "value":"Configurations"},
         {"key":"robots", "value":"Robots"},
         {"key":"quit", "value":"Quit"},
@@ -35,6 +36,119 @@
         {"key":"waterResistence", "value":"Water Resistence"},
         {"key":"electricResistence", "value":"Electric Resistence"},
         {"key":"acidResistence", "value":"Acid Resistence"},
+
+        {"key":"history_next", "value":"Next"},
+        {"key":"history_yes", "value":"Yes"},
+        {"key":"history_no", "value":"No"},
+        {"key":"history_input", "value":"Your name..."},
+        {"key":"history_name", "value":"Name"},
+        {"key":"history_confirm", "value":"Confirm"},
+        {"key":"history_confirm1", "value":"Confirm Selected Name?"},
+        {"key":"history_confirm2", "value":"Confirm Selected?"},
+
+        {"key":"history_part_1", "value":"Part 1"},
+        {"key":"history_part_2", "value":"Part 2"},
+        {"key":"history_part_3", "value":"Part 2"},
+
+
+
+        {"key":"history_part1_1", "value":"Hi, congratulations on purchasing your new Warbot! I'm AI-BOT, and I'll help you set up your new friend! :)"},
+        {"key":"history_part1_2", "value":"First, what should I call you?"},
+        {"key":"history_part1_3", "value":"Understood. So I'll call you PLAYER"},
+        {"key":"history_part1_4", "value":"PLAYER, now select your avatar appearance."},
+        {"key":"history_part1_5", "value":"Hey, Steven, why does the system ask to create an avatar to use on the Botmote? I thought that this device was only used to control the Warbot during battles…"},
+        {"key":"history_part1_6", "value":"His parents run a metal recycling center, so he grew up surrounded by Warbot parts."},
+        {"key":"history_part1_7", "value":"In fact, he was the one who put together the pieces to build my own robot. If anyone knows robotics, it's Steven."},
+        {"key":"history_part1_8", "value":"I confess that I'm not very close to this virtual world business, no. My stuff is more physical: Assembling robots and then destroying them in battle. Ahaha!"},
+        {"key":"history_part1_9", "value":"Is there something more fun?"},
+
+        {"key":"history_part1_10", "value":"So there are two of us! haha. But so, how is he?"},
+        {"key":"history_part1_11", "value":"Just a few more squeezes here… another there and… that's it! Your Warbot has just been born!"},
+        {"key":"history_part1_12", "value":"Serious? Let me see, let me see!"},
+        {"key":"history_part1_13", "value":"Wooow! It's amazing! Steven, you are the man! Thank you very much!"},
+        {"key":"history_part1_14", "value":"Oh, stop it! It was easy. Shall we test it now?"},
+        {"key":"history_part1_15", "value":"For sure! BOTBATTLE...START!"},
+
+
+
+        {"key":"history_part2_1", "value":"Battles between Warbots are said to be very easy to learn, but difficult to master."},
+        {"key":"history_part2_2", "value":"It's a turn-based battle, the objective is to disable the opposing robot, reducing its vitality bar to zero."},
+        {"key":"history_part2_3", "value":"Vitality is indicated by the green bar and is located on top of the Warbot. When it reaches zero, the robot is deactivated and the fight is over."},
+        {"key":"history_part2_4", "value":"There are three types of cards, each with a different color: the red ones correspond to the attack cards, which cause damage to the opponent;"},
+        {"key":"history_part2_5", "value":"the blue ones are the defense cards, which generate shields to protect your robot from possible damage;"},
+        {"key":"history_part2_6", "value":"finally, the green cards represent the support cards, which grant advantages to your robot, such as an increase in strength or a decrease in the opponent's defense"},
+        {"key":"history_part2_7", "value":"Over time, you'll get the hang of it"},
+        {"key":"history_part2_8", "value":"And watch out for your robot's energy"},
+        {"key":"history_part2_9", "value":"Each card has a usage cost, indicated by the number in its upper left corner"},
+
+        {"key":"history_part2_10", "value":"Each time you use a move, that number is subtracted from your turn's energy reserve."},
+        {"key":"history_part2_11", "value":"If the cost of the card is greater than the energy remaining for the turn, you cannot select the move."},
+        {"key":"history_part2_12", "value":"The energy bar returns full every turn start, so use it wisely!"},
+        {"key":"history_part2_13", "value":"Finally, one more thing: in general, robots with higher speed attribute attack first."},
+        {"key":"history_part2_14", "value":"However, this does not always apply, as some cards, such as shield ones, have priority of use, acting in front of others."},
+        {"key":"history_part2_15", "value":"But this is expressed in the description of the cards, so it's worth checking the deck before each fight."},
+        {"key":"history_part2_16", "value":"Overall, that's it. Basically, you need to select one or more attacks, among the cards drawn, up to the energy limit available per round"},
+        {"key":"history_part2_17", "value":"Did you understand correctly? Now let's see how you do"},
+
+
+
+        {"key":"history_part3_1", "value":"Hey, Steven, the kid plays well! I don't think we should have taken it so lightly"},
+        {"key":"history_part3_2", "value":"Isn't it, ELECBOT? I said he had potential"},
+        {"key":"history_part3_3", "value":"Hey, why does your Warbot talk and mine doesn't!? Are you using hack? O.o"},
+        {"key":"history_part3_4", "value":"Oh, of course not! It's just Elecbot's AI that decided to chatter."},
+        {"key":"history_part3_5", "value":"Oh, Steven, this hurts my feelings"},
+        {"key":"history_part3_6", "value":"Sorry, ELEC, I didn't mean to offend… ahaha! PLAYER, once you get your combatant license, an AI will be linked to your record. "},
+        {"key":"history_part3_7", "value":"That way, he can help you in battles, because, remember, two heads are better than one!"},
+        {"key":"history_part3_8", "value":"Ah, now I understand! I'm going to run after that license!"},
+        {"key":"history_part3_9", "value":"Isn't it, ELECBOT? I said he had potential"},
+
+        {"key":"history_part3_10", "value":"Oh yes! I can't wait to meet my new training buddy!"},
+        {"key":"history_part3_11", "value":"Do it as soon as you have a little time, PLAYER. Acquiring the license is the first step towards entering the world of professional Warbot fighting, according to the Warbot League regiment. By the way…"},
+        {"key":"history_part3_12", "value":"Did you hear about the incidents involving uncontrolled robots? It appears that there has been an increase in the number of identified cases since last week…"},
+        {"key":"history_part3_13", "value":"Yeah, I saw it on the morning news. Apparently, the robots lose control and start destroying everything around them. "},
+        {"key":"history_part3_14", "value":"They were not able to identify the cause or those responsible, since when they finally stop working, the robots are reset to factory settings."},
+        {"key":"history_part3_15", "value":"Exactly. And that's why the organizers of the Warbot League, who theoretically are the most knowledgeable people on the subject"},
+        {"key":"history_part3_16", "value":"are scattered around the city looking for information that can help solve this mystery. Don't be surprised if you bump into an Elite Combatant nearby."},
+        {"key":"history_part3_17", "value":"Wow… what a situation, huh? And what happens to the Warbot AI that resets to factory settings? Won't say it dies! O.o"},
+        {"key":"history_part3_18", "value":"Oh, not that! The AI is stored on the BOT-CHAIN, the Warbots' data network. When the Warbot loses control it is simply disconnected."},
+        {"key":"history_part3_19", "value":"I understood. And have you done some sort of check on the affected AI?"},
+
+        {"key":"history_part3_20", "value":"Yes, but without success. All that is known is that the AI is suddenly disconnected and unable to return to the robot"},
+        {"key":"history_part3_21", "value":"The same goes for the botmote, which is unusable in the period"},
+        {"key":"history_part3_22", "value":"Is it some kind of virus or something? I've heard that in the past, people had a hard time with malicious programs installed on their machines."},
+        {"key":"history_part3_23", "value":"It's a possibility, you know? But, as I said, there is still not enough data to conclude anything."},
+        {"key":"history_part3_24", "value":"As a precaution, I have even left the Elecbot dismantled after training, just to be safe"},
+        {"key":"history_part3_25", "value":"He really takes me apart! And this makes me sad. ;-;"},
+        {"key":"history_part3_26", "value":"Ahaha! Don't be so dramatic, Elecbot. When you're not busy in Botverse, you can't stop chattering from Botmote!"},
+        {"key":"history_part3_27", "value":"The virtual world is very boring. I like to feel my arms and legs! Besides, I'm always scared of that ugly avatar that has your face!"},
+        {"key":"history_part3_28", "value":"Wow, that hurts… ahaha!"},
+        {"key":"history_part3_29", "value":"Yeah, I'll be careful too… are we going to continue training? I need to be prepared to defend myself if I encounter such a robot."},
+
+        {"key":"history_part3_30", "value":"All right, let's go!"},
+        {"key":"history_part3_31", "value":"PLAYER and STEVEN battled for a few hours…"},
+        {"key":"history_part3_32", "value":"Phew, thanks for the training, Steven. I think I'm starting to get the hang of it"},
+        {"key":"history_part3_33", "value":"You are in the right way. If Elecbot hadn't taken it seriously, it would be in shambles right now..."},
+        {"key":"history_part3_34", "value":"Don't even start, Steven! But it was a good warm-up, PLAYER. It just wasn't better because the pieces you're wearing are already pretty worn out by time…"},
+        {"key":"history_part3_35", "value":"Wow, I felt a threat tone… ;-;"},
+        {"key":"history_part3_36", "value":"Who tells you to be so talkative? Who says what they want..."},
+        {"key":"history_part3_37", "value":"Well, I'll be going now. Thanks again Steven! And Elecbot, thanks for the fight!"},
+        {"key":"history_part3_38", "value":"You're welcome! We are here for you! ;)"},
+        {"key":"history_part3_39", "value":"See you guys!"},
+
+        {"key":"history_part3_40", "value":"Don't go! He's going to tear me apart!"},
+        {"key":"history_part3_41", "value":"Ahaha! Take care!"},
+
+
+
+        {"key":"history_part4_1", "value":"I'm home, Mom!"},
+        {"key":"history_part4_2", "value":"Wow, what is this mess"},
+        {"key":"history_part4_3", "value":"Mom, where are you?"},
+        {"key":"history_part4_4", "value":"Did something happen?"},
+        {"key":"history_part4_5", "value":"Psssst… don't make noise, son! He is here!"},
+        {"key":"history_part4_6", "value":"What? Mom? "He who? And why are you hiding in the closet…"},
+        {"key":"history_part4_7", "value":"HIM, MY SON! BUTLERBOT GOT CRAZY!!! I WAS HIDDEN PLANNING A WAY TO ESCAPE BUT HE FOUND ME!"},
+        {"key":"history_part4_8", "value":"RUN, MY CHILD! I WILL HOLD THE ROBOT FOR YOU TO ESCAPE! GO FAST!"},
+        {"key":"history_part4_9", "value":"BOTBATTLE, START!!!"},
 
 
 
