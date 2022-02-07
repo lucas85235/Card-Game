@@ -239,6 +239,11 @@ public class MenuManager : MonoBehaviour
         TransitionManager.Instance.StartTransition("Game");
     }
 
+    public void LoadScene(string scene)
+    {
+        TransitionManager.Instance.StartTransition(scene);
+    }
+
     public void ChangeRobot(int value)
     {
         m_CurrentRobotIndex += value;

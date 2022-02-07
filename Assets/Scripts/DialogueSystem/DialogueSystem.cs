@@ -12,16 +12,15 @@ public class DialogueSystem : MonoBehaviour
     [Header("UI Setup")]
     public TextMeshProUGUI textField;
     public Button nextIndex;
-    public float timeBetweenLetters = 0.05f;
+    private float timeBetweenLetters = 0.0025f;
 
     [Header("History")]
+    public HistoryData data;
     public InputField nameInput;
     public Text nameBox;
     public Image characterImage;
     public Sprite menSprite;
     public Sprite womanSprite;
-    [SerializeField] private string playerName = "Jogador";
-    [SerializeField] private Character character;
 
     [Header("Dialogue Setup")]
     public bool useTranslateSystem = false;
@@ -33,7 +32,7 @@ public class DialogueSystem : MonoBehaviour
 
     private int index = 0;
     private bool canNext = true;
-    private float timeBetweenIndexs = 0.2f;
+    private float timeBetweenIndexs = 0.1f;
     private bool runnigText = false;
 
     void Start()
@@ -41,6 +40,7 @@ public class DialogueSystem : MonoBehaviour
         startDialogueEvent.Invoke();
         nextIndex.onClick.AddListener(() => Next());
         SetDialogueText();
+        SetCharacterImage();
     }
 
     public void LoadSceneTest(string scene)
@@ -50,23 +50,23 @@ public class DialogueSystem : MonoBehaviour
 
     public void SetName()
     {
-        playerName = nameInput.text;
+        data.SetPlayerName(nameInput.text);
     }
 
     public void SetBoxWithPlayerName()
     {
-        nameBox.text = playerName;
+        nameBox.text = data.GetPlayerName();
     }
 
     public void SetCharacter(string characterName)
     {
-        character = (Character) Enum.Parse(typeof(Character), characterName, true);
+        data.SetCharacter(characterName);
         SetCharacterImage();
     }
 
     public void SetCharacterImage()
     {
-        if (character == Character.Men)
+        if (data.GetCharacter() == CharacterSelected.Men)
         {
             characterImage.sprite = menSprite;
         }
@@ -113,10 +113,30 @@ public class DialogueSystem : MonoBehaviour
 
     private void SetDialogueText()
     {
-        string setence = "";
-        setence = GetText();
+        string sentence = "";
+        sentence = GetText();
 
-        StartCoroutine(TextRoutine(setence));
+        if (sentence == "")
+        {
+            textField.text = sentence;
+
+            if (dialogue[index].unityEvent != null)
+            {
+                dialogue[index].unityEvent.Invoke();
+            }
+
+            runnigText = false;
+
+            if (index < dialogue.Length - 1)
+            {
+                if (canNext) StartCoroutine(NextText());
+            }
+            else endDialogueEvent.Invoke();
+
+            return;
+        }
+
+        StartCoroutine(TextRoutine(sentence));
     }
 
     private string GetText()
@@ -157,7 +177,7 @@ public class DialogueSystem : MonoBehaviour
 
             var a = sentence.IndexOf("PLAYER");
             sentence = sentence.Remove(a, 6);
-            var final = sentence.Insert(a, playerName);
+            var final = sentence.Insert(a, data.GetPlayerName());
 
             return final;
         }
@@ -169,11 +189,5 @@ public class DialogueSystem : MonoBehaviour
     {
         public string dialogue;
         public UnityEvent unityEvent;
-    }
-
-    public enum Character
-    {
-        Men,
-        Woman,
     }
 }

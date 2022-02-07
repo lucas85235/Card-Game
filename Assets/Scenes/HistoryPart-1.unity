@@ -1949,7 +1949,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -450, y: -450}
-  m_SizeDelta: {x: 1280, y: 2560}
+  m_SizeDelta: {x: 1024, y: 2048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974235326
 MonoBehaviour:
@@ -2154,6 +2154,7 @@ RectTransform:
   - {fileID: 1227044224}
   - {fileID: 974235324}
   - {fileID: 1330327013}
+  - {fileID: 1699455935}
   m_Father: {fileID: 2102108431}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2681,7 +2682,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 450, y: -450}
-  m_SizeDelta: {x: 1280, y: 2560}
+  m_SizeDelta: {x: 1024, y: 2048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1330327015
 MonoBehaviour:
@@ -3331,6 +3332,101 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630376385}
   m_CullTransparentMesh: 1
+--- !u!1 &1699455931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699455935}
+  - component: {fileID: 1699455934}
+  - component: {fileID: 1699455933}
+  - component: {fileID: 1699455932}
+  m_Layer: 5
+  m_Name: BuilderBot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!95 &1699455932
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699455931}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa6eca2aac25698438656c5c97b88bd9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1699455933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699455931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cbed7d8ca1a24824796a33086e95e103, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1699455934
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699455931}
+  m_CullTransparentMesh: 1
+--- !u!224 &1699455935
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699455931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1196223445}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 423.25, y: 443.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1700310333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3941,14 +4037,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textField: {fileID: 1077069663}
   nextIndex: {fileID: 1956503706}
-  timeBetweenLetters: 0.05
+  data: {fileID: 11400000, guid: 87d608117c037b44687e3189fcf0b9b5, type: 2}
   nameInput: {fileID: 1389923540}
   nameBox: {fileID: 2132121963}
   characterImage: {fileID: 974235326}
   menSprite: {fileID: 21300000, guid: b9f65118c8fc05d4e80016bde159fd50, type: 3}
   womanSprite: {fileID: 21300000, guid: 839057a0047bdde41892fcdd534a2535, type: 3}
-  playerName: Jogador
-  character: 0
   useTranslateSystem: 0
   dialogue:
   - dialogue: "Ol\xE1, parab\xE9ns por adquirir seu novo Warbot! Eu sou AI-BOT e
@@ -4060,9 +4154,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 2112875445}
+          m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+          m_MethodName: SetBoxWithPlayerName
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - dialogue: "\xD4, Steven, por que o sistema pede para criar um avatar para uso
       do Botmote? Achei que esse aparelho servisse apenas para controlar o Warbot
       durante as batalhas\u2026"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: "Seus pais gerenciam um centro de reciclagem de metal, ent\xE3o ele
+      cresceu cercado por pe\xE7as e mais pe\xE7as de Warbots. "
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: "Inclusive, foi ele quem juntou as pe\xE7as para a constru\xE7\xE3o
+      do meu pr\xF3prio rob\xF4. Se tem algu\xE9m que manja de rob\xF3tica, esse
+      algu\xE9m \xE9 o Steven"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2132121963}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Steven
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: "Confesso que n\xE3o sou muito chegado nesse neg\xF3cio mundo virtual,
+      n\xE3o. Minha parada \xE9 mais f\xEDsica: Montar rob\xF4s e depois destru\xED-los
+      em batalha. Ahaha!"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: Quer algo mais divertido?
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -4078,9 +4225,150 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - dialogue: "Ent\xE3o somos dois! Ahaha. Mas e a\xED, como ele est\xE1?"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2132121963}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Steven
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: "S\xF3 mais uns apertinhos aqui\u2026 outro ali e\u2026 pronto! Seu
+      Warbot acaba de nascer!"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2112875445}
+          m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+          m_MethodName: SetBoxWithPlayerName
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: "S\xE9rio? Deixa eu ver, deixa eu ver!"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2112875445}
+          m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+          m_MethodName: SetBoxWithPlayerName
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1699455931}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - dialogue: "Nooooossa! Ficou incr\xEDvel! Steven, voc\xEA \xE9 o cara! Valeu mesmo!"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2132121963}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Steven
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1699455931}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: "Ah, deixa disso! N\xE3o deu trabalho nenhum. Vamos logo testar?"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2112875445}
+          m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+          m_MethodName: SetBoxWithPlayerName
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: "S\xF3 se for agora! BOTBATTLE\u2026 COME\xC7AR!"
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
   endDialogueEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2112875445}
+        m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+        m_MethodName: LoadSceneTest
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: History-Game-1
+          m_BoolArgument: 0
+        m_CallState: 2
   startDialogueEvent:
     m_PersistentCalls:
       m_Calls:

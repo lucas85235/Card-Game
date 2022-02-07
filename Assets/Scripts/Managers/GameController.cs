@@ -8,6 +8,7 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     [Header("Setup")]
+    [SerializeField] private bool useTimer = true;
     [SerializeField] private float timeToPlay;
     [SerializeField] private Slider timeSlider;
 
@@ -49,9 +50,13 @@ public class GameController : MonoBehaviour
         AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
 
-        StartCountdown();
+        if (useTimer)
+        {
+            Round.i.EndTurn.AddListener(() => StartCountdown());            
+            StartCountdown();
+        }
 
-        Round.i.EndTurn.AddListener(() => StartCountdown());
+        timeSlider.gameObject.SetActive(useTimer);
     }
 
     public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
@@ -106,16 +111,24 @@ public class GameController : MonoBehaviour
 
     public void StartCountdown()
     {
+        if (!useTimer)
+        {
+            return;
+        }
+
         timeSlider.gameObject.SetActive(true);
         timeRoundCoroutine = StartCoroutine(Countdown());
     }
 
     public void EndCountdown()
     {
-        if (timeRoundCoroutine == null) return;
+        if (useTimer)
+        {
+            if (timeRoundCoroutine == null) return;
 
-        timeSlider.gameObject.SetActive(false);
-        StopCoroutine(timeRoundCoroutine);
+            timeSlider.gameObject.SetActive(false);
+            StopCoroutine(timeRoundCoroutine);            
+        }
 
         Round.i.StartTurn?.Invoke();
     }
