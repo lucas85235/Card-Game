@@ -59,8 +59,8 @@ public class BasicConection : MonoBehaviourPunCallbacks
         Robot player;
         
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
-            player = GameController.i.playerOne;
-        else player = GameController.i.playerTwo;
+            player = GameController.i.Robots[0];
+        else player = GameController.i.Robots[1];
 
         var tempPlayer = PhotonNetwork.Instantiate(
             player.name, 
@@ -70,8 +70,8 @@ public class BasicConection : MonoBehaviourPunCallbacks
         );
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
-            GameController.i.playerOne = tempPlayer.GetComponent<Robot>();
-        else GameController.i.playerTwo = tempPlayer.GetComponent<Robot>();
+            GameController.i.Robots[0] = tempPlayer.GetComponent<Robot>();
+        else GameController.i.Robots[1] = tempPlayer.GetComponent<Robot>();
 
         if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
             inRoon = true;

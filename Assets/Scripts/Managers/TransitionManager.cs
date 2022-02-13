@@ -37,6 +37,7 @@ public class TransitionManager : MonoBehaviour
         }
 
         transitionImage.SetActive(true);
+
         LeanTween.value(0, 1, 1f)
             .setOnUpdate((float value) =>
             {

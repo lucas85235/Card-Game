@@ -7,10 +7,6 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    [Header("CHARACTERS")]
-    public Robot playerOne;
-    public Robot playerTwo;
-
     [Header("Setup")]
     public bool isMultiplayer;
     [SerializeField] private bool useTimer = true;
@@ -25,7 +21,7 @@ public class GameController : MonoBehaviour
     [Header("Icons")]
     [SerializeField] private List<Icon> iconList;
 
-    private List<Robot> robots;
+    public List<Robot> Robots { get; private set; }
     private Coroutine timeRoundCoroutine;
     private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
 
@@ -36,10 +32,12 @@ public class GameController : MonoBehaviour
         i = this;
 
         var round = FindObjectOfType<RoundLoop>();
-        robots = new List<Robot>();
+        Robots = new List<Robot>();
 
-        robots.Add(playerOne);
-        robots.Add(playerTwo);
+        foreach(Robot newRobot in FindObjectsOfType<Robot>())
+        {
+            Robots.Add(newRobot);
+        }
 
         foreach (var icon in iconList)
         {
@@ -160,7 +158,7 @@ public class GameController : MonoBehaviour
 
     public Robot GetTheOtherRobot(Robot emitterRobot)
     {
-        foreach (var robot in robots)
+        foreach (var robot in Robots)
         {
             if(robot != emitterRobot)
             {

@@ -28,7 +28,7 @@ public class Robot : MonoBehaviour
     public Dictionary<Stats, int> CurrentRobotStats { get; private set; } = new Dictionary<Stats, int>();
     public Dictionary<Stats, int> DataStats { get; private set; } = new Dictionary<Stats, int>();
     public List<CardData> CurrentCards { get; private set; }
-    public Transform selectedCardsConteriner { get; private set; }
+    public Transform selectedCardsConteriner;
 
     private RobotAnimation m_RobotAnimation;
     private bool m_iconSpawInLeft;

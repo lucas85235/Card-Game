@@ -101,8 +101,11 @@ public class DeckHandle : MonoBehaviour
             deck.RemoveAt(s);
         }
 
-        // deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
-        // discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
+        if(deckText != null && discardText != null)
+        {
+            deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
+            discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
+        }
 
         Invoke("UpdateHands", 0.1f);
     }

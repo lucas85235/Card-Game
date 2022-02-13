@@ -34,8 +34,8 @@ public class RoundLoop : Round
             yield return new WaitUntil( () => BasicConection.Instance.IsReady());
         }
             
-        playerOne = GameController.i.playerOne;
-        playerTwo = GameController.i.playerTwo;
+        playerOne = GameController.i.Robots[0];
+        playerTwo = GameController.i.Robots[1];
         
         sortRobots = new List<Robot>();
         SortBySpeed();
