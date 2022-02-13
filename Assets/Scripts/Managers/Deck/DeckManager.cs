@@ -20,6 +20,16 @@ public class DeckManager : MonoBehaviour
     {
         m_spaw = transform;
 
+
+    }
+
+    private IEnumerator Start()
+    {
+        if (GameController.i.isMultiplayer)
+        {
+            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
+        }
+
         if (deckOf == DeckOf.player)
         {
             m_deck = GameObject.FindGameObjectWithTag("Player").GetComponent<DeckHandle>();
@@ -34,10 +44,7 @@ public class DeckManager : MonoBehaviour
         }
 
         m_deck.OnUpdateHands += UpdateDeck;
-    }
 
-    private void Start()
-    {
         if (deckOf == DeckOf.cpu)
         {
             Round.i.StartTurn.AddListener(() =>

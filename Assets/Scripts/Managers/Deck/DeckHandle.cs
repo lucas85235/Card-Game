@@ -101,8 +101,8 @@ public class DeckHandle : MonoBehaviour
             deck.RemoveAt(s);
         }
 
-        deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
-        discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
+        // deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
+        // discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
 
         Invoke("UpdateHands", 0.1f);
     }
@@ -110,7 +110,7 @@ public class DeckHandle : MonoBehaviour
     public void UpdateHands()
     {
         // calls the event that updates the cards in the hand
-        OnUpdateHands(hands);          
+        OnUpdateHands?.Invoke(hands);          
     }
 
     // randomly select current hand order

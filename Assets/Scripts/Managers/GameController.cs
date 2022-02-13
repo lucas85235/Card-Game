@@ -7,7 +7,12 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+    [Header("CHARACTERS")]
+    public Robot playerOne;
+    public Robot playerTwo;
+
     [Header("Setup")]
+    public bool isMultiplayer;
     [SerializeField] private bool useTimer = true;
     [SerializeField] private float timeToPlay;
     [SerializeField] private Slider timeSlider;
@@ -26,15 +31,15 @@ public class GameController : MonoBehaviour
 
     public static GameController i;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         i = this;
 
         var round = FindObjectOfType<RoundLoop>();
         robots = new List<Robot>();
 
-        robots.Add(round.playerOne);
-        robots.Add(round.playerTwo);
+        robots.Add(playerOne);
+        robots.Add(playerTwo);
 
         foreach (var icon in iconList)
         {
@@ -45,8 +50,13 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void Start()
+    protected virtual IEnumerator Start()
     {
+        if (isMultiplayer)
+        {
+            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
+        }
+
         AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
 
@@ -59,7 +69,7 @@ public class GameController : MonoBehaviour
         timeSlider.gameObject.SetActive(useTimer);
     }
 
-    public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
+    public virtual void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
     {
         var referenceRect = left ? alertLeft : alertRight;
         int direction;

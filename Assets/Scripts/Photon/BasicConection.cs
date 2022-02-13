@@ -9,8 +9,15 @@ public class BasicConection : MonoBehaviourPunCallbacks
     [Header("DEBUG")]
     [SerializeField] private int ping;
     [SerializeField] private bool isConnected = false;
+    [SerializeField] private bool inRoon = false;
 
-    public bool IsConnected { get => isConnected; }
+    public bool IsReady()
+    { 
+        if (!inRoon) return false;
+
+        int temp = PhotonNetwork.CurrentRoom.PlayerCount;
+        return temp > 1;
+    }
 
     public static BasicConection Instance;
 
@@ -45,14 +52,46 @@ public class BasicConection : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("OnJoinedRoom: " + PhotonNetwork.CurrentRoom.Name);
+
+        Robot player;
+        
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            player = GameController.i.playerOne;
+        else player = GameController.i.playerTwo;
+
+        var tempPlayer = PhotonNetwork.Instantiate(
+            player.name, 
+            player.transform.position, 
+            player.transform.rotation,
+            0 
+        );
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            GameController.i.playerOne = tempPlayer.GetComponent<Robot>();
+        else GameController.i.playerTwo = tempPlayer.GetComponent<Robot>();
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
+            inRoon = true;
+    }
+
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
+        inRoon = false;
         Debug.LogError("OnJoinRandomFailed");
 
         var randName = "Room" + Random.Range(100, 1000);
         PhotonNetwork.CreateRoom(randName);
 
         Debug.Log("Creating a new room: " + randName);
+    }
+
+    public override void OnLeftRoom()
+    {
+        inRoon = false;
+        Debug.LogError("OnLeftRoom");
     }
 
     public override void OnDisconnected(DisconnectCause cause)

@@ -19,27 +19,34 @@ public class ShowBuffAndDebuff : MonoBehaviour
 
     private Robot m_robot;
 
-    void Start()
+    private IEnumerator Start()
     {
-        if (deckOf == DeckOf.player)
+        if (GameController.i.isMultiplayer)
         {
-            m_robot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
-            SetStatsLeft();
+            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
         }
-        else
-        {
-            m_robot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
-            SetStatsRight();
-        }
+        
+        // if (deckOf == DeckOf.player)
+        // {
+        //     m_robot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
+        //     SetStatsLeft();
+        // }
+        // else
+        // {
+        //     m_robot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
+        //     SetStatsRight();
+        // }
     }
 
     private void FixedUpdate()
     {
-        if (deckOf == DeckOf.player)
-        {
-            SetStatsLeft();
-        }
-        else SetStatsRight();
+        // if (GameController.i.isMultiplayer && !BasicConection.Instance.InRoon) return;
+
+        // if (deckOf == DeckOf.player)
+        // {
+        //     SetStatsLeft();
+        // }
+        // else SetStatsRight();
     }
 
     public void SetStatsLeft()
@@ -70,7 +77,7 @@ public class ShowBuffAndDebuff : MonoBehaviour
     // Red FD4902
 
     private string GetStatusWithColor(Stats statTyper)
-    {
+    {        
         int diff = m_robot.StatDiff(statTyper);
         int currentStat = m_robot.CurrentRobotStats[statTyper];
 

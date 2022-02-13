@@ -1,13 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class RoundLoop : Round
 {
-    [Header("CHARACTERS")]
-    public Robot playerOne;
-    public Robot playerTwo;
-
     [Header("SETTINGS")]
 
     [Tooltip("In millisecondsDelay")]
@@ -19,11 +16,9 @@ public class RoundLoop : Round
     [Tooltip("In millisecondsDelay")]
     public int delayBetweenStatusEffects = 600;
 
-    [Header("CARDS")]
-    public Transform selectedConterinerPlayerOne;
-    public Transform selectedConterinerPlayerTwo;
-
     private List<Robot> sortRobots;
+    private Robot playerOne;
+    private Robot playerTwo;
 
     private static int MAX_CARD_PRIORITY = 4;
 
@@ -32,13 +27,18 @@ public class RoundLoop : Round
         base.Awake();
     }
 
-    protected virtual void Start()
+    protected virtual IEnumerator Start()
     {
+        if (GameController.i.isMultiplayer)
+        {
+            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
+        }
+            
+        playerOne = GameController.i.playerOne;
+        playerTwo = GameController.i.playerTwo;
+        
         sortRobots = new List<Robot>();
         SortBySpeed();
-
-        selectedConterinerPlayerOne = playerOne.selectedCardsConteriner;
-        selectedConterinerPlayerTwo = playerTwo.selectedCardsConteriner;
 
         StartTurn.AddListener(() =>
            StartTurnPlaysHandle()
@@ -54,7 +54,7 @@ public class RoundLoop : Round
         await Task.Delay(delayBetweenTasks);
 
         // Use All Cards
-        await PlaysAllCards();
+        await GetAndPlaysAllRoundCards();
         await Task.Delay(delayBetweenTasks);
 
         if (sortRobots[0].life.isDead || 
@@ -99,18 +99,11 @@ public class RoundLoop : Round
         }
     }
 
-    /// <summary>This call plays function using sortRobots with parans</summary>
-    private async Task PlaysAllCards()
-    {
-        await GetAndPlaysAllRoundCards();
-        await Task.Delay(delayBetweenTasks);
-
-        return;
-    }
-
     /// <summary>Get all cards of the current robot and apply effects to the target</summary>
     public async Task<bool> GetAndPlaysAllRoundCards()
     {
+        await Task.Delay(delayBetweenTasks);
+
         var m_roundCards = new Dictionary<int, List<CardImage>>();
 
         for (int i = 0; i < sortRobots.Count; i++)
