@@ -11,7 +11,7 @@ public class PlayerData : MonoBehaviour
 
     public void PrepareClass()
     {
-        Robots = new RobotData[5];
+        Robots = new RobotData[3];
         
         for (int i = 0; i < Robots.Length; i++)
         {

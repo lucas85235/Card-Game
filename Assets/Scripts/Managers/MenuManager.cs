@@ -88,35 +88,6 @@ public class MenuManager : MonoBehaviour
 
         #endregion
 
-        #region Stun
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.H_StunHead.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.LA_StunLeftArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.L_StunLeg.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.RA_StunRightArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.T_StunTorso.ToString()
-        });
-
-        #endregion
-
         #region Lumber
 
         newParts.Add(new RobotPartItem()
@@ -142,35 +113,6 @@ public class MenuManager : MonoBehaviour
         newParts.Add(new RobotPartItem()
         {
             itemID = PartID.T_LumberTorso.ToString()
-        });
-
-        #endregion
-
-        #region Metal
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.H_MetalHead.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.LA_MetalLeftArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.L_MetalLeg.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.RA_MetalRightArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.T_MetalTorso.ToString()
         });
 
         #endregion
@@ -237,6 +179,11 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         TransitionManager.Instance.StartTransition("Game");
+    }
+
+    public void LoadScene(string scene)
+    {
+        TransitionManager.Instance.StartTransition(scene);
     }
 
     public void ChangeRobot(int value)
