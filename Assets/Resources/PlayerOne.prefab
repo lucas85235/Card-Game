@@ -568,7 +568,8 @@ MonoBehaviour:
   selectConteriner: {fileID: 1875667593519803198}
   selectedConteriner: {fileID: 8540063320729910267}
   cardTemplate: {fileID: 53777120958727737, guid: 4aec4b52bccd21b4fa0498530df9913d, type: 3}
-  deckOf: 0
+  player: {fileID: 8955086479820375021}
+  isAI: 0
 --- !u!1 &6371742388193304495
 GameObject:
   m_ObjectHideFlags: 0

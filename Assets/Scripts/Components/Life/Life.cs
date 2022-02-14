@@ -25,17 +25,17 @@ public class Life : MonoBehaviour
     [Header("Death Event")]
     public UnityEvent OnDeath;
 
-    private Robot m_robot;
-    private int m_maxLife;
-    private int m_currentLife;
-    private int m_currentShield;
+    protected Robot m_robot;
+    protected int m_maxLife;
+    protected int m_currentLife;
+    protected int m_currentShield;
 
-    private RobotAnimation m_RobotAnimation;
-    private Dictionary<Element, Stats> m_ElementToStats = new Dictionary<Element, Stats>();
+    protected RobotAnimation m_RobotAnimation;
+    protected Dictionary<Element, Stats> m_ElementToStats = new Dictionary<Element, Stats>();
 
     public bool HaveShield() => m_currentShield > 0;
 
-    void Start()
+    protected virtual void Start()
     {
         m_robot = GetComponent<Robot>();
         TryGetComponent(out m_RobotAnimation);
@@ -54,7 +54,7 @@ public class Life : MonoBehaviour
         SetElementToStats();
     }
 
-    private void SetElementToStats()
+    protected virtual void SetElementToStats()
     {
         m_ElementToStats[Element.acid] = Stats.acidResistence;
         m_ElementToStats[Element.water] = Stats.waterResistence;
@@ -80,7 +80,7 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(int decrement, AttackType type = AttackType.none, Element element = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
+    public virtual void TakeDamage(int decrement, AttackType type = AttackType.none, Element element = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
     {
         bool ignoreShield = false;
         float hitChance = 1;
@@ -154,15 +154,9 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    private void DeathHandle()
-    {
-        Debug.Log("Character is Death");
-        if (destroyAfterDeath) Destroy(this.gameObject);
-        OnDeath?.Invoke();
-        isDead = true;
-    }
 
-    private void LifeRules()
+
+    protected virtual void LifeRules()
     {
         if (m_currentLife > m_maxLife)
         {
@@ -182,7 +176,15 @@ public class Life : MonoBehaviour
         }
     }    
 
-    private void UpdateLifeSlider()
+    protected virtual void DeathHandle()
+    {
+        Debug.Log("Character is Death");
+        if (destroyAfterDeath) Destroy(this.gameObject);
+        OnDeath?.Invoke();
+        isDead = true;
+    }
+
+    protected void UpdateLifeSlider()
     {
         if (lifeSlider != null)
             lifeSlider.value = m_currentLife;
@@ -191,7 +193,7 @@ public class Life : MonoBehaviour
             lifeText.text = m_currentLife + " / " + m_maxLife;
     }
 
-    public void AddShield(int shild)
+    public virtual void AddShield(int shild)
     {
         // GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
         m_currentShield += shild;
@@ -204,13 +206,13 @@ public class Life : MonoBehaviour
         UpdateShildSlider();
     }
 
-    public void RemoveShild()
+    public virtual void RemoveShild()
     {
         shildSlider.gameObject.SetActive(false);
         m_currentShield = 0;
     }
 
-    private int TakeDamageShield(int damage)
+    protected int TakeDamageShield(int damage)
     {
         // Debug.Log("Damage: " + damage);
         
@@ -227,7 +229,7 @@ public class Life : MonoBehaviour
         return 0;
     }
 
-    private void UpdateShildSlider()
+    protected void UpdateShildSlider()
     {
         if (shildSlider != null)
             shildSlider.value = m_currentShield;

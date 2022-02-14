@@ -31,9 +31,12 @@ public class RoundLoop : Round
     {
         if (GameController.i.isMultiplayer)
         {
-            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
+            yield return new WaitUntil( () => BasicConection.Instance.IsReady() );
+            Debug.LogError("IsReady " + Photon.Pun.PhotonNetwork.NickName);
         }
-            
+
+        GameController.i.SetRobotList();
+
         playerOne = GameController.i.Robots[0];
         playerTwo = GameController.i.Robots[1];
         

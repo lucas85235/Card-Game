@@ -21,7 +21,9 @@ public class GameController : MonoBehaviour
     [Header("Icons")]
     [SerializeField] private List<Icon> iconList;
 
-    public List<Robot> Robots { get; private set; }
+    [Header("Debug")]
+    public List<Robot> Robots;
+    
     private Coroutine timeRoundCoroutine;
     private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
 
@@ -32,12 +34,6 @@ public class GameController : MonoBehaviour
         i = this;
 
         var round = FindObjectOfType<RoundLoop>();
-        Robots = new List<Robot>();
-
-        foreach(Robot newRobot in FindObjectsOfType<Robot>())
-        {
-            Robots.Add(newRobot);
-        }
 
         foreach (var icon in iconList)
         {
@@ -50,11 +46,8 @@ public class GameController : MonoBehaviour
 
     protected virtual IEnumerator Start()
     {
-        if (isMultiplayer)
-        {
-            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
-        }
-
+        yield return null;
+        
         AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
 
@@ -65,6 +58,29 @@ public class GameController : MonoBehaviour
         }
 
         timeSlider.gameObject.SetActive(useTimer);
+    }
+
+    public void SetRobotList()
+    {
+        Robots = new List<Robot>();
+
+        foreach(Robot newRobot in FindObjectsOfType<Robot>())
+        {
+            Robots.Add(newRobot);
+        }
+    }
+
+    public virtual Robot GetTheOtherRobot(Robot emitterRobot)
+    {
+        foreach (var robot in Robots)
+        {
+            if(robot != emitterRobot)
+            {
+                return robot;
+            }
+        }
+
+        return null;
     }
 
     public virtual void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
@@ -117,17 +133,6 @@ public class GameController : MonoBehaviour
             });
     }
 
-    public void StartCountdown()
-    {
-        if (!useTimer)
-        {
-            return;
-        }
-
-        timeSlider.gameObject.SetActive(true);
-        timeRoundCoroutine = StartCoroutine(Countdown());
-    }
-
     public void EndCountdown()
     {
         if (useTimer)
@@ -139,6 +144,17 @@ public class GameController : MonoBehaviour
         }
 
         Round.i.StartTurn?.Invoke();
+    }
+
+    private void StartCountdown()
+    {
+        if (!useTimer)
+        {
+            return;
+        }
+
+        timeSlider.gameObject.SetActive(true);
+        timeRoundCoroutine = StartCoroutine(Countdown());
     }
 
     private IEnumerator Countdown()
@@ -156,26 +172,14 @@ public class GameController : MonoBehaviour
         Round.i.StartTurn?.Invoke();
     }
 
-    public Robot GetTheOtherRobot(Robot emitterRobot)
-    {
-        foreach (var robot in Robots)
-        {
-            if(robot != emitterRobot)
-            {
-                return robot;
-            }
-        }
 
-        return null;
-    }
-
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         LeanTween.cancelAll();
     }
 
     [Serializable]
-    private struct Icon
+    protected struct Icon
     {
         public Sprite sprite;
         public Stats stat;

@@ -136,7 +136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -800}
+  m_AnchoredPosition: {x: 0, y: -380}
   m_SizeDelta: {x: -400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2283893476052638362
@@ -180,7 +180,8 @@ MonoBehaviour:
   selectConteriner: {fileID: 3897230762868767930}
   selectedConteriner: {fileID: 8018726461570924317}
   cardTemplate: {fileID: 53777120958727737, guid: 4aec4b52bccd21b4fa0498530df9913d, type: 3}
-  deckOf: 1
+  player: {fileID: 7394429283518439579}
+  isAI: 0
 --- !u!1 &3817511877249595415
 GameObject:
   m_ObjectHideFlags: 0

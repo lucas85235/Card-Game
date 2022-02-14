@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class DeckManager : MonoBehaviour
 {
@@ -12,40 +13,42 @@ public class DeckManager : MonoBehaviour
     public Transform selectConteriner;
     public Transform selectedConteriner;
     public CardImage cardTemplate;
+    public Transform player;
 
-    public DeckOf deckOf;
+    [Header("IA")]
+    public bool isAI;
+
     private Robot m_ConnectedRobot;
+    private PhotonView m_view;
 
     private void Awake()
     {
         m_spaw = transform;
+        m_view = player.GetComponent<PhotonView>();
 
-
+        if (m_view != null && !m_view.IsMine)
+        {
+            var rect = GetComponent<RectTransform>();
+            var rectPos = rect.localPosition;
+            rectPos.y -= 500;
+            rect.localPosition = rectPos;
+        }
     }
 
     private IEnumerator Start()
     {
         if (GameController.i.isMultiplayer)
         {
-            yield return new WaitUntil( () => BasicConection.Instance.IsReady());
+            yield return new WaitUntil(() => BasicConection.Instance.IsReady());
         }
 
-        if (deckOf == DeckOf.player)
-        {
-            m_deck = GameObject.FindGameObjectWithTag("Player").GetComponent<DeckHandle>();
-            m_energy = GameObject.FindGameObjectWithTag("Player").GetComponent<Energy>();
-            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
-        }
-        else
-        {
-            m_deck = GameObject.FindGameObjectWithTag("Cpu").GetComponent<DeckHandle>();
-            m_energy = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Energy>();
-            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
-        }
+        m_deck = player.GetComponent<DeckHandle>();
+        m_energy = player.GetComponent<Energy>();
+        m_ConnectedRobot = player.GetComponent<Robot>();
 
         m_deck.OnUpdateHands += UpdateDeck;
 
-        if (deckOf == DeckOf.cpu)
+        if (isAI)
         {
             Round.i.StartTurn.AddListener(() =>
                selectedConteriner.gameObject.SetActive(true)
@@ -58,7 +61,7 @@ public class DeckManager : MonoBehaviour
         }
 
         // Add Use Card Feedback Event
-        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );        
+        Round.i.UseCard.AddListener((card) => UseCardFeedback(card));
     }
 
     // UseCard Event
@@ -102,7 +105,7 @@ public class DeckManager : MonoBehaviour
             spawCards.Add(cardImage);
         }
 
-        if (deckOf == DeckOf.cpu)
+        if (isAI)
         {
             foreach (var spaw in spawCards)
             {
@@ -120,6 +123,6 @@ public class DeckManager : MonoBehaviour
 
 public enum DeckOf
 {
-    player, 
+    player,
     cpu,
 }
