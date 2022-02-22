@@ -4915,6 +4915,8 @@ GameObject:
   - component: {fileID: -3335312238521291125}
   - component: {fileID: 5793222544482456001}
   - component: {fileID: 2559224793723702629}
+  - component: {fileID: 586584622252939690}
+  - component: {fileID: 8299805384483187881}
   m_Layer: 0
   m_Name: RobotMP
   m_TagString: Player
@@ -5038,6 +5040,40 @@ MonoBehaviour:
   lose: {fileID: 7919672923332773739}
   lifeSlider: {fileID: 8612615499249062662}
   lifeText: {fileID: 7930617956470502044}
+--- !u!114 &586584622252939690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930617956505669016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4722aa909936ba4ea562435d20030fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
+  selectConteriner: {fileID: 1458135880}
+  selectedConteriner: {fileID: 438776062}
+  cardTemplate: {fileID: 53777120958727737, guid: 4aec4b52bccd21b4fa0498530df9913d, type: 3}
+  deck: []
+  hands: []
+  discard: []
+  deckText: {fileID: 240431670}
+  discardText: {fileID: 1676823225}
+--- !u!114 &8299805384483187881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930617956505669016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyText: {fileID: 1307119043}
 --- !u!1 &7930617956628139895
 GameObject:
   m_ObjectHideFlags: 0

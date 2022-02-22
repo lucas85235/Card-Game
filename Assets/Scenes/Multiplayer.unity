@@ -1671,6 +1671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801237790}
+  - component: {fileID: 801237789}
   m_Layer: 0
   m_Name: RoundLoop
   m_TagString: Untagged
@@ -1678,6 +1679,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &801237789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801237788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25af020e1d4490942ad759a083242e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartTurn:
+    m_PersistentCalls:
+      m_Calls: []
+  EndTurn:
+    m_PersistentCalls:
+      m_Calls: []
+  UseCard:
+    m_PersistentCalls:
+      m_Calls: []
+  RobotAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &801237790
 Transform:
   m_ObjectHideFlags: 0

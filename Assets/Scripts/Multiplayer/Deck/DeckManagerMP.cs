@@ -2,18 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 using Random = UnityEngine.Random;
 
-public class DeckHandle : MonoBehaviour
+public class DeckManagerMP : MonoBehaviour
 {
-    // The deck it has 20 cars
-    // for each turn its buy 5
-    // at the end of each turn, the cards that are not used and those that are discarded
-    // as soon as the deck has less than 5 cards they will be reshuffled and drawn
-    // you will buy the ones you have and the ones that are shuffled to complete 5
+    [Header("Temp")]
+    [SerializeField] private RobotData m_Data;
+
+    [Header("Setup")]
+    public Transform selectConteriner;
+    public Transform selectedConteriner;
+    public CardImage cardTemplate;
 
     [Header("Lists")]
     [SerializeField] private List<CardData> deck;
@@ -24,18 +25,18 @@ public class DeckHandle : MonoBehaviour
     public TextMeshProUGUI deckText;
     public TextMeshProUGUI discardText;
 
-    public Action<List<CardData>> OnUpdateHands;
+    private Energy m_energy;
 
-    private Robot robot;
+    public Action<List<CardData>> OnUpdateHands;
 
     private void Start()
     {
-        robot = GetComponent<Robot>();
+        m_energy = GetComponent<Energy>();
 
         SortDeck(true);
 
         // Call the turn every EndTurn
-        Round.i.EndTurn.AddListener(() => Turn());
+        // Round.i.EndTurn.AddListener(() => Turn());
 
         Turn();
     }
@@ -48,7 +49,7 @@ public class DeckHandle : MonoBehaviour
         // needed to reset handle after finishi deck
         hands = new List<CardData>();
 
-        foreach (var card in robot.CurrentCards)
+        foreach (var card in m_Data.Cards()) // (var card in robot.CurrentCards)
         {
             deck.Add(card);
 
@@ -105,13 +106,40 @@ public class DeckHandle : MonoBehaviour
         Invoke("UpdateHands", 0.1f);
     }
 
-    public void UpdateHands()
+    private void UpdateHands()
     {
-        // calls the event that updates the cards in the hand
-        OnUpdateHands(hands);          
+        UpdateDeck(hands);
     }
 
-    // randomly select current hand order
+    private void UpdateDeck(List<CardData> cards)
+    {
+        // destroy old cards
+        if (selectConteriner.childCount > 0)
+        {
+            for (int i = selectConteriner.childCount - 1; i >= 0; i--)
+            {
+                Destroy(selectConteriner.GetChild(i).gameObject);
+            }
+        }
+
+        List<CardImage> spawCards = new List<CardImage>();
+
+        // Spaw new cards
+        foreach (var card in cards)
+        {
+            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, selectConteriner);
+            cardImage.energyCount = m_energy;
+            cardImage.selectConteriner = selectConteriner;
+            cardImage.selectedConteriner = selectedConteriner;
+            cardImage.Data = card;
+            
+            // cardImage.ConnectedRobot = m_ConnectedRobot;
+
+            spawCards.Add(cardImage);
+        }
+    }
+
+    // Randomly select current hand order
     private List<int> GetRandomHandsList()
     {
         var deckSelect = new List<int>();
@@ -128,10 +156,5 @@ public class DeckHandle : MonoBehaviour
         deckSelect.Reverse();
 
         return deckSelect;
-    }
-
-    private void OnDestroy()
-    {
-        OnUpdateHands = null;
     }
 }
