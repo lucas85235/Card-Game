@@ -3,6 +3,10 @@ using UnityEngine.Events;
 
 public class Round : MonoBehaviour
 {    
+    [Header("CHARACTERS")]
+    public Robot playerOne;
+    public Robot playerTwo;
+    
     [Header("EVENTS")]
     public UnityEvent StartTurn;
     public UnityEvent EndTurn;

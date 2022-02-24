@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class RoundLoop : Round
 {
-    [Header("CHARACTERS")]
-    public Robot playerOne;
-    public Robot playerTwo;
-
     [Header("SETTINGS")]
 
     [Tooltip("In millisecondsDelay")]

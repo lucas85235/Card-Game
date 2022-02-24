@@ -8,33 +8,27 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     [Header("Setup")]
-    [SerializeField] private bool useTimer = true;
-    [SerializeField] private float timeToPlay;
-    [SerializeField] private Slider timeSlider;
+    [SerializeField] protected bool useTimer = true;
+    [SerializeField] protected float timeToPlay;
+    [SerializeField] protected Slider timeSlider;
 
     [Header("Alert")]
-    [SerializeField] private GameObject alertText;
-    [SerializeField] private RectTransform alertLeft;
-    [SerializeField] private RectTransform alertRight;
+    [SerializeField] protected GameObject alertText;
+    [SerializeField] protected RectTransform alertLeft;
+    [SerializeField] protected RectTransform alertRight;
 
     [Header("Icons")]
-    [SerializeField] private List<Icon> iconList;
+    [SerializeField] protected List<Icon> iconList;
 
-    private List<Robot> robots;
-    private Coroutine timeRoundCoroutine;
-    private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
+    protected List<Robot> robots = new List<Robot>();
+    protected Coroutine timeRoundCoroutine;
+    protected Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
 
     public static GameController i;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         i = this;
-
-        var round = FindObjectOfType<RoundLoop>();
-        robots = new List<Robot>();
-
-        robots.Add(round.playerOne);
-        robots.Add(round.playerTwo);
 
         foreach (var icon in iconList)
         {
@@ -45,21 +39,39 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void Start()
+    protected virtual void Start()
     {
+        robots.Add(Round.i.playerOne);
+        robots.Add(Round.i.playerTwo);
+
         AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
-
-        if (useTimer)
-        {
-            Round.i.EndTurn.AddListener(() => StartCountdown());            
-            StartCountdown();
-        }
 
         timeSlider.gameObject.SetActive(useTimer);
     }
 
-    public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
+    public virtual void EndCountdown()
+    {
+        if (useTimer)
+        {
+            // Stop CountDown
+        }
+    }
+
+    public virtual Robot GetTheOtherRobot(Robot emitterRobot)
+    {
+        foreach (var robot in robots)
+        {
+            if(robot != emitterRobot)
+            {
+                return robot;
+            }
+        }
+
+        return null;
+    }
+
+    public virtual void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
     {
         var referenceRect = left ? alertLeft : alertRight;
         int direction;
@@ -109,65 +121,13 @@ public class GameController : MonoBehaviour
             });
     }
 
-    public void StartCountdown()
-    {
-        if (!useTimer)
-        {
-            return;
-        }
-
-        timeSlider.gameObject.SetActive(true);
-        timeRoundCoroutine = StartCoroutine(Countdown());
-    }
-
-    public void EndCountdown()
-    {
-        if (useTimer)
-        {
-            if (timeRoundCoroutine == null) return;
-
-            timeSlider.gameObject.SetActive(false);
-            StopCoroutine(timeRoundCoroutine);            
-        }
-
-        Round.i.StartTurn?.Invoke();
-    }
-
-    private IEnumerator Countdown()
-    {
-        float timeRemaining = timeToPlay;
-
-        while (timeRemaining > 0)
-        {
-            yield return null;
-            timeRemaining -= Time.deltaTime;
-            timeSlider.value = timeRemaining / timeToPlay;
-        }
-
-        timeSlider.gameObject.SetActive(false);
-        Round.i.StartTurn?.Invoke();
-    }
-
-    public Robot GetTheOtherRobot(Robot emitterRobot)
-    {
-        foreach (var robot in robots)
-        {
-            if(robot != emitterRobot)
-            {
-                return robot;
-            }
-        }
-
-        return null;
-    }
-
     private void OnDestroy()
     {
         LeanTween.cancelAll();
     }
 
     [Serializable]
-    private struct Icon
+    protected struct Icon
     {
         public Sprite sprite;
         public Stats stat;
