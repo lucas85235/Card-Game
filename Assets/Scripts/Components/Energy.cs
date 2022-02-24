@@ -28,14 +28,6 @@ public class Energy : MonoBehaviour
     public int EnergyRoundAmount { get => currentRoundAmount; }
     private int currentRoundAmount;
 
-    private void Awake()
-    {
-        if (gameObject.tag == "Player")
-        {
-            energyText = GameObject.FindGameObjectWithTag("Energy").GetComponent<TextMeshProUGUI>();
-        }        
-    }
-
     private void Start()
     {
         InitGame();

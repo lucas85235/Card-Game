@@ -14,8 +14,8 @@ public class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
     [SerializeField] private RobotData m_Data;
-    public Transform selectedCardsConteriner;
     [SerializeField] private bool getFromDataManager;
+    [HideInInspector] public Transform selectedCardsConteriner;
 
     [Header("Rand Robot Data")]
     public bool randData = false;
@@ -35,6 +35,8 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
+        selectedCardsConteriner = GetComponent<DeckManager>().selectedConteriner;
+
         if (randData && datas.Length > 1)
         {
             m_Data = datas[Random.Range(0, datas.Length)];

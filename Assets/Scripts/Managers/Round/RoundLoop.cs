@@ -19,10 +19,8 @@ public class RoundLoop : Round
     [Tooltip("In millisecondsDelay")]
     public int delayBetweenStatusEffects = 600;
 
-    [Header("CARDS")]
-    public Transform selectedConterinerPlayerOne;
-    public Transform selectedConterinerPlayerTwo;
-
+    private Transform selectedConterinerPlayerOne;
+    private Transform selectedConterinerPlayerTwo;
     private List<Robot> sortRobots;
 
     private static int MAX_CARD_PRIORITY = 4;
@@ -57,7 +55,7 @@ public class RoundLoop : Round
         await PlaysAllCards();
         await Task.Delay(delayBetweenTasks);
 
-        if (sortRobots[0].life.isDead || 
+        if (sortRobots[0].life.isDead ||
             sortRobots[1].life.isDead)
             return;
 
@@ -86,16 +84,8 @@ public class RoundLoop : Round
             // 0 == playerOne
             // 1 == playerTwo
 
-            if (rand == 0)
-            {
-                sortRobots.Add(playerOne);
-                sortRobots.Add(playerTwo);
-            }
-            else
-            {
-                sortRobots.Add(playerTwo);
-                sortRobots.Add(playerOne);
-            }
+            sortRobots.Add(rand == 0 ? playerOne : playerTwo);
+            sortRobots.Add(rand == 0 ? playerTwo : playerOne);
         }
     }
 

@@ -1,43 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DeckManager : MonoBehaviour
 {
-    private DeckHandle m_deck;
-    private Energy m_energy;
-    private Transform m_spaw;
-
     [Header("Setup")]
     public Transform selectConteriner;
     public Transform selectedConteriner;
     public CardImage cardTemplate;
-
     public DeckOf deckOf;
-    private Robot m_ConnectedRobot;
 
-    private void Awake()
+    [Header("Hud Setup")]
+    public TextMeshProUGUI deckText;
+    public TextMeshProUGUI discardText;
+
+    [Header("Lists")]
+    protected List<CardData> cardsInDeck;
+    protected List<CardData> cardsInHand;
+    protected List<CardData> cardsInDiscard;
+
+    protected Energy m_energy;
+    protected Robot m_ConnectedRobot;
+
+    protected virtual void Awake()
     {
-        m_spaw = transform;
-
-        if (deckOf == DeckOf.player)
-        {
-            m_deck = GameObject.FindGameObjectWithTag("Player").GetComponent<DeckHandle>();
-            m_energy = GameObject.FindGameObjectWithTag("Player").GetComponent<Energy>();
-            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
-        }
-        else
-        {
-            m_deck = GameObject.FindGameObjectWithTag("Cpu").GetComponent<DeckHandle>();
-            m_energy = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Energy>();
-            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
-        }
-
-        m_deck.OnUpdateHands += UpdateDeck;
+        m_energy = GetComponent<Energy>();
+        m_ConnectedRobot = GetComponent<Robot>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
+        SortDeck(true);
+
+        // Call the turn every EndTurn
+        Round.i.EndTurn.AddListener(() => Turn());
+
+        Turn();
+
         if (deckOf == DeckOf.cpu)
         {
             Round.i.StartTurn.AddListener(() =>
@@ -51,11 +51,93 @@ public class DeckManager : MonoBehaviour
         }
 
         // Add Use Card Feedback Event
-        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );        
+        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );
+    }
+
+    protected virtual void SortDeck(bool applySkills)
+    {
+        cardsInDeck = new List<CardData>();
+        cardsInDiscard = new List<CardData>();
+
+        // needed to reset handle after finishi deck
+        cardsInHand = new List<CardData>();
+
+        foreach (var card in m_ConnectedRobot.CurrentCards)
+        {
+            cardsInDeck.Add(card);
+
+            if (!applySkills) 
+            {
+                continue;
+            }
+            
+            foreach (var skill in card.Skills())
+            {
+                if(skill != null)
+                    skill.ApplySkill(card);
+            }
+        }
+
+        // randomly order the deck
+        cardsInDeck.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
+    }
+
+    protected virtual void Turn()
+    {
+        // add cards when you don't have enough
+        if (cardsInDeck.Count < 5)
+        {
+            SortDeck(false);
+        }
+
+        // add the cards from the hand to the discard
+        foreach (var card in cardsInHand)
+        {
+            cardsInDiscard.Add(card);
+        }
+
+        cardsInHand = new List<CardData>();
+        var deckSelect = GetRandomHandsList();
+
+        // add the hand
+        foreach (var s in deckSelect)
+        {
+            cardsInHand.Add(cardsInDeck[s]);
+        }
+
+        // strip from the deck
+        foreach (var s in deckSelect)
+        {
+            cardsInDeck.RemoveAt(s);
+        }
+
+        deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + cardsInDeck.Count;
+        discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + cardsInDiscard.Count;
+
+        Invoke("UpdateDeck", 0.1f); // UPDATE THISSSSSS
+    }
+
+    // randomly select current hand order
+    protected virtual List<int> GetRandomHandsList()
+    {
+        var deckSelect = new List<int>();
+
+        while (deckSelect.Count < 5)
+        {
+            var r = Random.Range(0, cardsInDeck.Count);
+
+            if (!deckSelect.Contains(r))
+                deckSelect.Add(r);
+        }
+
+        deckSelect.Sort();
+        deckSelect.Reverse();
+
+        return deckSelect;
     }
 
     // UseCard Event
-    private void UseCardFeedback(CardImage card)
+    protected virtual void UseCardFeedback(CardImage card)
     {
         card.gameObject.TryGetComponent(out RectTransform cardTransform);
 
@@ -63,29 +145,29 @@ public class DeckManager : MonoBehaviour
         StartCoroutine(MoveCard(cardTransform));
     }
 
-    private IEnumerator MoveCard(RectTransform cardTransform)
+    protected virtual IEnumerator MoveCard(RectTransform cardTransform)
     {
         yield return null;
         cardTransform.localPosition = new Vector3(cardTransform.localPosition.x, cardTransform.localPosition.y - (cardTransform.rect.height / 18f), cardTransform.localPosition.z);
     }
 
-    private void UpdateDeck(List<CardData> cards)
+    protected virtual void UpdateDeck()
     {
         // destroy old cards
-        if (m_spaw.childCount > 0)
+        if (selectedConteriner.childCount > 0)
         {
-            for (int i = m_spaw.childCount - 1; i >= 0; i--)
+            for (int i = selectedConteriner.childCount - 1; i >= 0; i--)
             {
-                Destroy(m_spaw.GetChild(i).gameObject);
+                Destroy(selectedConteriner.GetChild(i).gameObject);
             }
         }
 
         List<CardImage> spawCards = new List<CardImage>();
 
         // spaw new cards
-        foreach (var card in cards)
+        foreach (var card in cardsInHand)
         {
-            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, m_spaw);
+            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, selectedConteriner);
             cardImage.energyCount = m_energy;
             cardImage.selectConteriner = selectConteriner;
             cardImage.selectedConteriner = selectedConteriner;
@@ -103,11 +185,6 @@ public class DeckManager : MonoBehaviour
                 spaw.Select();
             }
         }
-    }
-
-    private void OnDestroy()
-    {
-        m_deck.OnUpdateHands -= UpdateDeck;
     }
 }
 
