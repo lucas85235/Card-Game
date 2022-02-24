@@ -1868,10 +1868,17 @@ MonoBehaviour:
   RobotAttack:
     m_PersistentCalls:
       m_Calls: []
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
   useTimer: 1
   timeToPlay: 10
   timeSlider: {fileID: 289394418}
   timeText: {fileID: 814115577}
+  delayBetweenTasks: 1000
+  delayBetweenUseCards: 800
+  delayBetweenStatusEffects: 600
+  sortRobots:
+  - {fileID: 0}
 --- !u!4 &801237790
 Transform:
   m_ObjectHideFlags: 0
@@ -2420,6 +2427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1310867690}
   - component: {fileID: 1310867691}
+  - component: {fileID: 1310867692}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2450,9 +2458,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1310867689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d88a6de6585af642ae78fa74a99830e, type: 3}
+  m_Script: {fileID: 11500000, guid: 611f0b7deec180c44bd641b333e19190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robots: []
+--- !u!114 &1310867692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310867689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1349105181
 GameObject:
   m_ObjectHideFlags: 0

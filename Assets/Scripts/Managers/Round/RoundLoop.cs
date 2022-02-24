@@ -19,10 +19,6 @@ public class RoundLoop : Round
     [Tooltip("In millisecondsDelay")]
     public int delayBetweenStatusEffects = 600;
 
-    [Header("CARDS")]
-    public Transform selectedConterinerPlayerOne;
-    public Transform selectedConterinerPlayerTwo;
-
     private List<Robot> sortRobots;
 
     private static int MAX_CARD_PRIORITY = 4;
@@ -36,9 +32,6 @@ public class RoundLoop : Round
     {
         sortRobots = new List<Robot>();
         SortBySpeed();
-
-        selectedConterinerPlayerOne = playerOne.selectedCardsConteriner;
-        selectedConterinerPlayerTwo = playerTwo.selectedCardsConteriner;
 
         StartTurn.AddListener(() =>
            StartTurnPlaysHandle()

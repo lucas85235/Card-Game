@@ -19,8 +19,10 @@ public class LifeMP : MonoBehaviourPunCallbacks
     public TextMeshProUGUI lifeText;
 
     [Header("Debug")]
+    public bool isDead = false;
     private int m_currentLife;
     private int m_maxLife;
+
     public int CurrentLife { get => m_currentLife; }
 
     private RobotAnimation m_RobotAnimation;
@@ -91,6 +93,7 @@ public class LifeMP : MonoBehaviourPunCallbacks
         if (m_view.IsMine)
         {
             Debug.Log("Loser: " + m_view.Owner.NickName);
+            isDead = true;
             lose.SetActive(true);
         }
         else

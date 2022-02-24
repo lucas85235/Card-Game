@@ -861,7 +861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57eacdfbebc44b441ae16f5b6eaefb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMultiplayer: 1
 --- !u!1 &1307119041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,6 +4997,7 @@ GameObject:
   - component: {fileID: 2559224793723702629}
   - component: {fileID: 586584622252939690}
   - component: {fileID: 8299805384483187881}
+  - component: {fileID: 8239655685899698658}
   m_Layer: 0
   m_Name: RobotMP
   m_TagString: Player
@@ -5121,6 +5121,7 @@ MonoBehaviour:
   lose: {fileID: 7919672923332773739}
   lifeSlider: {fileID: 8612615499249062662}
   lifeText: {fileID: 7930617956470502044}
+  isDead: 0
 --- !u!114 &586584622252939690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5155,6 +5156,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyText: {fileID: 1307119043}
+--- !u!114 &8239655685899698658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930617956505669016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3013d80fa5c8b354cbd28be63e33f118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedCardsConteriner: {fileID: 438776062}
 --- !u!1 &7930617956628139895
 GameObject:
   m_ObjectHideFlags: 0
