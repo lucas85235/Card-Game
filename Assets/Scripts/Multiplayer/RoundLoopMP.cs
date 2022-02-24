@@ -160,7 +160,7 @@ public class RoundLoopMP : Round
                 UseCard.Invoke(card);
 
                 // Robot Attack Feedback Events
-                // RobotAttack.Invoke(card.ConnectedRobot, GameController.i.GetTheOtherRobot(card.ConnectedRobot));
+                RobotAttack.Invoke(card.ConnectedRobot, GameControllerMP.Instance.GetTheOtherRobot(card.ConnectedRobot));
 
                 await Task.Delay(delayBetweenUseCards);
 
@@ -171,6 +171,9 @@ public class RoundLoopMP : Round
                 {
                     card.ConnectedRobot.RemoveCard(card.Data);
                 }
+
+                Debug.Log(PhotonNetwork.NickName + " ConnectedRobot is null -> " + card.ConnectedRobot == null);
+                Debug.Log(PhotonNetwork.NickName + " life is null -> " + card.ConnectedRobot.life == null);
 
                 if (card.ConnectedRobot.life.isDead)
                 {

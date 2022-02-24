@@ -49,7 +49,7 @@ public class GameControllerMP : MonoBehaviourPunCallbacks
         isReady = true;
     }
 
-    public RobotMP GetTheOtherRobot(RobotMP emitterRobot)
+    public Robot GetTheOtherRobot(Robot emitterRobot)
     {
         foreach (var robot in robots)
         {

@@ -140,9 +140,9 @@ public class Robot : MonoBehaviour
         CurrentRobotStats[statToChange] += value;
 
         Debug.Log("VALUE: " + value);
-        var textColor = value > 0 ? Color.blue : Color.red;
 
-        GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
+        // var textColor = value > 0 ? Color.blue : Color.red;
+        // GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
     public int StatDiff(Stats statToCompare)
