@@ -8,7 +8,7 @@ using System.Linq;
 
 [RequireComponent(typeof(Robot))]
 
-public class Life : MonoBehaviour
+public class LifeSolo : Life
 {
     [Header("Life Settings")]
     public Slider lifeSlider;
@@ -18,37 +18,19 @@ public class Life : MonoBehaviour
     public Slider shildSlider;
     public TextMeshProUGUI shildText;
 
-    [Header("Death Setup")]
-    public bool destroyAfterDeath = true;
-    public bool isDead = false;
-
-    [Header("Death Event")]
-    public UnityEvent OnDeath;
-
-    private Robot m_robot;
-    private int m_maxLife;
-    private int m_currentLife;
-    private int m_currentShield;
-
-    private RobotAnimation m_RobotAnimation;
     private Dictionary<Element, Stats> m_ElementToStats = new Dictionary<Element, Stats>();
 
-    public bool HaveShield() => m_currentShield > 0;
-
-    void Start()
+    protected override void Start()
     {
-        m_robot = GetComponent<Robot>();
-        TryGetComponent(out m_RobotAnimation);
+        base.Start();
 
         if (lifeSlider == null) {
             Debug.LogError("lifeSlider is Null");
             return;
         }
         
-        m_maxLife = m_robot.DataStats[Stats.health];
         lifeSlider.maxValue = m_maxLife;
         lifeSlider.value = m_maxLife;
-        m_currentLife = (int) lifeSlider.value;
 
         UpdateLifeSlider();
         SetElementToStats();
@@ -63,7 +45,7 @@ public class Life : MonoBehaviour
         m_ElementToStats[Element.normal] = Stats.defence;
     }
 
-    public void AddLife(int increment)
+    public override void AddLife(int increment)
     {
         var inteligence = m_robot.CurrentRobotStats[Stats.inteligence];
         increment = increment - inteligence;
@@ -80,8 +62,13 @@ public class Life : MonoBehaviour
         UpdateLifeSlider();
     }
 
-    public void TakeDamage(int decrement, AttackType type = AttackType.none, Element element = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
+    public override void TakeDamage(int decrement, params object[] objects)
     {
+        AttackType type = (AttackType) (objects[0] != null ? objects[0] : AttackType.none);
+        Element element = (Element) (objects[1] != null ? objects[1] : Element.normal);
+        CardData usedCard = (CardData) (objects[2] != null ? objects[2] : null);
+        List<EffectSkill> skills = (List<EffectSkill>) (objects[3] != null ? objects[3] : null);
+
         bool ignoreShield = false;
         float hitChance = 1;
         float critChance = 0;
@@ -119,7 +106,7 @@ public class Life : MonoBehaviour
 
         GameController.i.ShowAlertText(damage, transform.localScale.x > 0, Stats.health, Color.red);
 
-        if (HaveShield() && !ignoreShield)
+        if (m_currentShield > 0 && !ignoreShield)
             damage = TakeDamageShield(damage);
 
         m_currentLife -= damage;
@@ -152,35 +139,7 @@ public class Life : MonoBehaviour
 
         LifeRules();
         UpdateLifeSlider();
-    }
-
-    private void DeathHandle()
-    {
-        Debug.Log("Character is Death");
-        if (destroyAfterDeath) Destroy(this.gameObject);
-        OnDeath?.Invoke();
-        isDead = true;
-    }
-
-    private void LifeRules()
-    {
-        if (m_currentLife > m_maxLife)
-        {
-            m_currentLife = m_maxLife;
-        }
-        if (m_currentLife < 1)
-        {
-            AudioManager.Instance.Play(AudiosList.robotDeath);
-            m_RobotAnimation.PlayAnimation(Animations.death);
-            m_RobotAnimation.ResetToIdleAfterAnimation(false);
-            DeathHandle();
-        }
-        else
-        {
-            m_RobotAnimation.PlayAnimation(Animations.hurt);
-            AudioManager.Instance.Play(AudiosList.robotHurt);
-        }
-    }    
+    }   
 
     private void UpdateLifeSlider()
     {
@@ -191,7 +150,7 @@ public class Life : MonoBehaviour
             lifeText.text = m_currentLife + " / " + m_maxLife;
     }
 
-    public void AddShield(int shild)
+    public override void AddShield(int shild)
     {
         // GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
         m_currentShield += shild;
@@ -204,7 +163,7 @@ public class Life : MonoBehaviour
         UpdateShildSlider();
     }
 
-    public void RemoveShild()
+    public override void RemoveShild()
     {
         shildSlider.gameObject.SetActive(false);
         m_currentShield = 0;
