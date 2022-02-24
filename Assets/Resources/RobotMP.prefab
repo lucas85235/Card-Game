@@ -5168,6 +5168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3013d80fa5c8b354cbd28be63e33f118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   selectedCardsConteriner: {fileID: 438776062}
 --- !u!1 &7930617956628139895
 GameObject:

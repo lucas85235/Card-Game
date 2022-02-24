@@ -32,11 +32,19 @@ public class RoundLoopMP : Round
     {
         yield return new WaitUntil( () => GameControllerMP.Instance.isReady);
 
+        if (useTimer && PhotonNetwork.IsMasterClient)
+        {
+            EndTurn.AddListener(() => timer.SetTimerProperties());
+            timer.SetTimerProperties();
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
         timer.Timer = timeToPlay;
         timeSlider.gameObject.SetActive(useTimer);
         timeSlider.maxValue = timeToPlay;
         
-        if (useTimer)
+        if (useTimer && !PhotonNetwork.IsMasterClient)
         {
             EndTurn.AddListener(() => timer.SetTimerProperties());
             timer.SetTimerProperties();
@@ -54,8 +62,7 @@ public class RoundLoopMP : Round
         playerTwo = GameControllerMP.Instance.robots[1];
 
         sortRobots = GameControllerMP.Instance.robots;
-
-        SortBySpeed();
+        // SortBySpeed();
     }
 
     private void Update()
@@ -93,35 +100,24 @@ public class RoundLoopMP : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
-        // if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
-        // {
-        //     sortRobots.Add(playerOne);
-        //     sortRobots.Add(playerTwo);
-        // }
-        // else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
-        // {
-        //     sortRobots.Add(playerTwo);
-        //     sortRobots.Add(playerOne);
-        // }
+        if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
+        {
+            sortRobots.Add(playerOne);
+            sortRobots.Add(playerTwo);
+        }
+        else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
+        {
+            sortRobots.Add(playerTwo);
+            sortRobots.Add(playerOne);
+        }
 
-        // else // if equals use coin flip logic
-        // {
-        //     int rand = Random.Range(0, 2);
+        else // if equals use coin flip logic
+        {
+            int rand = Random.Range(0, 2);
 
-        //     // 0 == playerOne
-        //     // 1 == playerTwo
-
-        //     if (rand == 0)
-        //     {
-        //         sortRobots.Add(playerOne);
-        //         sortRobots.Add(playerTwo);
-        //     }
-        //     else
-        //     {
-        //         sortRobots.Add(playerTwo);
-        //         sortRobots.Add(playerOne);
-        //     }
-        // }
+            sortRobots.Add(rand == 0 ? playerOne : playerTwo);
+            sortRobots.Add(rand == 0 ? playerTwo : playerOne);
+        }
     }
 
     /// <summary>This call plays function using sortRobots with parans</summary>
@@ -164,7 +160,7 @@ public class RoundLoopMP : Round
                 UseCard.Invoke(card);
 
                 // Robot Attack Feedback Events
-                RobotAttack.Invoke(card.ConnectedRobot, GameController.i.GetTheOtherRobot(card.ConnectedRobot));
+                // RobotAttack.Invoke(card.ConnectedRobot, GameController.i.GetTheOtherRobot(card.ConnectedRobot));
 
                 await Task.Delay(delayBetweenUseCards);
 

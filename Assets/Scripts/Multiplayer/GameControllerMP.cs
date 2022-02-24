@@ -48,4 +48,17 @@ public class GameControllerMP : MonoBehaviourPunCallbacks
 
         isReady = true;
     }
+
+    public RobotMP GetTheOtherRobot(RobotMP emitterRobot)
+    {
+        foreach (var robot in robots)
+        {
+            if(robot != emitterRobot)
+            {
+                return robot;
+            }
+        }
+
+        return null;
+    }
 }
