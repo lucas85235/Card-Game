@@ -7,11 +7,6 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    [Header("Setup")]
-    [SerializeField] protected bool useTimer = true;
-    [SerializeField] protected float timeToPlay;
-    [SerializeField] protected Slider timeSlider;
-
     [Header("Alert")]
     [SerializeField] protected GameObject alertText;
     [SerializeField] protected RectTransform alertLeft;
@@ -20,8 +15,9 @@ public class GameController : MonoBehaviour
     [Header("Icons")]
     [SerializeField] protected List<Icon> iconList;
 
-    protected List<Robot> robots = new List<Robot>();
-    protected Coroutine timeRoundCoroutine;
+    [Header("Debug")]
+    [SerializeField] protected List<Robot> robots = new List<Robot>();
+    
     protected Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
 
     public static GameController i;
@@ -39,23 +35,20 @@ public class GameController : MonoBehaviour
         }
     }
 
-    protected virtual void Start()
+    protected virtual IEnumerator Start()
     {
+        yield return new WaitUntil( () => Round.i.isReady);
+        
         robots.Add(Round.i.playerOne);
         robots.Add(Round.i.playerTwo);
 
         AudioManager.Instance.Play(AudiosList.gameplayMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 3f, startVolume: 0);
-
-        timeSlider.gameObject.SetActive(useTimer);
     }
 
     public virtual void EndCountdown()
     {
-        if (useTimer)
-        {
-            // Stop CountDown
-        }
+
     }
 
     public virtual Robot GetTheOtherRobot(Robot emitterRobot)

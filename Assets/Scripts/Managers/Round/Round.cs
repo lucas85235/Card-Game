@@ -18,7 +18,8 @@ public class Round : MonoBehaviour
     [Header("CHARACTERS")]
     public Robot playerOne;
     public Robot playerTwo;
-    
+    public bool isReady = false;
+
     public static Round i;
 
     protected virtual void Awake()

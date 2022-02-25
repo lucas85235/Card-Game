@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControllerSolo : GameController
 {
-    protected override void Start() 
+    [Header("Setup")]
+    [SerializeField] protected bool useTimer = true;
+    [SerializeField] protected float timeToPlay;
+    [SerializeField] protected Slider timeSlider;
+
+    protected Coroutine timeRoundCoroutine;
+
+    protected override IEnumerator Start() 
     {
         base.Start();
         
+        yield return null;
+
         if (useTimer)
         {
             Round.i.EndTurn.AddListener(() => StartCountdown());            
             StartCountdown();
         }
+
+        timeSlider.gameObject.SetActive(useTimer);
     }
 
     public override void EndCountdown()

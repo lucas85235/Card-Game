@@ -1,8 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class RoundLoop : Round
+public class RoundLoopMP : Round
 {
     [Header("SETTINGS")]
 
@@ -15,14 +19,43 @@ public class RoundLoop : Round
     [Tooltip("In millisecondsDelay")]
     public int delayBetweenStatusEffects = 600;
 
+    [Header("Setup")]
+    [SerializeField] protected bool useTimer = true;
+    [SerializeField] protected float timeToPlay = 10f;
+    [SerializeField] protected Slider timeSlider;
+
+    private TimerMP timer = new TimerMP();
     private Transform selectedConterinerPlayerOne;
     private Transform selectedConterinerPlayerTwo;
     private List<Robot> sortRobots;
-
+    private PhotonView view;
+    
     private static int MAX_CARD_PRIORITY = 4;
 
-    protected virtual void Start()
+    protected virtual IEnumerator Start()
     {
+        view = GetComponent<PhotonView>();
+
+        yield return new WaitUntil(() => PhotonNetwork.InRoom);
+        // yield return new WaitUntil(() => PhotonNetwork.PlayerList.Length > 0);
+        yield return new WaitUntil(() => PhotonNetwork.PlayerList.Length == PhotonNetwork.CurrentRoom.MaxPlayers);
+        yield return new WaitForSeconds(0.25f);
+
+        Debug.Log("Sala cheia");
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            view.RPC("SetRobots", RpcTarget.All);
+            Round.i.EndTurn.AddListener(() => timer.SetTimerProperties());
+            timer.SetTimerProperties();
+        }
+
+        yield return new WaitForSeconds(0.25f);
+
+        timer.Timer = timeToPlay;
+        timeSlider.gameObject.SetActive(useTimer);
+        timeSlider.maxValue = timeToPlay;
+
         sortRobots = new List<Robot>();
         SortBySpeed();
 
@@ -37,20 +70,74 @@ public class RoundLoop : Round
            EndTurnInternalHandle()
         );
 
+        if (useTimer && !PhotonNetwork.IsMasterClient)
+        {
+            Round.i.EndTurn.AddListener(() => timer.SetTimerProperties());
+            timer.SetTimerProperties();
+        }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            foreach (var robots in sortRobots)
+            {
+                robots.GetComponent<LifeMP>().UpdateLifeSlider();
+            }
+
+            view.RPC("SetReady", RpcTarget.All);
+        }
+    }
+
+    private void Update()
+    {
+        timer.CountTimer(() =>
+        {
+            timeSlider.gameObject.SetActive(false);
+            StartTurn?.Invoke();
+            Debug.Log("Invoke StartTurn");
+        });
+
+        if (timer.StartTimer)
+        {
+            float totalTime = timeToPlay;
+            timeSlider.value = totalTime - (float) timer.TimerIncrementValue;
+        }
+    }
+
+    [PunRPC]
+    private void SetReady()
+    {
         isReady = true;
+    }
+
+    [PunRPC]
+    private void SetRobots()
+    {
+        var robots = new List<Robot>(FindObjectsOfType<Robot>());
+
+        playerOne = robots[0];
+        playerTwo = robots[1];
     }
 
     private async void StartTurnPlaysHandle()
     {
+        Debug.Log("Start Event Call");
+
+        timeSlider.gameObject.SetActive(true);
+
         await Task.Delay(delayBetweenTasks);
 
         // Use All Cards
-        await PlaysAllCards();
+        await GetAndPlaysAllRoundCards();
         await Task.Delay(delayBetweenTasks);
 
         if (sortRobots[0].life.isDead ||
             sortRobots[1].life.isDead)
-            return;
+            {
+                Debug.Log("DEAD RETURN");
+                return;
+            }
+
+        Debug.Log("END");
 
         // End Turn
         EndTurn?.Invoke();
@@ -80,15 +167,6 @@ public class RoundLoop : Round
             sortRobots.Add(rand == 0 ? playerOne : playerTwo);
             sortRobots.Add(rand == 0 ? playerTwo : playerOne);
         }
-    }
-
-    /// <summary>This call plays function using sortRobots with parans</summary>
-    private async Task PlaysAllCards()
-    {
-        await GetAndPlaysAllRoundCards();
-        await Task.Delay(delayBetweenTasks);
-
-        return;
     }
 
     /// <summary>Get all cards of the current robot and apply effects to the target</summary>
@@ -163,5 +241,6 @@ public class RoundLoop : Round
     private void EndTurnInternalHandle()
     {
         RemoveShield();
+        Debug.Log("End Event Call");
     }
 }

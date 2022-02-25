@@ -100,10 +100,17 @@ public class Robot : MonoBehaviour
     
     public virtual void ApplyStatChange(Stats statToChange, int value)
     {
+        Debug.Log("statToChange: " + statToChange.ToString());
+        Debug.Log("value: " + value.ToString());
+
         currentRobotStats[statToChange] += value;
+
+        Debug.Log("currentRobotStats is null: " + (currentRobotStats == null));
 
         Debug.Log("VALUE: " + value);
         var textColor = value > 0 ? Color.blue : Color.red;
+
+        Debug.Log("GameController.i is null: " + (GameController.i == null));
 
         GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
