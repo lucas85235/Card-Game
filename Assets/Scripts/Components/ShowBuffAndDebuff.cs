@@ -19,7 +19,7 @@ public class ShowBuffAndDebuff : MonoBehaviour
 
     private Robot m_robot;
 
-    void Start()
+    private void Start()
     {
         if (deckOf == DeckOf.player)
         {

@@ -1,11 +1,9 @@
-using System;
+using System.Linq;
 using System.Threading.Tasks;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
-using System.Linq;
 
 [RequireComponent(typeof(Life))]
 [RequireComponent(typeof(Energy))]
@@ -13,70 +11,57 @@ using System.Linq;
 public class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
-    [SerializeField] private RobotData m_Data;
-    [SerializeField] private bool getFromDataManager;
+    [SerializeField] protected RobotData m_Data;
+    [SerializeField] protected bool getFromDataManager;
     [HideInInspector] public Transform selectedCardsConteriner;
 
     [Header("Rand Robot Data")]
-    public bool randData = false;
-    public RobotData[] datas;
-
-    public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
+    [SerializeField] protected bool randData = false;
+    [SerializeField] protected RobotData[] datas;
 
     public Life life { get; private set; }
     public Energy energy { get; private set; }
-
-    public Dictionary<Stats, int> CurrentRobotStats { get; private set; } = new Dictionary<Stats, int>();
-    public Dictionary<Stats, int> DataStats { get; private set; } = new Dictionary<Stats, int>();
+    public Dictionary<Stats, int> CurrentRobotStats { get => currentRobotStats; }
+    public Dictionary<Stats, int> DataStats { get => dataStats; }
     public List<CardData> CurrentCards { get; private set; }
+    public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
-    private RobotAnimation m_RobotAnimation;
-    private bool m_iconSpawInLeft;
+    protected Dictionary<Stats, int> currentRobotStats = new Dictionary<Stats, int>();
+    protected Dictionary<Stats, int> dataStats = new Dictionary<Stats, int>();
+    protected RobotAnimation m_RobotAnimation;
+    protected bool m_iconSpawInLeft;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        life = GetComponent<Life>();
+        energy = GetComponent<Energy>();
+        m_RobotAnimation = GetComponent<RobotAnimation>();
         selectedCardsConteriner = GetComponent<DeckManager>().selectedConteriner;
 
         if (randData && datas.Length > 1)
         {
             m_Data = datas[Random.Range(0, datas.Length)];
         }
-        life = GetComponent<Life>();
-        energy = GetComponent<Energy>();
-
-        TryGetComponent(out m_RobotAnimation);
 
         if (getFromDataManager)
         {
             m_Data = DataManager.Instance.GetCurrentRobot();
         }
+
         m_RobotAnimation.ChangeRobotSprites(m_Data);
-
-        m_iconSpawInLeft = transform.localScale.x > 0;
-
-        GetComponent<RobotAnimation>().ChangeRobotSprites(m_Data);
+        m_iconSpawInLeft = transform.position.x < 0;
 
         SetStats();
         CurrentCards = m_Data.Cards();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         RemoveAllBuffAndDebuff();
 
         Round.i.EndTurn.AddListener(() =>
-        {
-            ActivateEarlyStatusEffects();
-        });
-
-        Round.i.StartTurn.AddListener(() => {
-
-            // remove this logic of here
-            // because the buff and defuff
-            // can be apply for more of one round
-
-            //RemoveAllBuffAndDebuff();
-        });
+            ActivateEarlyStatusEffects()
+        );
 
         // Add Robot Attack Feedback To Event List
         Round.i.RobotAttack.AddListener((robot, target) =>
@@ -84,62 +69,38 @@ public class Robot : MonoBehaviour
         );
     }
 
-    private void SetStats()
-    {
-        CurrentRobotStats[Stats.attack] = m_Data.Attack();
-        DataStats[Stats.attack] = m_Data.Attack();
-
-        CurrentRobotStats[Stats.defence] = m_Data.Defense();
-        DataStats[Stats.defence] = m_Data.Defense();
-
-        CurrentRobotStats[Stats.speed] = m_Data.Speed();
-        DataStats[Stats.speed] = m_Data.Speed();
-
-        CurrentRobotStats[Stats.evasion] = m_Data.Evasion();
-        DataStats[Stats.evasion] = m_Data.Evasion();
-
-        CurrentRobotStats[Stats.accuracy] = m_Data.Accuracy();
-        DataStats[Stats.accuracy] = m_Data.Accuracy();
-
-        CurrentRobotStats[Stats.inteligence] = m_Data.Inteligence();
-        DataStats[Stats.inteligence] = m_Data.Inteligence();
-
-        CurrentRobotStats[Stats.health] = m_Data.Health();
-        DataStats[Stats.health] = m_Data.Health();
-
-        CurrentRobotStats[Stats.critChance] = m_Data.CritChance();
-        DataStats[Stats.critChance] = m_Data.CritChance();
-
-        CurrentRobotStats[Stats.fireResistence] = m_Data.FireResistence();
-        DataStats[Stats.fireResistence] = m_Data.FireResistence();
-
-        CurrentRobotStats[Stats.waterResistence] = m_Data.WaterResistence();
-        DataStats[Stats.waterResistence] = m_Data.WaterResistence();
-
-        CurrentRobotStats[Stats.acidResistence] = m_Data.AcidResistence();
-        DataStats[Stats.acidResistence] = m_Data.AcidResistence();
-
-        CurrentRobotStats[Stats.electricResistence] = m_Data.ElectricResistence();
-        DataStats[Stats.electricResistence] = m_Data.ElectricResistence();
-    }
-
     /// <summary>Set Robot Behaviour After Attack Event Called</summary>
-    private void RobotAttackFeedback(Robot robot, Robot target)
+    protected virtual void RobotAttackFeedback(Robot robot, Robot target)
     {
         if (robot != this) return;
         m_RobotAnimation.PlayAnimation(Animations.action);
     }
 
-    private void RemoveAllBuffAndDebuff()
+    public virtual void RemoveCard(CardData cardToRemove)
+    {
+        CurrentCards.Remove(cardToRemove);
+    }
+
+    public virtual int StatDiff(Stats statToCompare)
+    {
+        return currentRobotStats[statToCompare] - DataStats[statToCompare];
+    }
+
+    protected virtual void StatReset(Stats statToReset)
+    {
+        currentRobotStats[statToReset] = DataStats[statToReset];
+    }
+
+    protected virtual void RemoveAllBuffAndDebuff()
     {
         StatReset(Stats.attack);
         StatReset(Stats.defence);
         StatReset(Stats.speed);
     }
-
-    public void ApplyStatChange(Stats statToChange, int value)
+    
+    public virtual void ApplyStatChange(Stats statToChange, int value)
     {
-        CurrentRobotStats[statToChange] += value;
+        currentRobotStats[statToChange] += value;
 
         Debug.Log("VALUE: " + value);
         var textColor = value > 0 ? Color.blue : Color.red;
@@ -147,27 +108,12 @@ public class Robot : MonoBehaviour
         GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
-    public int StatDiff(Stats statToCompare)
-    {
-        return CurrentRobotStats[statToCompare] - DataStats[statToCompare];
-    }
-
-    public void StatReset(Stats statToReset)
-    {
-        CurrentRobotStats[statToReset] = DataStats[statToReset];
-    }
-
-    public void RemoveCard(CardData cardToRemove)
-    {
-        CurrentCards.Remove(cardToRemove);
-    }
-
-    public void ApplyStatusEffect(StatusEffect newStatusEffect)
+    public virtual void ApplyStatusEffect(StatusEffect newStatusEffect)
     {
         StatusList = newStatusEffect.UpdateStatusList(StatusList);
     }
 
-    public bool ActivateEarlyStatusEffects()
+    public virtual bool ActivateEarlyStatusEffects()
     {
         var toRemoveInStatusList = new List<StatusEffect>();
 
@@ -184,7 +130,7 @@ public class Robot : MonoBehaviour
         return true;
     }
 
-    public async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
+    public virtual async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
     {
         var toRemoveInStatusList = new List<StatusEffect>();
 
@@ -200,5 +146,44 @@ public class Robot : MonoBehaviour
         StatusList = StatusList.Except(toRemoveInStatusList).ToList();
 
         return true;
+    }
+
+    protected void SetStats()
+    {
+        currentRobotStats[Stats.attack] = m_Data.Attack();
+        dataStats[Stats.attack] = m_Data.Attack();
+
+        currentRobotStats[Stats.defence] = m_Data.Defense();
+        dataStats[Stats.defence] = m_Data.Defense();
+
+        currentRobotStats[Stats.speed] = m_Data.Speed();
+        dataStats[Stats.speed] = m_Data.Speed();
+
+        currentRobotStats[Stats.evasion] = m_Data.Evasion();
+        dataStats[Stats.evasion] = m_Data.Evasion();
+
+        currentRobotStats[Stats.accuracy] = m_Data.Accuracy();
+        dataStats[Stats.accuracy] = m_Data.Accuracy();
+
+        currentRobotStats[Stats.inteligence] = m_Data.Inteligence();
+        dataStats[Stats.inteligence] = m_Data.Inteligence();
+
+        currentRobotStats[Stats.health] = m_Data.Health();
+        dataStats[Stats.health] = m_Data.Health();
+
+        currentRobotStats[Stats.critChance] = m_Data.CritChance();
+        dataStats[Stats.critChance] = m_Data.CritChance();
+
+        currentRobotStats[Stats.fireResistence] = m_Data.FireResistence();
+        dataStats[Stats.fireResistence] = m_Data.FireResistence();
+
+        currentRobotStats[Stats.waterResistence] = m_Data.WaterResistence();
+        dataStats[Stats.waterResistence] = m_Data.WaterResistence();
+
+        currentRobotStats[Stats.acidResistence] = m_Data.AcidResistence();
+        dataStats[Stats.acidResistence] = m_Data.AcidResistence();
+
+        currentRobotStats[Stats.electricResistence] = m_Data.ElectricResistence();
+        dataStats[Stats.electricResistence] = m_Data.ElectricResistence();
     }
 }

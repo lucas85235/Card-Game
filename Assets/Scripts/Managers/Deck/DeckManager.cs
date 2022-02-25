@@ -154,11 +154,11 @@ public class DeckManager : MonoBehaviour
     protected virtual void UpdateDeck()
     {
         // destroy old cards
-        if (selectedConteriner.childCount > 0)
+        if (selectConteriner.childCount > 0)
         {
-            for (int i = selectedConteriner.childCount - 1; i >= 0; i--)
+            for (int i = selectConteriner.childCount - 1; i >= 0; i--)
             {
-                Destroy(selectedConteriner.GetChild(i).gameObject);
+                Destroy(selectConteriner.GetChild(i).gameObject);
             }
         }
 
@@ -167,7 +167,7 @@ public class DeckManager : MonoBehaviour
         // spaw new cards
         foreach (var card in cardsInHand)
         {
-            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, selectedConteriner);
+            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, selectConteriner);
             cardImage.energyCount = m_energy;
             cardImage.selectConteriner = selectConteriner;
             cardImage.selectedConteriner = selectedConteriner;

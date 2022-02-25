@@ -3,10 +3,7 @@ using UnityEngine.Events;
 
 public class Round : MonoBehaviour
 {    
-    [Header("CHARACTERS")]
-    public Robot playerOne;
-    public Robot playerTwo;
-    
+
     [Header("EVENTS")]
     public UnityEvent StartTurn;
     public UnityEvent EndTurn;
@@ -17,7 +14,11 @@ public class Round : MonoBehaviour
     public UnityEvent<Robot, Robot> RobotAttack;
 
     //
-
+    
+    [Header("CHARACTERS")]
+    public Robot playerOne;
+    public Robot playerTwo;
+    
     public static Round i;
 
     protected virtual void Awake()

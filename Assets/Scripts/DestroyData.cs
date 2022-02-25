@@ -6,7 +6,7 @@ public class DestroyData : MonoBehaviour
 {
     public void DestroyDataObject()
     {
-        if (DataManager.Instance.gameObject != null)
+        if (DataManager.Instance != null)
             Destroy(DataManager.Instance.gameObject);
     }
 }

@@ -21,11 +21,6 @@ public class RoundLoop : Round
 
     private static int MAX_CARD_PRIORITY = 4;
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
     protected virtual void Start()
     {
         sortRobots = new List<Robot>();
@@ -137,7 +132,7 @@ public class RoundLoop : Round
                     card.ConnectedRobot.RemoveCard(card.Data);
                 }
 
-                if (card.ConnectedRobot.life.isDead)
+                if (sortRobots[0].life.isDead || sortRobots[1].life.isDead)
                 {
                     return true;
                 }

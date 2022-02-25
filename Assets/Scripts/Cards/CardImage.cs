@@ -20,6 +20,7 @@ public class CardImage : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool selected = false;
+    [SerializeField] private RectTransform m_CardRectTransform;
 
     public Action OnSelect;
     public Action OnDeselect;
@@ -30,17 +31,13 @@ public class CardImage : MonoBehaviour
     private bool m_canSelect = true;
     private bool m_canInteract = true;
 
-    private RectTransform m_CardRectTransform;
 
     public void SetCanSelect(bool state) => m_canSelect = state;
 
-    private void Awake()
+    private void Start()
     {
-        TryGetComponent(out m_CardRectTransform);
-    }
+        m_CardRectTransform = GetComponent<RectTransform>();
 
-    void Start()
-    {
         image.sprite = Data.Sprite();
         energy.text = Data.Energy().ToString();
 
@@ -118,6 +115,9 @@ public class CardImage : MonoBehaviour
             selected = true;
 
             energyCount.UseRoundEnergy(-Data.Energy());
+
+            if (m_CardRectTransform == null)
+                m_CardRectTransform = GetComponent<RectTransform>();
 
             m_CardRectTransform.SetParent(selectedConteriner);
 

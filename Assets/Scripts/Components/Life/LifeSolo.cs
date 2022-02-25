@@ -54,7 +54,7 @@ public class LifeSolo : Life
 
         m_currentLife += increment;
 
-        GameController.i.ShowAlertText(increment, transform.localScale.x > 0, Stats.health, Color.green);
+        GameController.i.ShowAlertText(increment, transform.position.x < 0, Stats.health, Color.green);
 
         if (m_currentLife > m_maxLife)
             m_currentLife = m_maxLife;
@@ -104,7 +104,7 @@ public class LifeSolo : Life
 
         if (damage < 1) damage = 1;
 
-        GameController.i.ShowAlertText(damage, transform.localScale.x > 0, Stats.health, Color.red);
+        GameController.i.ShowAlertText(damage, transform.position.x < 0, Stats.health, Color.red);
 
         if (m_currentShield > 0 && !ignoreShield)
             damage = TakeDamageShield(damage);
