@@ -29,7 +29,7 @@ public class RoundLoopMP : Round
     private Transform selectedConterinerPlayerTwo;
     private List<Robot> sortRobots;
     private PhotonView view;
-    
+
     private static int MAX_CARD_PRIORITY = 4;
 
     protected virtual IEnumerator Start()
@@ -37,7 +37,6 @@ public class RoundLoopMP : Round
         view = GetComponent<PhotonView>();
 
         yield return new WaitUntil(() => PhotonNetwork.InRoom);
-        // yield return new WaitUntil(() => PhotonNetwork.PlayerList.Length > 0);
         yield return new WaitUntil(() => PhotonNetwork.PlayerList.Length == PhotonNetwork.CurrentRoom.MaxPlayers);
         yield return new WaitForSeconds(0.25f);
 
@@ -46,7 +45,7 @@ public class RoundLoopMP : Round
         if (PhotonNetwork.IsMasterClient)
         {
             view.RPC("SetRobots", RpcTarget.All);
-            Round.i.EndTurn.AddListener(() => timer.SetTimerProperties());
+            EndTurn.AddListener(() => timer.SetTimerProperties());
             timer.SetTimerProperties();
         }
 
@@ -72,7 +71,7 @@ public class RoundLoopMP : Round
 
         if (useTimer && !PhotonNetwork.IsMasterClient)
         {
-            Round.i.EndTurn.AddListener(() => timer.SetTimerProperties());
+            // EndTurn.AddListener(() => timer.SetTimerProperties());
             timer.SetTimerProperties();
         }
 
@@ -92,14 +91,20 @@ public class RoundLoopMP : Round
         timer.CountTimer(() =>
         {
             timeSlider.gameObject.SetActive(false);
-            StartTurn?.Invoke();
-            Debug.Log("Invoke StartTurn");
+            StartCoroutine( timer.Wait() );
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                StartTurn?.Invoke();
+                Debug.Log("Invoke StartTurn");
+            }
         });
 
         if (timer.StartTimer)
         {
             float totalTime = timeToPlay;
-            timeSlider.value = totalTime - (float) timer.TimerIncrementValue;
+            timeSlider.value = totalTime - (float)timer.TimerIncrementValue;
+            timeSlider.gameObject.SetActive(true);
         }
     }
 
@@ -118,24 +123,29 @@ public class RoundLoopMP : Round
         playerTwo = robots[1];
     }
 
-    private async void StartTurnPlaysHandle()
+    private void StartTurnPlaysHandle()
     {
-        Debug.Log("Start Event Call");
+        view.RPC("StartTurnPlaysHandleRPC", RpcTarget.All);
+    }
 
-        timeSlider.gameObject.SetActive(true);
+    [PunRPC]
+    private async void StartTurnPlaysHandleRPC()
+    {
+
+        Debug.Log("Start Event Call");
 
         await Task.Delay(delayBetweenTasks);
 
-        // Use All Cards
         await GetAndPlaysAllRoundCards();
+
         await Task.Delay(delayBetweenTasks);
 
         if (sortRobots[0].life.isDead ||
             sortRobots[1].life.isDead)
-            {
-                Debug.Log("DEAD RETURN");
-                return;
-            }
+        {
+            Debug.Log("DEAD RETURN");
+            return;
+        }
 
         Debug.Log("END");
 
@@ -240,6 +250,8 @@ public class RoundLoopMP : Round
 
     private void EndTurnInternalHandle()
     {
+        timeSlider.gameObject.SetActive(true);
+
         RemoveShield();
         Debug.Log("End Event Call");
     }

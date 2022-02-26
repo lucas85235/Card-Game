@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using Photon.Pun;
 
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -51,6 +54,19 @@ public class TimerMP
         {
             StopTimer();
             End?.Invoke();
+        }
+    }
+
+    public IEnumerator Wait()
+    {
+        var lastStartTime = startTime;
+
+        yield return new WaitUntil( () => lastStartTime != double.Parse(PhotonNetwork.CurrentRoom.CustomProperties["StartTime"].ToString()) );
+
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            startTime = double.Parse(PhotonNetwork.CurrentRoom.CustomProperties["StartTime"].ToString());
+            startTimer = true;
         }
     }
 
