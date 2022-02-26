@@ -74,6 +74,24 @@ public class LifeMP : Life
     [PunRPC]
     private void TakeDamageRPC(int damage = 1, params object[] objects)
     {
+        if (m_currentShield > 0)
+        {
+            m_currentShield -= damage;
+
+            if (m_currentShield <= 0)
+            {
+                shildSlider.gameObject.SetActive(false);
+                Debug.Log("Damage diff: " + m_currentShield * -1);
+                damage = m_currentShield * -1;
+            }
+            else 
+            {
+                shildSlider.value = m_currentShield;
+                shildText.text = m_currentShield + " / " + shildSlider.maxValue;
+                damage = 0;
+            }
+        }
+
         m_currentLife -= damage;
 
         // Rules
@@ -126,7 +144,7 @@ public class LifeMP : Life
         }
     }
 
-    // HUD UPDATE
+    // HUD UPDATE LIFE
 
     public void UpdateLifeSlider()
     {
@@ -138,5 +156,52 @@ public class LifeMP : Life
     {
         lifeSlider.value = m_currentLife;
         lifeText.text = m_currentLife + " / " + m_maxLife;
+    }
+
+    // SHIELD
+
+    public override void AddShield(int shild)
+    {
+        m_view.RPC("AddShieldRPC", RpcTarget.AllBuffered, shild);
+    }
+
+    [PunRPC]
+    private void AddShieldRPC(int shild)
+    {
+        // GameController.i.ShowAlertText(shild, Color.white, transform.localScale.x > 0);
+        m_currentShield += shild;
+
+        AudioManager.Instance.Play(AudiosList.robotEffect);
+        shildSlider.gameObject.SetActive(true);
+        shildSlider.maxValue = m_currentShield;
+        shildSlider.value = m_currentLife;
+
+        UpdateShildSlider();
+    }
+
+    public override void RemoveShild()
+    {
+        m_view.RPC("RemoveShildRPC", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    private void RemoveShildRPC()
+    {
+        shildSlider.gameObject.SetActive(false);
+        m_currentShield = 0;
+    }
+
+    // HUD UPDATE SHIELD
+
+    public void UpdateShildSlider()
+    {
+        m_view.RPC("UpdateShildSliderRPC", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    private void UpdateShildSliderRPC()
+    {
+        shildSlider.value = m_currentShield;
+        shildText.text = m_currentShield + " / " + shildSlider.maxValue;
     }
 }
