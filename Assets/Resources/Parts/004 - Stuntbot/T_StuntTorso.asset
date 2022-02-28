@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5104bc17e56e3fc47b1002e6cd1e0bd9, type: 3}
-  m_Name: T_StunTorso
+  m_Name: T_StuntTorso
   m_EditorClassIdentifier: 
-  id: T_StunTorso
-  partSprite: {fileID: -405762243776489149, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
+  id: T_StuntTorso
+  partSprite: {fileID: 21300000, guid: fc694de00a5fe09409d109d263087b2f, type: 3}
   health: 12
   energy: 0
   attack: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: a7b25586eb31eea4788fa476448f0c39, type: 2}
+  waistSprite: {fileID: 21300000, guid: ad7c80e141a9636468db109802352924, type: 3}
