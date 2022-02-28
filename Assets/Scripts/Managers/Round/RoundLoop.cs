@@ -151,10 +151,9 @@ public class RoundLoop : Round
                     card.ConnectedRobot.RemoveCard(card.Data);
                 }
 
-                if (card.ConnectedRobot.life.isDead)
-                {
+                if (sortRobots[0].life.isDead || 
+                    sortRobots[1].life.isDead)
                     return true;
-                }
             }
         }
 

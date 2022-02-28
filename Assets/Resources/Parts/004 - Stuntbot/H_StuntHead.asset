@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6968a1c977e8dae479639d1b597e6e0f, type: 3}
-  m_Name: H_StunHead
+  m_Name: H_StuntHead
   m_EditorClassIdentifier: 
-  id: H_StunHead
-  partSprite: {fileID: -2894260081543310507, guid: f1c7a3ddee2ba9f448045edb6798f92e, type: 3}
+  id: H_StuntHead
+  partSprite: {fileID: 21300000, guid: eb90aade608040d4da0a2e4f48ebb31a, type: 3}
   health: 12
   energy: 0
   attack: 1
@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4219dcf9876510748aa9023a83c0ba86, type: 2}
   - {fileID: 11400000, guid: 8fa55cba967686c428d73730f7e8d619, type: 2}
   - {fileID: 11400000, guid: 8fa55cba967686c428d73730f7e8d619, type: 2}
+  neckSprite: {fileID: 21300000, guid: f60c67ac9b6e1c2409c735fea09dcc0b, type: 3}

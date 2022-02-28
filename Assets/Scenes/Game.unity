@@ -5995,6 +5995,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -10881,12 +10882,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data: {fileID: 0}
   selectedCardsConteriner: {fileID: 387490169}
-  getFromDataManager: 1
-  randData: 0
+  getFromDataManager: 0
+  randData: 1
   datas:
   - {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   - {fileID: 11400000, guid: a92186e1190ac22488010c2b6a0fade9, type: 2}
   - {fileID: 11400000, guid: 3c4f5df5cbe46bb46a8d0854d843a5a8, type: 2}
+  - {fileID: 11400000, guid: 70af0e604589a0d4ba8d5e34fdd84305, type: 2}
 --- !u!114 &5937095137718756383
 MonoBehaviour:
   m_ObjectHideFlags: 0

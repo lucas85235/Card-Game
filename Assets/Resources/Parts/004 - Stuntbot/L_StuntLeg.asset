@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcf6af2903234234ebcf82d14a8fd142, type: 3}
-  m_Name: L_StunLeg
+  m_Name: L_StuntLeg
   m_EditorClassIdentifier: 
-  id: L_StunLeg
-  partSprite: {fileID: -16726413310346473, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  id: L_StuntLeg
+  partSprite: {fileID: 21300000, guid: 090c800d995e6194aa202b000d5fed91, type: 3}
   health: 8
   energy: 0
   attack: 0
@@ -32,3 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10923f9d3b88a024184e4849a97878b0, type: 2}
   - {fileID: 11400000, guid: cacc76759ccff334abbb2f8f2583ecd7, type: 2}
   - {fileID: 11400000, guid: cacc76759ccff334abbb2f8f2583ecd7, type: 2}
+  rightLeg: {fileID: 21300000, guid: a6dfc647bbbca2e4f857319875eb7441, type: 3}
+  leftLeg: {fileID: 21300000, guid: 21734f5ce54d125479eb05a2fc7300fe, type: 3}
+  rightFoot: {fileID: 21300000, guid: 7a226ccb0bb340a49a7858339eca91a8, type: 3}
+  leftFoot: {fileID: 21300000, guid: 738bf00f1313eeb4e99ef26786d48d1f, type: 3}

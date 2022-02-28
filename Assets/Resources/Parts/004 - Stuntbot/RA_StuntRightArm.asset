@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b1c3be0c61964b8bea4492bdd9ec1, type: 3}
-  m_Name: RA_StunRightArm
+  m_Name: RA_StuntRightArm
   m_EditorClassIdentifier: 
-  id: RA_StunRightArm
-  partSprite: {fileID: -2811501513268888928, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  id: RA_StuntRightArm
+  partSprite: {fileID: 21300000, guid: 8bd2bbddfc6dc3a4cb32cd7396cc3e4f, type: 3}
   health: 4
   energy: 0
   attack: 2
@@ -32,4 +32,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fd2b31173dac37547bd6f0ddab6e58b7, type: 2}
   - {fileID: 11400000, guid: 9572e90d0811a514ca172aa7d87f7e91, type: 2}
   - {fileID: 11400000, guid: 9572e90d0811a514ca172aa7d87f7e91, type: 2}
-  shoulderSprite: {fileID: -5179497886903317853, guid: b66524ceaeb61884a8f171f46e642e60, type: 3}
+  armSprite: {fileID: 21300000, guid: bac49e728e10b9f4a9c0b589032bc575, type: 3}
+  handSprite: {fileID: 21300000, guid: 5ea8a4b130d9ea945b678037f7ae1652, type: 3}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e6bd1aa3f31e03449fb8053b3baaa1f, type: 3}
-  m_Name: LA_StunLeftArm
+  m_Name: LA_StuntLeftArm
   m_EditorClassIdentifier: 
-  id: LA_StunLeftArm
-  partSprite: {fileID: 498635550302319560, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  id: LA_StuntLeftArm
+  partSprite: {fileID: 21300000, guid: 1059df23d80b6e947aaf7634019b9db8, type: 3}
   health: 4
   energy: 0
   attack: 2
@@ -32,4 +32,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 268e4e6aa22903b419290116434e3200, type: 2}
   - {fileID: 11400000, guid: 268e4e6aa22903b419290116434e3200, type: 2}
   - {fileID: 11400000, guid: 42d0c3c1b36c0df45a1962dc5114ec3d, type: 2}
-  shoulderSprite: {fileID: 1475747477777783208, guid: 660f90cfab3d13e4b98986880b71d795, type: 3}
+  armSprite: {fileID: 21300000, guid: d63ad647ffe7e6544b35ff02733e447e, type: 3}
+  handSprite: {fileID: 21300000, guid: 58b2441ba0346394ba8eee8400ca7b3e, type: 3}
