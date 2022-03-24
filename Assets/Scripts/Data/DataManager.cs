@@ -28,10 +28,14 @@ public class DataManager : MonoBehaviour
         {
             return;
         }
+
+        print(itemCode);
+
         PlayerInfo.PartsInventory[itemCode] = newItem;
+        ItemsDB.ItemsDict[newItem.itemID].AddPartToPlayer(PlayerInfo, itemCode);
     }
 
-    public void AssignPartToRobot(string partCode, int robotIndex)
+    public void AssignPartToRobot(string partCode)
     {
         if (!PlayerInfo.PartsInventory.ContainsKey(partCode))
         {
@@ -39,14 +43,16 @@ public class DataManager : MonoBehaviour
         }
 
         RobotPartItem partItem = PlayerInfo.PartsInventory[partCode];
+        ItemsDB.ItemsDict[partItem.itemID].SetRobotPart(PlayerInfo, partCode);
+    }
 
-        ItemsDB.ItemsDict[partItem.itemID].SetRobotPart(PlayerInfo.Robots[robotIndex], partItem);
-
-        partItem.assignIndex = robotIndex;
+    public void ChangePart(int connectionIndex)
+    {
+        PlayerInfo.SetNewConnection(connectionIndex);
     }
 
     public RobotData GetCurrentRobot()
     {
-        return PlayerInfo.Robots[PlayerInfo.CurrentRobotIndex];
+        return PlayerInfo.Robot;
     }
 }

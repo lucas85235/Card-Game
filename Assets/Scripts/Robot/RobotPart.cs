@@ -50,5 +50,6 @@ public abstract class RobotPart : ScriptableObject
     public List<CardData> Cards() { return cards; }
     public Sprite Sprite() { return partSprite; }
 
-    public abstract void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem);
+    public abstract void SetRobotPart(PlayerData playerData, string partCode);
+    public abstract void AddPartToPlayer(PlayerData playerData, string partCode);
 }

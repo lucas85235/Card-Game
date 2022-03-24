@@ -16,13 +16,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private RectTransform cardConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
 
-    private int m_CurrentRobotIndex = 0;
-
     private void Awake()
     {
         LoadTestData();
 
-        DataManager.Instance.PlayerInfo.CurrentRobotIndex = m_CurrentRobotIndex;
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
     }
 
@@ -149,7 +146,10 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < newParts.Count; i++)
         {
             DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
-            DataManager.Instance.AssignPartToRobot("code" + (i + 1), Mathf.FloorToInt(i / 5));
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            DataManager.Instance.AssignPartToRobot("code" + (i + 1));
         }
     }
 
@@ -160,10 +160,18 @@ public class MenuManager : MonoBehaviour
         AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
     }
+    public void ChangeRobot(int value)
+    {
+        DataManager.Instance.ChangePart(value);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.Play(AudiosList.changeRobot);
+
+        FillRobotInformation();
+    }
 
     private void FillRobotInformation()
     {
-        DataManager.Instance.PlayerInfo.CurrentRobotIndex = m_CurrentRobotIndex;
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
         robotInfoText.text =
@@ -213,19 +221,6 @@ public class MenuManager : MonoBehaviour
     public void LoadScene(string scene)
     {
         TransitionManager.Instance.StartTransition(scene);
-    }
-
-    public void ChangeRobot(int value)
-    {
-        m_CurrentRobotIndex += value;
-        
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.Play(AudiosList.changeRobot);
-
-        if (m_CurrentRobotIndex < 0) m_CurrentRobotIndex = DataManager.Instance.PlayerInfo.Robots.Length - 1;
-        if (m_CurrentRobotIndex > DataManager.Instance.PlayerInfo.Robots.Length - 1) m_CurrentRobotIndex = 0;
-
-        FillRobotInformation();
     }
 
     public void PlayClickSound()

@@ -8,16 +8,17 @@ public class LeftArm : RobotPart
     [SerializeField] private Sprite handSprite;
 
 
-    public override void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem)
+    public override void SetRobotPart(PlayerData playerData, string partCode)
     {
-        robotData.SetLeftArm(this);
-
-        if (robotPartItem.assignIndex != -1)
-        {
-            robotData.SetLeftArm(null);
-        }
+        playerData.Robot.SetLeftArm(this);
+        playerData.ConnectedPartCodes[3] = partCode;
     }
 
     public Sprite ArmSprite() => armSprite;
     public Sprite HandSprite() => handSprite;
+
+    public override void AddPartToPlayer(PlayerData playerData, string partCode)
+    {
+        playerData.PartsDict[3].Add(partCode);
+    }
 }
