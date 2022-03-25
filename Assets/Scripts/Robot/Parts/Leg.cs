@@ -9,18 +9,19 @@ public class Leg : RobotPart
     [SerializeField] private Sprite rightFoot;
     [SerializeField] private Sprite leftFoot;
 
-    public override void SetRobotPart(RobotData robotData, RobotPartItem robotPartItem)
+    public override void SetRobotPart(PlayerData playerData, string partCode)
     {
-        robotData.SetLeg(this);
-
-        if (robotPartItem.assignIndex != -1)
-        {
-            robotData.SetLeg(null);
-        }
+        playerData.Robot.SetLeg(this);
+        playerData.ConnectedPartCodes[4] = partCode;
     }
 
     public Sprite RightLeg() => rightLeg;
     public Sprite LeftLeg() => leftLeg;
     public Sprite RightFoot() => rightFoot;
     public Sprite LeftFoot() => leftFoot;
+
+    public override void AddPartToPlayer(PlayerData playerData, string partCode)
+    {
+        playerData.PartsDict[4].Add(partCode);
+    }
 }
