@@ -17,6 +17,9 @@
 
         {"key":"menu_help_title", "value":"How to play?"},
         {"key":"menu_help_content", "value":"It's very simple, just click on the cards and finish the round before the time expires."},
+
+        {"key":"available_parts", "value":"Available Parts"},
+        {"key":"selected_parts", "value":"Selected Parts"},
         
         {"key":"battle_deck", "value":"Deck"},
         {"key":"battle_discard", "value":"Discard"},

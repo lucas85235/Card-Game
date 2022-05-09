@@ -17,6 +17,9 @@
 
         {"key":"menu_help_title", "value":"Como jogar?"},
         {"key":"menu_help_content", "value":"É muito simples, basta clicar nas cartas e terminar a jogada antes que o tempo acabe."},
+
+        {"key":"available_parts", "value":"Partes Disponíveis"},
+        {"key":"selected_parts", "value":"Partes Selecionadas"},
         
         {"key":"battle_deck", "value":"Deck"},
         {"key":"battle_discard", "value":"Descarte"},

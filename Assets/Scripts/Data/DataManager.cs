@@ -29,8 +29,6 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        print(itemCode);
-
         PlayerInfo.PartsInventory[itemCode] = newItem;
         ItemsDB.ItemsDict[newItem.itemID].AddPartToPlayer(PlayerInfo, itemCode);
     }
@@ -49,6 +47,17 @@ public class DataManager : MonoBehaviour
     public void ChangePart(int connectionIndex)
     {
         PlayerInfo.SetNewConnection(connectionIndex);
+    }
+
+    public Sprite GetPartSprite(string partCode)
+    {
+        if (!PlayerInfo.PartsInventory.ContainsKey(partCode))
+        {
+            return null;
+        }
+
+        RobotPartItem partItem = PlayerInfo.PartsInventory[partCode];
+        return ItemsDB.ItemsDict[partItem.itemID].Sprite();
     }
 
     public RobotData GetCurrentRobot()
