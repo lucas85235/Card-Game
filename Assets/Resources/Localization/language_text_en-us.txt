@@ -148,7 +148,7 @@
         {"key":"history_part4_3", "value":"Mom, where are you?"},
         {"key":"history_part4_4", "value":"Did something happen?"},
         {"key":"history_part4_5", "value":"Psssst… don't make noise, son! He is here!"},
-        {"key":"history_part4_6", "value":"What? Mom? "He who? And why are you hiding in the closet…"},
+        {"key":"history_part4_6", "value":"What? Mom? He who? And why are you hiding in the closet…"},
         {"key":"history_part4_7", "value":"HIM, MY SON! BUTLERBOT GOT CRAZY!!! I WAS HIDDEN PLANNING A WAY TO ESCAPE BUT HE FOUND ME!"},
         {"key":"history_part4_8", "value":"RUN, MY CHILD! I WILL HOLD THE ROBOT FOR YOU TO ESCAPE! GO FAST!"},
         {"key":"history_part4_9", "value":"BOTBATTLE, START!!!"},
