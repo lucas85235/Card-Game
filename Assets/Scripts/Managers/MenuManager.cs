@@ -16,11 +16,32 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private RectTransform cardConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
 
+    [Header("UI")]
+    [SerializeField] private GameObject partContainer;
+    [SerializeField] private Transform selectedContainer;
+    [SerializeField] private Transform headOptionsContainer;
+    [SerializeField] private Transform leftArmOptionsContainer;
+    [SerializeField] private Transform rightArmOptionsContainer;
+    [SerializeField] private Transform torsoOptionsContainer;
+    [SerializeField] private Transform legsOptionsContainer;
+
+    private List<Transform> robotPartOrder = new List<Transform>();
+
     private void Awake()
     {
+        SetRobotPartOrder();
         LoadTestData();
 
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
+    }
+
+    private void SetRobotPartOrder()
+    {
+        robotPartOrder.Add(headOptionsContainer);
+        robotPartOrder.Add(leftArmOptionsContainer);
+        robotPartOrder.Add(legsOptionsContainer);
+        robotPartOrder.Add(rightArmOptionsContainer);
+        robotPartOrder.Add(torsoOptionsContainer);
     }
 
     private void LoadTestData()
@@ -143,12 +164,47 @@ public class MenuManager : MonoBehaviour
 
         #endregion
 
+        
+
         for (int i = 0; i < newParts.Count; i++)
         {
             DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
+
+            GameObject newOption = Instantiate(partContainer, robotPartOrder[i % 5]);
+            newOption.TryGetComponent(out PartOptionButton partOption);
+            partOption.PartCode = "code" + (i + 1);
+            partOption.orderLayer = i % 5;
+
+            newOption.TryGetComponent(out Button optionButton);
+            optionButton.onClick.AddListener(() => {
+                if(optionButton.transform.parent == selectedContainer)
+                {
+                    return;
+                }
+
+                newOption.TryGetComponent(out PartOptionButton partOption);
+                DataManager.Instance.AssignPartToRobot(partOption.PartCode);
+
+                int oldIndex = optionButton.transform.GetSiblingIndex();
+                Transform oldSelected = selectedContainer.GetChild(partOption.orderLayer);
+
+                oldSelected.transform.SetParent(robotPartOrder[partOption.orderLayer]);
+                oldSelected.transform.SetSiblingIndex(oldIndex);
+
+                optionButton.transform.SetParent(selectedContainer);
+                optionButton.transform.SetSiblingIndex(partOption.orderLayer);
+
+                PlayClickSound();
+                FillRobotInformation();
+            });
+
+            newOption.transform.GetChild(0).GetChild(0).TryGetComponent(out Image buttonImage);
+            buttonImage.sprite = DataManager.Instance.GetPartSprite("code" + (i + 1));
         }
+
         for (int i = 0; i < 5; i++)
         {
+            robotPartOrder[i].GetChild(0).transform.SetParent(selectedContainer);
             DataManager.Instance.AssignPartToRobot("code" + (i + 1));
         }
     }
