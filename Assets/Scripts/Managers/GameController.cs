@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour
         timeSlider.gameObject.SetActive(useTimer);
     }
 
-    public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor)
+    public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor, string beforeText = "")
     {
         var referenceRect = left ? alertLeft : alertRight;
         int direction;
@@ -91,12 +91,45 @@ public class GameController : MonoBehaviour
         }
 
         newAlert.transform.Find("AlertText").TryGetComponent(out TextMeshProUGUI textComponent);
-        textComponent.text = value.ToString();
+        textComponent.text = beforeText + value.ToString();
         textComponent.color = textColor;
 
         newAlert.TryGetComponent(out CanvasGroup textCGroup);
         LeanTween.value(1, 0, 2)
             .setOnUpdate( (float value) =>
+            {
+                textCGroup.alpha = value;
+            });
+
+        newAlert.TryGetComponent(out RectTransform textRect);
+        textRect.LeanMoveLocalY(200 * direction, 2)
+            .setOnComplete(() =>
+            {
+                Destroy(newAlert);
+            });
+    }
+
+    public void ShowMessageText(bool left, Color textColor, string messageToShow)
+    {
+        var referenceRect = left ? alertLeft : alertRight;
+        int direction;
+
+        var newAlert = Instantiate(alertText, referenceRect);
+        newAlert.LeanScaleX(transform.localScale.x > 0 ? 1 : -1, 0);
+
+        var imageObject = newAlert.transform.Find("AlertImage").gameObject;
+        Destroy(imageObject);
+
+        AudioManager.Instance.Play(AudiosList.robotDeffect);
+        direction = 1;
+
+        newAlert.transform.Find("AlertText").TryGetComponent(out TextMeshProUGUI textComponent);
+        textComponent.text = messageToShow;
+        textComponent.color = textColor;
+
+        newAlert.TryGetComponent(out CanvasGroup textCGroup);
+        LeanTween.value(1, 0, 2)
+            .setOnUpdate((float value) =>
             {
                 textCGroup.alpha = value;
             });
