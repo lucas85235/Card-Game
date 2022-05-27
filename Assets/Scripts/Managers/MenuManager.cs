@@ -164,6 +164,36 @@ public class MenuManager : MonoBehaviour
 
         #endregion
 
+        // #region Bonnes
+
+        // newParts.Add(new RobotPartItem()
+        // {
+        //     itemID = PartID.H_StuntHead.ToString()
+        // });
+
+        // newParts.Add(new RobotPartItem()
+        // {
+        //     itemID = PartID.LA_StuntLeftArm.ToString()
+        // });
+
+        // newParts.Add(new RobotPartItem()
+        // {
+        //     itemID = PartID.L_StuntLeg.ToString()
+        // });
+
+        // newParts.Add(new RobotPartItem()
+        // {
+        //     itemID = PartID.RA_StuntRightArm.ToString()
+        // });
+
+        // newParts.Add(new RobotPartItem()
+        // {
+        //     itemID = PartID.T_StuntTorso.ToString()
+        // });
+
+        // #endregion
+
+
         
 
         for (int i = 0; i < newParts.Count; i++)
