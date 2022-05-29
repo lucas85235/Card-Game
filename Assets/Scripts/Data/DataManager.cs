@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -7,9 +8,11 @@ public class DataManager : MonoBehaviour
 
     public ItemsDB ItemsDB { get; private set; }
 
+    public SaveRobot data;
+
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -42,6 +45,14 @@ public class DataManager : MonoBehaviour
 
         RobotPartItem partItem = PlayerInfo.PartsInventory[partCode];
         ItemsDB.ItemsDict[partItem.itemID].SetRobotPart(PlayerInfo, partCode);
+    }
+
+    public void SavePart(string code, int index)
+    {
+        if (data.SaveCodes.Count == 0)
+            data.SaveCodes = new List<string>(5) { "", "", "", "", "" };
+
+        data.SaveCodes[index] = code;
     }
 
     public void ChangePart(int connectionIndex)

@@ -47,154 +47,17 @@ public class MenuManager : MonoBehaviour
     private void LoadTestData()
     {
         var newParts = new List<RobotPartItem>();
+        int countParts = 0;
 
-        #region builder
-
-        newParts.Add(new RobotPartItem()
+        foreach (var item in Enum.GetValues(typeof(PartID)))
         {
-            itemID = PartID.H_BuilderHead.ToString()
-        });
+            newParts.Add(new RobotPartItem()
+            {
+                itemID = item.ToString()
+            });
 
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.LA_BuilderLeftArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.L_BuilderLeg.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.RA_BuilderRightArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.T_BuilderTorso.ToString()
-        });
-
-        #endregion
-
-        #region Elec
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.H_ElecHead.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.LA_ElecLeftArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.L_ElecLeg.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.RA_ElecRightArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.T_ElecTorso.ToString()
-        });
-
-        #endregion
-
-        #region Lumber
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.H_LumberHead.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.LA_LumberLeftArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.L_LumberLeg.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.RA_LumberRightArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.T_LumberTorso.ToString()
-        });
-
-        #endregion
-
-        #region Stunt
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.H_StuntHead.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.LA_StuntLeftArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.L_StuntLeg.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.RA_StuntRightArm.ToString()
-        });
-
-        newParts.Add(new RobotPartItem()
-        {
-            itemID = PartID.T_StuntTorso.ToString()
-        });
-
-        #endregion
-
-        // #region Bonnes
-
-        // newParts.Add(new RobotPartItem()
-        // {
-        //     itemID = PartID.H_StuntHead.ToString()
-        // });
-
-        // newParts.Add(new RobotPartItem()
-        // {
-        //     itemID = PartID.LA_StuntLeftArm.ToString()
-        // });
-
-        // newParts.Add(new RobotPartItem()
-        // {
-        //     itemID = PartID.L_StuntLeg.ToString()
-        // });
-
-        // newParts.Add(new RobotPartItem()
-        // {
-        //     itemID = PartID.RA_StuntRightArm.ToString()
-        // });
-
-        // newParts.Add(new RobotPartItem()
-        // {
-        //     itemID = PartID.T_StuntTorso.ToString()
-        // });
-
-        // #endregion
-
-
-        
+            countParts++;
+        }
 
         for (int i = 0; i < newParts.Count; i++)
         {
@@ -206,14 +69,16 @@ public class MenuManager : MonoBehaviour
             partOption.orderLayer = i % 5;
 
             newOption.TryGetComponent(out Button optionButton);
-            optionButton.onClick.AddListener(() => {
-                if(optionButton.transform.parent == selectedContainer)
+            optionButton.onClick.AddListener(() =>
+            {
+                if (optionButton.transform.parent == selectedContainer)
                 {
                     return;
                 }
 
                 newOption.TryGetComponent(out PartOptionButton partOption);
                 DataManager.Instance.AssignPartToRobot(partOption.PartCode);
+                DataManager.Instance.SavePart(partOption.PartCode, partOption.orderLayer);
 
                 int oldIndex = optionButton.transform.GetSiblingIndex();
                 Transform oldSelected = selectedContainer.GetChild(partOption.orderLayer);
@@ -232,10 +97,24 @@ public class MenuManager : MonoBehaviour
             buttonImage.sprite = DataManager.Instance.GetPartSprite("code" + (i + 1));
         }
 
-        for (int i = 0; i < 5; i++)
+        if (DataManager.Instance.data.SaveCodes.Count > 0)
         {
-            robotPartOrder[i].GetChild(0).transform.SetParent(selectedContainer);
-            DataManager.Instance.AssignPartToRobot("code" + (i + 1));
+            for (int i = 0; i < DataManager.Instance.data.SaveCodes.Count; i++)
+            {
+
+                robotPartOrder[i].GetChild(0).transform.SetParent(selectedContainer);
+                DataManager.Instance.AssignPartToRobot(DataManager.Instance.data.SaveCodes[i]);
+                DataManager.Instance.SavePart(DataManager.Instance.data.SaveCodes[i], i);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                robotPartOrder[i].GetChild(0).transform.SetParent(selectedContainer);
+                DataManager.Instance.AssignPartToRobot("code" + (i + 1));
+                DataManager.Instance.SavePart("code" + (i + 1), i);
+            }
         }
     }
 
@@ -276,7 +155,6 @@ public class MenuManager : MonoBehaviour
 
         foreach (RectTransform oldCard in cardConfiner)
             Destroy(oldCard.gameObject);
-        
 
         foreach (var card in DataManager.Instance.GetCurrentRobot().Cards())
         {
@@ -298,7 +176,7 @@ public class MenuManager : MonoBehaviour
     {
         LanguageManager.Instance.LoadLocalizedText(languageIndex: value);
     }
-    
+
     public void StartGame()
     {
         TransitionManager.Instance.StartTransition("Game");
