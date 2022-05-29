@@ -1,32 +1,32 @@
 public enum PartID
 {
     H_BuilderHead,
-    H_ElecHead,
-    H_StuntHead,
-    H_LumberHead,
-    H_MetalHead,
-
     LA_BuilderLeftArm,
-    LA_ElecLeftArm,
-    LA_StuntLeftArm,
-    LA_LumberLeftArm,
-    LA_MetalLeftArm,
-
-    L_BuilderLeg,
-    L_ElecLeg,
-    L_StuntLeg,
-    L_LumberLeg,
-    L_MetalLeg,
-
-    RA_BuilderRightArm,
-    RA_ElecRightArm,
-    RA_StuntRightArm,
-    RA_LumberRightArm,
-    RA_MetalRightArm,
-
     T_BuilderTorso,
+    RA_BuilderRightArm,
+    L_BuilderLeg,
+
+    H_ElecHead,
+    LA_ElecLeftArm,
     T_ElecTorso,
+    RA_ElecRightArm,
+    L_ElecLeg,
+
+    H_StuntHead,
+    LA_StuntLeftArm,
     T_StuntTorso,
+    RA_LumberRightArm,
+    L_StuntLeg,
+
+    H_LumberHead,
+    LA_LumberLeftArm,
     T_LumberTorso,
-    T_MetalTorso,
+    RA_StuntRightArm,
+    L_LumberLeg,
+
+    // H_MetalHead,
+    // LA_MetalLeftArm,
+    // T_MetalTorso,
+    // RA_MetalRightArm,
+    // L_MetalLeg,
 }
