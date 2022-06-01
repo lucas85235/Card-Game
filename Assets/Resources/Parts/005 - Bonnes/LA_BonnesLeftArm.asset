@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bd1aa3f31e03449fb8053b3baaa1f, type: 3}
   m_Name: LA_BonnesLeftArm
   m_EditorClassIdentifier: 
-  id: LA_BuilderLeftArm
+  id: LA_BonnesLeftArm
   partSprite: {fileID: 21300000, guid: c9ad3fa08128e0b4eb46c028ed25ba20, type: 3}
-  health: 8
+  health: 2
   energy: 0
   attack: 1
   defense: 2

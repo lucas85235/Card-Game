@@ -5,6 +5,7 @@
         {"key":"configurations", "value":"Configurações"},
         {"key":"robots", "value":"Robôs"},
         {"key":"quit", "value":"Sair"},
+        {"key":"menu", "value":"Menu"},
         {"key":"close", "value":"Fechar"},
         {"key":"return", "value":"Voltar"},
         {"key":"inventory", "value":"Inventário"},

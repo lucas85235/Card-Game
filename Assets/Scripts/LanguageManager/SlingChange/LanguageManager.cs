@@ -67,9 +67,7 @@ public class LanguageManager : MonoBehaviour
         {
             languageSelected = languageOptions[1];
         }
-
-        PlayerPrefs.DeleteAll();
-
+        
         if (!PlayerPrefs.HasKey(saveLanguageKey))
         {
             PlayerPrefs.SetString(saveLanguageKey, languageSelected);

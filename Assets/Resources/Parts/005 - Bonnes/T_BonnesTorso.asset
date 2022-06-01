@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5104bc17e56e3fc47b1002e6cd1e0bd9, type: 3}
   m_Name: T_BonnesTorso
   m_EditorClassIdentifier: 
-  id: T_BuilderTorso
+  id: T_BonnesTorso
   partSprite: {fileID: 21300000, guid: 50b5654d90e232f448ddabe22a9ddf31, type: 3}
-  health: 12
+  health: 4
   energy: 0
   attack: 0
   defense: 0
@@ -23,10 +23,10 @@ MonoBehaviour:
   accuracy: 0
   evasion: 0
   critChance: 0
-  fireResistence: 2
-  waterResistence: 2
-  electricResistence: 2
-  acidResistence: 2
+  fireResistence: 1
+  waterResistence: 1
+  electricResistence: 1
+  acidResistence: 1
   cards:
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}

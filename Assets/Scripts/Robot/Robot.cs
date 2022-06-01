@@ -39,20 +39,19 @@ public class Robot : MonoBehaviour
         {
             m_Data = datas[Random.Range(0, datas.Length)];
         }
+
         life = GetComponent<Life>();
         energy = GetComponent<Energy>();
 
         TryGetComponent(out m_RobotAnimation);
 
-        if (getFromDataManager)
+        if (getFromDataManager && DataManager.Instance != null)
         {
             m_Data = DataManager.Instance.GetCurrentRobot();
         }
+
         m_RobotAnimation.ChangeRobotSprites(m_Data);
-
         m_iconSpawInLeft = transform.localScale.x > 0;
-
-        GetComponent<RobotAnimation>().ChangeRobotSprites(m_Data);
 
         SetStats();
         CurrentCards = m_Data.Cards();
@@ -138,8 +137,6 @@ public class Robot : MonoBehaviour
     public void ApplyStatChange(Stats statToChange, int value)
     {
         CurrentRobotStats[statToChange] += value;
-
-        Debug.Log("VALUE: " + value);
         var textColor = value > 0 ? Color.blue : Color.red;
 
         GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
