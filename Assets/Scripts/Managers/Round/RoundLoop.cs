@@ -57,8 +57,8 @@ public class RoundLoop : Round
         await PlaysAllCards();
         await Task.Delay(delayBetweenTasks);
 
-        if (sortRobots[0].life.isDead || 
-            sortRobots[1].life.isDead)
+        if (sortRobots[0].life.IsDead || 
+            sortRobots[1].life.IsDead)
             return;
 
         // End Turn
@@ -151,8 +151,8 @@ public class RoundLoop : Round
                     card.ConnectedRobot.RemoveCard(card.Data);
                 }
 
-                if (sortRobots[0].life.isDead || 
-                    sortRobots[1].life.isDead)
+                if (sortRobots[0].life.IsDead || 
+                    sortRobots[1].life.IsDead)
                     return true;
             }
         }

@@ -10,32 +10,47 @@ using System.Linq;
 
 public class Life : MonoBehaviour
 {
-    [Header("Life Settings")]
-    public Slider lifeSlider;
-    public TextMeshProUGUI lifeText;
+    [Header("Life Setup")]
+    public bool startInit = true;
 
-    [Header("Shild Settings")]
-    public Slider shildSlider;
-    public TextMeshProUGUI shildText;
+    [Header("Life UI")]
+    [SerializeField] private Slider lifeSlider;
+    [SerializeField] private TextMeshProUGUI lifeText;
+
+    [Header("Shild UI")]
+    [SerializeField] private Slider shildSlider;
+    [SerializeField] private TextMeshProUGUI shildText;
 
     [Header("Death Setup")]
-    public bool destroyAfterDeath = true;
-    public bool isDead = false;
+    [SerializeField] private bool destroyAfterDeath = true;
+    [SerializeField] private bool isDead = false;
 
     [Header("Death Event")]
     public UnityEvent OnDeath;
+    public UnityEvent OnLifeUpdate;
 
     private Robot m_robot;
     private int m_maxLife;
     private int m_currentLife;
     private int m_currentShield;
 
+    public int CurrentLife 
+    { 
+        get => m_currentLife; 
+        set
+        {
+            m_currentLife = value;
+            OnLifeUpdate?.Invoke();
+        }
+    }
+    public bool IsDead { get => isDead; }
+
     private RobotAnimation m_RobotAnimation;
     private Dictionary<Element, Stats> m_ElementToStats = new Dictionary<Element, Stats>();
 
     public bool HaveShield() => m_currentShield > 0;
 
-    void Start()
+    private void Awake()
     {
         m_robot = GetComponent<Robot>();
         TryGetComponent(out m_RobotAnimation);
@@ -44,14 +59,13 @@ public class Life : MonoBehaviour
             Debug.LogError("lifeSlider is Null");
             return;
         }
-        
-        m_maxLife = m_robot.DataStats[Stats.health];
-        lifeSlider.maxValue = m_maxLife;
-        lifeSlider.value = m_maxLife;
-        m_currentLife = (int) lifeSlider.value;
 
-        UpdateLifeSlider();
-        SetElementToStats();
+        OnDeath.AddListener(() => isDead = true);
+    }
+
+    private void Start()
+    {
+        if (startInit) SetLife(m_robot.DataStats[Stats.health]);
     }
 
     private void SetElementToStats()
@@ -69,15 +83,27 @@ public class Life : MonoBehaviour
         increment = increment - inteligence;
 
         Debug.Log("Increment: " + increment);
-
-        m_currentLife += increment;
+        CurrentLife += increment;
 
         GameController.i.ShowAlertText(increment, transform.localScale.x > 0, Stats.health, Color.green);
 
-        if (m_currentLife > m_maxLife)
-            m_currentLife = m_maxLife;
+        if (CurrentLife > m_maxLife)
+            CurrentLife = m_maxLife;
 
         UpdateLifeSlider();
+    }
+
+    public void SetLife(int life)
+    {
+        m_maxLife = m_robot.DataStats[Stats.health];
+        m_currentLife = life;
+        lifeSlider.maxValue = m_maxLife;
+        lifeSlider.value = m_currentLife;
+        
+        CurrentLife = (int) lifeSlider.value;
+
+        UpdateLifeSlider();
+        SetElementToStats();
     }
 
     public void TakeDamage(int decrement, AttackType type = AttackType.none, Element element = Element.normal, CardData usedCard = null, List<EffectSkill> skills = null)
@@ -124,7 +150,7 @@ public class Life : MonoBehaviour
         if (HaveShield() && !ignoreShield)
             damage = TakeDamageShield(damage);
 
-        m_currentLife -= damage;
+        CurrentLife -= damage;
 
         if (usedCard != null)
         {
@@ -152,25 +178,24 @@ public class Life : MonoBehaviour
             m_robot.StatusList = m_robot.StatusList.Except(statusToRemove).ToList();
         }
 
-        LifeRules();
         UpdateLifeSlider();
+        LifeRules();
     }
 
     private void DeathHandle()
     {
         Debug.Log("Character is Death");
-        if (destroyAfterDeath) Destroy(this.gameObject);
+
         OnDeath?.Invoke();
-        isDead = true;
+        if (destroyAfterDeath) Destroy(this.gameObject);
     }
 
     private void LifeRules()
     {
-        if (m_currentLife > m_maxLife)
-        {
-            m_currentLife = m_maxLife;
-        }
-        if (m_currentLife < 1)
+        if (CurrentLife > m_maxLife)
+            CurrentLife = m_maxLife;
+
+        if (CurrentLife < 1)
         {
             AudioManager.Instance.Play(AudiosList.robotDeath);
             m_RobotAnimation.PlayAnimation(Animations.death);
@@ -201,7 +226,7 @@ public class Life : MonoBehaviour
         AudioManager.Instance.Play(AudiosList.robotEffect);
         shildSlider.gameObject.SetActive(true);
         shildSlider.maxValue = m_currentShield;
-        shildSlider.value = m_currentLife;
+        shildSlider.value = CurrentLife;
 
         UpdateShildSlider();
     }
@@ -222,7 +247,6 @@ public class Life : MonoBehaviour
         if (m_currentShield <= 0)
         {
             shildSlider.gameObject.SetActive(false);
-            Debug.Log("Damage diff: " + m_currentShield * -1);
             return m_currentShield * -1;
         }
         

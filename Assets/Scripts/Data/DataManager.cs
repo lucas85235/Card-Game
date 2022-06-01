@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +25,47 @@ public class DataManager : MonoBehaviour
 
         ItemsDB = new ItemsDB();
         PlayerInfo.PrepareClass();
+
+        #if UNITY_EDITOR
+        LoadData();
+        #endif
+    }
+
+    private void LoadData()
+    {
+        var newParts = new List<RobotPartItem>();
+        int countParts = 0;
+
+        foreach (var item in Enum.GetValues(typeof(PartID)))
+        {
+            var part = new RobotPartItem() { itemID = item.ToString() };
+            newParts.Add(part);
+
+            countParts++;
+        }
+
+        for (int i = 0; i < newParts.Count; i++)
+        {
+            DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
+        }
+
+        if (DataManager.Instance.data.SaveCodes.Count > 0)
+        {
+            for (int i = 0; i < DataManager.Instance.data.SaveCodes.Count; i++)
+            {
+
+                DataManager.Instance.AssignPartToRobot(DataManager.Instance.data.SaveCodes[i]);
+                DataManager.Instance.SavePart(DataManager.Instance.data.SaveCodes[i], i);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                DataManager.Instance.AssignPartToRobot("code" + (i + 1));
+                DataManager.Instance.SavePart("code" + (i + 1), i);
+            }
+        }
     }
 
     public void AddPartItem(RobotPartItem newItem, string itemCode)
