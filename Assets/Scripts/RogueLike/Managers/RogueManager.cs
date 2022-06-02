@@ -61,18 +61,18 @@ public class RogueManager : MonoBehaviour
         RogueEvent.eventUI.SetEventPanel(point);
     }
 
-    private void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
-        RoguePath.DeleteSave();
-        RogueLife.Instance.DeleteSave();
+        PlayerPrefs.DeleteKey("SAVE_POINT");
+        PlayerPrefs.DeleteKey("SAVE-LIFE");
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
-        if (RogueLife.Instance == this)
+        if (Instance == this)
         {
-            RoguePath.DeleteSave();
-            RogueLife.Instance.DeleteSave();            
+            PlayerPrefs.DeleteKey("SAVE_POINT");
+            PlayerPrefs.DeleteKey("SAVE-LIFE");   
         }
     }
 }
