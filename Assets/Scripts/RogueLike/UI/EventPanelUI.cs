@@ -21,8 +21,8 @@ public class EventPanelUI : MonoBehaviour
         switch (point.Type)
         {
             case RoguePathPoints.PointType.Enemy:
-                EnableNextPoints(point);
-                // SceneLoader.Instance.LoadScene("GameRogueLike");
+                // EnableNextPoints(point);
+                SceneLoader.Instance.LoadScene("GameRogueLike");
                 break;
 
             case RoguePathPoints.PointType.Item:

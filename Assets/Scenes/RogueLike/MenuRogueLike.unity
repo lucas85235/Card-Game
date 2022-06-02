@@ -2691,6 +2691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8d0892b6fee834baa96e3a33a18015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadOtherScene: 0
+  otherSceneName: MenuRogueLike
 --- !u!1 &365282318
 GameObject:
   m_ObjectHideFlags: 0
@@ -5269,6 +5271,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 928389106}
+  - {fileID: 1323651472}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6376,7 +6379,7 @@ Transform:
   - {fileID: 1978602185}
   - {fileID: 720583668}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139957574
 GameObject:
@@ -7624,11 +7627,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323651470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 583.2693, y: 206.99991, z: -387.08743}
+  m_LocalPosition: {x: 183.66644, y: -483.10977, z: -383.49918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 836442472}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341590651
 GameObject:
