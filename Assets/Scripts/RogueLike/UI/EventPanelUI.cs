@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class EventPanelUI : MonoBehaviour
 {
     [Header("UI")]
+    [SerializeField] private GameObject _chestEventPanel;
+    [SerializeField] private Button _chestStartButton;
     [SerializeField] private GameObject _eventPanel;
     [SerializeField] private Button _startButton;
 
@@ -23,6 +25,9 @@ public class EventPanelUI : MonoBehaviour
                 break;
 
             case RoguePathPoints.PointType.Item:
+                _chestEventPanel.SetActive(true);
+                _chestStartButton.onClick.AddListener(() =>
+                    EnableNextPoints(point));
                 break;
 
             case RoguePathPoints.PointType.Shop:
@@ -47,6 +52,7 @@ public class EventPanelUI : MonoBehaviour
     private void EnableNextPoints(RoguePathPoints point)
     {
         _eventPanel.SetActive(false);
+        _chestEventPanel.SetActive(false);
 
         foreach (var item in point.Nexts)
         {

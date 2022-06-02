@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RogueLike/GameRogueLike.unity
     guid: 0c4ccf96f10d25542a249e7288ac87e5
+  - enabled: 1
+    path: Assets/Scenes/RogueLike/GameRogueLikeBoss.unity
+    guid: 347a50f8b4491a343b36312dccd03c29
   m_configObjects: {}
