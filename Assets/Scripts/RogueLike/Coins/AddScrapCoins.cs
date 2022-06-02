@@ -14,6 +14,13 @@ public class AddScrapCoins : MonoBehaviour
         UpdateText(earn);
     }
 
+    public void BossEnemy()
+    {
+        int earn = Random.Range(200, 250);
+        ScrapCoins.Instance.TotalCoins += earn;
+        UpdateText(earn);
+    }
+
     private void UpdateText(int earn)
     {
         text.text = "+" + earn;
