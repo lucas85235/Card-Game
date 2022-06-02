@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b059fea2386ffec4a9930d80c089b648, type: 3}
+  m_Name: BonnesBoss
+  m_EditorClassIdentifier: 
+  characterName: Bonnes
+  botFunction: Tank
+  storyDescription: "Builderbot foi especialmente desenvolvido para tarefas na ind\xFAstria
+    da constru\xE7\xE3o. Em situa\xE7\xF5es de emerg\xEAncia, ele tamb\xE9m est\xE1
+    adequado ao combate. Os bra\xE7os fortes permitem que ele cause dano, enquanto
+    as outras partes garantem prote\xE7\xE3o adicional."
+  head: {fileID: 11400000, guid: 1b8c20839372ce644b2213dcb7bade6e, type: 2}
+  torso: {fileID: 11400000, guid: 8cb5f9ad35dbd6141a2bd554d7e9883e, type: 2}
+  rightArm: {fileID: 11400000, guid: 935940e326d14c04dbae77af1f7abce0, type: 2}
+  leftArm: {fileID: 11400000, guid: 2d7ce986e76e07f4a88273703b9f425c, type: 2}
+  leg: {fileID: 11400000, guid: 72c647855ee88a1478466c858e6c8b64, type: 2}

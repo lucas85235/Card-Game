@@ -26,11 +26,13 @@ public class EventPanelUI : MonoBehaviour
                 break;
 
             case RoguePathPoints.PointType.Shop:
+                _eventPanel.SetActive(true);
                 _startButton.onClick.AddListener(() =>
                     EnableNextPoints(point));
                 break;
 
             case RoguePathPoints.PointType.Boss:
+                SceneLoader.Instance.LoadScene("GameRogueLikeBoss");
                 break;
 
             case RoguePathPoints.PointType.Workshop:

@@ -5894,7 +5894,7 @@ Transform:
   - {fileID: 1978602185}
   - {fileID: 720583668}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139957574
 GameObject:
@@ -7084,6 +7084,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322271077}
   m_CullTransparentMesh: 1
+--- !u!1 &1323651470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1323651472}
+  - component: {fileID: 1323651471}
+  m_Layer: 0
+  m_Name: RogueConsumables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1323651471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323651470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ea131182e08924a9bb00df6a05be39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnUpdateRepairs:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUpdateStickers:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUpdateSmokes:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1323651472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323651470}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 583.2693, y: 206.99991, z: -387.08743}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341590651
 GameObject:
   m_ObjectHideFlags: 0

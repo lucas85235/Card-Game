@@ -12,14 +12,25 @@ public class ConsumablesUI : MonoBehaviour
     
     private void Start()
     {
-        RogueConsumables.Instance.OnUpdateRepairs.AddListener(() => {
-            repairsText.text = RogueConsumables.Instance.Repairs.ToString();
-        });
-        RogueConsumables.Instance.OnUpdateStickers.AddListener(() => {
-            repairsText.text = RogueConsumables.Instance.Stickers.ToString();
-        });
-        RogueConsumables.Instance.OnUpdateSmokes.AddListener(() => {
-            repairsText.text = RogueConsumables.Instance.Smokes.ToString();
-        });
+        if (RogueConsumables.Instance == null) return;
+        
+        RogueConsumables.Instance.OnUpdateRepairs.AddListener(Repairs);
+        RogueConsumables.Instance.OnUpdateStickers.AddListener(Stickers);
+        RogueConsumables.Instance.OnUpdateSmokes.AddListener(Smokes);
+    }
+
+    private void Repairs()
+    {
+        repairsText.text = RogueConsumables.Instance.Repairs.ToString();
+    }
+
+    private void Stickers()
+    {
+        stickersText.text = RogueConsumables.Instance.Stickers.ToString();
+    }
+
+    private void Smokes()
+    {
+        smokesText.text = RogueConsumables.Instance.Smokes.ToString();
     }
 }
