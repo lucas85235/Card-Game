@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LA_BonnesLeftArm
   m_EditorClassIdentifier: 
   id: LA_BonnesLeftArm
-  partSprite: {fileID: 21300000, guid: c9ad3fa08128e0b4eb46c028ed25ba20, type: 3}
+  partSprite: {fileID: 21300000, guid: a5d41028c67af4344896d83a2cbbb57b, type: 3}
   health: 2
   energy: 0
   attack: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
   - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
   armSprite: {fileID: 21300000, guid: b4040bdd82214de448caef550260f8d8, type: 3}
-  handSprite: {fileID: 21300000, guid: 26707a278008d5943977ab5756f853c4, type: 3}
+  handSprite: {fileID: 21300000, guid: 05145af4c55ada241b06e3034671d00d, type: 3}
