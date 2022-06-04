@@ -20,8 +20,8 @@ public class RoundLoop : Round
     public int delayBetweenStatusEffects = 600;
 
     [Header("CARDS")]
-    public Transform selectedConterinerPlayerOne;
-    public Transform selectedConterinerPlayerTwo;
+    public Transform cardsConterinerOne;
+    public Transform cardsConterinerTwo;
 
     private List<Robot> sortRobots;
 
@@ -37,27 +37,38 @@ public class RoundLoop : Round
         sortRobots = new List<Robot>();
         SortBySpeed();
 
-        selectedConterinerPlayerOne = playerOne.selectedCardsConteriner;
-        selectedConterinerPlayerTwo = playerTwo.selectedCardsConteriner;
+        cardsConterinerOne = playerOne.selectedCardsConteriner;
+        cardsConterinerTwo = playerTwo.selectedCardsConteriner;
 
-        StartTurn.AddListener(() =>
-           StartTurnPlaysHandle()
-        );
-
-        EndTurn.AddListener(() =>
-           EndTurnInternalHandle()
-        );
+        StartTurn.AddListener(StartTurnPlaysHandle);
+        EndTurn.AddListener(EndTurnInternalHandle);
     }
 
     private async void StartTurnPlaysHandle()
     {
+        for (int i = cardsConterinerOne.childCount - 1; i >= 0; i--)
+        {
+            var card = cardsConterinerOne.GetChild(i).GetComponent<CardImage>();
+
+            if (!card.selected)
+                Destroy(card.gameObject);
+        }
+
+        for (int i = cardsConterinerTwo.childCount - 1; i >= 0; i--)
+        {
+            var card = cardsConterinerTwo.GetChild(i).GetComponent<CardImage>();
+
+            if (!card.selected)
+                Destroy(card.gameObject);
+        }
+
         await Task.Delay(delayBetweenTasks);
 
         // Use All Cards
         await PlaysAllCards();
         await Task.Delay(delayBetweenTasks);
 
-        if (sortRobots[0].life.IsDead || 
+        if (sortRobots[0].life.IsDead ||
             sortRobots[1].life.IsDead)
             return;
 
@@ -151,7 +162,7 @@ public class RoundLoop : Round
                     card.ConnectedRobot.RemoveCard(card.Data);
                 }
 
-                if (sortRobots[0].life.IsDead || 
+                if (sortRobots[0].life.IsDead ||
                     sortRobots[1].life.IsDead)
                     return true;
             }

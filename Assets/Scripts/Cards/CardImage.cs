@@ -11,15 +11,15 @@ public class CardImage : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI energy;
     public TextMeshProUGUI description;
+    public GameObject selectedFeedback;
     public Image image;
 
     [Header("Setup")]
     public Transform selectConteriner;
-    public Transform selectedConteriner;
     public Energy energyCount;
 
     [Header("Debug")]
-    [SerializeField] private bool selected = false;
+    public bool selected = false;
 
     public Action OnSelect;
     public Action OnDeselect;
@@ -31,12 +31,14 @@ public class CardImage : MonoBehaviour
     private bool m_canInteract = true;
 
     private RectTransform m_CardRectTransform;
+    private Vector2 defaultDeltaSize;
 
     public void SetCanSelect(bool state) => m_canSelect = state;
 
     private void Awake()
     {
         TryGetComponent(out m_CardRectTransform);
+        defaultDeltaSize = m_CardRectTransform.sizeDelta;
     }
 
     void Start()
@@ -67,31 +69,31 @@ public class CardImage : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        if (!m_canSelect || !m_canInteract)
+        if (!m_canSelect || !m_canInteract || selected)
         {
             return;
         }
 
         var scaleOrientation = !selected ? 1 : -1;
+        m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.5f);
 
-        m_CardRectTransform.sizeDelta *= 2;
-        StartCoroutine(MoveCard(scaleOrientation));
+        // StartCoroutine(MoveCard(scaleOrientation));
     }
 
-    private IEnumerator MoveCard(float value)
-    {
-        yield return null;
-        m_CardRectTransform.position = new Vector3(m_CardRectTransform.position.x, m_CardRectTransform.position.y + (m_CardRectTransform.rect.height / 9f) * value, m_CardRectTransform.position.z);
-    }
+    // private IEnumerator MoveCard(float value)
+    // {
+    //     yield return null;
+    //     m_CardRectTransform.position = new Vector3(m_CardRectTransform.position.x, m_CardRectTransform.position.y + (m_CardRectTransform.rect.height / 9f) * value, m_CardRectTransform.position.z);
+    // }
 
     public void OnPointerExit()
     {
-        if (!m_canSelect || !m_canInteract)
+        if (!m_canSelect || !m_canInteract || selected)
         {
             return;
         }
 
-        m_CardRectTransform.sizeDelta *= .5f;
+        m_CardRectTransform.sizeDelta = defaultDeltaSize;
     }
 
     public void OnClick()
@@ -116,10 +118,10 @@ public class CardImage : MonoBehaviour
             AudioManager.Instance.Play(AudiosList.cardPush);
 
             selected = true;
+            selectedFeedback.gameObject.SetActive(true);
 
             energyCount.UseRoundEnergy(-Data.Energy());
-
-            m_CardRectTransform.SetParent(selectedConteriner);
+            m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.2f);
 
             OnSelect?.Invoke();
         }
@@ -132,10 +134,10 @@ public class CardImage : MonoBehaviour
             AudioManager.Instance.Play(AudiosList.cardPush);
 
             selected = false;
+            selectedFeedback.gameObject.SetActive(false);
 
             energyCount.UseRoundEnergy(Data.Energy());
-
-            m_CardRectTransform.SetParent(selectConteriner);
+            m_CardRectTransform.sizeDelta = defaultDeltaSize;
 
             OnDeselect?.Invoke();
         }
