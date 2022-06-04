@@ -1,11 +1,11 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
-using System.Linq;
 
 [RequireComponent(typeof(Life))]
 [RequireComponent(typeof(Energy))]
@@ -25,6 +25,7 @@ public class Robot : MonoBehaviour
 
     public Life life { get; private set; }
     public Energy energy { get; private set; }
+    public RobotData Data { get => m_Data; }
 
     public Dictionary<Stats, int> CurrentRobotStats { get; private set; } = new Dictionary<Stats, int>();
     public Dictionary<Stats, int> DataStats { get; private set; } = new Dictionary<Stats, int>();

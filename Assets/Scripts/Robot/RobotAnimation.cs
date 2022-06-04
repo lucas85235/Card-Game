@@ -32,7 +32,9 @@ public class RobotAnimation : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out m_Animator);
-        m_Animator.SetBool("ResetToIdle", true);
+        
+        if (m_Animator != null)
+            m_Animator.SetBool("ResetToIdle", true);
     }
 
     public void PlayAnimation(Animations newAnimation) => m_Animator.SetTrigger(newAnimation.ToString());
