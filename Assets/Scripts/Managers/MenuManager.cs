@@ -147,8 +147,16 @@ public class MenuManager : MonoBehaviour
             LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() + "\n" +
             LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() + "\n" +
             LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() + "\n" +
+            LanguageManager.Instance.GetKeyValue("inteligence") + ": " + DataManager.Instance.GetCurrentRobot().Inteligence() + "\n" +
             LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() + "\n" +
-            LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy();
+            LanguageManager.Instance.GetKeyValue("accuracy") + ": " + DataManager.Instance.GetCurrentRobot().Accuracy() + "\n" +
+            LanguageManager.Instance.GetKeyValue("evasion") + ": " + DataManager.Instance.GetCurrentRobot().Evasion() + "\n" +
+            LanguageManager.Instance.GetKeyValue("critChance") + ": " + DataManager.Instance.GetCurrentRobot().CritChance() + "\n" +
+            LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy() + "\n" +
+            LanguageManager.Instance.GetKeyValue("fireResistence") + ": " + DataManager.Instance.GetCurrentRobot().FireResistence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("waterResistence") + ": " + DataManager.Instance.GetCurrentRobot().WaterResistence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("electricResistence") + ": " + DataManager.Instance.GetCurrentRobot().ElectricResistence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("acidResistence") + ": " + DataManager.Instance.GetCurrentRobot().AcidResistence() + "\n";
 
         nameInfoText.text =
             DataManager.Instance.GetCurrentRobot().characterName + " - " +
