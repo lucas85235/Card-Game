@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionInfoText;
     [SerializeField] private TextMeshProUGUI robotInfoText;
     [SerializeField] private RectTransform cardConfiner;
+    [SerializeField] private RectTransform cardMenuConfiner;
     [SerializeField] private RectTransform cardPartConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
 
@@ -141,8 +142,13 @@ public class MenuManager : MonoBehaviour
         FillRobotInformation();
         FillRobotPartInformation((int)RobotParts.Head);
     }
-
     private void FillRobotInformation()
+    {
+        FillRobotInformation(cardConfiner);
+        FillRobotInformation(cardMenuConfiner);
+    }
+
+    private void FillRobotInformation(RectTransform confiner)
     {
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
@@ -160,13 +166,13 @@ public class MenuManager : MonoBehaviour
         descriptionInfoText.text =
             DataManager.Instance.GetCurrentRobot().storyDescription;
 
-        foreach (RectTransform oldCard in cardConfiner)
+        foreach (RectTransform oldCard in confiner)
             Destroy(oldCard.gameObject);
 
         foreach (var card in DataManager.Instance.GetCurrentRobot().Cards())
         {
             var newCardInfo = Instantiate(cardInfoPrefab);
-            newCardInfo.transform.SetParent(cardConfiner, false);
+            newCardInfo.transform.SetParent(confiner, false);
 
             newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
             cardImage.sprite = card.Sprite();
