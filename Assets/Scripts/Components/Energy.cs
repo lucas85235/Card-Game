@@ -18,7 +18,7 @@ using TMPro;
 public class Energy : MonoBehaviour
 {
     [Header("Setup")]
-    public TextMeshProUGUI energyText;
+    public List<GameObject> energyBars;
 
     public int EnergyAmount { get => currentAmount; }
     private int currentAmount;
@@ -27,14 +27,6 @@ public class Energy : MonoBehaviour
 
     public int EnergyRoundAmount { get => currentRoundAmount; }
     private int currentRoundAmount;
-
-    private void Awake()
-    {
-        if (gameObject.tag == "Player")
-        {
-            energyText = GameObject.FindGameObjectWithTag("Energy").GetComponent<TextMeshProUGUI>();
-        }        
-    }
 
     private void Start()
     {
@@ -83,9 +75,9 @@ public class Energy : MonoBehaviour
 
     private void EnergyText(int value)
     {
-        if (energyText != null)
+        for (int i = 0; i < energyBars.Count; i++)
         {
-            energyText.text = value + " / " + maxAmount;
+            energyBars[i].SetActive(value > i);
         }
     }
 }

@@ -16,11 +16,15 @@ public class ShowBuffAndDebuff : MonoBehaviour
     public TextMeshProUGUI electricResistence;
     public TextMeshProUGUI waterResistence;
     public TextMeshProUGUI acidResistence;
+    public GameObject openPopup;
 
     private Robot m_robot;
+    private bool active = false;
 
     void Start()
     {
+        openPopup.SetActive(active);
+
         if (deckOf == DeckOf.player)
         {
             m_robot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
@@ -40,6 +44,12 @@ public class ShowBuffAndDebuff : MonoBehaviour
             SetStatsLeft();
         }
         else SetStatsRight();
+    }
+
+    public void Popup()
+    {
+        active = !active;
+        openPopup.SetActive(active);
     }
 
     public void SetStatsLeft()

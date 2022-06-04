@@ -4,54 +4,51 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    private DeckHandle m_deck;
-    private Energy m_energy;
-    private Transform m_spaw;
-
     [Header("Setup")]
     public Transform selectConteriner;
-    public Transform selectedConteriner;
     public CardImage cardTemplate;
 
     public DeckOf deckOf;
-    private Robot m_ConnectedRobot;
+    private Energy _energy;
+    private DeckHandle _deck;
+    private Robot _connectedRobot;
 
     private void Awake()
     {
-        m_spaw = transform;
+        _deck = GetComponent<DeckHandle>();
+        _energy = GetComponent<Energy>();
+        _connectedRobot = GetComponent<Robot>();
 
-        if (deckOf == DeckOf.player)
-        {
-            m_deck = GameObject.FindGameObjectWithTag("Player").GetComponent<DeckHandle>();
-            m_energy = GameObject.FindGameObjectWithTag("Player").GetComponent<Energy>();
-            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
-        }
-        else
-        {
-            m_deck = GameObject.FindGameObjectWithTag("Cpu").GetComponent<DeckHandle>();
-            m_energy = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Energy>();
-            m_ConnectedRobot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
-        }
-
-        m_deck.OnUpdateHands += UpdateDeck;
+        _deck.OnUpdateHands += UpdateDeck;
     }
 
     private void Start()
     {
-        if (deckOf == DeckOf.cpu)
-        {
-            Round.i.StartTurn.AddListener(() =>
-               selectedConteriner.gameObject.SetActive(true)
-            );
-            Round.i.EndTurn.AddListener(() =>
-               selectedConteriner.gameObject.SetActive(false)
-            );
+        // Round.i.StartTurn.AddListener(() =>
+        // {
+        //     for (int i = selectConteriner.childCount; i >= 0; i--)
+        //     {
+        //         var card = selectConteriner.GetChild(0).GetComponent<CardImage>();
 
-            selectedConteriner.gameObject.SetActive(false);
-        }
+        //         if (card.selected)
+        //             Destroy(card);   
+        //     }
+        // });
+
+        // if (deckOf == DeckOf.cpu)
+        // {
+        //     Round.i.StartTurn.AddListener(() =>
+        //        selectedConteriner.gameObject.SetActive(true)
+        //     );
+        //     Round.i.EndTurn.AddListener(() =>
+        //        selectedConteriner.gameObject.SetActive(false)
+        //     );
+
+        //     selectedConteriner.gameObject.SetActive(false);
+        // }
 
         // Add Use Card Feedback Event
-        Round.i.UseCard.AddListener( (card) => UseCardFeedback(card) );        
+        Round.i.UseCard.AddListener(UseCardFeedback);
     }
 
     // UseCard Event
@@ -60,7 +57,8 @@ public class DeckManager : MonoBehaviour
         card.gameObject.TryGetComponent(out RectTransform cardTransform);
 
         cardTransform.sizeDelta *= 1.2f;
-        StartCoroutine(MoveCard(cardTransform));
+
+        // StartCoroutine(MoveCard(cardTransform));
     }
 
     private IEnumerator MoveCard(RectTransform cardTransform)
@@ -72,11 +70,11 @@ public class DeckManager : MonoBehaviour
     private void UpdateDeck(List<CardData> cards)
     {
         // destroy old cards
-        if (m_spaw.childCount > 0)
+        if (selectConteriner.childCount > 0)
         {
-            for (int i = m_spaw.childCount - 1; i >= 0; i--)
+            for (int i = selectConteriner.childCount - 1; i >= 0; i--)
             {
-                Destroy(m_spaw.GetChild(i).gameObject);
+                Destroy(selectConteriner.GetChild(i).gameObject);
             }
         }
 
@@ -85,12 +83,11 @@ public class DeckManager : MonoBehaviour
         // spaw new cards
         foreach (var card in cards)
         {
-            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, m_spaw);
-            cardImage.energyCount = m_energy;
+            CardImage cardImage = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity, selectConteriner);
+            cardImage.energyCount = _energy;
             cardImage.selectConteriner = selectConteriner;
-            cardImage.selectedConteriner = selectedConteriner;
             cardImage.Data = card;
-            cardImage.ConnectedRobot = m_ConnectedRobot;
+            cardImage.ConnectedRobot = _connectedRobot;
 
             spawCards.Add(cardImage);
         }
@@ -107,12 +104,13 @@ public class DeckManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        m_deck.OnUpdateHands -= UpdateDeck;
+        Round.i.UseCard.RemoveListener(UseCardFeedback);
+        _deck.OnUpdateHands -= UpdateDeck;
     }
 }
 
 public enum DeckOf
 {
-    player, 
+    player,
     cpu,
 }
