@@ -131,4 +131,12 @@ public class DataManager : MonoBehaviour
     {
         return PlayerInfo.Robot;
     }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            PlayerPrefs.DeleteKey("Open-Game");
+        }
+    }
 }

@@ -10,8 +10,11 @@ public class ShowBuffAndDebuff : MonoBehaviour
     public DeckOf deckOf;
     public TextMeshProUGUI attack;
     public TextMeshProUGUI defense;
-    public TextMeshProUGUI speed;
     public TextMeshProUGUI inteligence;
+    public TextMeshProUGUI speed;
+    public TextMeshProUGUI accuracy;
+    public TextMeshProUGUI evasion;
+    public TextMeshProUGUI critChance;
     public TextMeshProUGUI fireResistence;
     public TextMeshProUGUI electricResistence;
     public TextMeshProUGUI waterResistence;
@@ -56,8 +59,11 @@ public class ShowBuffAndDebuff : MonoBehaviour
     {
         attack.text = "ATK: " + GetStatusWithColor(Stats.attack);
         defense.text = "DEF: " + GetStatusWithColor(Stats.defence);
-        speed.text = "SPE: " + GetStatusWithColor(Stats.speed);
         inteligence.text = "INT: " + GetStatusWithColor(Stats.inteligence);
+        speed.text = "SPE: " + GetStatusWithColor(Stats.speed);
+        accuracy.text = "HIT: " + GetStatusWithColor(Stats.accuracy);
+        evasion.text = "EV: " + GetStatusWithColor(Stats.evasion);
+        critChance.text = "CRI: " + GetStatusWithColor(Stats.critChance);
         fireResistence.text = "FRE: " + GetStatusWithColor(Stats.fireResistence);
         electricResistence.text = "ERE: " + GetStatusWithColor(Stats.electricResistence);
         waterResistence.text = "WRE: " + GetStatusWithColor(Stats.waterResistence);
@@ -67,8 +73,11 @@ public class ShowBuffAndDebuff : MonoBehaviour
     {
         attack.text = GetStatusWithColor(Stats.attack) + " :ATK";
         defense.text = GetStatusWithColor(Stats.defence) + " :DEF";
-        speed.text = GetStatusWithColor(Stats.speed) + " :SPE";
         inteligence.text = GetStatusWithColor(Stats.inteligence) + " :INT";
+        speed.text = GetStatusWithColor(Stats.speed) + " :SPE";
+        accuracy.text = GetStatusWithColor(Stats.accuracy) + " :HIT";
+        evasion.text = GetStatusWithColor(Stats.evasion) + " :EV";
+        critChance.text = GetStatusWithColor(Stats.critChance) + " :CRI";
         fireResistence.text = GetStatusWithColor(Stats.fireResistence) + " :FRE";
         electricResistence.text = GetStatusWithColor(Stats.electricResistence) + " :ERE";
         waterResistence.text = GetStatusWithColor(Stats.waterResistence) + " :WRE";
