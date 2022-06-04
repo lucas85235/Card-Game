@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private bool useTimer = true;
     [SerializeField] private float timeToPlay;
-    [SerializeField] private Slider timeSlider;
+    [SerializeField] private Image timeImage;
 
     [Header("Alert")]
     [SerializeField] private GameObject alertText;
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
             StartCountdown();
         }
 
-        timeSlider.gameObject.SetActive(useTimer);
+        timeImage.gameObject.SetActive(useTimer);
     }
 
     public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor, string beforeText = "")
@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        timeSlider.gameObject.SetActive(true);
+        timeImage.gameObject.SetActive(true);
         timeRoundCoroutine = StartCoroutine(Countdown());
     }
 
@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour
         {
             if (timeRoundCoroutine == null) return;
 
-            timeSlider.gameObject.SetActive(false);
+            timeImage.gameObject.SetActive(false);
             StopCoroutine(timeRoundCoroutine);            
         }
 
@@ -168,16 +168,16 @@ public class GameController : MonoBehaviour
 
     private IEnumerator Countdown()
     {
-        float timeRemaining = timeToPlay;
+        float timeRemaining = 0;
 
-        while (timeRemaining > 0)
+        while (timeRemaining < timeToPlay)
         {
             yield return null;
-            timeRemaining -= Time.deltaTime;
-            timeSlider.value = timeRemaining / timeToPlay;
+            timeRemaining += Time.deltaTime;
+            timeImage.fillAmount = 0.5f + (timeRemaining / timeToPlay) / 2;
         }
 
-        timeSlider.gameObject.SetActive(false);
+        timeImage.gameObject.SetActive(false);
         Round.i.StartTurn?.Invoke();
     }
 
