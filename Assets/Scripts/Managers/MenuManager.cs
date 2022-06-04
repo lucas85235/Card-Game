@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionInfoText;
     [SerializeField] private TextMeshProUGUI robotInfoText;
     [SerializeField] private RectTransform cardConfiner;
+    [SerializeField] private RectTransform cardPartConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
 
     [Header("UI")]
@@ -24,6 +25,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Transform rightArmOptionsContainer;
     [SerializeField] private Transform torsoOptionsContainer;
     [SerializeField] private Transform legsOptionsContainer;
+
+    [Header("UI Hand Cards")]
+    [SerializeField] private RectTransform handConfiner;
 
     private List<Transform> robotPartOrder = new List<Transform>();
 
@@ -91,6 +95,7 @@ public class MenuManager : MonoBehaviour
 
                 PlayClickSound();
                 FillRobotInformation();
+                FillRobotPartInformation((int)RobotParts.Head);
             });
 
             newOption.transform.GetChild(0).GetChild(0).TryGetComponent(out Image buttonImage);
@@ -121,6 +126,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         FillRobotInformation();
+        FillRobotPartInformation((int)RobotParts.Head);
 
         AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
         AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
@@ -133,6 +139,7 @@ public class MenuManager : MonoBehaviour
             AudioManager.Instance.Play(AudiosList.changeRobot);
 
         FillRobotInformation();
+        FillRobotPartInformation((int)RobotParts.Head);
     }
 
     private void FillRobotInformation()
@@ -140,10 +147,10 @@ public class MenuManager : MonoBehaviour
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
         robotInfoText.text =
-            LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() +
-            LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() +
-            LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() +
-            LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() +
+            LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() + "\n" +
+            LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() + "\n" +
+            LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() + "\n" +
+            LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() + "\n" +
             LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy();
 
         nameInfoText.text =
@@ -164,12 +171,126 @@ public class MenuManager : MonoBehaviour
             newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
             cardImage.sprite = card.Sprite();
 
-            newCardInfo.transform.Find("StatsText").TryGetComponent(out TextMeshProUGUI statsText);
-            statsText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
+            newCardInfo.transform.Find("EnergyText").TryGetComponent(out TextMeshProUGUI energyText);
+            energyText.text = card.Energy().ToString();
+
+            newCardInfo.transform.Find("TitleText").TryGetComponent(out TextMeshProUGUI titleText);
+            titleText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
 
             newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
             descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
         }
+
+        ReRool();
+    }
+
+    public void FillRobotPartInformation(int part)
+    {
+        var robot = DataManager.Instance.GetCurrentRobot();
+
+        switch ((RobotParts) part)
+        {
+            case RobotParts.Head: 
+                FillRobotPartInformation(robot.GetHead().Cards()); 
+            break;
+
+            case RobotParts.Torso: 
+                FillRobotPartInformation(robot.GetTorso().Cards()); 
+            break;
+
+            case RobotParts.LeftArm: 
+                FillRobotPartInformation(robot.GetLeftArm().Cards()); 
+            break;
+
+            case RobotParts.RightArm: 
+                FillRobotPartInformation(robot.GetRightArm().Cards()); 
+            break;
+
+            case RobotParts.Legs: 
+                FillRobotPartInformation(robot.GetLeg().Cards()); 
+            break;
+        }
+    }
+
+    private void FillRobotPartInformation(List<CardData> cards)
+    {
+        foreach (RectTransform oldCard in cardPartConfiner)
+            Destroy(oldCard.gameObject);
+
+        foreach (var card in cards)
+        {
+            var newCardInfo = Instantiate(cardInfoPrefab);
+            newCardInfo.transform.SetParent(cardPartConfiner, false);
+
+            newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
+            cardImage.sprite = card.Sprite();
+
+            newCardInfo.transform.Find("EnergyText").TryGetComponent(out TextMeshProUGUI energyText);
+            energyText.text = card.Energy().ToString();
+
+            newCardInfo.transform.Find("TitleText").TryGetComponent(out TextMeshProUGUI titleText);
+            titleText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
+
+            newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
+            descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
+        }
+    }
+
+    public void ReRool()
+    {
+        foreach (RectTransform oldCard in handConfiner)
+            Destroy(oldCard.gameObject);
+
+        foreach (var card in GetRandomHandsList())
+        {
+            var newCardInfo = Instantiate(cardInfoPrefab);
+            newCardInfo.transform.SetParent(handConfiner, false);
+
+            newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
+            cardImage.sprite = card.Sprite();
+
+            newCardInfo.transform.Find("EnergyText").TryGetComponent(out TextMeshProUGUI energyText);
+            energyText.text = card.Energy().ToString();
+
+            newCardInfo.transform.Find("TitleText").TryGetComponent(out TextMeshProUGUI titleText);
+            titleText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
+
+            newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
+            descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
+        }
+    }
+
+    private List<CardData> GetRandomHandsList()
+    {
+        var deck = new List<CardData>();
+        var hands = new List<CardData>();
+
+        foreach (CardData card in DataManager.Instance.GetCurrentRobot().Cards())
+        {
+            deck.Add(card);
+        }
+
+        // randomly order the deck
+        deck.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 1));
+
+        var deckSelect = new List<int>();
+        while (deckSelect.Count < 5)
+        {
+            var r = UnityEngine.Random.Range(0, deck.Count);
+
+            if (!deckSelect.Contains(r))
+                deckSelect.Add(r);
+        }
+
+        deckSelect.Sort();
+        deckSelect.Reverse();
+
+        foreach (var s in deckSelect)
+        {
+            hands.Add(deck[s]);
+        }
+
+        return hands;
     }
 
     public void ReceiveLanguageChange(int value)

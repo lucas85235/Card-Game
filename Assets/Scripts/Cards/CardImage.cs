@@ -43,6 +43,8 @@ public class CardImage : MonoBehaviour
 
     void Start()
     {
+        if (Data == null) return;
+
         image.sprite = Data.Sprite();
         energy.text = Data.Energy().ToString();
 

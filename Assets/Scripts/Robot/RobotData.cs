@@ -110,3 +110,12 @@ public class RobotData : ScriptableObject
     // public int acidResist;
 
 }
+
+public enum RobotParts
+{
+    Head,
+    Torso,
+    LeftArm,
+    RightArm,
+    Legs,
+}
