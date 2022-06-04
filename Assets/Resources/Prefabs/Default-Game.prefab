@@ -6392,7 +6392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ec541f696455e428d41cf36f320144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckOf: 1
   attack: {fileID: 2145231414116964534}
   defense: {fileID: 966728118073781827}
   inteligence: {fileID: 4972954719098990404}
@@ -6405,6 +6404,8 @@ MonoBehaviour:
   waterResistence: {fileID: 5690780648144580742}
   acidResistence: {fileID: 5484355710538063527}
   openPopup: {fileID: 3705026085763579531}
+  deckOf: 1
+  robot: {fileID: 3335034731375598504}
 --- !u!1 &3719632972008338512
 GameObject:
   m_ObjectHideFlags: 0
@@ -17839,7 +17840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ec541f696455e428d41cf36f320144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckOf: 0
   attack: {fileID: 9055703750529186608}
   defense: {fileID: 5014208943648523562}
   inteligence: {fileID: 8476730837022239609}
@@ -17852,6 +17852,8 @@ MonoBehaviour:
   waterResistence: {fileID: 6309577025369767960}
   acidResistence: {fileID: 4789905233423976469}
   openPopup: {fileID: 7567359242384365377}
+  deckOf: 0
+  robot: {fileID: 5905821542864606209}
 --- !u!1 &7603383202287617576
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,7 @@ using TMPro;
 
 public class ShowBuffAndDebuff : MonoBehaviour
 {
-    [Header("Setup")]
-    public DeckOf deckOf;
+    [Header("UI")]
     public TextMeshProUGUI attack;
     public TextMeshProUGUI defense;
     public TextMeshProUGUI inteligence;
@@ -21,7 +20,10 @@ public class ShowBuffAndDebuff : MonoBehaviour
     public TextMeshProUGUI acidResistence;
     public GameObject openPopup;
 
-    private Robot m_robot;
+    [Header("Setup")]
+    public DeckOf deckOf;
+    public Robot robot;
+
     private bool active = false;
 
     void Start()
@@ -30,14 +32,9 @@ public class ShowBuffAndDebuff : MonoBehaviour
 
         if (deckOf == DeckOf.player)
         {
-            m_robot = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
             SetStatsLeft();
         }
-        else
-        {
-            m_robot = GameObject.FindGameObjectWithTag("Cpu").GetComponent<Robot>();
-            SetStatsRight();
-        }
+        else SetStatsRight();
     }
 
     private void FixedUpdate()
@@ -90,8 +87,8 @@ public class ShowBuffAndDebuff : MonoBehaviour
 
     private string GetStatusWithColor(Stats statTyper)
     {
-        int diff = m_robot.StatDiff(statTyper);
-        int currentStat = m_robot.CurrentRobotStats[statTyper];
+        int diff = robot.StatDiff(statTyper);
+        int currentStat = robot.CurrentRobotStats[statTyper];
 
         if (diff != 0)
         {
