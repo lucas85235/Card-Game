@@ -4652,7 +4652,6 @@ GameObject:
   - component: {fileID: 8435116918166977769}
   - component: {fileID: 1826223941349637222}
   - component: {fileID: 3567611679897476230}
-  - component: {fileID: 904081870314711523}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -4762,7 +4761,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 904081870314711523}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EndRoundButton, Assembly-CSharp
         m_MethodName: EndRound
         m_Mode: 1
@@ -4786,19 +4785,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &904081870314711523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3299346378189057691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57eacdfbebc44b441ae16f5b6eaefb65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disablePopup: {fileID: 2190149651920027881}
 --- !u!1 &3332333194256898707
 GameObject:
   m_ObjectHideFlags: 0
@@ -5456,6 +5442,7 @@ GameObject:
   - component: {fileID: 7614770964851147041}
   - component: {fileID: 880665463473636874}
   - component: {fileID: 3832460530002435398}
+  - component: {fileID: 6755486761109539519}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -5566,10 +5553,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2190149651920027881}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 6755486761109539519}
+        m_TargetAssemblyTypeName: EndRoundButton, Assembly-CSharp
+        m_MethodName: EndRound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5578,6 +5565,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &6755486761109539519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3496356516863540656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57eacdfbebc44b441ae16f5b6eaefb65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disablePopup: {fileID: 2190149651920027881}
 --- !u!1 &3501868542704811224
 GameObject:
   m_ObjectHideFlags: 0
@@ -15536,7 +15536,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 136409239675367483}
   m_FillRect: {fileID: 8395572317763599909}
   m_HandleRect: {fileID: 6814990178984769050}
@@ -16156,7 +16156,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 9118185682425573788}
   m_FillRect: {fileID: 6901365607721380627}
   m_HandleRect: {fileID: 1132633393108708729}
@@ -18293,7 +18293,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8528103770612697809}
   m_FillRect: {fileID: 4749141413335830622}
   m_HandleRect: {fileID: 2527307051262127999}
@@ -19388,7 +19388,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8253976447698090983}
   m_FillRect: {fileID: 5072809192845707766}
   m_HandleRect: {fileID: 8250582488171758046}

@@ -29,25 +29,19 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        newParts = new List<RobotPartItem>();
-        int countParts = 0;
+        LoadTestData();
+        
+    }
 
-        foreach (var item in Enum.GetValues(typeof(PartID)))
-        {
-            newParts.Add(new RobotPartItem()
-            {
-                itemID = item.ToString()
-            });
-
-            countParts++;
-        }
-
-        for (int i = 0; i < newParts.Count; i++)
-        {
-            DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
-        }
-
+    private void Start()
+    {
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
+        
+        FillRobotInformation();
+        FillRobotPartInformation((int)RobotParts.Head);
+
+        AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
+        AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
     }
 
     private void LoadTestData()
@@ -104,7 +98,7 @@ public class MenuManager : MonoBehaviour
             });
 
             newOption.transform.GetChild(0).TryGetComponent(out Image buttonSelect);
-            if (DataManager.Instance.data.SaveCodes.Contains("code" + (i + 1)))
+            if (DataManager.Instance.SaveCodes.Contains("code" + (i + 1)))
             {
                 buttonSelect.color = Color.green;
             }
@@ -115,14 +109,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        FillRobotInformation();
-        FillRobotPartInformation((int)RobotParts.Head);
-
-        AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
-        AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
-    }
     public void ChangeRobot(int value)
     {
         DataManager.Instance.ChangePart(value);

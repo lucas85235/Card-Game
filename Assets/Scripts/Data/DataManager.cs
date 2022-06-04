@@ -10,7 +10,15 @@ public class DataManager : MonoBehaviour
 
     public ItemsDB ItemsDB { get; private set; }
 
-    public SaveRobot data;
+    public List<string> saveCodes = new List<string>(5);
+    public List<string> SaveCodes
+    {
+        get => saveCodes;
+        set
+        {
+            saveCodes = value;
+        }
+    }
 
     private void Awake()
     {
@@ -26,9 +34,7 @@ public class DataManager : MonoBehaviour
         ItemsDB = new ItemsDB();
         PlayerInfo.PrepareClass();
 
-        #if UNITY_EDITOR
         LoadData();
-        #endif
     }
 
     private void LoadData()
@@ -49,22 +55,26 @@ public class DataManager : MonoBehaviour
             DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
         }
 
-        if (DataManager.Instance.data.SaveCodes.Count > 0)
-        {
-            for (int i = 0; i < DataManager.Instance.data.SaveCodes.Count; i++)
-            {
+        // Save Code Handle
 
-                DataManager.Instance.AssignPartToRobot(DataManager.Instance.data.SaveCodes[i]);
-                DataManager.Instance.SavePart(DataManager.Instance.data.SaveCodes[i], i);
-            }
-        }
-        else
+        if (SaveCodes.Count == 0)
+            SaveCodes = new List<string>(5) { "", "", "", "", "" };
+
+        for (int i = 0; i < SaveCodes.Count; i++)
         {
-            for (int i = 0; i < 5; i++)
+            if (!PlayerPrefs.HasKey("part" + i))
             {
-                DataManager.Instance.AssignPartToRobot("code" + (i + 1));
-                DataManager.Instance.SavePart("code" + (i + 1), i);
+                PlayerPrefs.SetString("part" + i, "code" + (i + 1));
+                SaveCodes[i] = PlayerPrefs.GetString("part" + i);
             }
+            else SaveCodes[i] = PlayerPrefs.GetString("part" + i);
+        }
+
+        PlayerPrefs.Save();
+
+        foreach (var code in SaveCodes)
+        {
+            DataManager.Instance.AssignPartToRobot(code);
         }
     }
 
@@ -92,10 +102,13 @@ public class DataManager : MonoBehaviour
 
     public void SavePart(string code, int index)
     {
-        if (data.SaveCodes.Count == 0)
-            data.SaveCodes = new List<string>(5) { "", "", "", "", "" };
+        if (SaveCodes.Count == 0)
+            SaveCodes = new List<string>(5) { "", "", "", "", "" };
 
-        data.SaveCodes[index] = code;
+        SaveCodes[index] = code;
+
+        PlayerPrefs.SetString("part" + index.ToString(), code);
+        PlayerPrefs.Save();
     }
 
     public void ChangePart(int connectionIndex)
