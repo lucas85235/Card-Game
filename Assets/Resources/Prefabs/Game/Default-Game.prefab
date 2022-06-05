@@ -8458,7 +8458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shild
+  m_text: Shield
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
@@ -8592,7 +8592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shild
+  m_text: Shield
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
@@ -9623,13 +9623,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showOnStart: 0
   energyBars:
   - {fileID: 1828130182515319708}
   - {fileID: 2156173054521372412}
   - {fileID: 4034965808270346892}
   - {fileID: 264636585580615576}
   - {fileID: 3203556960107915493}
-  showOnStart: 0
 --- !u!114 &3335034731375598504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9643,6 +9643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Data: {fileID: 0}
+  m_iconSpawInLeft: 0
   selectedCardsConteriner: {fileID: 5905821543430596424}
   getFromDataManager: 0
   randData: 1
@@ -10613,13 +10614,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showOnStart: 0
   energyBars:
   - {fileID: 6276804427610021966}
   - {fileID: 4120157143356956113}
   - {fileID: 5491181427776316301}
   - {fileID: 196502317992141800}
   - {fileID: 6903155345610942138}
-  showOnStart: 0
 --- !u!114 &5905821542864606209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10633,6 +10634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
+  m_iconSpawInLeft: 0
   selectedCardsConteriner: {fileID: 5905821543618328271}
   getFromDataManager: 1
   randData: 0

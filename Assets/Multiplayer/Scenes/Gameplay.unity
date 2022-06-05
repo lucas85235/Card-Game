@@ -2591,7 +2591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shild
+  m_text: Shield
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
@@ -16716,13 +16716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showOnStart: 0
   energyBars:
   - {fileID: 7073599347539325221}
   - {fileID: 872700419260484794}
   - {fileID: 8720465407566885606}
   - {fileID: 4002526541341340291}
   - {fileID: 7709360235017009105}
-  showOnStart: 0
 --- !u!95 &7261060547200943462
 Animator:
   serializedVersion: 3
@@ -16895,6 +16895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
+  m_iconSpawInLeft: 0
   getFromDataManager: 0
 --- !u!222 &7261060547222169157
 CanvasRenderer:
@@ -18523,13 +18524,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1222b6a1a71d443b35a1a63267208f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showOnStart: 0
   energyBars:
   - {fileID: 3201808409686029047}
   - {fileID: 2944662047768231831}
   - {fileID: 202342548042308583}
   - {fileID: 3935553358094763763}
   - {fileID: 1820751032980421006}
-  showOnStart: 0
 --- !u!114 &7829756055901712274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19121,7 +19122,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shild
+  m_text: Shield
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 6a00f599691c51942a3575ebe9164af5, type: 2}
@@ -20495,6 +20496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Data: {fileID: 11400000, guid: 3c4f5df5cbe46bb46a8d0854d843a5a8, type: 2}
+  m_iconSpawInLeft: 0
   getFromDataManager: 0
 --- !u!222 &8743102036688994918
 CanvasRenderer:
