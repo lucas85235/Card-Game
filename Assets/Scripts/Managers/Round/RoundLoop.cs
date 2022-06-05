@@ -5,8 +5,8 @@ using UnityEngine;
 public class RoundLoop : Round
 {
     [Header("CHARACTERS")]
-    public Robot playerOne;
-    public Robot playerTwo;
+    public RobotSingleplayer playerOne;
+    public RobotSingleplayer playerTwo;
 
     [Header("SETTINGS")]
 
@@ -23,7 +23,7 @@ public class RoundLoop : Round
     public Transform cardsConterinerOne;
     public Transform cardsConterinerTwo;
 
-    private List<Robot> sortRobots;
+    private List<RobotSingleplayer> sortRobots;
 
     private static int MAX_CARD_PRIORITY = 4;
 
@@ -34,7 +34,7 @@ public class RoundLoop : Round
 
     protected virtual void Start()
     {
-        sortRobots = new List<Robot>(2) { playerOne, playerTwo };
+        sortRobots = new List<RobotSingleplayer>(2) { playerOne, playerTwo };
         SortBySpeed();
 
         cardsConterinerOne = playerOne.selectedCardsConteriner;
@@ -79,7 +79,7 @@ public class RoundLoop : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
-        if (sortRobots.Count == 0) sortRobots = new List<Robot>(2) { playerOne, playerTwo };
+        if (sortRobots.Count == 0) sortRobots = new List<RobotSingleplayer>(2) { playerOne, playerTwo };
 
         if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
         {
