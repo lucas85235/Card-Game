@@ -26,6 +26,7 @@ namespace Multiplayer
         private int _maxLife = 8;
         private bool _shildActive = false;
         private PhotonView _view;
+        private RobotMultiplayer _robot;
 
         private int _currentLife;
         public int CurrentLife
@@ -36,12 +37,15 @@ namespace Multiplayer
                 _currentLife = value;
                 lifeSlider.value = value;
 
-                if (_currentLife <= 0)
+                if (_currentLife < 1)
                 {
                     _currentLife = 0;
                     OnDie?.Invoke();
                 }
-                else if (_currentLife > _maxLife) _currentLife = _maxLife;
+                else if (_currentLife > _maxLife)
+                {
+                    _currentLife = _maxLife;
+                }
 
                 if (lifeText != null)
                     lifeText.text = _currentLife + " / " + lifeSlider.maxValue;
@@ -74,6 +78,11 @@ namespace Multiplayer
             }
         }
 
+        private void Awake()
+        {
+            _robot = GetComponent<RobotMultiplayer>();
+        }
+
         private void Start()
         {
             _view = GetComponent<PhotonView>();
@@ -86,7 +95,24 @@ namespace Multiplayer
 
         public void TakeDamage(int damage)
         {
+            _view.RPC(nameof(AnimationRPC), RpcTarget.All, damage);
             _view.RPC(nameof(TakeDamageRPC), RpcTarget.AllBuffered, damage);
+        }
+
+        [PunRPC]
+        private void AnimationRPC(int damage)
+        {
+            if (CurrentLife - damage < 1)
+            {
+                AudioManager.Instance.Play(AudiosList.robotDeath);
+                _robot.Animation.PlayAnimation(Animations.death);
+                _robot.Animation.ResetToIdleAfterAnimation(false);
+            }
+            else
+            {
+                _robot.Animation.PlayAnimation(Animations.hurt);
+                AudioManager.Instance.Play(AudiosList.robotHurt);
+            }
         }
 
         [PunRPC]

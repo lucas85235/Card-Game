@@ -24,6 +24,11 @@ public class Lobby : MonoBehaviourPunCallbacks
         else OnConnectedToMaster();
     }
 
+    public void ExitMultiplayer()
+    {
+        PhotonNetwork.Disconnect();
+    }
+
     public override void OnJoinedLobby()
     {
         Debug.Log("Join Lobby");

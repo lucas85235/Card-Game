@@ -13,6 +13,7 @@ public class LobbyUI : MonoBehaviourPunCallbacks
     [SerializeField] private Button find;
     [SerializeField] private Button exit;
     [SerializeField] private Button ready;
+    [SerializeField] private Button exitMenu;
     [SerializeField] private TextMeshProUGUI readyText;
 
     [SerializeField] private TextMeshProUGUI players;
@@ -100,6 +101,8 @@ public class LobbyUI : MonoBehaviourPunCallbacks
 
     public void OutsideTheRoom()
     {
+        exitMenu.interactable = false;
+
         find.interactable = true;
         exit.interactable = false;
         ready.interactable = false;
@@ -107,6 +110,8 @@ public class LobbyUI : MonoBehaviourPunCallbacks
 
     public void InTheRoom()
     {
+        exitMenu.interactable = true;
+
         find.interactable = false;
         exit.interactable = true;
         ready.interactable = true;

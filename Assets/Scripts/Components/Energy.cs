@@ -18,9 +18,8 @@ using TMPro;
 public class Energy : MonoBehaviour
 {
     [Header("Setup")]
+    public bool showOnStart = false;    
     public List<GameObject> energyBars;
-
-    public bool showOnStart = false;
 
     public int EnergyAmount { get => currentAmount; }
     private int currentAmount;
@@ -38,7 +37,6 @@ public class Energy : MonoBehaviour
         }
 
         InitGame();
-
         EnergyCharge();
         
         Round.i.StartTurn.AddListener(() => EnergyText(currentRoundAmount));

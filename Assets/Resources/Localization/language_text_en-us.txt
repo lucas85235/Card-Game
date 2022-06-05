@@ -265,7 +265,7 @@
         {"key":"Card_Cross_Description", "value":"Deals 7 to 13 damage"},
 
         {"key":"Card_Feint_Title", "value":"Feint"},
-        {"key":"Card_Feint_Description", "value":"Reduce enemy defency by 1 point"},
+        {"key":"Card_Feint_Description", "value":"Reduce enemy defence by 1 point"},
 
         {"key":"Card_HighGuard_Title", "value":"High Guard"},
         {"key":"Card_HighGuard_Description", "value":"Increase defense by 1 point"},

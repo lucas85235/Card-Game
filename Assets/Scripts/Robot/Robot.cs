@@ -1,88 +1,54 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Random = UnityEngine.Random;
-
-[RequireComponent(typeof(Life))]
-[RequireComponent(typeof(Energy))]
-
-public class Robot : MonoBehaviour
+public abstract class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
-    [SerializeField] private RobotData m_Data;
-    public Transform selectedCardsConteriner;
-    [SerializeField] private bool getFromDataManager;
+    [SerializeField] protected RobotData m_Data;
 
-    [Header("Rand Robot Data")]
-    public bool randData = false;
-    public RobotData[] datas;
+    [Header("Protected Debug")]
+    [SerializeField] protected bool m_iconSpawInLeft;
 
+    public RobotData Data { get => m_Data; }
+    public Dictionary<Stats, int> CurrentRobotStats { get; protected set; } = new Dictionary<Stats, int>();
+    public Dictionary<Stats, int> DataStats { get; protected set; } = new Dictionary<Stats, int>();
+    public List<CardData> CurrentCards { get; protected set; }
     public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
-    public Life life { get; private set; }
-    public Energy energy { get; private set; }
-    public RobotData Data { get => m_Data; }
+    public Life life { get; protected set; }
+    public Energy energy { get; protected set; }
+    protected RobotAnimation m_RobotAnimation;
 
-    public Dictionary<Stats, int> CurrentRobotStats { get; private set; } = new Dictionary<Stats, int>();
-    public Dictionary<Stats, int> DataStats { get; private set; } = new Dictionary<Stats, int>();
-    public List<CardData> CurrentCards { get; private set; }
-
-    private RobotAnimation m_RobotAnimation;
-    private bool m_iconSpawInLeft;
-
-    private void Awake()
+    public void ApplyStatChange(Stats statToChange, int value)
     {
-        if (randData && datas.Length > 1)
-        {
-            m_Data = datas[Random.Range(0, datas.Length)];
-        }
+        CurrentRobotStats[statToChange] += value;
+        var textColor = value > 0 ? Color.blue : Color.red;
 
-        life = GetComponent<Life>();
-        energy = GetComponent<Energy>();
-
-        TryGetComponent(out m_RobotAnimation);
-
-        if (getFromDataManager && DataManager.Instance != null)
-        {
-            m_Data = DataManager.Instance.GetCurrentRobot();
-        }
-
-        m_RobotAnimation.ChangeRobotSprites(m_Data);
-        m_iconSpawInLeft = transform.localScale.x > 0;
-
-        CurrentCards = m_Data.Cards();
-        SetStats();
-
-        RemoveAllBuffAndDebuff();
+        GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
-    private void Start()
+    public void ApplyStatusEffect(StatusEffect newStatusEffect)
     {
-        Round.i.EndTurn.AddListener(() =>
-        {
-            ActivateEarlyStatusEffects();
-        });
-
-        Round.i.StartTurn.AddListener(() => {
-
-            // remove this logic of here
-            // because the buff and defuff
-            // can be apply for more of one round
-
-            //RemoveAllBuffAndDebuff();
-        });
-
-        // Add Robot Attack Feedback To Event List
-        Round.i.RobotAttack.AddListener((robot, target) =>
-           RobotAttackFeedback(robot, target)
-        );
+        StatusList = newStatusEffect.UpdateStatusList(StatusList);
     }
 
-    private void SetStats()
+    public int StatDiff(Stats statToCompare)
+    {
+        return CurrentRobotStats[statToCompare] - DataStats[statToCompare];
+    }
+
+    public void StatReset(Stats statToReset)
+    {
+        CurrentRobotStats[statToReset] = DataStats[statToReset];
+    }
+
+    public void RemoveCard(CardData cardToRemove)
+    {
+        CurrentCards.Remove(cardToRemove);
+    }
+
+    protected void SetStats()
     {
         CurrentRobotStats[Stats.attack] = m_Data.Attack();
         DataStats[Stats.attack] = m_Data.Attack();
@@ -119,82 +85,5 @@ public class Robot : MonoBehaviour
 
         CurrentRobotStats[Stats.electricResistence] = m_Data.ElectricResistence();
         DataStats[Stats.electricResistence] = m_Data.ElectricResistence();
-    }
-
-    /// <summary>Set Robot Behaviour After Attack Event Called</summary>
-    private void RobotAttackFeedback(Robot robot, Robot target)
-    {
-        if (robot != this) return;
-        m_RobotAnimation.PlayAnimation(Animations.action);
-    }
-
-    private void RemoveAllBuffAndDebuff()
-    {
-        StatReset(Stats.attack);
-        StatReset(Stats.defence);
-        StatReset(Stats.speed);
-    }
-
-    public void ApplyStatChange(Stats statToChange, int value)
-    {
-        CurrentRobotStats[statToChange] += value;
-        var textColor = value > 0 ? Color.blue : Color.red;
-
-        GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
-    }
-
-    public int StatDiff(Stats statToCompare)
-    {
-        return CurrentRobotStats[statToCompare] - DataStats[statToCompare];
-    }
-
-    public void StatReset(Stats statToReset)
-    {
-        CurrentRobotStats[statToReset] = DataStats[statToReset];
-    }
-
-    public void RemoveCard(CardData cardToRemove)
-    {
-        CurrentCards.Remove(cardToRemove);
-    }
-
-    public void ApplyStatusEffect(StatusEffect newStatusEffect)
-    {
-        StatusList = newStatusEffect.UpdateStatusList(StatusList);
-    }
-
-    public bool ActivateEarlyStatusEffects()
-    {
-        var toRemoveInStatusList = new List<StatusEffect>();
-
-        foreach (var status in StatusList)
-        {
-            if (status.statusTrigger == StatusEffectTrigger.OnStartRound && status.ActivateStatusEffect(this))
-            {
-                toRemoveInStatusList.Add(status);
-            }
-        }
-
-        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
-
-        return true;
-    }
-
-    public async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
-    {
-        var toRemoveInStatusList = new List<StatusEffect>();
-
-        foreach (var status in StatusList)
-        {
-            if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
-            {
-                await Task.Delay(timeBetweenStatusEffects);
-                toRemoveInStatusList.Add(status);
-            }
-        }
-
-        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
-
-        return true;
     }
 }
