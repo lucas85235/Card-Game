@@ -9,9 +9,16 @@ public class EventPanelUI : MonoBehaviour
     [SerializeField] private GameObject _eventPanel;
     [SerializeField] private Button _startButton;
 
-    [Header("Chest UI")]
+    [Header("Chest")]
     [SerializeField] private GameObject _chestEventPanel;
     [SerializeField] private Button _chestStartButton;
+
+    [Header("Shop")]
+    [SerializeField] private GameObject _consumablesShopEventPanel;
+    [SerializeField] private Button _consumablesShopButton;
+    [SerializeField] private GameObject _upgradesShopEventPanel;
+    [SerializeField] private Button _upgradesShopButton;
+
 
     [Header("To Test")]
     [SerializeField] private bool enemyBreak = false;
@@ -64,9 +71,19 @@ public class EventPanelUI : MonoBehaviour
                     return;
                 }
 
-                _eventPanel.SetActive(true);
-                _startButton.onClick.AddListener(() =>
-                    EnableNextPoints(point));
+                if (Random.Range(0, 2) == 0)
+                {
+                    _consumablesShopEventPanel.SetActive(true);
+                    _consumablesShopButton.onClick.AddListener(() =>
+                        EnableNextPoints(point));                    
+                }
+                else
+                {
+                    _upgradesShopEventPanel.SetActive(true);
+                    _upgradesShopButton.onClick.AddListener(() =>
+                        EnableNextPoints(point));                    
+                }
+
                 break;
 
             case RoguePathPoints.PointType.Boss:

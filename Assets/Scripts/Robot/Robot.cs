@@ -54,14 +54,14 @@ public class Robot : MonoBehaviour
         m_RobotAnimation.ChangeRobotSprites(m_Data);
         m_iconSpawInLeft = transform.localScale.x > 0;
 
-        SetStats();
         CurrentCards = m_Data.Cards();
+        SetStats();
+
+        RemoveAllBuffAndDebuff();
     }
 
     private void Start()
     {
-        RemoveAllBuffAndDebuff();
-
         Round.i.EndTurn.AddListener(() =>
         {
             ActivateEarlyStatusEffects();

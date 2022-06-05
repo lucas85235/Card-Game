@@ -20,7 +20,16 @@ public class RogueItems : MonoBehaviour
     public UnityEvent OnUpdateStickers;
     public UnityEvent OnUpdateSmokes;
 
-    private Dictionary<string, int> upgrades = new Dictionary<string, int>();
+    private Dictionary<string, int> upgrades = new Dictionary<string, int>()
+    {
+        {"attack", 0},
+        {"defense", 0},
+        {"intelligence", 0},
+        {"velocity", 0},
+        {"repairs", 0},
+        {"stickers", 0},
+        {"smokes", 0}
+    };
 
     public int Attack
     {
@@ -97,14 +106,6 @@ public class RogueItems : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-        upgrades.Add("attack", 0);
-        upgrades.Add("defense", 0);
-        upgrades.Add("intelligence", 0);
-        upgrades.Add("velocity", 0);
-        upgrades.Add("repairs", 0);
-        upgrades.Add("stickers", 0);
-        upgrades.Add("smokes", 0);
 
         for (int i = 0; i < upgrades.Keys.Count; i++)
         {
