@@ -7,7 +7,6 @@ using TMPro;
 public class RogueLikeUI : MonoBehaviour
 {
     [Header("UI")]
-    public TextMeshProUGUI robotText;
     public TextMeshProUGUI lifeText;
 
     public Slider lifeSlider;
@@ -16,8 +15,6 @@ public class RogueLikeUI : MonoBehaviour
     {
         RogueLife.Instance.OnUpdateMaxLife.AddListener(UpdateMaxLifeUI);
         RogueLife.Instance.OnUpdateLife.AddListener(UpdateLifeUI);
-
-        robotText.text = "Robot Name";
     }
 
     public void UpdateLifeUI()

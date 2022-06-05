@@ -20,7 +20,17 @@ public class ItemsUI : MonoBehaviour
     public TextMeshProUGUI velocityText;
 
     private void Start()
-    {        
+    {
+        useRepairs.onClick.AddListener(() => {
+            RogueLife.Instance.AddLife(20);
+            RogueItems.Instance.Repairs -= 1;
+        });
+
+        useStickers.onClick.AddListener(() => {
+            RogueLife.Instance.AddLife(10);
+            RogueItems.Instance.Stickers -= 1;
+        });
+
         RogueItems.Instance.OnUpdateRepairs.AddListener(Repairs);
         RogueItems.Instance.OnUpdateStickers.AddListener(Stickers);
         RogueItems.Instance.OnUpdateSmokes.AddListener(Smokes);
