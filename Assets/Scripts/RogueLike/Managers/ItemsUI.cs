@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ItemsUI : MonoBehaviour
@@ -9,7 +10,9 @@ public class ItemsUI : MonoBehaviour
     public TextMeshProUGUI repairsText;
     public TextMeshProUGUI stickersText;
     public TextMeshProUGUI smokesText;
-    
+    public Button useRepairs;
+    public Button useStickers;
+
     [Header("Upgrades")]
     public TextMeshProUGUI attackText;
     public TextMeshProUGUI defenseText;
@@ -39,11 +42,13 @@ public class ItemsUI : MonoBehaviour
 
     private void Repairs()
     {
+        useRepairs.interactable = RogueItems.Instance.Repairs > 0;
         repairsText.text = RogueItems.Instance.Repairs.ToString();
     }
 
     private void Stickers()
     {
+        useStickers.interactable = RogueItems.Instance.Stickers > 0;
         stickersText.text = RogueItems.Instance.Stickers.ToString();
     }
 

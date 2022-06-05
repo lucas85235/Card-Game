@@ -25,6 +25,8 @@ public class RogueLife : MonoBehaviour
         set
         {
             currentLife = value;
+            if (currentLife > maxLife)
+                currentLife = maxLife;
             OnUpdateLife?.Invoke();
         }
     }
@@ -70,6 +72,11 @@ public class RogueLife : MonoBehaviour
         }
 
         isReady = true;
+    }
+    
+    public void AddLife(int inc)
+    {
+        Life += inc;
     }
 
     public void DeleteSave()
