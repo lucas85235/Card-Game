@@ -1,12 +1,10 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-using System.Linq;
-
-[RequireComponent(typeof(Robot))]
 
 public class Life : MonoBehaviour
 {
