@@ -21,6 +21,13 @@ public class AddScrapCoins : MonoBehaviour
         UpdateText(earn);
     }
 
+    public void Event_1()
+    {
+        int earn = Random.Range(90, 110);
+        ScrapCoins.Instance.TotalCoins += earn;
+        UpdateText(earn);
+    }
+
     private void UpdateText(int earn)
     {
         text.text = "+" + earn;

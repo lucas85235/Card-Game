@@ -24,28 +24,17 @@ public class DeckManager : MonoBehaviour
 
     private void Start()
     {
-        // Round.i.StartTurn.AddListener(() =>
-        // {
-        //     for (int i = selectConteriner.childCount; i >= 0; i--)
-        //     {
-        //         var card = selectConteriner.GetChild(0).GetComponent<CardImage>();
+        if (deckOf == DeckOf.cpu)
+        {
+            Round.i.StartTurn.AddListener(() =>
+               selectConteriner.gameObject.SetActive(true)
+            );
+            Round.i.EndTurn.AddListener(() =>
+               selectConteriner.gameObject.SetActive(false)
+            );
 
-        //         if (card.selected)
-        //             Destroy(card);   
-        //     }
-        // });
-
-        // if (deckOf == DeckOf.cpu)
-        // {
-        //     Round.i.StartTurn.AddListener(() =>
-        //        selectedConteriner.gameObject.SetActive(true)
-        //     );
-        //     Round.i.EndTurn.AddListener(() =>
-        //        selectedConteriner.gameObject.SetActive(false)
-        //     );
-
-        //     selectedConteriner.gameObject.SetActive(false);
-        // }
+            selectConteriner.gameObject.SetActive(false);
+        }
 
         // Add Use Card Feedback Event
         Round.i.UseCard.AddListener(UseCardFeedback);

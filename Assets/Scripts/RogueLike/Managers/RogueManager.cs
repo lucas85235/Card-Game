@@ -63,16 +63,28 @@ public class RogueManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        PlayerPrefs.DeleteKey("SAVE_POINT");
-        PlayerPrefs.DeleteKey("SAVE-LIFE");
+        DeleteKeys();
     }
 
     public void OnDestroy()
     {
         if (Instance == this)
         {
-            PlayerPrefs.DeleteKey("SAVE_POINT");
-            PlayerPrefs.DeleteKey("SAVE-LIFE");   
+            DeleteKeys();   
         }
+    }
+
+    private void DeleteKeys()
+    {
+        PlayerPrefs.DeleteKey("SAVE_POINT");
+        PlayerPrefs.DeleteKey("SAVE-LIFE");
+
+        PlayerPrefs.DeleteKey("attack");
+        PlayerPrefs.DeleteKey("defense");
+        PlayerPrefs.DeleteKey("intelligence");
+        PlayerPrefs.DeleteKey("velocity");
+        PlayerPrefs.DeleteKey("repairs");
+        PlayerPrefs.DeleteKey("stickers");
+        PlayerPrefs.DeleteKey("smokes");
     }
 }

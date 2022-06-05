@@ -123,76 +123,76 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &805644221410624245
+--- !u!1001 &7818697004571357494
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 120169427593337551, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 1730093687916085361, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 2233330833078222730, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091627230013634466, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607984690229479502, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428207107702763634, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
+      propertyPath: m_Name
+      value: Rogue-Game Event 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141874, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+    - target: {fileID: 4428207107702763635, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1066483842699141875, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
-      propertyPath: m_Name
-      value: Rogue-Game Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 1828291116523201827, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150910648534127344, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3262485263488707851, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ef3a3cd3ef52e694dbc006bd0a787ec1, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d6c4455e9c9159041b16b079f95dd95c, type: 3}

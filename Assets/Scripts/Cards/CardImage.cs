@@ -55,6 +55,14 @@ public class CardImage : MonoBehaviour
         Round.i.StartTurn.AddListener(() => m_canSelect = false);
     }
 
+    private void OnEnable()
+    {
+        if (selected && m_CardRectTransform.sizeDelta == defaultDeltaSize)
+        {
+            m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.2f);
+        }    
+    }
+
     private void UpdateText()
     {
         title.text = LanguageManager.Instance.GetKeyValue(Data.TitleKey());
@@ -78,15 +86,7 @@ public class CardImage : MonoBehaviour
 
         var scaleOrientation = !selected ? 1 : -1;
         m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.5f);
-
-        // StartCoroutine(MoveCard(scaleOrientation));
     }
-
-    // private IEnumerator MoveCard(float value)
-    // {
-    //     yield return null;
-    //     m_CardRectTransform.position = new Vector3(m_CardRectTransform.position.x, m_CardRectTransform.position.y + (m_CardRectTransform.rect.height / 9f) * value, m_CardRectTransform.position.z);
-    // }
 
     public void OnPointerExit()
     {
@@ -123,7 +123,9 @@ public class CardImage : MonoBehaviour
             selectedFeedback.gameObject.SetActive(true);
 
             energyCount.UseRoundEnergy(-Data.Energy());
-            m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.2f);
+
+            if (m_CardRectTransform != null)
+                m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.2f);
 
             OnSelect?.Invoke();
         }
