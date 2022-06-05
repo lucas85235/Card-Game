@@ -10,6 +10,10 @@ public class Effect_ForceShield : Effect
 
         if (emitter.GetType() == typeof(RobotSingleplayer))
             ((RobotSingleplayer)emitter).life.AddShield(value);
+        else
+        {
+            ((Multiplayer.RobotMultiplayer)emitter).life.AddShild(value);
+        }
 
         return true;
     }

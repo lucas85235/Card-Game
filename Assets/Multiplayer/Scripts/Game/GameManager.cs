@@ -22,6 +22,8 @@ namespace Multiplayer
         [SerializeField] private int timeBetweenPlayer = 700;
 
         [Header("Players")]
+        [SerializeField] private RobotMultiplayer playerOne;
+        [SerializeField] private RobotMultiplayer playerTwo;
         [SerializeField] private List<RobotMultiplayer> players = new List<RobotMultiplayer>();
 
         [Header("Alert")]
@@ -38,11 +40,6 @@ namespace Multiplayer
         private int roundCount = 0;
         private bool gameOver = false;
 
-        private DeckHandle playerOneDeck;
-        private DeckHandle playerTwoDeck;
-        private CharacterLife playerOneLife;
-        private CharacterLife playerTwoLife;
-
         private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
 
         private const int MAX_CARD_PRIORITY = 4;
@@ -51,7 +48,7 @@ namespace Multiplayer
         private void Awake()
         {
             Instance = this;
-
+            
             foreach (var icon in iconList)
             {
                 if (!m_IconDictionary.ContainsKey(icon.stat))
@@ -63,11 +60,30 @@ namespace Multiplayer
 
         private void Start()
         {
-            playerOneLife = players[0].GetComponent<CharacterLife>();
-            playerTwoLife = players[1].GetComponent<CharacterLife>();
-            playerOneDeck = players[0].GetComponent<DeckHandle>();
-            playerTwoDeck = players[1].GetComponent<DeckHandle>();
-            StartRound();
+            SortBySpeed();
+        }
+
+        /// <summary>Sort robot attack order according to current speed</summary>
+        private void SortBySpeed()
+        {
+            if (players.Count == 0) players = new List<RobotMultiplayer>(2) { playerOne, playerTwo };
+
+            if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
+            {
+                players[0] = playerOne;
+                players[1] = playerTwo;
+            }
+            else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
+            {
+                players[0] = playerTwo;
+                players[1] = playerOne;
+            }
+
+            else // if equals use coin flip logic
+            {
+                players[0] = playerOne;
+                players[1] = playerTwo;
+            }
         }
 
         public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -100,8 +116,8 @@ namespace Multiplayer
             OnStartRound?.Invoke();
 
             if (PhotonNetwork.IsMasterClient)
-                playerOneDeck.SpawCards();
-            else playerTwoDeck.SpawCards();
+                playerOne.GetComponent<DeckHandle>().SpawCards();
+            else playerTwo.GetComponent<DeckHandle>().SpawCards();
 
             if (!PhotonNetwork.IsMasterClient)
                 return;
@@ -135,8 +151,8 @@ namespace Multiplayer
             Debug.Log("End Round");
 
             if (PhotonNetwork.IsMasterClient)
-                playerOneDeck.SpawSelectedCards();
-            else playerTwoDeck.SpawSelectedCards();
+                playerOne.GetComponent<DeckHandle>().SpawSelectedCards();
+            else playerTwo.GetComponent<DeckHandle>().SpawSelectedCards();
 
             Invoke(nameof(PlayCards), timeToPlayCards);
         }
@@ -144,6 +160,7 @@ namespace Multiplayer
         private async void PlayCards()
         {
             var m_roundCards = new Dictionary<int, List<CardImage>>();
+            SortBySpeed();
 
             for (int i = players.Count - 1; i >= 0; i--)
             {
@@ -170,20 +187,24 @@ namespace Multiplayer
                 foreach (var card in m_roundCards[i])
                 {
                     // UseCard.Invoke(card);
-
                     // Robot Attack Feedback Events
                     // RobotAttack.Invoke(card.ConnectedRobot, GameController.i.GetTheOtherRobot(card.ConnectedRobot));
 
+                    card.transform.localScale *= 1.25f;
+
                     await Task.Delay(timeBetweenPlayer);
 
-                    card.UseEffect();
+                    if (PhotonNetwork.IsMasterClient)
+                        card.UseEffect();
+
                     card.gameObject.SetActive(false);
 
-                    if (card.Data.SingleUse)
+                    if (card.Data.SingleUse && PhotonNetwork.IsMasterClient)
                     {
                         card.ConnectedRobot.RemoveCard(card.Data);
                     }
 
+                    Destroy(card.gameObject);
                     if (CheckGameOver()) return;
                 }
             }
@@ -198,7 +219,7 @@ namespace Multiplayer
 
         private bool CheckGameOver()
         {
-            if (playerOneLife.CurrentLife <= 0 || playerTwoLife.CurrentLife <= 0 && !gameOver)
+            if (playerOne.GetComponent<CharacterLife>().CurrentLife <= 0 || playerTwo.GetComponent<CharacterLife>().CurrentLife <= 0 && !gameOver)
             {
                 gameOver = true;
 

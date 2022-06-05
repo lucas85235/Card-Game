@@ -86,6 +86,7 @@ namespace Multiplayer
         private void Start()
         {
             _view = GetComponent<PhotonView>();
+            _maxLife = _robot.Data.Health();
             lifeSlider.maxValue = _maxLife;
             CurrentLife = _maxLife;
 
@@ -93,28 +94,21 @@ namespace Multiplayer
             GameManager.Instance.OnStartRound.AddListener(ResetShild);
         }
 
+        public void AddLife(int add)
+        {
+            _view.RPC(nameof(AddLifeRPC), RpcTarget.AllBuffered, add);
+        }
+        [PunRPC]
+        private void AddLifeRPC(int life)
+        {
+            CurrentLife += life;
+        }
+
         public void TakeDamage(int damage)
         {
             _view.RPC(nameof(AnimationRPC), RpcTarget.All, damage);
             _view.RPC(nameof(TakeDamageRPC), RpcTarget.AllBuffered, damage);
         }
-
-        [PunRPC]
-        private void AnimationRPC(int damage)
-        {
-            if (CurrentLife - damage < 1)
-            {
-                AudioManager.Instance.Play(AudiosList.robotDeath);
-                _robot.Animation.PlayAnimation(Animations.death);
-                _robot.Animation.ResetToIdleAfterAnimation(false);
-            }
-            else
-            {
-                _robot.Animation.PlayAnimation(Animations.hurt);
-                AudioManager.Instance.Play(AudiosList.robotHurt);
-            }
-        }
-
         [PunRPC]
         private void TakeDamageRPC(int damage)
         {
@@ -131,11 +125,10 @@ namespace Multiplayer
             CurrentLife -= damage;
         }
 
-        public void AddShild(int damage)
+        public void AddShild(int total)
         {
-            _view.RPC(nameof(AddShildRPC), RpcTarget.AllBuffered, damage);
+            _view.RPC(nameof(AddShildRPC), RpcTarget.AllBuffered, total);
         }
-
         [PunRPC]
         private void AddShildRPC(int increment)
         {
@@ -161,6 +154,22 @@ namespace Multiplayer
             shildSlider.gameObject.SetActive(false);
             shildSlider.maxValue = 0;
             shildSlider.value = 0;
+        }
+
+        [PunRPC]
+        private void AnimationRPC(int damage)
+        {
+            if (CurrentLife - damage < 1)
+            {
+                AudioManager.Instance.Play(AudiosList.robotDeath);
+                _robot.Animation.PlayAnimation(Animations.death);
+                _robot.Animation.ResetToIdleAfterAnimation(false);
+            }
+            else
+            {
+                _robot.Animation.PlayAnimation(Animations.hurt);
+                AudioManager.Instance.Play(AudiosList.robotHurt);
+            }
         }
     }
 }
