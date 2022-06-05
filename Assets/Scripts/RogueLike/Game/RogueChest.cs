@@ -9,9 +9,15 @@ public class RogueChest : MonoBehaviour
     public Image image;
     public TextMeshProUGUI text;
 
+    private Sprite[] sprites;
+
+    private void Awake() 
+    {
+        sprites = Resources.LoadAll<Sprite>("RogueLikeIcons");
+    }
+
     private void OnEnable()
     {
-        var sprites = Resources.LoadAll<Sprite>("RogueLikeIcons");
         var rand = Random.Range(0, sprites.Length);
 
         image.sprite = sprites[rand];

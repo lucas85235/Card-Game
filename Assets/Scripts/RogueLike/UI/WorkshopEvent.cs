@@ -17,16 +17,16 @@ public class WorkshopEvent : MonoBehaviour
         buyOne.onClick.AddListener(() =>
         {
             if (!CanBuy(20)) return;
-            ScrapCoins.Instance.TotalCoins -= 25;
+            ScrapCoins.Instance.TotalCoins -= 20;
             RogueLife.Instance.AddLife(20);
             buyOne.interactable = false;
         });
 
         buyTwo.onClick.AddListener(() =>
         {
-            if (!CanBuy(20)) return;
-            ScrapCoins.Instance.TotalCoins -= 25;
-            RogueLife.Instance.AddLife(20);
+            if (!CanBuy(50)) return;
+            ScrapCoins.Instance.TotalCoins -= 50;
+            RogueLife.Instance.AddLife(RogueLife.Instance.MaxLife);
             buyTwo.interactable = false;
         });
     }
