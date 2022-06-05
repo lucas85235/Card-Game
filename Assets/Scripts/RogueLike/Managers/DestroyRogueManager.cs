@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class DestroyRogueManager : MonoBehaviour
 {
+    [Header("Setup")]
     public bool loadOtherScene = false;
-    public string otherSceneName = "MenuRogueLike";
+    private string otherSceneName = "Menu";
 
     public void Destroy()
     {
@@ -14,6 +15,6 @@ public class DestroyRogueManager : MonoBehaviour
         Destroy(RogueManager.Instance.gameObject);
 
         if (loadOtherScene)
-            SceneManager.LoadScene(otherSceneName);
+            TransitionManager.Instance.StartTransition(otherSceneName);
     }
 }

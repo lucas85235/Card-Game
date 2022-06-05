@@ -15,14 +15,11 @@ public class DeckHandle : MonoBehaviour
     // as soon as the deck has less than 5 cards they will be reshuffled and drawn
     // you will buy the ones you have and the ones that are shuffled to complete 5
 
+    [Space]
     [Header("Lists")]
     [SerializeField] private List<CardData> deck;
     [SerializeField] private List<CardData> hands;
     [SerializeField] private List<CardData> discard;
-
-    [Header("Hud Setup")]
-    public TextMeshProUGUI deckText;
-    public TextMeshProUGUI discardText;
 
     public Action<List<CardData>> OnUpdateHands;
 
@@ -99,10 +96,10 @@ public class DeckHandle : MonoBehaviour
             deck.RemoveAt(s);
         }
 
-        if (deckText != null)
-            deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
-        if (deckText != null)
-            discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
+        // if (deckText != null)
+        //     deckText.text = LanguageManager.Instance.GetKeyValue("battle_deck") + ": " + deck.Count;
+        // if (deckText != null)
+        //     discardText.text = LanguageManager.Instance.GetKeyValue("battle_discard") + ": " + discard.Count;
 
         Invoke("UpdateHands", 0.1f);
     }
