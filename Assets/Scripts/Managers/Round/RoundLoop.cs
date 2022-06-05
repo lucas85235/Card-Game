@@ -34,7 +34,7 @@ public class RoundLoop : Round
 
     protected virtual void Start()
     {
-        sortRobots = new List<Robot>();
+        sortRobots = new List<Robot>(2) { playerOne, playerTwo };
         SortBySpeed();
 
         cardsConterinerOne = playerOne.selectedCardsConteriner;
@@ -79,15 +79,17 @@ public class RoundLoop : Round
     /// <summary>Sort robot attack order according to current speed</summary>
     private void SortBySpeed()
     {
+        if (sortRobots.Count == 0) sortRobots = new List<Robot>(2) { playerOne, playerTwo };
+
         if (playerOne.CurrentRobotStats[Stats.speed] > playerTwo.CurrentRobotStats[Stats.speed])
         {
-            sortRobots.Add(playerOne);
-            sortRobots.Add(playerTwo);
+            sortRobots[0] = playerOne;
+            sortRobots[1] = playerTwo;
         }
         else if (playerOne.CurrentRobotStats[Stats.speed] < playerTwo.CurrentRobotStats[Stats.speed])
         {
-            sortRobots.Add(playerTwo);
-            sortRobots.Add(playerOne);
+            sortRobots[0] = playerTwo;
+            sortRobots[1] = playerOne;
         }
 
         else // if equals use coin flip logic
@@ -99,13 +101,13 @@ public class RoundLoop : Round
 
             if (rand == 0)
             {
-                sortRobots.Add(playerOne);
-                sortRobots.Add(playerTwo);
+                sortRobots[0] = playerOne;
+                sortRobots[1] = playerTwo;
             }
             else
             {
-                sortRobots.Add(playerTwo);
-                sortRobots.Add(playerOne);
+                sortRobots[0] = playerTwo;
+                sortRobots[1] = playerOne;
             }
         }
     }
@@ -124,7 +126,9 @@ public class RoundLoop : Round
     {
         var m_roundCards = new Dictionary<int, List<CardImage>>();
 
-        for (int i = 0; i < sortRobots.Count; i++)
+        SortBySpeed();
+
+        for (int i = sortRobots.Count - 1; i >= 0; i--)
         {
             for (int j = 0; j < sortRobots[i].selectedCardsConteriner.childCount; j++)
             {
@@ -134,6 +138,7 @@ public class RoundLoop : Round
                 {
                     m_roundCards[cardImage.Data.Priority] = new List<CardImage>();
                 }
+                
                 m_roundCards[cardImage.Data.Priority].Add(cardImage);
             }
         }
