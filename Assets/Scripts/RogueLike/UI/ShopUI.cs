@@ -18,15 +18,8 @@ public class ShopUI : MonoBehaviour
     public Button buySpeed;
 
 
-    void Start()
+    private void Start()
     {
-        buyRepairs.onClick.AddListener(() =>
-        {
-            if (!CanBuy(20)) return;
-            ScrapCoins.Instance.TotalCoins -= 20;
-            RogueItems.Instance.Repairs += 1;
-        });
-
         buyStickers.onClick.AddListener(() =>
         {
             if (!CanBuy(10)) return;
@@ -34,6 +27,13 @@ public class ShopUI : MonoBehaviour
             RogueItems.Instance.Stickers += 1;
         });
 
+        buyRepairs.onClick.AddListener(() =>
+        {
+            if (!CanBuy(20)) return;
+            ScrapCoins.Instance.TotalCoins -= 20;
+            RogueItems.Instance.Repairs += 1;
+        });
+        
         buySmokes.onClick.AddListener(() =>
         {
             if (!CanBuy(20)) return;

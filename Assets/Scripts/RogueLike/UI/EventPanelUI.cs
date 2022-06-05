@@ -40,6 +40,7 @@ public class EventPanelUI : MonoBehaviour
         _consumablesShopButton.onClick.RemoveAllListeners();
         _upgradesShopButton.onClick.RemoveAllListeners();
         _workshopStartButton.onClick.RemoveAllListeners();
+
         foreach (var item in _eventPanels)
             item._eventStartButton.onClick.RemoveAllListeners();
 
@@ -77,7 +78,11 @@ public class EventPanelUI : MonoBehaviour
                     return;
                 }
 
-                if (Random.Range(0, 2) == 0)
+                if (_consumablesShopEventPanel.activeSelf || _upgradesShopEventPanel.activeSelf)
+                    return;
+
+                var rand = Random.Range(0, 2) == 0;
+                if (rand)
                 {
                     _consumablesShopEventPanel.SetActive(true);
                     _consumablesShopButton.onClick.AddListener(() =>
