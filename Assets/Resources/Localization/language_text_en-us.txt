@@ -1,5 +1,9 @@
 {"items":
     [
+        {"key":"menu_start", "value":"Start"},
+        {"key":"menu_settings", "value":"Settings"},
+        {"key":"menu_exit", "value":"Exit"},
+
         {"key":"play", "value":"Play"},
         {"key":"quick_match", "value":"QUICK \nPLAY"},
         {"key":"configurations", "value":"Configurations"},
@@ -11,10 +15,13 @@
         {"key":"inventory", "value":"Inventory"},
         {"key":"restart", "value":"Restart"},
 
-        {"key":"conf_audio_all", "value":"Geral"},
+        {"key":"conf_header", "value":"Settings"},
+        {"key":"conf_audio_header", "value":"Sound"},
+        {"key":"conf_audio_all", "value":"General"},
         {"key":"conf_audio_music", "value":"Music"},
-        {"key":"conf_audio_sfx", "value":"SFX"},
-        {"key":"conf_language", "value":"Language"},
+        {"key":"conf_audio_sfx", "value":"Sound Effect"},
+        {"key":"conf_language_header", "value":"Language"},
+        {"key":"conf_language", "value":"English"},
 
         {"key":"menu_help_title", "value":"How to play?"},
         {"key":"menu_help_content", "value":"It's very simple, just click on the cards and finish the round before the time expires."},

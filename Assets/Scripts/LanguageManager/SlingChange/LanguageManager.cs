@@ -14,7 +14,7 @@ public class LanguageManager : MonoBehaviour
     [HideInInspector]
     public const string saveLanguageKey = "Language";
     public string SaveLanguageKey { get => saveLanguageKey; }
-    private string languageSelected = "language_text_pt-br";
+    private int languageSelected = 1;
 
     [HideInInspector] public string[] languageOptions = {
         "language_text_pt-br",
@@ -34,9 +34,9 @@ public class LanguageManager : MonoBehaviour
     public bool IsReady() => isReady;
 
     /// <summary> salva a linguagem que for igual ao nome do arquivo </summary>
-    public void SaveLanguage(string fileName) 
+    public void SaveLanguage(int fileIndex) 
     {
-        PlayerPrefs.SetString(saveLanguageKey, fileName);
+        PlayerPrefs.SetInt(saveLanguageKey, fileIndex);
         PlayerPrefs.Save();
     }
 
@@ -47,6 +47,8 @@ public class LanguageManager : MonoBehaviour
     public Action OnChangeLanguage;
 
     public static LanguageManager Instance;
+
+    private int currentLanguageIndex;
 
     void Awake()
     {
@@ -61,34 +63,43 @@ public class LanguageManager : MonoBehaviour
 
         if (selectLanguage == Languages.ptBr)
         {
-            languageSelected = languageOptions[0];
+            languageSelected = 0;
         }
         if (selectLanguage == Languages.enUs)
         {
-            languageSelected = languageOptions[1];
+            languageSelected = 1;
         }
         
         if (!PlayerPrefs.HasKey(saveLanguageKey))
         {
-            PlayerPrefs.SetString(saveLanguageKey, languageSelected);
+            PlayerPrefs.SetInt(saveLanguageKey, languageSelected);
             PlayerPrefs.Save();
         }
 
         // Load Saved Key
-        languageSelected = PlayerPrefs.GetString(saveLanguageKey);
+        languageSelected = PlayerPrefs.GetInt(saveLanguageKey);
         LoadLocalizedText(languageSelected);
     }
 
     // acha e carrega o arquivo com as traduções
-    public void LoadLocalizedText(string fileName= "", int languageIndex=-1) 
+    public void LoadLocalizedText(int navigationValue=0) 
     {
         isReady = false;
 
-        string fileToGet = languageIndex == -1 ? fileName : languageOptions[languageIndex];
+        int fileToGet = languageSelected + navigationValue;
+
+        if(fileToGet >= languageOptions.Length)
+        {
+            fileToGet = 0;
+        }
+        else if(fileToGet < 0)
+        {
+            fileToGet = languageOptions.Length - 1;
+        }
 
         localizedText = new Dictionary<string, string>();
 
-        TextAsset file = Resources.Load("Localization/" + fileToGet) as TextAsset;
+        TextAsset file = Resources.Load("Localization/" + languageOptions[fileToGet]) as TextAsset;
         var dataAsJson = file.text;
         LanguageData loaderData = JsonUtility.FromJson<LanguageData>(dataAsJson);
         
@@ -99,7 +110,7 @@ public class LanguageManager : MonoBehaviour
 
         SaveLanguage(fileToGet);
 
-        PlayerPrefs.SetString(saveLanguageKey, fileToGet);
+        PlayerPrefs.SetInt(saveLanguageKey, fileToGet);
         PlayerPrefs.Save();
 
         languageSelected = fileToGet;

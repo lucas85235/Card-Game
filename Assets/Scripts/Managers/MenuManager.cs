@@ -25,6 +25,11 @@ public class MenuManager : MonoBehaviour
     [Header("UI Hand Cards")]
     [SerializeField] private RectTransform handConfiner;
 
+    [Header("Audio Sliders")]
+    [SerializeField] private Slider generalAudioSlider;
+    [SerializeField] private Slider musicAudioSlider;
+    [SerializeField] private Slider sfxAudioSlider;
+
     private List<RobotPartItem> newParts = new List<RobotPartItem>();
 
     private void Awake()
@@ -35,6 +40,10 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        generalAudioSlider.value = AudioManager.Instance.GeralVolume;
+        musicAudioSlider.value = AudioManager.Instance.MusicVolume;
+        sfxAudioSlider.value = AudioManager.Instance.SFXVolume;
+
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
         
         FillRobotInformation();
@@ -288,7 +297,7 @@ public class MenuManager : MonoBehaviour
 
     public void ReceiveLanguageChange(int value)
     {
-        LanguageManager.Instance.LoadLocalizedText(languageIndex: value);
+        LanguageManager.Instance.LoadLocalizedText(value);
     }
 
     public void StartGame()

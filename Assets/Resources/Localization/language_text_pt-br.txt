@@ -1,5 +1,9 @@
 {"items":
     [
+        {"key":"menu_start", "value":"Começar"},
+        {"key":"menu_settings", "value":"Configurações"},
+        {"key":"menu_exit", "value":"Sair"},
+
         {"key":"play", "value":"Jogar"},
         {"key":"quick_match", "value":"PARTIDA \nRÁPIDA"},
         {"key":"configurations", "value":"Configurações"},
@@ -10,11 +14,14 @@
         {"key":"return", "value":"Voltar"},
         {"key":"inventory", "value":"Inventário"},
         {"key":"restart", "value":"Recomeçar"},
-
+        
+        {"key":"conf_header", "value":"Configurações"},
+        {"key":"conf_audio_header", "value":"Som"},
         {"key":"conf_audio_all", "value":"Geral"},
         {"key":"conf_audio_music", "value":"Música"},
         {"key":"conf_audio_sfx", "value":"Efeitos Sonoros"},
-        {"key":"conf_language", "value":"Idioma"},
+        {"key":"conf_language_header", "value":"Idioma"},
+        {"key":"conf_language", "value":"Português"},
 
         {"key":"menu_help_title", "value":"Como jogar?"},
         {"key":"menu_help_content", "value":"É muito simples, basta clicar nas cartas e terminar a jogada antes que o tempo acabe."},
