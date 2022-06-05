@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -85,5 +87,40 @@ public abstract class Robot : MonoBehaviour
 
         CurrentRobotStats[Stats.electricResistence] = m_Data.ElectricResistence();
         DataStats[Stats.electricResistence] = m_Data.ElectricResistence();
+    }
+
+    public bool ActivateEarlyStatusEffects()
+    {
+        var toRemoveInStatusList = new List<StatusEffect>();
+
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnStartRound && status.ActivateStatusEffect(this))
+            {
+                toRemoveInStatusList.Add(status);
+            }
+        }
+
+        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
+
+        return true;
+    }
+
+    public async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
+    {
+        var toRemoveInStatusList = new List<StatusEffect>();
+
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
+            {
+                await Task.Delay(timeBetweenStatusEffects);
+                toRemoveInStatusList.Add(status);
+            }
+        }
+
+        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
+
+        return true;
     }
 }

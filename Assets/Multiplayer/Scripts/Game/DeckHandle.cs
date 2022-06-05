@@ -16,6 +16,7 @@ namespace Multiplayer
         [SerializeField] private List<CardImage> selectedCards = new List<CardImage>();
 
         private Energy _energy;
+        private Robot _connectedRobot;
 
         public RectTransform CardsContainer
         {
@@ -28,6 +29,7 @@ namespace Multiplayer
         private void Awake()
         {
             _energy = GetComponent<Energy>();
+            _connectedRobot = GetComponent<Robot>();
         }
 
         private void OnEnable()
@@ -54,6 +56,7 @@ namespace Multiplayer
                 if (cardObj.TryGetComponent(out CardImage spawCard))
                 {
                     spawCard.energyCount = _energy;
+                    spawCard.ConnectedRobot = _connectedRobot;
                     spawCard.selectConteriner = cardsContainer;
                     spawCard.description.text = gameObject.name;
                     spawCard.Data = deck[i];
@@ -120,6 +123,7 @@ namespace Multiplayer
                 if (cardObj.TryGetComponent(out CardImage spawCard))
                 {
                     spawCard.energyCount = _energy;
+                    spawCard.ConnectedRobot = _connectedRobot;
                     spawCard.selectConteriner = cardsContainer;
                     spawCard.description.text = gameObject.name;
                     spawCard.Data = deck[i];

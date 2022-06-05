@@ -76,7 +76,11 @@ public class CardImage : MonoBehaviour
     {
         foreach (var effect in Data.Effects())
         {
-            effect.UseEffect(ConnectedRobot, GameController.i.GetTheOtherRobot(ConnectedRobot), Data);
+            if (GameController.i != null)
+                effect.UseEffect(ConnectedRobot, GameController.i.GetTheOtherRobot(ConnectedRobot), Data);
+
+            else
+                effect.UseEffect(ConnectedRobot, Multiplayer.GameManager.Instance.GetTheOtherRobot(ConnectedRobot), Data);
         }
     }
 

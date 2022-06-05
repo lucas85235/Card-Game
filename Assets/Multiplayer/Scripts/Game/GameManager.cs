@@ -35,6 +35,7 @@ namespace Multiplayer
         private CharacterLife playerOneLife;
         private CharacterLife playerTwoLife;
 
+        private const int MAX_CARD_PRIORITY = 4;
         public static GameManager Instance;
 
         private void Awake()
@@ -108,7 +109,7 @@ namespace Multiplayer
             Debug.Log("Start Round");
         }
 
-        private void EndRound()
+        public void EndRound()
         {
             if (gameOver) return;
 
@@ -124,44 +125,94 @@ namespace Multiplayer
 
         private async void PlayCards()
         {
-            var p1_Deck = players[0].GetComponent<DeckHandle>().GetRoundCards();
-            var p2_Deck = players[1].GetComponent<DeckHandle>().GetRoundCards();
+            var m_roundCards = new Dictionary<int, List<CardImage>>();
 
-            // Apply Shilds
-
-            for (int i = p1_Deck.Count - 1; i >= 0; i--)
+            for (int i = players.Count - 1; i >= 0; i--)
             {
-                // if (p1_Deck[i].Data.info.type == CardType.Shild)
-                // {
-                    players[0].Animation.PlayAnimation(Animations.action);
-                    p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
-                    await Task.Delay(timeBetweenPlayer);
+                for (int j = 0; j < players[i].selectedCardsConteriner.childCount; j++)
+                {
+                    players[i].selectedCardsConteriner.GetChild(j).TryGetComponent(out CardImage cardImage);
 
-                    // if (PhotonNetwork.IsMasterClient)
-                    //     playerOneLife.AddShild(p1_Deck[i].Data.info.value);
+                    if (!m_roundCards.ContainsKey(cardImage.Data.Priority))
+                    {
+                        m_roundCards[cardImage.Data.Priority] = new List<CardImage>();
+                    }
 
-                    var temp = p1_Deck[i];
-                    p1_Deck.RemoveAt(i);
-                    Destroy(temp.gameObject);
-                // }
+                    m_roundCards[cardImage.Data.Priority].Add(cardImage);
+                }
             }
 
-            for (int i = p2_Deck.Count - 1; i >= 0; i--)
+            for (int i = 0; i <= MAX_CARD_PRIORITY; i++)
             {
-                // if (p2_Deck[i].Data.info.type == CardType.Shild)
-                // {
-                    players[1].Animation.PlayAnimation(Animations.action);
-                    p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
+                if (!m_roundCards.ContainsKey(i))
+                {
+                    continue;
+                }
+
+                foreach (var card in m_roundCards[i])
+                {
+                    // UseCard.Invoke(card);
+
+                    // Robot Attack Feedback Events
+                    // RobotAttack.Invoke(card.ConnectedRobot, GameController.i.GetTheOtherRobot(card.ConnectedRobot));
+
                     await Task.Delay(timeBetweenPlayer);
 
-                    // if (PhotonNetwork.IsMasterClient)
-                    //     playerTwoLife.AddShild(p2_Deck[i].Data.info.value);
+                    card.UseEffect();
+                    card.gameObject.SetActive(false);
 
-                    var temp = p2_Deck[i];
-                    p2_Deck.RemoveAt(i);
-                    Destroy(temp.gameObject);
-                // }
+                    if (card.Data.SingleUse)
+                    {
+                        card.ConnectedRobot.RemoveCard(card.Data);
+                    }
+
+                    if (CheckGameOver()) return;
+                }
             }
+
+            foreach (var robot in players)
+            {
+                await robot.ActivateLateStatusEffects(timeBetweenPlayer / 2);
+            }
+
+            // var p1_Deck = players[0].GetComponent<DeckHandle>().GetRoundCards();
+            // var p2_Deck = players[1].GetComponent<DeckHandle>().GetRoundCards();
+
+            // // Apply Shilds
+
+            // for (int i = p1_Deck.Count - 1; i >= 0; i--)
+            // {
+            //     // if (p1_Deck[i].Data.info.type == CardType.Shild)
+            //     // {
+            //         players[0].Animation.PlayAnimation(Animations.action);
+            //         p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
+            //         await Task.Delay(timeBetweenPlayer);
+
+            //         // if (PhotonNetwork.IsMasterClient)
+            //         //     playerOneLife.AddShild(p1_Deck[i].Data.info.value);
+
+            //         var temp = p1_Deck[i];
+            //         p1_Deck.RemoveAt(i);
+            //         Destroy(temp.gameObject);
+            //     // }
+            // }
+
+            // for (int i = p2_Deck.Count - 1; i >= 0; i--)
+            // {
+            //     // if (p2_Deck[i].Data.info.type == CardType.Shild)
+            //     // {
+            //         players[1].Animation.PlayAnimation(Animations.action);
+            //         p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
+            //         await Task.Delay(timeBetweenPlayer);
+
+            //         // if (PhotonNetwork.IsMasterClient)
+            //         //     playerTwoLife.AddShild(p2_Deck[i].Data.info.value);
+
+            //         var temp = p2_Deck[i];
+            //         p2_Deck.RemoveAt(i);
+            //         Destroy(temp.gameObject);
+            //     // }
+            // }
 
             // Start Attacks
 
@@ -219,6 +270,19 @@ namespace Multiplayer
             }
 
             return gameOver;
+        }
+
+        public Robot GetTheOtherRobot(Robot emitterRobot)
+        {
+            foreach (var robot in players)
+            {
+                if(robot != emitterRobot)
+                {
+                    return robot;
+                }
+            }
+
+            return null;
         }
     }
 }

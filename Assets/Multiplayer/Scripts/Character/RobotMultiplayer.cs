@@ -8,6 +8,7 @@ namespace Multiplayer
     public class RobotMultiplayer : Robot
     {
         [Header("Custom Settings")]
+        public Transform selectedCardsConteriner;
         [SerializeField] private bool getFromDataManager = false;
 
         public RobotAnimation Animation => m_RobotAnimation;

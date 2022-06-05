@@ -820,6 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endButton: {fileID: 8562945207258157}
+  testMode: 0
 --- !u!4 &792612528
 Transform:
   m_ObjectHideFlags: 0
@@ -16874,7 +16875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsContainer: {fileID: 7261060546923292580}
-  cardTemplate: {fileID: 4096397925044223067, guid: f7d7034a5bb3f9d48a3314eb7a756c2b, type: 3}
+  cardTemplate: {fileID: 53777120958727739, guid: 2f2fd5f00974b514fb1cc9e7ee2a4d03, type: 3}
   deck:
   - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
   - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
@@ -16896,6 +16897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
   m_iconSpawInLeft: 0
+  selectedCardsConteriner: {fileID: 7261060546923292580}
   getFromDataManager: 0
 --- !u!222 &7261060547222169157
 CanvasRenderer:
@@ -20497,6 +20499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Data: {fileID: 11400000, guid: 3c4f5df5cbe46bb46a8d0854d843a5a8, type: 2}
   m_iconSpawInLeft: 0
+  selectedCardsConteriner: {fileID: 7261060546702145059}
   getFromDataManager: 0
 --- !u!222 &8743102036688994918
 CanvasRenderer:

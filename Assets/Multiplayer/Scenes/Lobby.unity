@@ -1688,6 +1688,7 @@ MonoBehaviour:
   find: {fileID: 71499128}
   exit: {fileID: 1577767234}
   ready: {fileID: 855722104}
+  exitMenu: {fileID: 93618919}
   readyText: {fileID: 1445473550}
   players: {fileID: 1902885047}
 --- !u!1 &714722126
