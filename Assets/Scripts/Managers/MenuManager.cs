@@ -14,39 +14,39 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionInfoText;
     [SerializeField] private TextMeshProUGUI robotInfoText;
     [SerializeField] private RectTransform cardConfiner;
+    [SerializeField] private RectTransform cardMenuConfiner;
+    [SerializeField] private RectTransform cardPartConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
 
     [Header("UI")]
-    [SerializeField] private GameObject partContainer;
-    [SerializeField] private Transform selectedContainer;
-    [SerializeField] private Transform headOptionsContainer;
-    [SerializeField] private Transform leftArmOptionsContainer;
-    [SerializeField] private Transform rightArmOptionsContainer;
-    [SerializeField] private Transform torsoOptionsContainer;
-    [SerializeField] private Transform legsOptionsContainer;
+    [SerializeField] private GameObject partItem;
+    [SerializeField] private RectTransform selectedContainer;
 
-    private List<Transform> robotPartOrder = new List<Transform>();
+    [Header("UI Hand Cards")]
+    [SerializeField] private RectTransform handConfiner;
+
+    private List<RobotPartItem> newParts = new List<RobotPartItem>();
 
     private void Awake()
     {
-        SetRobotPartOrder();
         LoadTestData();
-
-        robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
+        
     }
 
-    private void SetRobotPartOrder()
+    private void Start()
     {
-        robotPartOrder.Add(headOptionsContainer);
-        robotPartOrder.Add(leftArmOptionsContainer);
-        robotPartOrder.Add(legsOptionsContainer);
-        robotPartOrder.Add(rightArmOptionsContainer);
-        robotPartOrder.Add(torsoOptionsContainer);
+        robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
+        
+        FillRobotInformation();
+        FillRobotPartInformation((int)RobotParts.Head);
+
+        AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
+        AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
     }
 
     private void LoadTestData()
     {
-        var newParts = new List<RobotPartItem>();
+        newParts = new List<RobotPartItem>();
         int countParts = 0;
 
         foreach (var item in Enum.GetValues(typeof(PartID)))
@@ -62,8 +62,19 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < newParts.Count; i++)
         {
             DataManager.Instance.AddPartItem(newParts[i], "code" + (i + 1));
+        }
+    }
 
-            GameObject newOption = Instantiate(partContainer, robotPartOrder[i % 5]);
+    private void FillPartsInformation(RobotParts part)
+    {
+        foreach (RectTransform oldCard in selectedContainer)
+            Destroy(oldCard.gameObject);
+
+        for (int i = 0; i < newParts.Count; i++)
+        {
+            if (i % 5 != (int)part) continue;
+
+            GameObject newOption = Instantiate(partItem, selectedContainer);
             newOption.TryGetComponent(out PartOptionButton partOption);
             partOption.PartCode = "code" + (i + 1);
             partOption.orderLayer = i % 5;
@@ -71,60 +82,33 @@ public class MenuManager : MonoBehaviour
             newOption.TryGetComponent(out Button optionButton);
             optionButton.onClick.AddListener(() =>
             {
-                if (optionButton.transform.parent == selectedContainer)
-                {
-                    return;
-                }
+                Debug.Log("Select Part");
 
                 newOption.TryGetComponent(out PartOptionButton partOption);
                 DataManager.Instance.AssignPartToRobot(partOption.PartCode);
                 DataManager.Instance.SavePart(partOption.PartCode, partOption.orderLayer);
 
-                int oldIndex = optionButton.transform.GetSiblingIndex();
-                Transform oldSelected = selectedContainer.GetChild(partOption.orderLayer);
-
-                oldSelected.transform.SetParent(robotPartOrder[partOption.orderLayer]);
-                oldSelected.transform.SetSiblingIndex(oldIndex);
-
-                optionButton.transform.SetParent(selectedContainer);
-                optionButton.transform.SetSiblingIndex(partOption.orderLayer);
+                // Select Feedback
+                newOption.transform.GetChild(0).TryGetComponent(out Image buttonSelect);
+                buttonSelect.color = Color.green;
 
                 PlayClickSound();
                 FillRobotInformation();
+                FillRobotPartInformation((int)part);
             });
+
+            newOption.transform.GetChild(0).TryGetComponent(out Image buttonSelect);
+            if (DataManager.Instance.SaveCodes.Contains("code" + (i + 1)))
+            {
+                buttonSelect.color = Color.green;
+            }
+            else buttonSelect.color = Color.white;
 
             newOption.transform.GetChild(0).GetChild(0).TryGetComponent(out Image buttonImage);
             buttonImage.sprite = DataManager.Instance.GetPartSprite("code" + (i + 1));
         }
-
-        if (DataManager.Instance.data.SaveCodes.Count > 0)
-        {
-            for (int i = 0; i < DataManager.Instance.data.SaveCodes.Count; i++)
-            {
-
-                robotPartOrder[i].GetChild(0).transform.SetParent(selectedContainer);
-                DataManager.Instance.AssignPartToRobot(DataManager.Instance.data.SaveCodes[i]);
-                DataManager.Instance.SavePart(DataManager.Instance.data.SaveCodes[i], i);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                robotPartOrder[i].GetChild(0).transform.SetParent(selectedContainer);
-                DataManager.Instance.AssignPartToRobot("code" + (i + 1));
-                DataManager.Instance.SavePart("code" + (i + 1), i);
-            }
-        }
     }
 
-    private void Start()
-    {
-        FillRobotInformation();
-
-        AudioManager.Instance.Play(AudiosList.menuMusic, isMusic: true);
-        AudioManager.Instance.ChangeMusicVolumeWithLerp(1, 1f, startVolume: 0);
-    }
     public void ChangeRobot(int value)
     {
         DataManager.Instance.ChangePart(value);
@@ -133,18 +117,32 @@ public class MenuManager : MonoBehaviour
             AudioManager.Instance.Play(AudiosList.changeRobot);
 
         FillRobotInformation();
+        FillRobotPartInformation((int)RobotParts.Head);
+    }
+    private void FillRobotInformation()
+    {
+        FillRobotInformation(cardConfiner);
+        FillRobotInformation(cardMenuConfiner);
     }
 
-    private void FillRobotInformation()
+    private void FillRobotInformation(RectTransform confiner)
     {
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
         robotInfoText.text =
-            LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() +
-            LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() +
-            LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() +
-            LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() +
-            LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy();
+            LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() + "\n" +
+            LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() + "\n" +
+            LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() + "\n" +
+            LanguageManager.Instance.GetKeyValue("inteligence") + ": " + DataManager.Instance.GetCurrentRobot().Inteligence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() + "\n" +
+            LanguageManager.Instance.GetKeyValue("accuracy") + ": " + DataManager.Instance.GetCurrentRobot().Accuracy() + "\n" +
+            LanguageManager.Instance.GetKeyValue("evasion") + ": " + DataManager.Instance.GetCurrentRobot().Evasion() + "\n" +
+            LanguageManager.Instance.GetKeyValue("critChance") + ": " + DataManager.Instance.GetCurrentRobot().CritChance() + "\n" +
+            LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy() + "\n" +
+            LanguageManager.Instance.GetKeyValue("fireResistence") + ": " + DataManager.Instance.GetCurrentRobot().FireResistence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("waterResistence") + ": " + DataManager.Instance.GetCurrentRobot().WaterResistence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("electricResistence") + ": " + DataManager.Instance.GetCurrentRobot().ElectricResistence() + "\n" +
+            LanguageManager.Instance.GetKeyValue("acidResistence") + ": " + DataManager.Instance.GetCurrentRobot().AcidResistence() + "\n";
 
         nameInfoText.text =
             DataManager.Instance.GetCurrentRobot().characterName + " - " +
@@ -153,23 +151,139 @@ public class MenuManager : MonoBehaviour
         descriptionInfoText.text =
             DataManager.Instance.GetCurrentRobot().storyDescription;
 
-        foreach (RectTransform oldCard in cardConfiner)
+        foreach (RectTransform oldCard in confiner)
             Destroy(oldCard.gameObject);
 
         foreach (var card in DataManager.Instance.GetCurrentRobot().Cards())
         {
             var newCardInfo = Instantiate(cardInfoPrefab);
-            newCardInfo.transform.SetParent(cardConfiner, false);
+            newCardInfo.transform.SetParent(confiner, false);
 
             newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
             cardImage.sprite = card.Sprite();
 
-            newCardInfo.transform.Find("StatsText").TryGetComponent(out TextMeshProUGUI statsText);
-            statsText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
+            newCardInfo.transform.Find("EnergyText").TryGetComponent(out TextMeshProUGUI energyText);
+            energyText.text = card.Energy().ToString();
+
+            newCardInfo.transform.Find("TitleText").TryGetComponent(out TextMeshProUGUI titleText);
+            titleText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
 
             newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
             descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
         }
+
+        ReRool();
+    }
+
+    public void FillRobotPartInformation(int part)
+    {
+        FillPartsInformation((RobotParts)part);
+
+        var robot = DataManager.Instance.GetCurrentRobot();
+
+        switch ((RobotParts)part)
+        {
+            case RobotParts.Head:
+                FillRobotPartInformation(robot.GetHead().Cards());
+                break;
+
+            case RobotParts.Torso:
+                FillRobotPartInformation(robot.GetTorso().Cards());
+                break;
+
+            case RobotParts.LeftArm:
+                FillRobotPartInformation(robot.GetLeftArm().Cards());
+                break;
+
+            case RobotParts.RightArm:
+                FillRobotPartInformation(robot.GetRightArm().Cards());
+                break;
+
+            case RobotParts.Legs:
+                FillRobotPartInformation(robot.GetLeg().Cards());
+                break;
+        }
+    }
+
+    private void FillRobotPartInformation(List<CardData> cards)
+    {
+        foreach (RectTransform oldCard in cardPartConfiner)
+            Destroy(oldCard.gameObject);
+
+        foreach (var card in cards)
+        {
+            var newCardInfo = Instantiate(cardInfoPrefab);
+            newCardInfo.transform.SetParent(cardPartConfiner, false);
+
+            newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
+            cardImage.sprite = card.Sprite();
+
+            newCardInfo.transform.Find("EnergyText").TryGetComponent(out TextMeshProUGUI energyText);
+            energyText.text = card.Energy().ToString();
+
+            newCardInfo.transform.Find("TitleText").TryGetComponent(out TextMeshProUGUI titleText);
+            titleText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
+
+            newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
+            descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
+        }
+    }
+
+    public void ReRool()
+    {
+        foreach (RectTransform oldCard in handConfiner)
+            Destroy(oldCard.gameObject);
+
+        foreach (var card in GetRandomHandsList())
+        {
+            var newCardInfo = Instantiate(cardInfoPrefab);
+            newCardInfo.transform.SetParent(handConfiner, false);
+
+            newCardInfo.transform.Find("CardSprite").TryGetComponent(out Image cardImage);
+            cardImage.sprite = card.Sprite();
+
+            newCardInfo.transform.Find("EnergyText").TryGetComponent(out TextMeshProUGUI energyText);
+            energyText.text = card.Energy().ToString();
+
+            newCardInfo.transform.Find("TitleText").TryGetComponent(out TextMeshProUGUI titleText);
+            titleText.text = LanguageManager.Instance.GetKeyValue(card.TitleKey());
+
+            newCardInfo.transform.Find("DescriptionText").TryGetComponent(out TextMeshProUGUI descriptionText);
+            descriptionText.text = LanguageManager.Instance.GetKeyValue(card.DescriptionKey());
+        }
+    }
+
+    private List<CardData> GetRandomHandsList()
+    {
+        var deck = new List<CardData>();
+        var hands = new List<CardData>();
+
+        foreach (CardData card in DataManager.Instance.GetCurrentRobot().Cards())
+        {
+            deck.Add(card);
+        }
+
+        // randomly order the deck
+        deck.Sort((a, b) => 1 - 2 * UnityEngine.Random.Range(0, 1));
+
+        var deckSelect = new List<int>();
+        while (deckSelect.Count < 5)
+        {
+            var r = UnityEngine.Random.Range(0, deck.Count);
+
+            if (!deckSelect.Contains(r))
+                deckSelect.Add(r);
+        }
+
+        deckSelect.Sort();
+        deckSelect.Reverse();
+
+        foreach (var s in deckSelect)
+        {
+            hands.Add(deck[s]);
+        }
+
+        return hands;
     }
 
     public void ReceiveLanguageChange(int value)

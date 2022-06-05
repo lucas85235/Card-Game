@@ -9,11 +9,11 @@ public class SetInventory : MonoBehaviour
     {
         var parts = FindObjectsOfType<PartOptionButton>();
 
-        for (int i = 0; i < DataManager.Instance.data.SaveCodes.Count; i++)
+        for (int i = 0; i < DataManager.Instance.SaveCodes.Count; i++)
         {
             foreach (var item in parts)
             {
-                if (item.PartCode == DataManager.Instance.data.SaveCodes[i])
+                if (item.PartCode == DataManager.Instance.SaveCodes[i])
                     item.GetComponent<Button>().onClick.Invoke();
             }
         }

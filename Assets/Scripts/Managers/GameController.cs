@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private bool useTimer = true;
     [SerializeField] private float timeToPlay;
     [SerializeField] private Image timeImage;
+    [SerializeField] private Button endTurnButton;
 
     [Header("Alert")]
     [SerializeField] private GameObject alertText;
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviour
         }
 
         timeImage.gameObject.SetActive(useTimer);
+        endTurnButton.interactable = useTimer;
     }
 
     public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor, string beforeText = "")
@@ -150,6 +152,8 @@ public class GameController : MonoBehaviour
         }
 
         timeImage.gameObject.SetActive(true);
+        endTurnButton.interactable = true;
+
         timeRoundCoroutine = StartCoroutine(Countdown());
     }
 
@@ -160,6 +164,8 @@ public class GameController : MonoBehaviour
             if (timeRoundCoroutine == null) return;
 
             timeImage.gameObject.SetActive(false);
+            endTurnButton.interactable = false;
+
             StopCoroutine(timeRoundCoroutine);            
         }
 
@@ -178,6 +184,8 @@ public class GameController : MonoBehaviour
         }
 
         timeImage.gameObject.SetActive(false);
+        endTurnButton.interactable = false;
+
         Round.i.StartTurn?.Invoke();
     }
 

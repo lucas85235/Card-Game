@@ -82,7 +82,6 @@ public class Life : MonoBehaviour
         var inteligence = m_robot.CurrentRobotStats[Stats.inteligence];
         increment = increment - inteligence;
 
-        Debug.Log("Increment: " + increment);
         CurrentLife += increment;
 
         GameController.i.ShowAlertText(increment, transform.localScale.x > 0, Stats.health, Color.green);
