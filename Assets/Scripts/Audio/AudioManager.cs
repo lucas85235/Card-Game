@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     private Sound m_CurrentMusic;
 
-    private float m_GeralVolume = 1;
-    private float m_MusicVolume = 1;
-    private float m_SFXVolume = 1;
+    public float GeralVolume { get; set; } = 1;
+    public float MusicVolume { get; set; } = 1;
+    public float SFXVolume { get; set; } = 1;
 
     private void Awake()
     {
@@ -34,6 +34,22 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.Loop;
         }
 
+        if (!PlayerPrefs.HasKey("general_audio_value"))
+        {
+            PlayerPrefs.SetFloat("general_audio_value", GeralVolume);
+        }
+        if (!PlayerPrefs.HasKey("music_audio_value"))
+        {
+            PlayerPrefs.SetFloat("music_audio_value", MusicVolume);
+        }
+        if (!PlayerPrefs.HasKey("sfx_audio_value"))
+        {
+            PlayerPrefs.SetFloat("sfx_audio_value", SFXVolume);
+        }
+
+        GeralVolume = PlayerPrefs.GetFloat("general_audio_value");
+        MusicVolume = PlayerPrefs.GetFloat("music_audio_value");
+        SFXVolume = PlayerPrefs.GetFloat("sfx_audio_value");
     }
 
     public void Play(AudiosList newSound, bool isMusic = false)
@@ -60,31 +76,37 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeGeralVolume(float newVolume)
     {
-        m_GeralVolume = newVolume;
+        GeralVolume = newVolume;
+        PlayerPrefs.SetFloat("general_audio_value", GeralVolume);
+
         foreach (Sound s in sounds)
         {
-            if (s.Type == Sound.SoundType.sfx) s.source.volume = s.Volume * m_GeralVolume * m_SFXVolume;
-            else s.source.volume = s.Volume * m_GeralVolume * m_MusicVolume;
+            if (s.Type == Sound.SoundType.sfx) s.source.volume = s.Volume * GeralVolume * SFXVolume;
+            else s.source.volume = s.Volume * GeralVolume * MusicVolume;
         }
     }
 
     public void ChangeSFXVolume(float newVolume)
     {
-        m_SFXVolume = newVolume;
+        SFXVolume = newVolume;
+        PlayerPrefs.SetFloat("sfx_audio_value", SFXVolume);
+
         foreach (Sound s in sounds)
         {
             if (s.Type != Sound.SoundType.sfx) continue;
-            s.source.volume = s.Volume * m_GeralVolume * m_SFXVolume;
+            s.source.volume = s.Volume * GeralVolume * SFXVolume;
         }
     }
 
     public void ChangeMusicVolume(float newVolume)
     {
-        m_MusicVolume = newVolume;
+        MusicVolume = newVolume;
+        PlayerPrefs.SetFloat("music_audio_value", MusicVolume);
+
         foreach (Sound s in sounds)
         {
             if (s.Type != Sound.SoundType.music) continue;
-            s.source.volume = s.Volume * m_GeralVolume * m_MusicVolume;
+            s.source.volume = s.Volume * GeralVolume * MusicVolume;
         }
     }
 
@@ -104,7 +126,7 @@ public class AudioManager : MonoBehaviour
     {
         float oldVolume = startVolume;
 
-        volume *= music.Volume * m_GeralVolume * m_MusicVolume;
+        volume *= music.Volume * GeralVolume * MusicVolume;
         float lerp = 0;
 
         while (lerp <= lerpTime)
