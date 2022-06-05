@@ -24,6 +24,14 @@ namespace Multiplayer
         [Header("Players")]
         [SerializeField] private List<RobotMultiplayer> players = new List<RobotMultiplayer>();
 
+        [Header("Alert")]
+        [SerializeField] private GameObject alertText;
+        [SerializeField] private RectTransform alertLeft;
+        [SerializeField] private RectTransform alertRight;
+
+        [Header("Icons")]
+        [SerializeField] private List<Icon> iconList;
+
         [HideInInspector] public UnityEvent OnStartRound;
         [HideInInspector] public UnityEvent OnEndRound;
 
@@ -35,12 +43,22 @@ namespace Multiplayer
         private CharacterLife playerOneLife;
         private CharacterLife playerTwoLife;
 
+        private Dictionary<Stats, Dictionary<bool, Sprite>> m_IconDictionary = new Dictionary<Stats, Dictionary<bool, Sprite>>();
+
         private const int MAX_CARD_PRIORITY = 4;
         public static GameManager Instance;
 
         private void Awake()
         {
             Instance = this;
+
+            foreach (var icon in iconList)
+            {
+                if (!m_IconDictionary.ContainsKey(icon.stat))
+                    m_IconDictionary[icon.stat] = new Dictionary<bool, Sprite>();
+
+                m_IconDictionary[icon.stat][icon.positive] = icon.sprite;
+            }
         }
 
         private void Start()
@@ -175,85 +193,6 @@ namespace Multiplayer
                 await robot.ActivateLateStatusEffects(timeBetweenPlayer / 2);
             }
 
-            // var p1_Deck = players[0].GetComponent<DeckHandle>().GetRoundCards();
-            // var p2_Deck = players[1].GetComponent<DeckHandle>().GetRoundCards();
-
-            // // Apply Shilds
-
-            // for (int i = p1_Deck.Count - 1; i >= 0; i--)
-            // {
-            //     // if (p1_Deck[i].Data.info.type == CardType.Shild)
-            //     // {
-            //         players[0].Animation.PlayAnimation(Animations.action);
-            //         p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
-            //         await Task.Delay(timeBetweenPlayer);
-
-            //         // if (PhotonNetwork.IsMasterClient)
-            //         //     playerOneLife.AddShild(p1_Deck[i].Data.info.value);
-
-            //         var temp = p1_Deck[i];
-            //         p1_Deck.RemoveAt(i);
-            //         Destroy(temp.gameObject);
-            //     // }
-            // }
-
-            // for (int i = p2_Deck.Count - 1; i >= 0; i--)
-            // {
-            //     // if (p2_Deck[i].Data.info.type == CardType.Shild)
-            //     // {
-            //         players[1].Animation.PlayAnimation(Animations.action);
-            //         p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
-            //         await Task.Delay(timeBetweenPlayer);
-
-            //         // if (PhotonNetwork.IsMasterClient)
-            //         //     playerTwoLife.AddShild(p2_Deck[i].Data.info.value);
-
-            //         var temp = p2_Deck[i];
-            //         p2_Deck.RemoveAt(i);
-            //         Destroy(temp.gameObject);
-            //     // }
-            // }
-
-            // Start Attacks
-
-            // for (int i = p1_Deck.Count - 1; i >= 0; i--)
-            // {
-            //     if (p1_Deck[i].Data.info.type == CardType.Attack)
-            //     {
-            //         playerOneMultiplayer.Animation.PlayAnimation(Animations.action);
-            //         p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
-            //         await Task.Delay(timeBetweenPlayer);
-
-            //         if (PhotonNetwork.IsMasterClient)
-            //             playerTwoLife.TakeDamage(p1_Deck[i].Data.info.value);
-
-            //         var temp = p1_Deck[i];
-            //         p1_Deck.RemoveAt(i);
-            //         Destroy(temp.gameObject);
-
-            //         if (CheckGameOver()) return;
-            //     }
-            // }
-
-            // for (int i = p2_Deck.Count - 1; i >= 0; i--)
-            // {
-            //     if (p2_Deck[i].Data.info.type == CardType.Attack)
-            //     {
-            //         playerTwoMultiplayer.Animation.PlayAnimation(Animations.action);
-            //         p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
-            //         await Task.Delay(timeBetweenPlayer);
-
-            //         if (PhotonNetwork.IsMasterClient)
-            //             playerOneLife.TakeDamage(p2_Deck[i].Data.info.value);
-
-            //         var temp = p2_Deck[i];
-            //         p2_Deck.RemoveAt(i);
-            //         Destroy(temp.gameObject);
-
-            //         if (CheckGameOver()) return;
-            //     }
-            // }
-
             if (!gameOver) Invoke(nameof(StartRound), timeBetweenRounds);
         }
 
@@ -276,13 +215,63 @@ namespace Multiplayer
         {
             foreach (var robot in players)
             {
-                if(robot != emitterRobot)
+                if (robot != emitterRobot)
                 {
                     return robot;
                 }
             }
 
             return null;
+        }
+
+        public void ShowAlertText(int value, bool left, Stats statToShow, Color textColor, string beforeText = "")
+        {
+            var referenceRect = left ? alertLeft : alertRight;
+            int direction;
+
+            var newAlert = Instantiate(alertText, referenceRect);
+            newAlert.LeanScaleX(transform.localScale.x > 0 ? 1 : -1, 0);
+
+            var imageObject = newAlert.transform.Find("AlertImage").gameObject;
+
+            if (!m_IconDictionary.ContainsKey(statToShow) || !m_IconDictionary[statToShow].ContainsKey(value > 0))
+            {
+                Destroy(imageObject);
+            }
+            else
+            {
+                imageObject.TryGetComponent(out Image imageComponent);
+                imageComponent.sprite = m_IconDictionary[statToShow][value > 0];
+            }
+
+            if (value > 0)
+            {
+                AudioManager.Instance.Play(AudiosList.robotEffect);
+                direction = 1;
+            }
+            else
+            {
+                AudioManager.Instance.Play(AudiosList.robotDeffect);
+                direction = -1;
+            }
+
+            newAlert.transform.Find("AlertText").TryGetComponent(out TextMeshProUGUI textComponent);
+            textComponent.text = beforeText + value.ToString();
+            textComponent.color = textColor;
+
+            newAlert.TryGetComponent(out CanvasGroup textCGroup);
+            LeanTween.value(1, 0, 2)
+                .setOnUpdate((float value) =>
+                {
+                    textCGroup.alpha = value;
+                });
+
+            newAlert.TryGetComponent(out RectTransform textRect);
+            textRect.LeanMoveLocalY(200 * direction, 2)
+                .setOnComplete(() =>
+                {
+                    Destroy(newAlert);
+                });
         }
     }
 }

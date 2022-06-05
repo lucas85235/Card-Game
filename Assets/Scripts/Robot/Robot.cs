@@ -20,13 +20,16 @@ public abstract class Robot : MonoBehaviour
 
     protected RobotAnimation m_RobotAnimation;
 
-    public void ApplyStatChange(Stats statToChange, int value)
+    public virtual void ApplyStatChange(Stats statToChange, int value)
     {
         CurrentRobotStats[statToChange] += value;
         var textColor = value > 0 ? Color.blue : Color.red;
         
         if (GameController.i != null)
             GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
+        
+        if (Multiplayer.GameManager.Instance != null)
+            Multiplayer.GameManager.Instance.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
     public void ApplyStatusEffect(StatusEffect newStatusEffect)

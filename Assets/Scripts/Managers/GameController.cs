@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
 
         foreach (var icon in iconList)
         {
-            if(!m_IconDictionary.ContainsKey(icon.stat))
+            if (!m_IconDictionary.ContainsKey(icon.stat))
                 m_IconDictionary[icon.stat] = new Dictionary<bool, Sprite>();
 
             m_IconDictionary[icon.stat][icon.positive] = icon.sprite;
@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
 
         if (useTimer)
         {
-            Round.i.EndTurn.AddListener(() => StartCountdown());            
+            Round.i.EndTurn.AddListener(() => StartCountdown());
             StartCountdown();
         }
 
@@ -75,13 +75,13 @@ public class GameController : MonoBehaviour
         {
             Destroy(imageObject);
         }
-        else 
+        else
         {
             imageObject.TryGetComponent(out Image imageComponent);
             imageComponent.sprite = m_IconDictionary[statToShow][value > 0];
         }
 
-        if(value > 0)
+        if (value > 0)
         {
             AudioManager.Instance.Play(AudiosList.robotEffect);
             direction = 1;
@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour
 
         newAlert.TryGetComponent(out CanvasGroup textCGroup);
         LeanTween.value(1, 0, 2)
-            .setOnUpdate( (float value) =>
+            .setOnUpdate((float value) =>
             {
                 textCGroup.alpha = value;
             });
@@ -166,7 +166,7 @@ public class GameController : MonoBehaviour
             timeImage.gameObject.SetActive(false);
             endTurnButton.interactable = false;
 
-            StopCoroutine(timeRoundCoroutine);            
+            StopCoroutine(timeRoundCoroutine);
         }
 
         Round.i.StartTurn?.Invoke();
@@ -193,7 +193,7 @@ public class GameController : MonoBehaviour
     {
         foreach (var robot in robots)
         {
-            if(robot != emitterRobot)
+            if (robot != emitterRobot)
             {
                 return robot;
             }
@@ -207,11 +207,13 @@ public class GameController : MonoBehaviour
         LeanTween.cancelAll();
     }
 
-    [Serializable]
-    private struct Icon
-    {
-        public Sprite sprite;
-        public Stats stat;
-        public bool positive;
-    }    
+
+}
+
+[Serializable]
+public struct Icon
+{
+    public Sprite sprite;
+    public Stats stat;
+    public bool positive;
 }

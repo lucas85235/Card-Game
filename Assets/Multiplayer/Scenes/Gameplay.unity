@@ -885,6 +885,34 @@ MonoBehaviour:
   players:
   - {fileID: 7261060547200943475}
   - {fileID: 8737125322285962712}
+  alertText: {fileID: 1084947385375896570, guid: 5b899bb65b4661e45af95026f8a5d603, type: 3}
+  alertLeft: {fileID: 5191745736481980088}
+  alertRight: {fileID: 2188909509042747496}
+  iconList:
+  - sprite: {fileID: 21300000, guid: e00661dd76f1b2e45b10b87f1469ffc9, type: 3}
+    stat: 3
+    positive: 1
+  - sprite: {fileID: 21300000, guid: 84ed60e040479c5449348de76c82b645, type: 3}
+    stat: 3
+    positive: 0
+  - sprite: {fileID: 21300000, guid: 38cce508b5d17e142aa45137ab7c8067, type: 3}
+    stat: 4
+    positive: 1
+  - sprite: {fileID: 21300000, guid: cffec93f29ed2d04a957b6b9b2a8cbbc, type: 3}
+    stat: 4
+    positive: 0
+  - sprite: {fileID: 21300000, guid: 16063f63bb4c1d94a993c30425a8dd4a, type: 3}
+    stat: 1
+    positive: 1
+  - sprite: {fileID: 21300000, guid: 8cb66f0bf6250f74091f5ea36dafab4c, type: 3}
+    stat: 1
+    positive: 0
+  - sprite: {fileID: 21300000, guid: cc4444cb184d82e45b42d3d3a76f6178, type: 3}
+    stat: 5
+    positive: 1
+  - sprite: {fileID: 21300000, guid: 8adbf990e24d56a4bb1e92327e9bae69, type: 3}
+    stat: 5
+    positive: 0
   OnStartRound:
     m_PersistentCalls:
       m_Calls: []
