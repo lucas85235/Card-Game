@@ -10,6 +10,7 @@ public class EffectSkill_HealByDamage : EffectSkill
     {
         base.ApplySkill(emitter, target, value, usedCard);
 
-        emitter.life.AddLife(Mathf.FloorToInt(value * healByDamagePercentage));
+        if (emitter.GetType() == typeof(RobotSingleplayer))
+            ((RobotSingleplayer)emitter).life.AddLife(Mathf.FloorToInt(value * healByDamagePercentage));
     }
 }

@@ -21,7 +21,8 @@ public class StatusEffect_Thorns : StatusEffect
     {
         if(criteria == AttackType.melee)
         {
-            GameController.i.GetTheOtherRobot(affectedRobot).life.TakeDamage(Amount, AttackType.none);
+            if (affectedRobot.GetType() == typeof(RobotSingleplayer))
+                ((RobotSingleplayer) GameController.i.GetTheOtherRobot(affectedRobot) ).life.TakeDamage(Amount, AttackType.none);
         }
         Amount--;
 

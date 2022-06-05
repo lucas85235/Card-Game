@@ -16,7 +16,8 @@ public class Effect_Attack : Effect
 
         if (target != null)
         {
-            target.life.TakeDamage(value, attackType, attackElement, usedCard, skills);
+            if (target.GetType() == typeof(RobotSingleplayer))
+                ((RobotSingleplayer)target).life.TakeDamage(value, attackType, attackElement, usedCard, skills);
         }
         else
         {

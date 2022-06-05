@@ -8,7 +8,8 @@ public class Effect_Healing : Effect
     {
         if (!base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard)) return false;
 
-        emitter.life.AddLife(value);
+        if (emitter.GetType() == typeof(RobotSingleplayer))
+            ((RobotSingleplayer)emitter).life.AddLife(value);
 
         return true;
     }

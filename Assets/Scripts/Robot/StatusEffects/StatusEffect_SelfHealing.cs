@@ -21,7 +21,8 @@ public class StatusEffect_SelfHealing : StatusEffect
     {
         if (Amount > 0)
         {
-            affectedRobot.life.AddLife(Amount);
+            if (affectedRobot.GetType() == typeof(RobotSingleplayer))
+                ((RobotSingleplayer)affectedRobot).life.AddLife(Amount);
         }
         Amount--;
 

@@ -14,6 +14,9 @@ public class RobotSingleplayer : Robot
     public bool randData = false;
     public RobotData[] datas;
 
+    public Life life { get; protected set; }
+    public Energy energy { get; protected set; }
+
     private void Awake()
     {
         if (randData && datas.Length > 1)

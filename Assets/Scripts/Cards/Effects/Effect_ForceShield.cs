@@ -8,7 +8,8 @@ public class Effect_ForceShield : Effect
     {
         if (emitter == null || !base.ApplyEffectByChance(emitter, target, value, applicationChance, skills, usedCard)) return false;
 
-        emitter.life.AddShield(value);
+        if (emitter.GetType() == typeof(RobotSingleplayer))
+            ((RobotSingleplayer)emitter).life.AddShield(value);
 
         return true;
     }

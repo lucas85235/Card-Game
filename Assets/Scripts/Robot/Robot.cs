@@ -18,16 +18,15 @@ public abstract class Robot : MonoBehaviour
     public List<CardData> CurrentCards { get; protected set; }
     public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
-    public Life life { get; protected set; }
-    public Energy energy { get; protected set; }
     protected RobotAnimation m_RobotAnimation;
 
     public void ApplyStatChange(Stats statToChange, int value)
     {
         CurrentRobotStats[statToChange] += value;
         var textColor = value > 0 ? Color.blue : Color.red;
-
-        GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
+        
+        if (GameController.i != null)
+            GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
     public void ApplyStatusEffect(StatusEffect newStatusEffect)
