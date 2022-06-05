@@ -882,8 +882,8 @@ MonoBehaviour:
   timeToPlayCards: 1
   timeBetweenPlayer: 800
   players:
-  - {fileID: 7261060547200943470}
-  - {fileID: 8737125322285962707}
+  - {fileID: 7261060547200943475}
+  - {fileID: 8737125322285962712}
   OnStartRound:
     m_PersistentCalls:
       m_Calls: []
@@ -16876,11 +16876,11 @@ MonoBehaviour:
   cardsContainer: {fileID: 7261060546923292580}
   cardTemplate: {fileID: 4096397925044223067, guid: f7d7034a5bb3f9d48a3314eb7a756c2b, type: 3}
   deck:
-  - {fileID: 11400000, guid: ff2784bd63c717f43968525e2f046ccc, type: 2}
-  - {fileID: 11400000, guid: 06b743cb1a826a84a8e003c1ae18a42c, type: 2}
-  - {fileID: 11400000, guid: 7ce560a91f4ef4c4b93c154a85239538, type: 2}
-  - {fileID: 11400000, guid: 6a8d270eaf912c247971c85e8ef78caf, type: 2}
-  - {fileID: 11400000, guid: 413a8a478ba7d8b4ea0fee2b2a1e54a4, type: 2}
+  - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
+  - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
+  - {fileID: 11400000, guid: ece78858ddf74ac49b9576a029405910, type: 2}
+  - {fileID: 11400000, guid: b39c8b745b2804c4381d7af55cd94f61, type: 2}
+  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
   selectedCards: []
 --- !u!114 &7261060547200943475
 MonoBehaviour:
@@ -20475,13 +20475,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsContainer: {fileID: 7261060546702145059}
-  cardTemplate: {fileID: 4096397925044223067, guid: f7d7034a5bb3f9d48a3314eb7a756c2b, type: 3}
+  cardTemplate: {fileID: 53777120958727739, guid: 2f2fd5f00974b514fb1cc9e7ee2a4d03, type: 3}
   deck:
-  - {fileID: 11400000, guid: ff2784bd63c717f43968525e2f046ccc, type: 2}
-  - {fileID: 11400000, guid: 06b743cb1a826a84a8e003c1ae18a42c, type: 2}
-  - {fileID: 11400000, guid: 7ce560a91f4ef4c4b93c154a85239538, type: 2}
-  - {fileID: 11400000, guid: 6a8d270eaf912c247971c85e8ef78caf, type: 2}
-  - {fileID: 11400000, guid: 413a8a478ba7d8b4ea0fee2b2a1e54a4, type: 2}
+  - {fileID: 11400000, guid: 1928d1a37c196f34dbc274f12e68377b, type: 2}
+  - {fileID: 11400000, guid: c3b4a6bc8082fe14780f6a9c2f07d4d7, type: 2}
+  - {fileID: 11400000, guid: ece78858ddf74ac49b9576a029405910, type: 2}
+  - {fileID: 11400000, guid: b39c8b745b2804c4381d7af55cd94f61, type: 2}
+  - {fileID: 11400000, guid: 0a33db5f070df554686d26e8db95306d, type: 2}
   selectedCards: []
 --- !u!114 &8737125322285962712
 MonoBehaviour:

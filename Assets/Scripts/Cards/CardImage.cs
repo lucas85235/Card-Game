@@ -51,8 +51,11 @@ public class CardImage : MonoBehaviour
         LanguageManager.Instance.OnChangeLanguage += UpdateText;
         UpdateText();
 
-        Round.i.EndTurn.AddListener(() => OnStartTurn());
-        Round.i.StartTurn.AddListener(() => m_canSelect = false);
+        if (Round.i != null)
+        {
+            Round.i.EndTurn.AddListener(() => OnStartTurn());
+            Round.i.StartTurn.AddListener(() => m_canSelect = false);            
+        }
     }
 
     private void OnEnable()
@@ -122,7 +125,8 @@ public class CardImage : MonoBehaviour
             selected = true;
             selectedFeedback.gameObject.SetActive(true);
 
-            energyCount.UseRoundEnergy(-Data.Energy());
+            if (energyCount != null)
+                energyCount.UseRoundEnergy(-Data.Energy());
 
             if (m_CardRectTransform != null)
                 m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.2f);

@@ -22,7 +22,7 @@ namespace Multiplayer
         [SerializeField] private int timeBetweenPlayer = 700;
 
         [Header("Players")]
-        [SerializeField] private List<GameObject> players = new List<GameObject>();
+        [SerializeField] private List<RobotMultiplayer> players = new List<RobotMultiplayer>();
 
         [HideInInspector] public UnityEvent OnStartRound;
         [HideInInspector] public UnityEvent OnEndRound;
@@ -34,8 +34,6 @@ namespace Multiplayer
         private DeckHandle playerTwoDeck;
         private CharacterLife playerOneLife;
         private CharacterLife playerTwoLife;
-        private RobotMultiplayer playerOneMultiplayer;
-        private RobotMultiplayer playerTwoMultiplayer;
 
         public static GameManager Instance;
 
@@ -50,8 +48,6 @@ namespace Multiplayer
             playerTwoLife = players[1].GetComponent<CharacterLife>();
             playerOneDeck = players[0].GetComponent<DeckHandle>();
             playerTwoDeck = players[1].GetComponent<DeckHandle>();
-            playerOneMultiplayer = players[0].GetComponent<RobotMultiplayer>();
-            playerTwoMultiplayer = players[1].GetComponent<RobotMultiplayer>();
             StartRound();
         }
 
@@ -135,77 +131,77 @@ namespace Multiplayer
 
             for (int i = p1_Deck.Count - 1; i >= 0; i--)
             {
-                if (p1_Deck[i].Data.info.type == CardType.Shild)
-                {
-                    playerOneMultiplayer.Animation.PlayAnimation(Animations.action);
+                // if (p1_Deck[i].Data.info.type == CardType.Shild)
+                // {
+                    players[0].Animation.PlayAnimation(Animations.action);
                     p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
                     await Task.Delay(timeBetweenPlayer);
 
-                    if (PhotonNetwork.IsMasterClient)
-                        playerOneLife.AddShild(p1_Deck[i].Data.info.value);
+                    // if (PhotonNetwork.IsMasterClient)
+                    //     playerOneLife.AddShild(p1_Deck[i].Data.info.value);
 
                     var temp = p1_Deck[i];
                     p1_Deck.RemoveAt(i);
                     Destroy(temp.gameObject);
-                }
+                // }
             }
 
             for (int i = p2_Deck.Count - 1; i >= 0; i--)
             {
-                if (p2_Deck[i].Data.info.type == CardType.Shild)
-                {
-                    playerTwoMultiplayer.Animation.PlayAnimation(Animations.action);
+                // if (p2_Deck[i].Data.info.type == CardType.Shild)
+                // {
+                    players[1].Animation.PlayAnimation(Animations.action);
                     p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
                     await Task.Delay(timeBetweenPlayer);
 
-                    if (PhotonNetwork.IsMasterClient)
-                        playerTwoLife.AddShild(p2_Deck[i].Data.info.value);
+                    // if (PhotonNetwork.IsMasterClient)
+                    //     playerTwoLife.AddShild(p2_Deck[i].Data.info.value);
 
                     var temp = p2_Deck[i];
                     p2_Deck.RemoveAt(i);
                     Destroy(temp.gameObject);
-                }
+                // }
             }
 
             // Start Attacks
 
-            for (int i = p1_Deck.Count - 1; i >= 0; i--)
-            {
-                if (p1_Deck[i].Data.info.type == CardType.Attack)
-                {
-                    playerOneMultiplayer.Animation.PlayAnimation(Animations.action);
-                    p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
-                    await Task.Delay(timeBetweenPlayer);
+            // for (int i = p1_Deck.Count - 1; i >= 0; i--)
+            // {
+            //     if (p1_Deck[i].Data.info.type == CardType.Attack)
+            //     {
+            //         playerOneMultiplayer.Animation.PlayAnimation(Animations.action);
+            //         p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
+            //         await Task.Delay(timeBetweenPlayer);
 
-                    if (PhotonNetwork.IsMasterClient)
-                        playerTwoLife.TakeDamage(p1_Deck[i].Data.info.value);
+            //         if (PhotonNetwork.IsMasterClient)
+            //             playerTwoLife.TakeDamage(p1_Deck[i].Data.info.value);
 
-                    var temp = p1_Deck[i];
-                    p1_Deck.RemoveAt(i);
-                    Destroy(temp.gameObject);
+            //         var temp = p1_Deck[i];
+            //         p1_Deck.RemoveAt(i);
+            //         Destroy(temp.gameObject);
 
-                    if (CheckGameOver()) return;
-                }
-            }
+            //         if (CheckGameOver()) return;
+            //     }
+            // }
 
-            for (int i = p2_Deck.Count - 1; i >= 0; i--)
-            {
-                if (p2_Deck[i].Data.info.type == CardType.Attack)
-                {
-                    playerTwoMultiplayer.Animation.PlayAnimation(Animations.action);
-                    p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
-                    await Task.Delay(timeBetweenPlayer);
+            // for (int i = p2_Deck.Count - 1; i >= 0; i--)
+            // {
+            //     if (p2_Deck[i].Data.info.type == CardType.Attack)
+            //     {
+            //         playerTwoMultiplayer.Animation.PlayAnimation(Animations.action);
+            //         p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
+            //         await Task.Delay(timeBetweenPlayer);
 
-                    if (PhotonNetwork.IsMasterClient)
-                        playerOneLife.TakeDamage(p2_Deck[i].Data.info.value);
+            //         if (PhotonNetwork.IsMasterClient)
+            //             playerOneLife.TakeDamage(p2_Deck[i].Data.info.value);
 
-                    var temp = p2_Deck[i];
-                    p2_Deck.RemoveAt(i);
-                    Destroy(temp.gameObject);
+            //         var temp = p2_Deck[i];
+            //         p2_Deck.RemoveAt(i);
+            //         Destroy(temp.gameObject);
 
-                    if (CheckGameOver()) return;
-                }
-            }
+            //         if (CheckGameOver()) return;
+            //     }
+            // }
 
             if (!gameOver) Invoke(nameof(StartRound), timeBetweenRounds);
         }

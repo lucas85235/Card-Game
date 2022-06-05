@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Multiplayer.Data;
 
 namespace Multiplayer
 {
+    using CardData = Data.CardData;
+
     public class Card : MonoBehaviour
     {
         [Header("Data")]
