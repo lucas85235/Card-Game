@@ -43,29 +43,29 @@ public class ShopUI : MonoBehaviour
 
         buyAttack.onClick.AddListener(() =>
         {
-            if (!CanBuy(10)) return;
-            ScrapCoins.Instance.TotalCoins -= 10;
+            if (!CanBuy(25)) return;
+            ScrapCoins.Instance.TotalCoins -= 25;
             RogueItems.Instance.Attack += 1;
         });
 
         buyDefense.onClick.AddListener(() =>
         {
-            if (!CanBuy(10)) return;
-            ScrapCoins.Instance.TotalCoins -= 10;
+            if (!CanBuy(25)) return;
+            ScrapCoins.Instance.TotalCoins -= 25;
             RogueItems.Instance.Defense += 1;
         });
 
         buyIntelligence.onClick.AddListener(() =>
         {
-            if (!CanBuy(10)) return;
-            ScrapCoins.Instance.TotalCoins -= 10;
+            if (!CanBuy(25)) return;
+            ScrapCoins.Instance.TotalCoins -= 25;
             RogueItems.Instance.Intelligence += 1;
         });
         
         buySpeed.onClick.AddListener(() =>
         {
-            if (!CanBuy(10)) return;
-            ScrapCoins.Instance.TotalCoins -= 10;
+            if (!CanBuy(25)) return;
+            ScrapCoins.Instance.TotalCoins -= 25;
             RogueItems.Instance.Velocity += 1;
         });
     }
