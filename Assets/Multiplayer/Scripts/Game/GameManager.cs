@@ -34,6 +34,8 @@ namespace Multiplayer
         private DeckHandle playerTwoDeck;
         private CharacterLife playerOneLife;
         private CharacterLife playerTwoLife;
+        private RobotMultiplayer playerOneMultiplayer;
+        private RobotMultiplayer playerTwoMultiplayer;
 
         public static GameManager Instance;
 
@@ -48,7 +50,8 @@ namespace Multiplayer
             playerTwoLife = players[1].GetComponent<CharacterLife>();
             playerOneDeck = players[0].GetComponent<DeckHandle>();
             playerTwoDeck = players[1].GetComponent<DeckHandle>();
-
+            playerOneMultiplayer = players[0].GetComponent<RobotMultiplayer>();
+            playerTwoMultiplayer = players[1].GetComponent<RobotMultiplayer>();
             StartRound();
         }
 
@@ -134,6 +137,7 @@ namespace Multiplayer
             {
                 if (p1_Deck[i].Data.info.type == CardType.Shild)
                 {
+                    playerOneMultiplayer.Animation.PlayAnimation(Animations.action);
                     p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
                     await Task.Delay(timeBetweenPlayer);
 
@@ -150,6 +154,7 @@ namespace Multiplayer
             {
                 if (p2_Deck[i].Data.info.type == CardType.Shild)
                 {
+                    playerTwoMultiplayer.Animation.PlayAnimation(Animations.action);
                     p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
                     await Task.Delay(timeBetweenPlayer);
 
@@ -168,6 +173,7 @@ namespace Multiplayer
             {
                 if (p1_Deck[i].Data.info.type == CardType.Attack)
                 {
+                    playerOneMultiplayer.Animation.PlayAnimation(Animations.action);
                     p1_Deck[i].transform.localScale = Vector3.one * 1.25f;
                     await Task.Delay(timeBetweenPlayer);
 
@@ -186,6 +192,7 @@ namespace Multiplayer
             {
                 if (p2_Deck[i].Data.info.type == CardType.Attack)
                 {
+                    playerTwoMultiplayer.Animation.PlayAnimation(Animations.action);
                     p2_Deck[i].transform.localScale = Vector3.one * 1.25f;
                     await Task.Delay(timeBetweenPlayer);
 

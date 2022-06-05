@@ -2789,7 +2789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a03880cc37d4b429d37b80d903c438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robot: {fileID: 0}
+  robot: {fileID: 7261060547200943475}
 --- !u!1 &624893936576946727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,7 +3222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1056803266310471222
 GameObject:
   m_ObjectHideFlags: 0
@@ -7900,7 +7900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a03880cc37d4b429d37b80d903c438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robot: {fileID: 0}
+  robot: {fileID: 8737125322285962712}
 --- !u!114 &4192815339180788432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8233,7 +8233,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6644322777196758570}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ec541f696455e428d41cf36f320144, type: 3}
   m_Name: 
@@ -8251,7 +8251,7 @@ MonoBehaviour:
   acidResistence: {fileID: 8595366254532499838}
   openPopup: {fileID: 6644322777196758570}
   deckOf: 0
-  robot: {fileID: 0}
+  robot: {fileID: 7261060547200943475}
 --- !u!1 &4417395950174187532
 GameObject:
   m_ObjectHideFlags: 0
@@ -12660,7 +12660,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458009160923033568}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ec541f696455e428d41cf36f320144, type: 3}
   m_Name: 
@@ -12678,7 +12678,7 @@ MonoBehaviour:
   acidResistence: {fileID: 8731794724363358156}
   openPopup: {fileID: 458009160923033568}
   deckOf: 1
-  robot: {fileID: 0}
+  robot: {fileID: 8737125322285962712}
 --- !u!4 &6819395741288152736
 Transform:
   m_ObjectHideFlags: 0
@@ -16797,6 +16797,7 @@ GameObject:
   - component: {fileID: 7261060547200943462}
   - component: {fileID: 7261060547200943463}
   - component: {fileID: 7261060547200943460}
+  - component: {fileID: 7261060547200943475}
   - component: {fileID: 7261060547200943474}
   - component: {fileID: 7261060547200943472}
   - component: {fileID: 7261060547200943471}
@@ -16881,6 +16882,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a8d270eaf912c247971c85e8ef78caf, type: 2}
   - {fileID: 11400000, guid: 413a8a478ba7d8b4ea0fee2b2a1e54a4, type: 2}
   selectedCards: []
+--- !u!114 &7261060547200943475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261060547200943470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9b50814a699a141b7169ff45a558e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Data: {fileID: 11400000, guid: 8d18eb2ece2068e4b95ef1214a563d49, type: 2}
+  getFromDataManager: 0
 --- !u!222 &7261060547222169157
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18434,7 +18449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &7777595233278657633
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20382,6 +20397,7 @@ GameObject:
   - component: {fileID: 5626834911261056262}
   - component: {fileID: 193658986218267603}
   - component: {fileID: 7822024407188658667}
+  - component: {fileID: 8737125322285962712}
   - component: {fileID: 8737125322285962711}
   - component: {fileID: 8737125322285962709}
   - component: {fileID: 8737125322285962708}
@@ -20466,6 +20482,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a8d270eaf912c247971c85e8ef78caf, type: 2}
   - {fileID: 11400000, guid: 413a8a478ba7d8b4ea0fee2b2a1e54a4, type: 2}
   selectedCards: []
+--- !u!114 &8737125322285962712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8737125322285962707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9b50814a699a141b7169ff45a558e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Data: {fileID: 11400000, guid: 3c4f5df5cbe46bb46a8d0854d843a5a8, type: 2}
+  getFromDataManager: 0
 --- !u!222 &8743102036688994918
 CanvasRenderer:
   m_ObjectHideFlags: 0

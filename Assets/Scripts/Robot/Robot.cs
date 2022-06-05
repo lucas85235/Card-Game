@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Life))]
-[RequireComponent(typeof(Energy))]
-
 public abstract class Robot : MonoBehaviour
 {
     [Header("Set Character Data")]
     [SerializeField] protected RobotData m_Data;
+
+    [Header("Protected Debug")]
+    [SerializeField] protected bool m_iconSpawInLeft;
 
     public RobotData Data { get => m_Data; }
     public Dictionary<Stats, int> CurrentRobotStats { get; protected set; } = new Dictionary<Stats, int>();
@@ -18,9 +18,7 @@ public abstract class Robot : MonoBehaviour
 
     public Life life { get; protected set; }
     public Energy energy { get; protected set; }
-
     protected RobotAnimation m_RobotAnimation;
-    protected bool m_iconSpawInLeft;
 
     public void ApplyStatChange(Stats statToChange, int value)
     {
