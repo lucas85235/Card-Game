@@ -30,6 +30,11 @@ public class ScrapCoins : MonoBehaviour
         LoadData();
     }
 
+    public void AddCoins(int inc)
+    {
+        TotalCoins += inc;
+    }
+
     [ContextMenu("Save Data")]
     public void SaveData()
     {

@@ -15,6 +15,12 @@ public class EventPanelUI : MonoBehaviour
     [SerializeField] private GameObject _upgradesShopEventPanel;
     [SerializeField] private Button _upgradesShopButton;
 
+    [Header("Shop")]
+    [SerializeField] private GameObject _workshopEventPanel;
+    [SerializeField] private Button _workshopStartButton;
+
+    [Header("Shop")]
+    [SerializeField] private List<EventPanels> _eventPanels;
 
     [Header("To Test")]
     [SerializeField] private bool enemyBreak = false;
@@ -33,6 +39,9 @@ public class EventPanelUI : MonoBehaviour
         _chestStartButton.onClick.RemoveAllListeners();
         _consumablesShopButton.onClick.RemoveAllListeners();
         _upgradesShopButton.onClick.RemoveAllListeners();
+        _workshopStartButton.onClick.RemoveAllListeners();
+        foreach (var item in _eventPanels)
+            item._eventStartButton.onClick.RemoveAllListeners();
 
         switch (point.Type)
         {
@@ -43,7 +52,7 @@ public class EventPanelUI : MonoBehaviour
                     EnableNextPoints(point);
                     return;
                 }
-                
+
                 SceneLoader.Instance.LoadScene("GameRogueLike");
                 break;
 
@@ -72,13 +81,13 @@ public class EventPanelUI : MonoBehaviour
                 {
                     _consumablesShopEventPanel.SetActive(true);
                     _consumablesShopButton.onClick.AddListener(() =>
-                        EnableNextPoints(point));                    
+                        EnableNextPoints(point));
                 }
                 else
                 {
                     _upgradesShopEventPanel.SetActive(true);
                     _upgradesShopButton.onClick.AddListener(() =>
-                        EnableNextPoints(point));                    
+                        EnableNextPoints(point));
                 }
 
                 break;
@@ -100,6 +109,10 @@ public class EventPanelUI : MonoBehaviour
                     EnableNextPoints(point);
                     return;
                 }
+
+                _workshopEventPanel.SetActive(true);
+                _workshopStartButton.onClick.AddListener(() =>
+                    EnableNextPoints(point));
                 break;
 
             case RoguePathPoints.PointType.Event:
@@ -109,6 +122,11 @@ public class EventPanelUI : MonoBehaviour
                     EnableNextPoints(point);
                     return;
                 }
+
+                var r = Random.Range(0, _eventPanels.Count);
+                _eventPanels[r]._eventPanel.SetActive(true);
+                _eventPanels[r]._eventStartButton.onClick.AddListener(() =>
+                    EnableNextPoints(point));
                 break;
         }
 
@@ -119,10 +137,21 @@ public class EventPanelUI : MonoBehaviour
         _chestEventPanel.SetActive(false);
         _consumablesShopEventPanel.SetActive(false);
         _upgradesShopEventPanel.SetActive(false);
+        _workshopEventPanel.SetActive(false);
+
+        foreach (var item in _eventPanels)
+            item._eventPanel.SetActive(false);
 
         foreach (var item in point.Nexts)
         {
             item.button.interactable = true;
         }
+    }
+
+    [System.Serializable]
+    public struct EventPanels
+    {
+        public GameObject _eventPanel;
+        public Button _eventStartButton;
     }
 }
