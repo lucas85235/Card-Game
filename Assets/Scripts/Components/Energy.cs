@@ -20,6 +20,8 @@ public class Energy : MonoBehaviour
     [Header("Setup")]
     public List<GameObject> energyBars;
 
+    public bool showOnStart = false;
+
     public int EnergyAmount { get => currentAmount; }
     private int currentAmount;
     private int maxAmount;
@@ -30,10 +32,17 @@ public class Energy : MonoBehaviour
 
     private void Start()
     {
+        if (gameObject.tag == "Cpu")
+        {
+            showOnStart = true;
+        }
+
         InitGame();
 
         EnergyCharge();
-        Round.i.EndTurn.AddListener(() => EnergyCharge());
+        
+        Round.i.StartTurn.AddListener(() => EnergyText(currentRoundAmount));
+        Round.i.EndTurn.AddListener(EnergyCharge);
     }
 
     public void InitGame() 
@@ -53,7 +62,7 @@ public class Energy : MonoBehaviour
             Debug.LogWarning("Energy Have Problem");
         }
 
-        EnergyText(currentRoundAmount);
+        if (!showOnStart) EnergyText(currentRoundAmount);
     }
 
     private void EnergyCharge() 
