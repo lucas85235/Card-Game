@@ -128,7 +128,7 @@ public class RoundLoop : Round
 
         SortBySpeed();
 
-        for (int i = sortRobots.Count - 1; i >= 0; i--)
+        for (int i = 0; i <= sortRobots.Count - 1; i++)
         {
             for (int j = 0; j < sortRobots[i].selectedCardsConteriner.childCount; j++)
             {
