@@ -21,7 +21,8 @@ public class StatusEffect_Reflect : StatusEffect
     {
         if (criteria == AttackType.ranged)
         {
-            GameController.i.GetTheOtherRobot(affectedRobot).life.TakeDamage(Amount, AttackType.none);
+            if (affectedRobot.GetType() == typeof(RobotSingleplayer))
+                ((RobotSingleplayer) GameController.i.GetTheOtherRobot(affectedRobot) ).life.TakeDamage(Amount, AttackType.none);
         }
 
         return base.ActivateStatusEffect(affectedRobot, criteria);

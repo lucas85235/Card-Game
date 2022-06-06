@@ -101,7 +101,7 @@ public class LobbyUI : MonoBehaviourPunCallbacks
 
     public void OutsideTheRoom()
     {
-        exitMenu.interactable = false;
+        exitMenu.interactable = true;
 
         find.interactable = true;
         exit.interactable = false;
@@ -110,7 +110,7 @@ public class LobbyUI : MonoBehaviourPunCallbacks
 
     public void InTheRoom()
     {
-        exitMenu.interactable = true;
+        exitMenu.interactable = false;
 
         find.interactable = false;
         exit.interactable = true;

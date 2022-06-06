@@ -13,7 +13,10 @@ namespace Multiplayer
 
         [Header("Deck")]
         [SerializeField] private List<CardData> deck = new List<CardData>();
-        [SerializeField] private List<Card> selectedCards = new List<Card>();
+        [SerializeField] private List<CardImage> selectedCards = new List<CardImage>();
+
+        private Energy _energy;
+        private Robot _connectedRobot;
 
         public RectTransform CardsContainer
         {
@@ -23,19 +26,25 @@ namespace Multiplayer
 
         private PhotonView _view;
 
+        private void Awake()
+        {
+            _energy = GetComponent<Energy>();
+            _connectedRobot = GetComponent<Robot>();
+        }
+
         private void OnEnable()
         {
             _view = GetComponent<PhotonView>();
         }
 
-        public List<Card> GetRoundCards()
+        public List<CardImage> GetRoundCards()
         {
             return selectedCards;
         }
 
         public void SpawCards()
         {
-            selectedCards = new List<Card>();
+            selectedCards = new List<CardImage>();
 
             for (int i = 0; i < deck.Count; i++)
             {
@@ -44,9 +53,12 @@ namespace Multiplayer
 
                 var cardObj = Instantiate(cardTemplate, cardsContainer);
 
-                if (cardObj.TryGetComponent(out Card spawCard))
+                if (cardObj.TryGetComponent(out CardImage spawCard))
                 {
-                    spawCard.SetName(gameObject.name);
+                    spawCard.energyCount = _energy;
+                    spawCard.ConnectedRobot = _connectedRobot;
+                    spawCard.selectConteriner = cardsContainer;
+                    spawCard.description.text = gameObject.name;
                     spawCard.Data = deck[i];
 
                     selectedCards.Add(spawCard);
@@ -100,7 +112,7 @@ namespace Multiplayer
         [PunRPC]
         private void SpawSelectedCardsRPC(bool[] rand)
         {
-            selectedCards = new List<Card>();
+            selectedCards = new List<CardImage>();
 
             for (int i = 0; i < rand.Length; i++)
             {
@@ -108,9 +120,12 @@ namespace Multiplayer
 
                 var cardObj = Instantiate(cardTemplate, cardsContainer);
 
-                if (cardObj.TryGetComponent(out Card spawCard))
+                if (cardObj.TryGetComponent(out CardImage spawCard))
                 {
-                    spawCard.SetName(gameObject.name);
+                    spawCard.energyCount = _energy;
+                    spawCard.ConnectedRobot = _connectedRobot;
+                    spawCard.selectConteriner = cardsContainer;
+                    spawCard.description.text = gameObject.name;
                     spawCard.Data = deck[i];
 
                     selectedCards.Add(spawCard);

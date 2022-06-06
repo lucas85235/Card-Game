@@ -51,8 +51,11 @@ public class CardImage : MonoBehaviour
         LanguageManager.Instance.OnChangeLanguage += UpdateText;
         UpdateText();
 
-        Round.i.EndTurn.AddListener(() => OnStartTurn());
-        Round.i.StartTurn.AddListener(() => m_canSelect = false);
+        if (Round.i != null)
+        {
+            Round.i.EndTurn.AddListener(() => OnStartTurn());
+            Round.i.StartTurn.AddListener(() => m_canSelect = false);            
+        }
     }
 
     private void OnEnable()
@@ -73,7 +76,11 @@ public class CardImage : MonoBehaviour
     {
         foreach (var effect in Data.Effects())
         {
-            effect.UseEffect(ConnectedRobot, GameController.i.GetTheOtherRobot(ConnectedRobot), Data);
+            if (GameController.i != null)
+                effect.UseEffect(ConnectedRobot, GameController.i.GetTheOtherRobot(ConnectedRobot), Data);
+
+            else
+                effect.UseEffect(ConnectedRobot, Multiplayer.GameManager.Instance.GetTheOtherRobot(ConnectedRobot), Data);
         }
     }
 
@@ -122,7 +129,8 @@ public class CardImage : MonoBehaviour
             selected = true;
             selectedFeedback.gameObject.SetActive(true);
 
-            energyCount.UseRoundEnergy(-Data.Energy());
+            if (energyCount != null)
+                energyCount.UseRoundEnergy(-Data.Energy());
 
             if (m_CardRectTransform != null)
                 m_CardRectTransform.sizeDelta = (defaultDeltaSize * 1.2f);

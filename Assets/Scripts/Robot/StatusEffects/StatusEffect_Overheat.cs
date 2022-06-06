@@ -21,7 +21,8 @@ public class StatusEffect_Overheat : StatusEffect
     {
         if(Amount > 0)
         {
-            affectedRobot.life.TakeDamage(Amount);
+            if (affectedRobot.GetType() == typeof(RobotSingleplayer))
+                ((RobotSingleplayer)affectedRobot).life.TakeDamage(Amount);
         }
 
         Amount--;

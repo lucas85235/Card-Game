@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,16 +18,18 @@ public abstract class Robot : MonoBehaviour
     public List<CardData> CurrentCards { get; protected set; }
     public List<StatusEffect> StatusList { get; set; } = new List<StatusEffect>();
 
-    public Life life { get; protected set; }
-    public Energy energy { get; protected set; }
     protected RobotAnimation m_RobotAnimation;
 
-    public void ApplyStatChange(Stats statToChange, int value)
+    public virtual void ApplyStatChange(Stats statToChange, int value)
     {
         CurrentRobotStats[statToChange] += value;
         var textColor = value > 0 ? Color.blue : Color.red;
-
-        GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
+        
+        if (GameController.i != null)
+            GameController.i.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
+        
+        if (Multiplayer.GameManager.Instance != null)
+            Multiplayer.GameManager.Instance.ShowAlertText(value, m_iconSpawInLeft, statToChange, textColor);
     }
 
     public void ApplyStatusEffect(StatusEffect newStatusEffect)
@@ -85,5 +89,40 @@ public abstract class Robot : MonoBehaviour
 
         CurrentRobotStats[Stats.electricResistence] = m_Data.ElectricResistence();
         DataStats[Stats.electricResistence] = m_Data.ElectricResistence();
+    }
+
+    public bool ActivateEarlyStatusEffects()
+    {
+        var toRemoveInStatusList = new List<StatusEffect>();
+
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnStartRound && status.ActivateStatusEffect(this))
+            {
+                toRemoveInStatusList.Add(status);
+            }
+        }
+
+        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
+
+        return true;
+    }
+
+    public async Task<bool> ActivateLateStatusEffects(int timeBetweenStatusEffects)
+    {
+        var toRemoveInStatusList = new List<StatusEffect>();
+
+        foreach (var status in StatusList)
+        {
+            if (status.statusTrigger == StatusEffectTrigger.OnEndRound && status.ActivateStatusEffect(this))
+            {
+                await Task.Delay(timeBetweenStatusEffects);
+                toRemoveInStatusList.Add(status);
+            }
+        }
+
+        StatusList = StatusList.Except(toRemoveInStatusList).ToList();
+
+        return true;
     }
 }

@@ -44,6 +44,10 @@ MonoBehaviour:
   - SpawSelectedCardsRPC
   - TakeDamageRPC
   - AnimationRPC
+  - ApplyStatChangeRPC
+  - AttackFeedbackRPC
+  - HealingFeedbackRPC
+  - AddLifeRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

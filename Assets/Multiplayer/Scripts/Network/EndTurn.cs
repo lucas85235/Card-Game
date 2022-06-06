@@ -9,6 +9,7 @@ public class EndTurn : MonoBehaviourPunCallbacks
 {
     [Header("UI")]
     [SerializeField] private Button endButton;
+    [SerializeField] private bool testMode = false;
 
     private void Start()
     {
@@ -17,6 +18,12 @@ public class EndTurn : MonoBehaviourPunCallbacks
 
     private void EndTurnButton()
     {
+        if (testMode)
+        {
+            Multiplayer.GameManager.Instance.EndRound();
+            return;
+        }
+
         var hash = PhotonNetwork.LocalPlayer.CustomProperties;
 
         if (hash.ContainsKey("EndTurn"))

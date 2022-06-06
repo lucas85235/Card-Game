@@ -21,7 +21,8 @@ public class StatusEffect_Freezing : StatusEffect
     {
         if (Amount > 0)
         {
-            affectedRobot.energy.ChangeMaxEnergyAmount(-Amount);
+            if (affectedRobot.GetType() == typeof(RobotSingleplayer))
+                ((RobotSingleplayer)affectedRobot).energy.ChangeMaxEnergyAmount(-Amount);
         }
         Amount--;
         return base.ActivateStatusEffect(affectedRobot, criteria);
@@ -30,6 +31,8 @@ public class StatusEffect_Freezing : StatusEffect
     public override void StatusEffectPosAction(Robot affectedRobot)
     {
         base.StatusEffectPosAction(affectedRobot);
-        affectedRobot.energy.ChangeMaxEnergyAmount(0);
+
+        if (affectedRobot.GetType() == typeof(RobotSingleplayer))
+            ((RobotSingleplayer)affectedRobot).energy.ChangeMaxEnergyAmount(0);
     }
 }

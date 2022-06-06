@@ -25,7 +25,7 @@ public class RoundLoop : Round
 
     private List<RobotSingleplayer> sortRobots;
 
-    private static int MAX_CARD_PRIORITY = 4;
+    private const int MAX_CARD_PRIORITY = 4;
 
     protected override void Awake()
     {
