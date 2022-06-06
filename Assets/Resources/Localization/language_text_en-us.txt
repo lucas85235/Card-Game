@@ -14,6 +14,23 @@
         {"key":"return", "value":"Return"},
         {"key":"inventory", "value":"Inventory"},
         {"key":"restart", "value":"Restart"},
+        {"key":"back", "value":"BACK"},
+        {"key":"news", "value":"NEWS"},
+        {"key":"you_cards", "value":"YOU CARDS"},
+
+        {"key":"adventure", "value":"Adventure"},
+        {"key":"quick_start", "value":"Quick Start"},
+        {"key":"multiplayer", "value":"Multiplayer"},
+        {"key":"workshop", "value":"Workshop"},
+
+        {"key":"robot_parts", "value":"Robot parts"},
+        
+        {"key":"cards_available", "value":"Cartas Cards Available"},
+        {"key":"cards_in_hand", "value":"Cards in Hand"},
+
+        {"key":"resume_match", "value":"RESUME MATCH"},
+        {"key":"leave_match", "value":"LEAVE THE MATCH"},
+        {"key":"match_progress", "value":"Match in Progress"},
 
         {"key":"conf_header", "value":"Settings"},
         {"key":"conf_audio_header", "value":"Sound"},

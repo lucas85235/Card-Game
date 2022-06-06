@@ -12,11 +12,25 @@ public class MenuManager : MonoBehaviour
     [Header("Info")]
     [SerializeField] private TextMeshProUGUI nameInfoText;
     [SerializeField] private TextMeshProUGUI descriptionInfoText;
-    [SerializeField] private TextMeshProUGUI robotInfoText;
     [SerializeField] private RectTransform cardConfiner;
     [SerializeField] private RectTransform cardMenuConfiner;
     [SerializeField] private RectTransform cardPartConfiner;
     [SerializeField] private GameObject cardInfoPrefab;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI health;
+    [SerializeField] private TextMeshProUGUI attack;
+    [SerializeField] private TextMeshProUGUI defense;
+    [SerializeField] private TextMeshProUGUI inteligence;
+    [SerializeField] private TextMeshProUGUI speed;
+    [SerializeField] private TextMeshProUGUI accuracy;
+    [SerializeField] private TextMeshProUGUI evasion;
+    [SerializeField] private TextMeshProUGUI critChance;
+    [SerializeField] private TextMeshProUGUI energy;
+    [SerializeField] private TextMeshProUGUI fireResistence;
+    [SerializeField] private TextMeshProUGUI waterResistence;
+    [SerializeField] private TextMeshProUGUI electricResistence;
+    [SerializeField] private TextMeshProUGUI acidResistence;
 
     [Header("UI")]
     [SerializeField] private GameObject partItem;
@@ -138,20 +152,19 @@ public class MenuManager : MonoBehaviour
     {
         robotAnimation.ChangeRobotSprites(DataManager.Instance.GetCurrentRobot());
 
-        robotInfoText.text =
-            LanguageManager.Instance.GetKeyValue("health") + ": " + DataManager.Instance.GetCurrentRobot().Health() + "\n" +
-            LanguageManager.Instance.GetKeyValue("attack") + ": " + DataManager.Instance.GetCurrentRobot().Attack() + "\n" +
-            LanguageManager.Instance.GetKeyValue("defense") + ": " + DataManager.Instance.GetCurrentRobot().Defense() + "\n" +
-            LanguageManager.Instance.GetKeyValue("inteligence") + ": " + DataManager.Instance.GetCurrentRobot().Inteligence() + "\n" +
-            LanguageManager.Instance.GetKeyValue("speed") + ": " + DataManager.Instance.GetCurrentRobot().Speed() + "\n" +
-            LanguageManager.Instance.GetKeyValue("accuracy") + ": " + DataManager.Instance.GetCurrentRobot().Accuracy() + "\n" +
-            LanguageManager.Instance.GetKeyValue("evasion") + ": " + DataManager.Instance.GetCurrentRobot().Evasion() + "\n" +
-            LanguageManager.Instance.GetKeyValue("critChance") + ": " + DataManager.Instance.GetCurrentRobot().CritChance() + "\n" +
-            LanguageManager.Instance.GetKeyValue("energy") + ": " + DataManager.Instance.GetCurrentRobot().Energy() + "\n" +
-            LanguageManager.Instance.GetKeyValue("fireResistence") + ": " + DataManager.Instance.GetCurrentRobot().FireResistence() + "\n" +
-            LanguageManager.Instance.GetKeyValue("waterResistence") + ": " + DataManager.Instance.GetCurrentRobot().WaterResistence() + "\n" +
-            LanguageManager.Instance.GetKeyValue("electricResistence") + ": " + DataManager.Instance.GetCurrentRobot().ElectricResistence() + "\n" +
-            LanguageManager.Instance.GetKeyValue("acidResistence") + ": " + DataManager.Instance.GetCurrentRobot().AcidResistence() + "\n";
+        health.text = DataManager.Instance.GetCurrentRobot().Health().ToString();
+        attack.text = DataManager.Instance.GetCurrentRobot().Attack().ToString();
+        defense.text = DataManager.Instance.GetCurrentRobot().Defense().ToString();
+        inteligence.text = DataManager.Instance.GetCurrentRobot().Inteligence().ToString();
+        speed.text = DataManager.Instance.GetCurrentRobot().Speed().ToString();
+        accuracy.text = DataManager.Instance.GetCurrentRobot().Accuracy().ToString();
+        evasion.text = DataManager.Instance.GetCurrentRobot().Evasion().ToString();
+        critChance.text = DataManager.Instance.GetCurrentRobot().CritChance().ToString();
+        energy.text = DataManager.Instance.GetCurrentRobot().Energy().ToString();
+        fireResistence.text = DataManager.Instance.GetCurrentRobot().FireResistence().ToString();
+        waterResistence.text = DataManager.Instance.GetCurrentRobot().WaterResistence().ToString();
+        electricResistence.text = DataManager.Instance.GetCurrentRobot().ElectricResistence().ToString();
+        acidResistence.text = DataManager.Instance.GetCurrentRobot().AcidResistence().ToString();
 
         nameInfoText.text =
             DataManager.Instance.GetCurrentRobot().characterName + " - " +

@@ -14,7 +14,23 @@
         {"key":"return", "value":"Voltar"},
         {"key":"inventory", "value":"Inventário"},
         {"key":"restart", "value":"Recomeçar"},
+        {"key":"back", "value":"VOLTAR"},
+        {"key":"news", "value":"NOVIDADES"},
+        {"key":"you_cards", "value":"SUAS CARTAS"},
         
+        {"key":"adventure", "value":"Aventura"},
+        {"key":"quick_start", "value":"Partida Rápida"},
+        {"key":"multiplayer", "value":"Multijogador "},
+        {"key":"workshop", "value":"Oficina"},
+
+        {"key":"robot_parts", "value":"Partes do Robô"},
+        {"key":"cards_available", "value":"Cartas Disponíveis"},
+        {"key":"cards_in_hand", "value":"Cartas em Mãos"},
+
+        {"key":"resume_match", "value":"RETOMAR A PARTIDA"},
+        {"key":"leave_match", "value":"SAIR DA PARTIDA"},
+        {"key":"match_progress", "value":"Partida em Andamento"},
+
         {"key":"conf_header", "value":"Configurações"},
         {"key":"conf_audio_header", "value":"Som"},
         {"key":"conf_audio_all", "value":"Geral"},
